@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-xh1lfx$+z@65@v(86t*t7kh)l7)3dh9b4d6rxa3yv)77-_*-7#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','hydrinity.com.vn']
 
 
 # Application definition
