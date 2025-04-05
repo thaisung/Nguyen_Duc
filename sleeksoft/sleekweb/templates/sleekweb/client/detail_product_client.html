@@ -1,0 +1,206 @@
+{% extends './base_client.html' %}
+{% block content %}
+<main class=" flex flex-col items-center w-full mb-6">
+    <div class="flex justify-between gap-[150px]">
+        <div class="grid grid-cols-2 w-[50%] gap-2">
+            {% for i in obj_Product.list_photo.all %}
+                <img class="min-w-[405px] min-h-[405px]" src="{{i.Avatar.url}}" />
+            {% endfor %}
+        </div>
+        <div class="flex flex-col w-[50%]">
+            <h1 class="uppercase text-[36px] font-medium">{{obj_Product.Name}}</h1>
+            <span class="text-[24px] font-medium format_number">{{obj_Product.Price}}đ</span>
+            <p>{{obj_Product.Introduce}}</p>
+            <div class="flex flex-col mt-3">
+                <div class="flex flex-col border-t-[1px] border-[#ddd]" >
+                    <div class="click_pr cursor-pointer flex gap-2 py-3">
+                        <div class="">
+                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        </div>
+                        <span  class="text-[15px] font-medium uppercase">
+                            Mô Tả Sản Phẩm
+                        </span>
+                    </div>
+                    <p class="hidden tab_pr py-3">
+                        {{obj_Product.Describe}}
+                    </p>
+                </div>
+                <div class="flex flex-col border-t-[1px] border-[#ddd]" >
+                    <div class="click_pr cursor-pointer flex gap-2 py-3">
+                        <div class="">
+                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        </div>
+                        <span  class="text-[15px] font-medium uppercase">
+                            Thành phần chính
+                        </span>
+                    </div>
+                    <p class="hidden tab_pr py-3">
+                        {{obj_Product.Main_ingredients}}
+                    </p>
+                </div>
+                <div class="flex flex-col border-t-[1px] border-[#ddd]" >
+                    <div class="click_pr cursor-pointer flex gap-2 py-3">
+                        <div class="">
+                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        </div>
+                        <span  class="text-[15px] font-medium uppercase">
+                            Cách sử dụng
+                        </span>
+                    </div>
+                    <p class="hidden tab_pr py-3">
+                        {{obj_Product.How_use}}
+                    </p>
+                </div>
+                <div class="flex flex-col border-t-[1px] border-[#ddd]" >
+                    <div class="click_pr cursor-pointer flex gap-2  py-3">
+                        <div class="">
+                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        </div>
+                        <span  class="text-[15px] font-medium uppercase">
+                            Bảng thành phần
+                        </span>
+                    </div>
+                    <p class="hidden tab_pr py-3">
+                        {{obj_Product.Ingredients_table}}
+                    </p>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        $('.click_pr').on('click', function() {
+                            // Lấy phần tử tab_pr tương ứng trong cùng khối div
+                            const tab = $(this).next('.tab_pr');
+                            const openIcon = $(this).find('.open_icon_pr');
+                            const closeIcon = $(this).find('.close_icon_pr');
+
+                            // Đóng tất cả các tab khác và đặt lại icon, nền
+                            $('.tab_pr').not(tab).slideUp();
+                            $('.click_pr').not($(this)).removeClass('bg-[#f8f7f7]');
+                            $('.open_icon_pr').not(openIcon).removeClass('hidden');
+                            $('.close_icon_pr').not(closeIcon).addClass('hidden');
+
+                            // Toggle hiển thị của tab_pr
+                            tab.slideToggle(200);
+
+                            // Chuyển đổi icon và thêm/xóa nền
+                            openIcon.toggleClass('hidden');
+                            closeIcon.toggleClass('hidden');
+                            $(this).toggleClass('bg-[#f8f7f7]');
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col items-center mt-[50px] gap-[50px] w-full">
+        <h1 class="uppercase flex items-center justify-center  text-[36px] bg-[#11284A] font-extrabold text-[#FBFBFB] rounded-md w-[450px] h-[80px]">
+            NGHIÊM CỨU LÂM SÀN
+        </h1>
+        <div class="flex items-center justify-center w-full gap-[25px]">
+            {% for i in obj_Product.list_photo_ncls.all %}
+            <img alt="bg" class="w-[788px] h-[788px] rounded-md" src="{{i.Avatar.url}}" />
+            {% endfor %}
+        </div>
+    </div>
+    <h1 class="uppercase flex items-center justify-center  text-[36px] bg-[#11284A] font-extrabold text-[#FBFBFB] rounded-md w-[450px] h-[80px] mt-[50px]">
+        RELATED PRODUCTS
+    </h1>
+    <div class="grid grid-cols-3 place-items-center items-center w-[1274px] mt-[50px] gap-[50px]">
+        {% for i in list_Product %}
+        <div class="flex flex-col items-center w-[306px] h-[492px] gap-3">
+            <a href="{% url 'detail_product_client' pk=i.id %}">
+                <img class="w-full" src="{{i.Avatar.url}}"/>
+            </a>
+            <div class="flex flex-col items-center h-full  gap-4 mt-2">
+                <a href="{% url 'detail_product_client' pk=i.id %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">
+                    {{i.Name}}
+                </a>
+                <div class="relative">
+                    <div class="click_tab_size_product hover:cursor-pointer relative flex items-center w-[264px] h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                        <div class="absolute bottom-6 left-8">
+                            <div class="relative flex items-center justify-center">
+                                <img class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                <span class=" absolute inset-0 font-medium text-[12px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                            <span class="font-medium text-[12px]  text-[#11284A]">
+                                {{i.list_size.all.first.Name}}
+                            </span>
+                            <span>
+                                <svg class="open_tab_size_product" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                        fill="#11284A" />
+                                </svg>
+                                <svg class="close_tab_size_product" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                        fill="#11284A" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div style="display: none;"  class="tab_size_product z-[-1] absolute top-[15px] pt-[15px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                        {% for j in i.list_size.all %}
+                        <a class="font-medium text-[12px] text-[#11284A] py-1">{{j.Name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <span class="uppercase z-[-2] font-bold text-[25px] text-black text-center">
+                    GIÁ: <span class="format_number">{{i.Price}}</span> VNĐ 
+                </span>
+            </div>
+        </div>
+        {% endfor %}
+        <script>
+            $(document).ready(function () {
+                $(".click_tab_size_product").click(function (event) {
+                    event.stopPropagation(); // Ngăn chặn sự kiện click lan ra ngoài
+        
+                    let $tab = $(this).next(".tab_size_product");
+                    let $openIcon = $(this).find(".open_tab_size_product");
+                    let $closeIcon = $(this).find(".close_tab_size_product");
+        
+                    // Ẩn tất cả dropdown khác
+                    $(".tab_size_product").not($tab).slideUp(200).removeClass("open");
+                    $(".open_tab_size_product").not($openIcon).show();
+                    $(".close_tab_size_product").not($closeIcon).hide();
+        
+                    // Toggle dropdown hiện tại
+                    $tab.slideToggle(200).toggleClass("open");
+                    $openIcon.toggle();
+                    $closeIcon.toggle();
+                });
+        
+                // Click ra ngoài sẽ ẩn dropdown
+                $(document).click(function () {
+                    $(".tab_size_product").slideUp(200).removeClass("open");
+                    $(".close_tab_size_product").hide();
+                    $(".open_tab_size_product").show();
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Lấy vị trí cuộn từ LocalStorage
+                const scrollPosition = localStorage.getItem("scrollPosition");
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    localStorage.removeItem("scrollPosition"); // Xóa sau khi cuộn
+                }
+        
+                // Lưu vị trí trước khi chuyển trang
+                document.querySelectorAll("a").forEach(link => {
+                    link.addEventListener("click", function () {
+                        localStorage.setItem("scrollPosition", window.scrollY);
+                    });
+                });
+            });
+        </script>
+    </div>
+</main>
+{% endblock %}

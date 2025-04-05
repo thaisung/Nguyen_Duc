@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+	<meta http-equiv="content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<title>
+		Đăng nhập tài khoản
+
+
+	</title>
+	<!-- ================= Page description ================== -->
+	<meta name="description" content="">
+	<!-- ================= Meta ================== -->
+	<meta name="keywords" content="Đăng nhập tài khoản, Sapa tv, sapatv.vn" />
+	<link rel="canonical" href="{{domain}}/account/login" />
+	<meta name='revisit-after' content='1 days' />
+	<meta name="robots" content="noodp,index,follow" />
+	<link rel="shortcut icon" href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/favicon.png?1740649127790"
+		type="image/x-icon" />
+	<meta property="og:type" content="websitae">
+	<meta property="og:title" content="Đăng nhập tài khoản">
+	<meta property="og:image"
+		content="http://bizweb.dktcdn.net/100/467/099/themes/880010/assets/logo_share.png?1740649127790">
+	<meta property="og:image:secure_url"
+		content="https://bizweb.dktcdn.net/100/467/099/themes/880010/assets/logo_share.png?1740649127790">
+	<meta property="og:description" content="">
+	<meta property="og:url" content="https://sapatv.vn/account/login">
+	<meta property="og:site_name" content="Sapa tv">
+
+	<link rel="stylesheet" type="text/css"
+		href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/fonts.scss.css?1740649127790" media="print"
+		onload="this.media='all';">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+
+		:root {
+			--menuWidth: calc(100% - 20px);
+			--leftColBackground: #fff;
+			--lightLeftColBackground: #f9f9f9;
+			/*+5%*/
+			--darkLeftColBackground: #22272b;
+			/*-5%*/
+			--mainColor: #2e9f3c;
+			--mainColor2: #5ea700;
+			--menuHover: #ffc107;
+			--accentColor1: #929292;
+			--accentColor2: #d80000;
+			/*Màu giá*/
+			--textColor: #4c4c4c;
+			--toastSuccessBg: #d1e7dd;
+			--toastSuccessCl: #0f5132;
+			--toastWarningBg: #fff3cd;
+			--toastWarningCl: #664d03;
+			--toastErrorBg: #f8d7da;
+			--toastErrorCl: #842029;
+			--toastSystemBg: #d3d3d4;
+			--toastSystemCl: #141619;
+
+		}
+	</style>
+	<link rel="preload" as="style"
+		href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/bootstrap.scss.css?1740649127790" type="text/css">
+	<link href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/bootstrap.scss.css?1740649127790" rel="stylesheet"
+		type="text/css" media="all" />
+	<link rel="preload" as="style"
+		href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/swiper.scss.css?1740649127790" type="text/css">
+	<link href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/swiper.scss.css?1740649127790" rel="stylesheet"
+		type="text/css" media="all" />
+	<link rel="preload" as="style"
+		href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/mew_style_first.scss.css?1740649127790"
+		type="text/css">
+	<link rel="preload" as="style"
+		href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/mew_style_gb.scss.css?1740649127790" type="text/css">
+	<link href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/mew_style_first.scss.css?1740649127790"
+		rel="stylesheet" type="text/css" media="all" />
+	<link href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/mew_style_gb.scss.css?1740649127790"
+		rel="stylesheet" type="text/css" media="all" />
+
+
+
+
+	<link rel="preload" as="style"
+		href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/mew_noti.scss.css?1740649127790" type="text/css">
+	<link href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/mew_noti.scss.css?1740649127790" rel="stylesheet"
+		type="text/css" media="all" />
+
+
+
+	<script>
+		var Bizweb = Bizweb || {};
+		Bizweb.store = 'sapatv.mysapo.net';
+		Bizweb.id = 467099;
+		Bizweb.theme = { "id": 880010, "name": "Mew Yummy final", "role": "main" };
+		Bizweb.template = 'customers/login';
+		if (!Bizweb.fbEventId) Bizweb.fbEventId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+			return v.toString(16);
+		});		
+	</script>
+	<script>
+		(function () {
+			function asyncLoad() {
+				var urls = ["https://combo.sapoapps.vn/assets/script.js?store=sapatv.mysapo.net", "https://buyx-gety.sapoapps.vn/assets/script.v2.js?store=sapatv.mysapo.net"];
+				for (var i = 0; i < urls.length; i++) {
+					var s = document.createElement('script');
+					s.type = 'text/javascript';
+					s.async = true;
+					s.src = urls[i];
+					var x = document.getElementsByTagName('script')[0];
+					x.parentNode.insertBefore(s, x);
+				}
+			};
+			window.attachEvent ? window.attachEvent('onload', asyncLoad) : window.addEventListener('load', asyncLoad, false);
+		})();
+	</script>
+
+
+	<script>
+		window.BizwebAnalytics = window.BizwebAnalytics || {};
+		window.BizwebAnalytics.meta = window.BizwebAnalytics.meta || {};
+		window.BizwebAnalytics.meta.currency = 'VND';
+		window.BizwebAnalytics.tracking_url = '/s';
+
+		var meta = {};
+
+
+		for (var attr in meta) {
+			window.BizwebAnalytics.meta[attr] = meta[attr];
+		}
+	</script>
+
+
+	<script src="/dist/js/stats.min.js?v=96f2ff2"></script>
+
+
+
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11408645654"> </script>
+	<script>   window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'AW-11408645654'); </script>
+	<script>
+
+		window.enabled_enhanced_ecommerce = false;
+
+	</script>
+
+
+
+
+	<!--Facebook Pixel Code-->
+	<script>
+		!function (f, b, e, v, n, t, s) {
+			if (f.fbq) return; n = f.fbq = function () {
+				n.callMethod ?
+					n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+			}; if (!f._fbq) f._fbq = n;
+			n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+			t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+		}
+			(window,
+				document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '9871564672861333', {}, { 'agent': 'plsapo' }); // Insert your pixel ID here.
+		fbq('track', 'PageView', {}, { eventID: Bizweb.fbEventId });
+
+	</script>
+	<noscript>
+		<img height='1' width='1' style='display:none'
+			src='https://www.facebook.com/tr?id=9871564672861333&ev=PageView&noscript=1' />
+	</noscript>
+	<!--DO NOT MODIFY-->
+	<!--End Facebook Pixel Code-->
+
+
+
+	<script>
+		var eventsListenerScript = document.createElement('script');
+		eventsListenerScript.async = true;
+
+		eventsListenerScript.src = "/dist/js/store_events_listener.min.js?v=8ee4227";
+
+		document.getElementsByTagName('head')[0].appendChild(eventsListenerScript);
+	</script>
+
+
+
+
+
+
+
+
+	<script type="application/ld+json">
+        {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": 
+        [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": 
+                {
+                  "@id": "https://sapatv.vn",
+                  "name": "Trang chủ"
+                }
+            },
+      
+        
+      
+      
+      
+      
+    
+        ]
+        }
+</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+		integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="preload" as="style" type="text/css"
+		href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/custom.scss.css?1740649127790">
+	<link href="//bizweb.dktcdn.net/100/467/099/themes/880010/assets/custom.scss.css?1740649127790" rel="stylesheet"
+		type="text/css" media="all" />
+	<script src="//bizweb.dktcdn.net/assets/themes_support/common.js" type="text/javascript"></script>
+	<script src="//bizweb.dktcdn.net/assets/themes_support/bizweb-api.js" type="text/javascript"></script>
+	<script src="//bizweb.dktcdn.net/assets/themes_support/customer.js" type="text/javascript"></script>
+</head>
+
+<body class="">
+
+	<section class="login-layout d-flex align-items-center justify-content-center">
+		<div class="box_log position-relative">
+			<div class="square border-mew position-absolute squa-mew d-none d-lg-block" style="--i:0;"></div>
+			<div class="square border-mew position-absolute squa-mew d-none d-lg-block" style="--i:1;"></div>
+			<div class="square border-mew position-absolute squa-mew d-none d-lg-block" style="--i:2;"></div>
+			<div class="square border-mew position-absolute squa-mew d-none d-lg-block" style="--i:3;"></div>
+			<div class="square border-mew position-absolute squa-mew d-none d-lg-block" style="--i:4;"></div>
+			<div class="b_big position-relative pl-xl-5 pr-xl-5 pt-xl-4 pb-xl-4 p-3 border-mew squa-mew">
+				<div class="registered-users">
+					<div class="content">
+						<form method="post" action="/account/login" id="customer_login" accept-charset="UTF-8"><input
+								name="FormType" type="hidden" value="customer_login" /><input name="utf8" type="hidden"
+								value="true" />
+							<h3 class="font-weight-bold whites text-center m-0">Đăng nhập</h3>
+							<ul class="breadcrumb d-flex justify-content-center pl-0 pr-0 mb-2 w-100 small">
+								<li class="home">
+									<a href="/" title="Sapa tv">Trang chủ</a>
+									<span class="slash-divider ml-1 mr-1">/</span>
+								</li>
+								<li>Đăng nhập tài khoản</li>
+							</ul>
+							<div class="form-group">
+								<label for="customer_email" class="col-form-label d-none">E-mail<span
+										class="text-danger">*</span></label>
+								<input type="email" placeholder="E-mail" class="border-mew mew-control"
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" id="customer_email"
+									required>
+							</div>
+							<div class="form-group">
+								<label for="customer_password" class="d-none col-form-label">Mật khẩu<span
+										class="text-danger">*</span></label>
+								<input type="password" placeholder="Mật khẩu" class="border-mew mew-control"
+									name="password" id="customer_password" required>
+							</div>
+							<div class="form-group d-flex justify-content-between align-items-center">
+								<button type="submit"
+									class="btn btn-primary border-mew mew-control lk font-weight-bold btn_login">Đăng
+									nhập</button>
+								<a href="#recover" class="whites font-weight-bold"
+									onclick="toggleRecoverPasswordForm();return false;" id="RecoverPassword">Quên mật
+									khẩu?</a>
+							</div>
+						</form>
+						<form method="post" action="/account/recover" id="recover_customer_password"
+							accept-charset="UTF-8"><input name="FormType" type="hidden"
+								value="recover_customer_password" /><input name="utf8" type="hidden" value="true" />
+							<div id="recover_password" class="d-none">
+								<h3 class="font-weight-bold mb-3 whites text-center">Đặt lại mật khẩu</h3>
+								<p class="line_cus whites text-center">Chúng tôi sẽ gửi cho bạn một email để kích hoạt
+									việc đặt lại mật khẩu.</p>
+								<div class="form-error mb-4 text-danger">
+								</div>
+								<div class="form-group">
+									<label for="customer_email1" class="col-form-label d-none">E-mail<span
+											class="text-danger">*</span></label>
+									<input type="email" class="border-mew mew-control" placeholder="E-mail"
+										pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email"
+										id="customer_email1" required>
+								</div>
+								<div class="form-group d-flex justify-content-between align-items-center">
+									<button type="submit"
+										class="btn btn-primary border-mew mew-control lk font-weight-bold"
+										title="Gửi">Gửi</button>
+									<a href="#" class="whites font-weight-bold"
+										onclick="toggleRecoverPasswordForm();return false;" title="Huỷ">Huỷ</a>
+								</div>
+							</div>
+						</form>
+						<div class="login_isocial">
+							<div class="log_iso position-relative text-center">
+								<span class="d-inline-block position-relative">Hoặc đăng nhập qua</span>
+							</div>
+							<script>function loginFacebook() { var a = { client_id: "947410958642584", redirect_uri: "https://store.mysapo.net/account/facebook_account_callback", state: JSON.stringify({ redirect_url: window.location.href }), scope: "email", response_type: "code" }, b = "https://www.facebook.com/v3.2/dialog/oauth" + encodeURIParams(a, !0); window.location.href = b } function loginGoogle() { var a = { client_id: "997675985899-pu3vhvc2rngfcuqgh5ddgt7mpibgrasr.apps.googleusercontent.com", redirect_uri: "https://store.mysapo.net/account/google_account_callback", scope: "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile", access_type: "online", state: JSON.stringify({ redirect_url: window.location.href }), response_type: "code" }, b = "https://accounts.google.com/o/oauth2/v2/auth" + encodeURIParams(a, !0); window.location.href = b } function encodeURIParams(a, b) { var c = []; for (var d in a) if (a.hasOwnProperty(d)) { var e = a[d]; null != e && c.push(encodeURIComponent(d) + "=" + encodeURIComponent(e)) } return 0 == c.length ? "" : (b ? "?" : "") + c.join("&") }</script>
+							<div class="d-flex align-items-center justify-content-center">
+								<a href="javascript:void(0)" class="social-login--facebook"
+									onclick="loginFacebook()"><img width="129px" height="37px"
+										alt="facebook-login-button"
+										src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg"></a>
+								<a href="javascript:void(0)" class="social-login--google" onclick="loginGoogle()"><img
+										width="129px" height="37px" alt="google-login-button"
+										src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="new-users">
+					<h3 class="font-weight-bold mb-3 mt-4 whites text-center">Đăng ký</h3>
+					<div class="content">
+						<p class="line_cus whites text-center">Tạo tài khoản để quản lý đơn hàng, và các thông tin thanh
+							toán, gửi hàng một cách đơn giản hơn.</p>
+						<div class="buttons-set text-center">
+							<button class="btn btn-primary border-mew mew-control font-weight-bold mb-2"
+								onclick="window.location.href='/account/register'">Tạo tài khoản</button>
+							<button class="btn btn-primary border-mew mew-control font-weight-bold"
+								onclick="window.location.href='/'">Quay về trang chủ</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		var formRecoverPassword = $("#recover_password"),
+			formLogin = $("#customer_login"),
+			notiRecoverSuccess = $("#note-reset");
+		function toggleRecoverPasswordForm() {
+			formRecoverPassword.toggleClass("d-none");
+			formLogin.toggleClass("d-none");
+		}
+		if (window.location.hash == "#recover") { toggleRecoverPasswordForm() }
+	</script>
+</body>
+
+</html>
