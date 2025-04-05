@@ -1,0 +1,13 @@
+git add .
+git reset **/settings.py
+Lệnh reset ở đây sẽ bỏ tracking file settings.py khỏi stage, không đưa vào commit.
+
+✅ Bước 2: Commit và push
+bash
+Sao chép
+Chỉnh sửa
+git commit -m "Cập nhật code, loại trừ settings.py"
+git push
+
+
+git pull
