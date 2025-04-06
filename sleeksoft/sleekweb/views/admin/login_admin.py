@@ -66,6 +66,7 @@ import base64
 def login_admin(request):
     if request.method == 'GET':
         context = {}
+        context['domain'] = settings.DOMAIN
         print('context:',context)
         return render(request, 'sleekweb/admin/login_admin.html', context, status=200)
     elif request.method == 'POST':

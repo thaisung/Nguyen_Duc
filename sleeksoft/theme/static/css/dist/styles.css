@@ -848,14 +848,14 @@ select {
   margin-right: auto;
 }
 
-.my-\[20px\] {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
+}
+
+.my-\[20px\] {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .mb-2 {
@@ -894,6 +894,10 @@ select {
   margin-top: 0.5rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -920,10 +924,6 @@ select {
 
 .mt-\[58px\] {
   margin-top: 58px;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .block {
@@ -1010,10 +1010,6 @@ select {
   height: 400px;
 }
 
-.h-\[405px\] {
-  height: 405px;
-}
-
 .h-\[443px\] {
   height: 443px;
 }
@@ -1066,6 +1062,10 @@ select {
   height: 59px;
 }
 
+.h-\[5px\] {
+  height: 5px;
+}
+
 .h-\[600px\] {
   height: 600px;
 }
@@ -1084,6 +1084,10 @@ select {
 
 .h-\[700px\] {
   height: 700px;
+}
+
+.h-\[788px\] {
+  height: 788px;
 }
 
 .h-\[801px\] {
@@ -1126,28 +1130,16 @@ select {
   height: 100vh;
 }
 
-.h-\[788px\] {
-  height: 788px;
-}
-
-.h-\[1px\] {
-  height: 1px;
-}
-
-.h-\[5px\] {
-  height: 5px;
-}
-
 .max-h-\[50px\] {
   max-height: 50px;
 }
 
-.min-h-screen {
-  min-height: 100vh;
-}
-
 .min-h-\[405px\] {
   min-height: 405px;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-\[100px\] {
@@ -1238,8 +1230,8 @@ select {
   width: 366px;
 }
 
-.w-\[405px\] {
-  width: 405px;
+.w-\[450px\] {
+  width: 450px;
 }
 
 .w-\[465px\] {
@@ -1300,14 +1292,6 @@ select {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[450px\] {
-  width: 450px;
-}
-
-.w-\[1602px\] {
-  width: 1602px;
 }
 
 .min-w-\[25px\] {
@@ -1398,6 +1382,10 @@ select {
   gap: 150px;
 }
 
+.gap-\[25px\] {
+  gap: 25px;
+}
+
 .gap-\[30px\] {
   gap: 30px;
 }
@@ -1416,10 +1404,6 @@ select {
 
 .gap-\[70px\] {
   gap: 70px;
-}
-
-.gap-\[25px\] {
-  gap: 25px;
 }
 
 .divide-y-\[1px\] > :not([hidden]) ~ :not([hidden]) {
@@ -1530,6 +1514,11 @@ select {
   border-color: rgb(0 0 0 / var(--tw-border-opacity, 1));
 }
 
+.bg-\[\#0e203c\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 32 60 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[\#11284A\] {
   --tw-bg-opacity: 1;
   background-color: rgb(17 40 74 / var(--tw-bg-opacity, 1));
@@ -1579,11 +1568,6 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.bg-\[\#0e203c\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(14 32 60 / var(--tw-bg-opacity, 1));
-}
-
 .bg-opacity-90 {
   --tw-bg-opacity: 0.9;
 }
@@ -1598,6 +1582,10 @@ select {
 
 .fill-red-500 {
   fill: #ef4444;
+}
+
+.fill-white {
+  fill: #fff;
 }
 
 .object-cover {
