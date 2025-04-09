@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'tailwind',
     'theme',
     'django_browser_reload',
@@ -53,9 +54,10 @@ INTERNAL_IPS = [
 ]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 AUTH_USER_MODEL = 'sleekweb.User'
-DOMAIN = '127.0.0.1'
+DOMAIN = 'http://127.0.0.1:8000'
 
 MIDDLEWARE = [
+    'sleekweb.middleware.MaintenanceMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
