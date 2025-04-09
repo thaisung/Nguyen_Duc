@@ -6,26 +6,14 @@ class MaintenanceMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        # Cho phép admin truy cập nếu cần
-        if request.path.startswith('/admin/'):
+        # Cho phép truy cập nếu là trang login
+        if request.path.startswith('/admin/login'):
             return self.get_response(request)
 
+        # Cho phép nếu user đã đăng nhập và username là "bdmin"
+        if request.user.is_authenticated and request.user.username == 'bdmin':
+            return self.get_response(request)
+
+        # Còn lại trả về trang bảo trì
         html = render_to_string('sleekweb/maintenance.html')
         return HttpResponse(html, status=503)
-    
-# from django.http import HttpResponse
-# from django.template.loader import render_to_string
-# from django.contrib.auth import get_user
-# from django.utils.deprecation import MiddlewareMixin
-
-# class MaintenanceMiddleware(MiddlewareMixin):
-#     def process_request(self, request):
-#         user = get_user(request)
-
-#         # Cho phép superuser (đã đăng nhập) truy cập mọi nơi
-#         if user.is_authenticated and user.is_superuser:
-#             return None  # Cho phép request tiếp tục
-
-#         # Còn lại hiển thị trang bảo trì
-#         html = render_to_string('sleekweb/maintenance.html')
-#         return HttpResponse(html, status=503)
