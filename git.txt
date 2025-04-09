@@ -1,3 +1,4 @@
+git stash push -m "Keep local settings" sleeksoft/settings.py
 git add .
 git reset **/settings.py
 Lệnh reset ở đây sẽ bỏ tracking file settings.py khỏi stage, không đưa vào commit.
