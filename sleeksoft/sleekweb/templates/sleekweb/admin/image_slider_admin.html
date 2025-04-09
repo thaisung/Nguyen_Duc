@@ -1,0 +1,98 @@
+{% extends './base.html' %}
+{% block content %}
+<div class="w-full flex-col ">
+    <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
+        <span class="uppercase">
+            Trang Ảnh Slider
+        </span>
+        <style>
+            input:focus {
+                outline: none !important;
+            }
+        </style>
+
+    </div>
+    <div class="flex flex-col gap-3 p-3">
+        <div class="flex flex-col gap-1">
+            <a href="{% url 'tab_best_sellers_client' %}" class="font-semibold text-[18px] hover:underline">
+                1.Ảnh Slider đầu trang
+            </a>
+            <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
+                {% csrf_token %}
+                <input type="hidden" name="Count" value="1" class="" />
+                <div class="flex flex-col gap-2">
+                    <div class="grid grid-cols-2 gap-1">
+                        {% for i in list_image_slider_1 %}
+                        <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        {% endfor %}
+                    </div>
+                    <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_1"  />
+                </div>
+                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                    Cập nhật
+                </button>
+            </form>
+        </div>
+        <div class="flex flex-col gap-1">
+            <a href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
+                2.Ảnh Slider giữa trang
+            </a>
+            <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
+                {% csrf_token %}
+                <input type="hidden" name="Count" value="2" class="" />
+                <div class="flex flex-col gap-2">
+                    <div class="grid grid-cols-2 gap-1">
+                        {% for i in list_image_slider_2 %}
+                        <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        {% endfor %}
+                    </div>
+                    <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_2"  />
+                </div>
+                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                    Cập nhật
+                </button>
+            </form>
+        </div>
+        <div class="flex flex-col gap-1">
+            <a href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
+                3.Ảnh Slider cuối trang
+            </a>
+            <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
+                {% csrf_token %}
+                <input type="hidden" name="Count" value="3" class="" />
+                <div class="flex flex-col gap-2">
+                    <div class="grid grid-cols-2 gap-1">
+                        {% for i in list_image_slider_3 %}
+                        <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        {% endfor %}
+                    </div>
+                    <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_3"  />
+                </div>
+                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                    Cập nhật
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.open_input_Size').on('click', function() {
+            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
+        });
+    });
+</script>
+<script>
+    function autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('textarea.autoresize').forEach(function (el) {
+            autoResize(el);
+            el.addEventListener('input', () => autoResize(el));
+        });
+    });
+</script>
+{% endblock %}

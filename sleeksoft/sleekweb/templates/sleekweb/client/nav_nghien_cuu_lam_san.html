@@ -7,7 +7,7 @@
                 Nghiên cứu khoa học
             </h1>
             <a href="{% url 'link_nghien_cuu_khoa_hoc_client' %}" class="flex items-center justify-center w-full h-[443px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                Hình ảnh
+                <img alt="Hình ảnh 1" src="{% if obj_Count_6.Photo1  %}{{obj_Count_6.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
             </a>
         </div>
         <div class="flex flex-col items-center w-full text-white gap-[30px]">
@@ -15,7 +15,7 @@
                 Kết quả lâm sàn
             </h2>
             <a href="{% url 'link_ket_qua_lam_san_client' %}" class="flex items-center justify-center w-full h-[443px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                Hình ảnh
+                <img alt="Hình ảnh 2" src="{% if obj_Count_6.Photo2  %}{{obj_Count_6.Photo2.url}}{% endif %}"  class="w-full h-full object-cover" />
             </a>
         </div>
     </div>

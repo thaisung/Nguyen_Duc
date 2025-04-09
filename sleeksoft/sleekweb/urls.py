@@ -68,8 +68,20 @@ from .views.client.signup_email_client import *
 
 from .views.admin.login_admin import *
 from .views.admin.product_admin import *
+from .views.admin.image_content_admin import *
+from .views.admin.image_slider_admin import *
+
+from sleekweb.sitemaps import *
+from django.contrib.sitemaps.views import sitemap
+
+sitemaps_dict = {
+    'static': StaticViewSitemap,
+    'product': detail_product_Sitemap,
+}
 
 urlpatterns = [
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='sitemap'),
+
 
     path('account/login', login_client,name='login_client'),
 
@@ -111,5 +123,10 @@ urlpatterns = [
     path('admin/product/size/add', size_product_add_admin,name='size_product_add_admin'),
     path('admin/product/size/remove',size_product_remove_admin,name='size_product_remove_admin'),
 
+    path('admin/image-content',image_content_admin,name='image_content_admin'),
+    path('admin/image-slider',image_slider_admin,name='image_slider_admin'),
+
+
     path('signup-email',signup_email_client,name='signup_email_client'),
+
 ]

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
-
+    {% load static %}
 <head>
     <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -283,18 +283,11 @@
             <div class="w-full">
                 <div class="swiper mySwiper w-full ">
                     <div class="swiper-wrapper">
+                        {% for i in list_image_slider_1 %}
                         <div class="swiper-slide">
-                            <img class="h-[801px] w-full" alt="banner" src="/upload/banner/1.png" />
+                            <img class="h-[801px] w-full" alt="banner" src="{{i.Photo.url}}" />
                         </div>
-                        <div class="swiper-slide">
-                            <img class="h-[801px] w-full" alt="banner" src="/upload/banner/1.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="h-[801px] w-full" alt="banner" src="/upload/banner/1.png" />
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="h-[801px] w-full" alt="banner" src="/upload/banner/1.png" />
-                        </div>
+                        {% endfor %}
                     </div>
                     <!-- Chỉ có dấu chấm -->
                     <div class="swiper-pagination"></div>
@@ -351,24 +344,11 @@
                     <div class="w-[1597px] py-[58px]">
                         <div class="swiper mySwiper1 w-full">
                             <div class="swiper-wrapper w-full">
+                                {% for i in list_image_slider_2 %}
                                 <div class="swiper-slide w-full flex justify-center">
-                                    <img class="h-[465px] w-[465px]" alt="banner" src="/upload/banner_child/1.png" />
+                                    <img class="h-[465px] w-[465px]" alt="banner" src="{{i.Photo.url}}" />
                                 </div>
-                                <div class="swiper-slide">
-                                    <img class="h-[465px] w-[465px]" alt="banner" src="/upload/banner_child/2.png" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="h-[465px] w-[465px]" alt="banner" src="/upload/banner_child/3.jpg" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="h-[465px] w-[465px]" alt="banner" src="/upload/banner_child/1.png" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="h-[465px] w-[465px]" alt="banner" src="/upload/banner_child/2.png" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="h-[465px] w-[465px]" alt="banner" src="/upload/banner_child/3.jpg" />
-                                </div>
+                                {% endfor %}
                             </div>
                             <!-- Chỉ có dấu chấm -->
                             <div class="swiper-pagination"></div>
@@ -396,10 +376,18 @@
                     <div class="flex justify-between w-[1597px]">
                         <div class="flex flex-col items-center w-[626px] text-white">
                             <div class="flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                                Hình ảnh
+                                <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo1  %}{{obj_Count_1.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
                             </div>
-                            <div class="flex items-center justify-center w-full h-[98px] bg-[#11284A] text-center uppercase font-bold text-[30px] mt-6">
-                                nội dung
+                            <div class="flex items-center justify-center w-full min-h-[98px] bg-[#11284A]  p-3 uppercase font-bold text-[30px] mt-6">
+                                {% if obj_Count_1.Content1 %}
+                                <p class="font-medium text-[20px] normal-case w-full text-justify">
+                                    {{obj_Count_1.Content1}}
+                                </p>
+                                {% else %}
+                                <p class="uppercase">
+                                    Nội dung 1
+                                </p>
+                                {% endif %}
                             </div>
                             <div class=" w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
                                 Read More
@@ -407,10 +395,18 @@
                         </div>
                         <div class="flex flex-col items-center w-[787px] text-white">
                             <div class=" flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                                Hình ảnh
+                                <img alt="Hình ảnh 2" src="{% if obj_Count_1.Photo2  %}{{obj_Count_1.Photo2.url}}{% endif %}"  class="w-full h-full object-cover" />
                             </div>
-                            <div class="flex items-center justify-center w-full h-[98px] bg-[#11284A] text-center uppercase font-bold text-[30px] mt-6">
-                                nội dung
+                            <div class="flex items-center justify-center w-full min-h-[98px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
+                                {% if obj_Count_1.Content2 %}
+                                <p class="font-medium text-[20px] normal-case w-full text-justify">
+                                    {{obj_Count_1.Content2}}
+                                </p>
+                                {% else %}
+                                <p class="uppercase">
+                                    Nội dung 2
+                                </p>
+                                {% endif %}
                             </div>
                             <div class=" w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
                                 Read More
@@ -419,7 +415,7 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-center text-white  w-full h-[450px] bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[58px]">
-                    Hình ảnh
+                    <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
                 <div class="flex flex-col items-center py-[58px] gap-[58px]">
                     <span class="font-bold text-black text-[55px]">
@@ -428,15 +424,11 @@
                     <div class="w-full flex justify-center">
                         <div class="swiper mySwiper2 w-[1280px] h-[600px] ">
                             <div class="swiper-wrapper">
+                                {% for i in list_image_slider_3 %}
                                 <div class="swiper-slide">
-                                    <img class="w-[1280px] h-[600px]" src="/upload/photo/1.png" />
+                                    <img class="w-[1280px] h-[600px]" src="{{i.Photo.url}}" />
                                 </div>
-                                <div class="swiper-slide">
-                                    <img class="w-[1280px] h-[600px]" src="/upload/photo/1.png" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img class="w-[1280px] h-[600px]" src="/upload/photo/1.png" />
-                                </div>
+                                {% endfor %}
                             </div>
                             <!-- Chỉ có dấu chấm -->
                             <div class="swiper-pagination"></div>

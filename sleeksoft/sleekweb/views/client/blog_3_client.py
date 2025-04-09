@@ -72,6 +72,10 @@ def blog_3_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj_Count_5'] = Photo_Content.objects.get(Count=5)
+        except:
+            context['obj_Count_5'] = {}
         context['list_Product'] = Product.objects.all()
         print('context:',context)
         return render(request, 'sleekweb/client/blog_3_client.html', context, status=200)

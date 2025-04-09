@@ -5,19 +5,27 @@
         <div class="flex flex-col w-full gap-6">
             <div class="flex justify-between items-start  text-white">
                 <div class="flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                    Hình ảnh
+                    <img alt="Hình ảnh 1" src="{% if obj_Count_5.Photo1  %}{{obj_Count_5.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
             </div>
             <div class="flex h-[945px] text-white gap-6">
-                <div class=" flex items-center justify-center  w-[945px] h-full bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden">
-                    Nội dung
+                <div class=" flex items-center justify-center  w-[945px] h-full bg-[#11284A] p-3 uppercase font-bold text-[30px]  overflow-hidden">
+                    {% if obj_Count_5.Content1 %}
+                    <p class="font-medium text-[20px] normal-case w-full text-justify h-full">
+                        {{obj_Count_5.Content1}}
+                    </p>
+                    {% else %}
+                    <p class="uppercase">
+                        Nội dung 1
+                    </p>
+                    {% endif %}
                 </div>
                 <div class="flex flex-col items-center gap-6 w-[625px] h-full  text-center uppercase font-bold text-[30px]">
                     <div class="flex items-center justify-center w-full h-[50%] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                        Hình ảnh
+                        <img alt="Hình ảnh 2" src="{% if obj_Count_5.Photo2  %}{{obj_Count_5.Photo2.url}}{% endif %}"  class="w-full h-full object-cover" />
                     </div>
                     <div class="flex items-center justify-center w-full h-[50%] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                        Hình ảnh
+                        <img alt="Hình ảnh 3" src="{% if obj_Count_5.Photo3  %}{{obj_Count_5.Photo3.url}}{% endif %}"  class="w-full h-full object-cover" />
                     </div>
                 </div>
             </div>

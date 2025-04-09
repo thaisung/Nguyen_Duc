@@ -72,6 +72,10 @@ def nav_nghien_cuu_lam_san(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj_Count_6'] = Photo_Content.objects.get(Count=6)
+        except:
+            context['obj_Count_6'] = {}
         context['list_Product'] = Product.objects.all()
         print('context:',context)
         return render(request, 'sleekweb/client/nav_nghien_cuu_lam_san.html', context, status=200)

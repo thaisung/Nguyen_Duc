@@ -5,15 +5,23 @@
         <div class="flex justify-between w-full gap-[48px]">
             <div class="flex flex-col  items-start  text-white gap-6">
                 <div class="flex items-center justify-center w-[787px] h-[1013px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                    Hình ảnh
+                    <img alt="Hình ảnh 1" src="{% if obj_Count_4.Photo1  %}{{obj_Count_4.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
                 <div class="flex items-center justify-center w-[787px] h-[482px] bg-[#11284A] text-center uppercase font-bold text-[30px] mt-6 rounded-md">
-                    Hình ảnhs
+                    <img alt="Hình ảnh 2" src="{% if obj_Count_4.Photo2  %}{{obj_Count_4.Photo2.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
             </div>
             <div class="flex  text-white w-[730px]">
-                <div class=" flex items-center justify-center  w-full h-full bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden">
-                    Nội dung
+                <div class=" flex items-center justify-center p-3 w-full h-full bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden">
+                    {% if obj_Count_4.Content1 %}
+                    <p class="font-medium text-[20px] normal-case w-full text-justify h-full">
+                        {{obj_Count_4.Content1}}
+                    </p>
+                    {% else %}
+                    <p class="uppercase">
+                        Nội dung 1
+                    </p>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -90,6 +90,32 @@ class Email(models.Model):
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
+class Photo_Content(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Ảnh và Nội dung"
+    
+    Photo1 = models.ImageField(upload_to='PHOTO_CONTENT',null=True,blank=True)
+    Content1 = models.TextField('Nội dung 1',blank=True, null=True)
+    Photo2 = models.ImageField(upload_to='PHOTO_CONTENT',null=True,blank=True)
+    Content2 = models.TextField('Nội dung 2',blank=True, null=True)
+    Photo3 = models.ImageField(upload_to='PHOTO_CONTENT',null=True,blank=True)
+    Content3 = models.TextField('Nội dung 3',blank=True, null=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Photo_Slider(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Ảnh Slider"
+    
+    Photo = models.ImageField(upload_to='PHOTO_SLIDER',null=True,blank=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+
 # class Banner(models.Model):
 #     class Meta:
 #         ordering = ["id"]

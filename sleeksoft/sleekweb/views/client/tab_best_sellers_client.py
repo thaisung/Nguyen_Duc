@@ -72,6 +72,13 @@ def tab_best_sellers_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1)
+        context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2)
+        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+        try:
+            context['obj_Count_1'] = Photo_Content.objects.get(Count=1)
+        except:
+            context['obj_Count_1'] = {}
         context['list_Product'] = Product.objects.filter(Q(Category__icontains='BEST SELLERS')).order_by('-id')
         print('context:',context)
         return render(request, 'sleekweb/client/tab_best_sellers_client.html', context, status=200)

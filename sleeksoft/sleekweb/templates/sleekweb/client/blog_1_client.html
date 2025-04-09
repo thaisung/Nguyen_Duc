@@ -5,18 +5,34 @@
         <div class="flex flex-col w-full">
             <div class="flex justify-between items-start  text-white">
                 <div class="flex items-center justify-center w-[626px] h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                    Hình ảnh
+                    <img alt="Hình ảnh 1" src="{% if obj_Count_3.Photo1  %}{{obj_Count_3.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
-                <div class="flex items-center justify-center w-[788px] h-[680px] bg-[#11284A] text-center uppercase font-bold text-[30px] mt-6">
-                    nội dung
+                <div class="flex items-center justify-center w-[788px] min-h-[680px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
+                    {% if obj_Count_3.Content1 %}
+                    <p class="font-medium text-[20px] normal-case w-full text-justify">
+                        {{obj_Count_3.Content1}}
+                    </p>
+                    {% else %}
+                    <p class="uppercase">
+                        Nội dung 1
+                    </p>
+                    {% endif %}
                 </div>
             </div>
             <div class="flex justify-between items-end  text-white">
-                <div class=" flex items-center justify-center  w-[788px] h-[881px] bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden">
-                    Nội dung
+                <div class=" flex items-center justify-center  w-[788px] min-h-[881px] bg-[#11284A] p-3 uppercase font-bold text-[30px]  overflow-hidden">
+                    {% if obj_Count_3.Content1 %}
+                    <p class="font-medium text-[20px] normal-case w-full text-justify">
+                        {{obj_Count_3.Content1}}
+                    </p>
+                    {% else %}
+                    <p class="uppercase">
+                        Nội dung 2
+                    </p>
+                    {% endif %}
                 </div>
                 <div class="flex items-center justify-center w-[625px] h-[812px] bg-[#11284A] text-center uppercase font-bold text-[30px] mt-6 rounded-md">
-                    Hình ảnh
+                    <img alt="Hình ảnh 2" src="{% if obj_Count_3.Photo2  %}{{obj_Count_3.Photo2.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
             </div>
         </div>

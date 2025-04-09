@@ -72,6 +72,10 @@ def nav_blog_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj_Count_2'] = Photo_Content.objects.get(Count=2)
+        except:
+            context['obj_Count_2'] = {}
         context['list_Product'] = Product.objects.all()
         print('context:',context)
         return render(request, 'sleekweb/client/nav_blog_client.html', context, status=200)
