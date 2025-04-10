@@ -8,9 +8,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     <!-- 2. Thẻ SEO cơ bản -->
-    <meta name="description" content="">
-    <meta name="keywords" content="Đăng nhập tài khoản" />
-    <link rel="canonical" href="{{domain}}/admin/login" />
+    {% block seo_tag %}{% endblock %}
 
     <meta name='revisit-after' content='1 days' />
     <meta name="robots" content="noodp,index,follow" />
@@ -20,13 +18,7 @@
 
     <!-- 4. Open Graph tags (Facebook, Zalo...) -->
     <meta property="og:type" content="website">
-
-    <meta property="og:title" content="Đăng nhập tài khoản">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:url" content="{{domain}}/admin/login">
-
+    {% block meta_tag %}{% endblock %}
     <meta property="og:site_name" content="Hydrinity">
 
     <!-- 5. Phần còn lại -->
