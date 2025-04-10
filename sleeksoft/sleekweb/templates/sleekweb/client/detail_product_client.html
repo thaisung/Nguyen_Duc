@@ -1,4 +1,17 @@
 {% extends './base_client.html' %}
+{% block title %}{{obj_Product.Name}}{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="{{obj_Product.Name}}">
+    <meta name="keywords" content="{{obj_Product.Name}}" />
+    <link rel="canonical" href="{% url 'detail_product_client' pk=obj_Product.id %}" />
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:title" content="{{obj_Product.Name}}">
+    <meta property="og:description" content="{{obj_Product.Name}}">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:url" content="{% url 'detail_product_client' pk=obj_Product.id %}">
+{% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex justify-between gap-[150px]">

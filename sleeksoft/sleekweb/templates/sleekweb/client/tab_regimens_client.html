@@ -1,4 +1,17 @@
 {% extends './base_tab_product_client.html' %}
+{% block title %}REGIMENS{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="REGIMENS">
+    <meta name="keywords" content="REGIMENS" />
+    <link rel="canonical" href="{% url 'tab_products_client' %}" />
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:title" content="REGIMENS">
+    <meta property="og:description" content="REGIMENS">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:url" content="{% url 'tab_products_client' %}">
+{% endblock %}
 {% block content %}
 {% for i in list_Product %}
 <div class="flex flex-col items-center w-[306px] h-[492px] gap-3">

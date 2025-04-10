@@ -1,4 +1,17 @@
 {% extends './base_client.html' %}
+{% block title %}Blog 1{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="Blog 1">
+    <meta name="keywords" content="Blog 1" />
+    <link rel="canonical" href="{% url 'blog_1_client' %}" />
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:title" content="Blog 1">
+    <meta property="og:description" content="Blog 1">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:url" content="{% url 'blog_1_client' %}">
+{% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex flex-col items-center w-[1597px] mt-[50px] mb-[50px]">
@@ -7,9 +20,9 @@
                 <div class="flex items-center justify-center w-[626px] h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
                     <img alt="Hình ảnh 1" src="{% if obj_Count_3.Photo1  %}{{obj_Count_3.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
-                <div class="flex items-center justify-center w-[788px] min-h-[680px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
+                <div class="flex  justify-center w-[788px] min-h-[680px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
                     {% if obj_Count_3.Content1 %}
-                    <p class="font-medium text-[20px] normal-case w-full text-justify">
+                    <p class="font-medium text-[20px] normal-case w-full text-justify h-full">
                         {{obj_Count_3.Content1}}
                     </p>
                     {% else %}
@@ -20,9 +33,9 @@
                 </div>
             </div>
             <div class="flex justify-between items-end  text-white">
-                <div class=" flex items-center justify-center  w-[788px] min-h-[881px] bg-[#11284A] p-3 uppercase font-bold text-[30px]  overflow-hidden">
+                <div class=" flex  justify-center  w-[788px] min-h-[881px] bg-[#11284A] p-3 uppercase font-bold text-[30px]  overflow-hidden">
                     {% if obj_Count_3.Content1 %}
-                    <p class="font-medium text-[20px] normal-case w-full text-justify">
+                    <p class="font-medium text-[20px] normal-case w-full text-justify h-full">
                         {{obj_Count_3.Content1}}
                     </p>
                     {% else %}

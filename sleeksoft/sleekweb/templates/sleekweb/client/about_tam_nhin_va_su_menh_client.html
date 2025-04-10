@@ -1,4 +1,17 @@
 {% extends './base_client.html' %}
+{% block title %}Tầm nhìn và sứ mệnh{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="Tầm nhìn và sứ mệnh">
+    <meta name="keywords" content="Tầm nhìn và sứ mệnh" />
+    <link rel="canonical" href="{% url 'about_tam_nhin_va_su_menh_client' %}" />
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:title" content="Tầm nhìn và sứ mệnh">
+    <meta property="og:description" content="Tầm nhìn và sứ mệnh">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:url" content="{% url 'about_tam_nhin_va_su_menh_client' %}">
+{% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex flex-col w-full justify-start">

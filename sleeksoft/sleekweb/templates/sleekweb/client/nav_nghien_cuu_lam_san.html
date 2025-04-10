@@ -1,4 +1,17 @@
 {% extends './base_client.html' %}
+{% block title %}Nghiên cứu lâm sàn{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="Nghiên cứu lâm sàn">
+    <meta name="keywords" content="Nghiên cứu lâm sàn" />
+    <link rel="canonical" href="{% url 'nav_nghien_cuu_lam_san' %}" />
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:title" content="Nghiên cứu lâm sàn">
+    <meta property="og:description" content="Nghiên cứu lâm sàn">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:url" content="{% url 'nav_nghien_cuu_lam_san' %}">
+{% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex flex-col items-center w-[1597px] mt-[50px] gap-[70px]">

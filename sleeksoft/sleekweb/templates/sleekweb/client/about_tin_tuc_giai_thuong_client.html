@@ -1,4 +1,17 @@
 {% extends './base_client.html' %}
+{% block title %}Tin tức và giải thưởng{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="Tin tức và giải thưởng">
+    <meta name="keywords" content="Tin tức và giải thưởng" />
+    <link rel="canonical" href="{% url 'about_tin_tuc_giai_thuong_client' %}" />
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:title" content="Tin tức và giải thưởng">
+    <meta property="og:description" content="Tin tức và giải thưởng">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
+    <meta property="og:url" content="{% url 'about_tin_tuc_giai_thuong_client' %}">
+{% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex flex-col w-full justify-start">
