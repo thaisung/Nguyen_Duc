@@ -76,12 +76,14 @@
             font-family: 'UTM Aptima', sans-serif !important;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
 </head>
 
-<body class="w-full min-h-screen flex flex-col items-center bg-red-500" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+<body class="w-screen min-h-screen flex flex-col items-center bg-red-500" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
     <div class="w-full max-w-[1920px] flex flex-col items-center">
-        <header class=" w-full flex flex-col">
+        <header class=" w-full hidden lg:flex flex-col">
             <div class="w-full h-[50px] bg-[#11284A] flex items-center justify-between px-[74px]">
                 <div class="flex flex-col text-[10px] text-white">
                     <span class="">
@@ -276,18 +278,144 @@
                 });
             </script>
         </header>
+        <header class="relative flex lg:hidden items-center justify-center w-full">
+            <a class="tab w-full flex justify-center items-center p-[10px]" href="/">
+                <img alt="logo" src="{{domain}}/upload/website/logo.png" class="w-[46px]" />
+            </a>
+            <div   class=" click_menu absolute left-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
+                <svg class="fill-white stroke-white  w-[20px]"   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21M3 6H21M3 18H15" stroke="" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+            </div>
+            <div id="menu" class="fixed top-0 left-0 w-[208px] h-screen bg-[#11284A] text-white z-[999] transform -translate-x-full" style="background: url('/upload/website/background.png') no-repeat center center; background-size: cover; display: none;">
+                <div class="w-full h-[31px] flex justify-center items-center text-center bg-[#11284A]">
+                    <span class="font-normal text-[6px] text-white">
+                        Chào mừng đến với <span class="font-bold">Hydirinity VietNam</span>
+                        <br>
+                        Hotline: <span class="font-bold">098 705 0122 </span>
+                    </span>
+                </div>
+                <a class="tab w-full flex justify-center items-center p-[20px]" href="/">
+                    <img alt="logo" src="{{domain}}/upload/website/logo.png" class="w-[56px]" />
+                </a>
+                <nav class=" w-full flex flex-col  text-[#11284A] text-[20px] divide-y-[2px]  divide-[#11284A]"
+                    style="font-family: 'UTM Bebas';">
+                    <div class="click_tab_about relative flex flex-col items-center justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]" href="">
+                        <div class="flex items-center justify-between w-full">
+                            About us
+                            <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+        
+                            <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
+                        </div>
+                        <div class=" tab_about   divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
+                                Về chúng tôi
+                            </a>
+                            <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="h-[38px] flex items-center">
+                                Tầm nhìn và sứ mệnh
+                            </a>
+                            <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="h-[38px] flex items-center">
+                                Tin tức & Giải thưởng
+                            </a>
+                            <a href="{% url 'about_lien_he_client' %}" class="h-[38px] flex items-center">
+                                Liên hệ
+                            </a>
+                        </div>
+                    </div>
+                    <a class="px-[20px] py-[10px]" href="{% url 'nav_products_client' %}">Sản phẩm</a>
+                    <a class="px-[20px] py-[10px]" href="{% url 'nav_blog_client' %}">Blog</a>
+                    <div class="click_tab_doitac relative flex flex-col items-center justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]" href="">
+                        <div class="flex items-center justify-between w-full">
+                            Danh sách đối tác
+                            <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+        
+                            <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
+                        </div>
+                        <div class=" tab_doitac divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium w-full" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Bắc
+                            </a>
+                            <a href="{% url 'select_kvmn_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Nam
+                            </a>
+                        </div>
+                    </div>
+                    <a class="px-[20px] py-[10px]" href="{% url 'link_nghien_cuu_khoa_hoc_client' %}">Nghiên cứu khoa học</a>
+                    <a class="px-[20px] py-[10px]" href="{% url 'link_ket_qua_lam_san_client' %}">Kết quả lâm sàn</a>
+                </nav>
+            </div>
+            <script>
+                let isOpen = false;
+            
+                $(".click_menu").click(function () {
+                    const $menu = $("#menu");
+            
+                    if (!isOpen) {
+                        $menu.show(); // hiện ra trước khi chạy hiệu ứng
+                        gsap.to($menu, {
+                            duration: 0.4,
+                            x: "0%",
+                            ease: "power2.out"
+                        });
+                    } else {
+                        gsap.to($menu, {
+                            duration: 0.4,
+                            x: "-100%",
+                            ease: "power2.in",
+                            onComplete: function () {
+                                $menu.hide(); // ẩn sau khi animation xong
+                            }
+                        });
+                    }
+            
+                    isOpen = !isOpen;
+                });
+            
+                // Đóng khi click ra ngoài
+                $(document).click(function (e) {
+                    const $menu = $("#menu");
+                    if (isOpen && !$(e.target).closest("#menu, .click_menu").length) {
+                        gsap.to($menu, {
+                            duration: 0.4,
+                            x: "-100%",
+                            ease: "power2.in",
+                            onComplete: function () {
+                                $menu.hide();
+                            }
+                        });
+                        isOpen = false;
+                    }
+                });
+            </script>
+        </header>
         <main class=" flex flex-col items-center w-full">
             <div class="w-full">
                 <div class="swiper mySwiper w-full ">
                     <div class="swiper-wrapper">
                         {% for i in list_image_slider_1 %}
                         <div class="swiper-slide">
-                            <img class="h-[801px] w-full" alt="banner" src="{{i.Photo.url}}" />
+                            <img class="h-[183px] lg:h-[801px]  w-full" alt="banner" src="{{i.Photo.url}}" />
                         </div>
                         {% endfor %}
                     </div>
                     <!-- Chỉ có dấu chấm -->
-                    <div class="swiper-pagination"></div>
+                    <div class="swiper-pagination hidden lg:block"></div>
                 </div>
                 <script>
                     var swiper = new Swiper(".mySwiper", {
@@ -319,8 +447,8 @@
                 </style>
             </div>
             <div class="flex flex-col items-center w-full">
-                <div class="flex w-[934px] h-[121px] items-center justify-center border-b-[3px] border-[#11284A]">
-                    <div class="flex w-[646px] h-[57px] items-center justify-between font-bold text-[25px]">
+                <div class="flex w-full lg:w-[934px] lg:h-[121px] items-center justify-center ">
+                    <div class="hidden lg:flex w-[646px] h-[57px] items-center justify-between font-bold text-[25px]">
                         <a href="{% url 'tab_best_sellers_client' %}" 
                         class="uppercase py-1 px-2 rounded-md text-[#11284A] {% if request.resolver_match.url_name == 'tab_best_sellers_client' %}bg-[#11284A] text-[#FBFBFB]{% endif %}">BEST SELLERS</a>
                         <a href="{% url 'tab_products_client' %}" 
@@ -328,32 +456,286 @@
                         <a href="{% url 'tab_regimens_client' %}" 
                         class="uppercase py-1 px-2  rounded-md font-medium text-[#11284A] {% if request.resolver_match.url_name == 'tab_regimens_client' %}bg-[#11284A] text-[#FBFBFB]{% endif %}">REGIMENS</a>
                     </div>
+                    <div class=" flex lg:hidden flex-col w-full h-full items-center justify-center font-normal text-[20px] divide-y-[2px]  divide-white text-white">
+                        <div class="flex flex-col w-full">
+                            <div  class="click_tab_product_mobile uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
+                                <span>
+                                    <svg class="open_tab_product_mobile" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                                BEST SELLERS
+                                <span>
+                                    <svg class="open_tab_product_mobile" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="tab_product_mobile  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
+                                {% for i in list_Product %}
+                                <div class="flex flex-col items-center  gap-3 w-full">
+                                    <a href="{% url 'detail_product_client' pk=i.id %}">
+                                        <img class="w-full" src="{{i.Avatar.url}}"/>
+                                    </a>
+                                    <div class="flex flex-col items-center h-full  gap-4 mt-2 w-full">
+                                        <a href="{% url 'detail_product_client' pk=i.id %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                            {{i.Name}}
+                                        </a>
+                                        <div class="relative w-full">
+                                            <div class="click_tab_size_product hover:cursor-pointer relative flex items-center w-full h-[20px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                                <div class="absolute bottom-3 left-8">
+                                                    <div class="relative flex items-center justify-center">
+                                                        <img class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                                        <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                                    <span class="font-medium text-[8px]  text-[#11284A]">
+                                                        {{i.list_size.all.first.Name}}
+                                                    </span>
+                                                    <span>
+                                                        <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                                                fill="#11284A" />
+                                                        </svg>
+                                                        <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                                                fill="#11284A" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div style="display: none;"  class="tab_size_product z-[-1] absolute top-[15px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                                {% for j in i.list_size.all %}
+                                                <a class="font-medium text-[8px] text-[#11284A] py-[2px]">{{j.Name}}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
+                                            GIÁ: <span class="format_number">{{i.Price}}</span> VNĐ 
+                                        </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <div  class="click_tab_product_mobile1 uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
+                                <span>
+                                    <svg class="open_tab_product_mobile1" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile1" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                                PRODUCTS
+                                <span>
+                                    <svg class="open_tab_product_mobile1" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile1" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="tab_product_mobile1  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
+                                {% for i in list_Product1 %}
+                                <div class="flex flex-col items-center  gap-3 w-full">
+                                    <a href="{% url 'detail_product_client' pk=i.id %}">
+                                        <img class="w-full" src="{{i.Avatar.url}}"/>
+                                    </a>
+                                    <div class="flex flex-col items-center h-full  gap-4 mt-2 w-full">
+                                        <a href="{% url 'detail_product_client' pk=i.id %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                            {{i.Name}}
+                                        </a>
+                                        <div class="relative w-full">
+                                            <div class="click_tab_size_product hover:cursor-pointer relative flex items-center w-full h-[20px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                                <div class="absolute bottom-3 left-8">
+                                                    <div class="relative flex items-center justify-center">
+                                                        <img class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                                        <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                                    <span class="font-medium text-[8px]  text-[#11284A]">
+                                                        {{i.list_size.all.first.Name}}
+                                                    </span>
+                                                    <span>
+                                                        <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                                                fill="#11284A" />
+                                                        </svg>
+                                                        <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                                                fill="#11284A" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div style="display: none;"  class="tab_size_product z-[-1] absolute top-[15px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                                {% for j in i.list_size.all %}
+                                                <a class="font-medium text-[8px] text-[#11284A] py-[2px]">{{j.Name}}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
+                                            GIÁ: <span class="format_number">{{i.Price}}</span> VNĐ 
+                                        </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <div  class="click_tab_product_mobile2 uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
+                                <span>
+                                    <svg class="open_tab_product_mobile2" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile2" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                                REGIMENS
+                                <span>
+                                    <svg class="open_tab_product_mobile2" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile2" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="tab_product_mobile2  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
+                                {% for i in list_Product2 %}
+                                <div class="flex flex-col items-center  gap-3 w-full">
+                                    <a href="{% url 'detail_product_client' pk=i.id %}">
+                                        <img class="w-full" src="{{i.Avatar.url}}"/>
+                                    </a>
+                                    <div class="flex flex-col items-center h-full  gap-4 mt-2 w-full">
+                                        <a href="{% url 'detail_product_client' pk=i.id %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                            {{i.Name}}
+                                        </a>
+                                        <div class="relative w-full">
+                                            <div class="click_tab_size_product hover:cursor-pointer relative flex items-center w-full h-[20px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                                <div class="absolute bottom-3 left-8">
+                                                    <div class="relative flex items-center justify-center">
+                                                        <img class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                                        <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                                    <span class="font-medium text-[8px]  text-[#11284A]">
+                                                        {{i.list_size.all.first.Name}}
+                                                    </span>
+                                                    <span>
+                                                        <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                                                fill="#11284A" />
+                                                        </svg>
+                                                        <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                                                fill="#11284A" />
+                                                        </svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div style="display: none;"  class="tab_size_product z-[-1] absolute top-[15px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                                {% for j in i.list_size.all %}
+                                                <a class="font-medium text-[8px] text-[#11284A] py-[2px]">{{j.Name}}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
+                                            GIÁ: <span class="format_number">{{i.Price}}</span> VNĐ 
+                                        </span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $(".click_tab_product_mobile").click(function () {
+                                    $(".tab_product_mobile").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                                    $(".open_tab_product_mobile, .close_tab_product_mobile").toggle(); // Đổi icon
+                                });
+
+                                $(".click_tab_product_mobile1").click(function () {
+                                    $(".tab_product_mobile1").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                                    $(".open_tab_product_mobile1, .close_tab_product_mobile1").toggle(); // Đổi icon
+                                });
+
+                                $(".click_tab_product_mobile2").click(function () {
+                                    $(".tab_product_mobile2").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                                    $(".open_tab_product_mobile2, .close_tab_product_mobile2").toggle(); // Đổi icon
+                                });
+                            });
+                        </script>
+                    </div>
                 </div>
-                <div class="grid grid-cols-3 place-items-center my-[20px] gap-[50px]">
+                <div class="hidden lg:grid grid-cols-1 lg:grid-cols-3 place-items-center my-[20px] gap-[50px]">
                     {% block content %}{% endblock %}
                 </div>
             </div>
-            <div class="flex flex-col items-center w-full">
-                <div class="flex items-center justify-center w-full h-[95px] bg-[#11284A]">
-                    <span class="font-bold text-[48px] text-white">CÔNG NGHỆ PPM6</span>
+            <div class="flex flex-col items-center w-full mt-[20px] lg:mt-none">
+                <div class="flex items-center justify-center w-full h-[33px] lg:h-[95px] bg-[#11284A]">
+                    <span class=" font-normal text-[20px] lg:font-bold lg:text-[48px] text-white">CÔNG NGHỆ PPM6</span>
                 </div>
                 <div class="flex flex-col items-center w-full">
-                    <div class="w-[1597px] py-[58px]">
+                    <div class="w-full lg:w-[1597px] py-[20px] lg:py-[58px] p-[20px]">
                         <div class="swiper mySwiper1 w-full">
                             <div class="swiper-wrapper w-full">
                                 {% for i in list_image_slider_2 %}
                                 <div class="swiper-slide w-full flex justify-center">
-                                    <img class="h-[465px] w-[465px]" alt="banner" src="{{i.Photo.url}}" />
+                                    <img class="h-[192px] lg:h-[465px] w-[192px] lg:w-[465px]" alt="banner" src="{{i.Photo.url}}" />
                                 </div>
                                 {% endfor %}
                             </div>
                             <!-- Chỉ có dấu chấm -->
-                            <div class="swiper-pagination"></div>
+                            <div class="swiper-pagination hidden lg:block"></div>
                         </div>
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
                             var swiper = new Swiper(".mySwiper1", {
-                                slidesPerView: 3,      // Hiển thị 4 ảnh cùng lúc trên hàng
+                                slidesPerView: 2,      // Hiển thị 4 ảnh cùng lúc trên hàng
                                 spaceBetween: 10,      // Khoảng cách giữa ảnh
                                 loop: true,            // Lặp vô hạn
                                 pagination: {
@@ -365,12 +747,17 @@
                                     disableOnInteraction: false,
                                 },
                                 speed: 1000,           // Tốc độ trượt
-                                slidesPerGroup: 1,     // Trượt từng ảnh một
+                                slidesPerGroup: 1,     // Trượt từng ảnh một,
+                                breakpoints: {
+                                    1024: {
+                                        slidesPerView: 3, // >= 1024px (lg trở lên): hiển thị 3
+                                    },
+                                },
                             });
                         });
                         </script>
                     </div>
-                    <div class="flex justify-between w-[1597px]">
+                    <div class="hidden lg:flex justify-between w-[1597px]">
                         <div class="flex flex-col items-center w-[626px] text-white">
                             <div class="flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
                                 <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo1  %}{{obj_Count_1.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
@@ -410,25 +797,72 @@
                             </div>
                         </div>
                     </div>
+                    <div class="flex lg:hidden flex-col justify-center items-center gap-6 w-full">
+                        <div class="flex  justify-between gap-3">
+                            <div class="h-[230px] w-[230px] flex items-center justify-center rounded-md overflow-hidden">
+                                <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo1  %}{{obj_Count_1.Photo1.url}}{% endif %}"  class="w-full h-full object-fill" />
+                            </div>
+                            <div class="flex flex-col w-[134px] h-full gap-5 items-center">
+                                {% if obj_Count_1.Content1 %}
+                                <p class="readmore-box font-medium text-[10px] h-[181px] normal-case w-full  text-justify bg-[#D9D9D9] p-2 grow overflow-hidden">
+                                    {{obj_Count_1.Content1}}
+                                </p>
+                                {% else %}
+                                <p class="uppercase font-medium text-[16px]  w-full  text-justify bg-[#D9D9D9] grow">
+                                    Nội dung 1
+                                </p>
+                                {% endif %}
+                                <div class="readmore-toggle flex items-center justify-center text-white w-[96px] h-[27px] bg-[#11284A] text-center rounded font-bold text-[12px]">
+                                    Read More
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex  justify-between gap-3">
+                            <div class="h-[230px] w-[230px] flex items-center justify-center rounded-md overflow-hidden">
+                                <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo1  %}{{obj_Count_1.Photo1.url}}{% endif %}"  class="w-full h-full object-fill" />
+                            </div>
+                            <div class="flex flex-col w-[134px] h-full gap-5 items-center">
+                                {% if obj_Count_1.Content2 %}
+                                <p class="readmore-box font-medium text-[10px] h-[181px] normal-case w-full  text-justify bg-[#D9D9D9] p-2 grow overflow-hidden">
+                                    {{obj_Count_1.Content2}}
+                                </p>
+                                {% else %}
+                                <p class="uppercase font-medium text-[16px]  w-full  text-justify bg-[#D9D9D9] grow">
+                                    Nội dung 2
+                                </p>
+                                {% endif %}
+                                <div class="readmore-toggle flex items-center justify-center text-white w-[96px] h-[27px] bg-[#11284A] text-center rounded font-bold text-[12px]">
+                                    Read More
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                              $('.readmore-toggle').click(function () {
+                                $(this).prev('.readmore-box').toggleClass('h-[181px]');
+                              });
+                            });
+                          </script>                                                                              
+                    </div>
                 </div>
-                <div class="flex items-center justify-center text-white  w-full h-[450px] bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[58px]">
+                <div class="flex items-center justify-center text-white  w-full h-[100px] lg:h-[450px] bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[20px] lg:mt-[58px]">
                     <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </div>
-                <div class="flex flex-col items-center py-[58px] gap-[58px]">
-                    <span class="font-bold text-black text-[55px]">
+                <div class="flex flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
+                    <span class="font-bold text-black text-[21px] lg:text-[55px]">
                         THE RESULTS ARE IN
                     </span>
                     <div class="w-full flex justify-center">
-                        <div class="swiper mySwiper2 w-[1280px] h-[600px] ">
+                        <div class="swiper mySwiper2 w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px] ">
                             <div class="swiper-wrapper">
                                 {% for i in list_image_slider_3 %}
                                 <div class="swiper-slide">
-                                    <img class="w-[1280px] h-[600px]" src="{{i.Photo.url}}" />
+                                    <img class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
                                 </div>
                                 {% endfor %}
                             </div>
                             <!-- Chỉ có dấu chấm -->
-                            <div class="swiper-pagination"></div>
+                            <div class="swiper-pagination hidden lg:block"></div>
                         </div>
                         <script>
                             var swiper = new Swiper(".mySwiper2", {
@@ -462,48 +896,48 @@
                 </div>
             </div>
         </main>
-        <footer class=" flex justify-center items-center w-full h-[499px] bg-[#11284A]">
-            <div class=" flex flex-col items-center w-[1594px] h-[384px]">
-                <div class="w-full h-full flex">
-                    <div class="flex flex-col justify-between w-full h-full">
+        <footer class=" flex justify-center items-center w-full h-[458px] lg:h-[499px] bg-[#11284A] p-[20px]">
+            <div class=" flex flex-col items-center w-full lg:w-[1594px]  lg:h-[384px]">
+                <div class="w-full lg:h-full flex flex-col lg:flex-row">
+                    <div class="flex flex-col lg:justify-between w-full lg:h-full gap-[10px] lg:gap-none">
                         <div class="w-ful flex items-center">
-                            <img class="w-[236px] h-[158px]" src="/upload/website/Body.png" alt="logo" />
+                            <img class="w-[78px] lg:w-[236px] h-[52px] lg:h-[158px]" src="/upload/website/Body.png" alt="logo" />
                         </div>
-                        <span class="font-medium text-[12px] text-[#FBFBFB] italic">
+                        <span class="font-normal lg:font-medium text-[8px] lg:text-[12px] text-[#FBFBFB] italic">
                             Thương hiệu chăm sóc da cao cấp của Hoa Kỳ với công nghệ PPM6 và thành phần Hyaluronic Acid siêu tinh khiết độc quyền.
                         </span>
                         <div class="flex flex-col">
-                            <span class="font-medium text-[16px] text-[#FBFBFB] italic">
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB] italic">
                                 <span class="font-bold">Hotline:</span> +84 987 050 122
                             </span>
-                            <span class="font-medium text-[16px] text-[#FBFBFB] italic">
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB] italic">
                                 <span class="font-bold">Email:</span> cosbeautyvietnam@gmail.com
                             </span>
                         </div>
                         <div class="border-b-[1px] border-[#FBFBFB] w-[162px]">
                         </div>
-                        <span class="font-medium text-[12px] text-[#FBFBFB] italic">
+                        <span class="hidden lg:block font-medium text-[12px] text-[#FBFBFB] italic">
                             *Các tùy chọn thanh toán thông qua Affirm phải được kiểm tra đủ điều kiện và được cung cấp bởi các đối tác cho vay sau: affirm.com/lenders.
                         </span>
                     </div>
-                    <div class="flex  items-center justify-between w-full h-full">
-                        <div class="flex flex-col gap-2">
-                            <a class="text-[14px] font-medium text-[#FBFBFB]">Sản phẩm</a>
-                            <a class="text-[14px] font-medium text-[#FBFBFB]">Nghiên Cứu Khoa Học</a>
-                            <a class="text-[14px] font-medium text-[#FBFBFB]">Kết Quả Lâm Sàng</a>
-                            <a class="text-[14px] font-medium text-[#FBFBFB]">Infinity Blog</a>
-                            <a class="text-[14px] font-medium text-[#FBFBFB]">Tầm Nhìn & Sứ Mệnh</a>
-                            <a class="text-[14px] font-medium text-[#FBFBFB]">Liên Hệ</a>
-                            <a class="text-[14px] font-medium text-[#FBFBFB]">Tin Tức & Giải Thưởng</a>
+                    <div class="flex flex-col lg:flex-row  lg:items-center justify-between w-full lg:h-full mt-[20px] lg:mt-none">
+                        <div class="flex flex-col gap-2 text-[7px] lg:text-[14px] font-normal lg:font-medium text-[#FBFBFB]">
+                            <a class="">Sản phẩm</a>
+                            <a class="">Nghiên Cứu Khoa Học</a>
+                            <a class="">Kết Quả Lâm Sàng</a>
+                            <a class="">Infinity Blog</a>
+                            <a class="">Tầm Nhìn & Sứ Mệnh</a>
+                            <a class="">Liên Hệ</a>
+                            <a class="">Tin Tức & Giải Thưởng</a>
                         </div>
-                        <div class="flex flex-col gap-3">
-                            <span class="font-bold text-[20px] text-[#FBFBFB] italic">
+                        <div class="flex flex-col gap-3 mt-[20px] lg:mt-none">
+                            <span class="font-bold text-[15px] lg:text-[20px] text-[#FBFBFB] italic">
                                 TIN TỨC MỚI NHẤT CỦA HYDRINITY SKINCARE
                             </span>
-                            <span class="font-medium italic text-[11px] text-[#FBFBFB] ">
+                            <span class="font-normal lg:font-medium italic text-[7px] lg:text-[11px] text-[#FBFBFB] ">
                                 Đăng ký tham gia bản tin của chúng tôi để cập nhật tin tức chăm sóc da mới nhất.
                             </span>
-                            <div class="flex gap-3 h-[29px] mt-2">
+                            <div class="flex gap-3 h-[29px] mt-2 w-[353px] lg:w-auto">
                                 <div class="flex gap-3 h-[29px] rounded border-[1px] border-[#D9D9D9] font-medium italic text-[11px] text-[#FBFBFB]">
                                     <input placeholder="Your email (required)" class="bg-transparent" style="border: none; outline: none;" /> 
                                 </div>
@@ -514,8 +948,10 @@
                         </div>
                     </div>
                 </div>
-                <span class="font-medium text-[12px] text-[#FBFBFB] italic mt-[50px] ">
-                    © 2025Copyright Hydrinity Skin Science
+                <span class="font-normal lg:font-medium text-[8px] lg:text-[12px] text-[#FBFBFB] italic mt-[20px] lg:mt-[50px] w-full lg:w-auto">
+                    © 2025Copyright
+                    <br class="lg:hidden">
+                    Hydrinity Skin Science
                 </span>
             </div>
         </footer>
