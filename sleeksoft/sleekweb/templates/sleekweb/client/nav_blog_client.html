@@ -13,17 +13,22 @@
     <meta property="og:url" content="{% url 'nav_blog_client' %}">
 {% endblock %}
 {% block content %}
-<main class=" flex flex-col items-center w-full mb-6">
-    <div class="flex flex-col items-center">
+<main class="flex flex-col items-center w-full mb-6">
+    <div class="hidden lg:flex flex-col items-center">
         <h1 class="uppercase font-medium text-[64px] text-black">
             Blog
         </h1>
         <div class="w-[128px] h-[2px] bg-[#11284A]"></div>
     </div>
-    <div class="flex flex-col items-center w-[1597px] mt-[50px] gap-6">
-        <div class="flex justify-between w-full">
-            <div class="flex flex-col items-center w-[626px] text-white">
-                <a href="{% url 'blog_1_client' %}" class="flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
+    <div class="flex lg:hidden flex-col items-center">
+        <h1 class="uppercase font-normal text-[32px] text-black">
+            Blog
+        </h1>
+    </div>
+    <div class="flex flex-col items-center w-full lg:w-[1597px] mt-[25px] lg:mt-[50px] gap-6">
+        <div class="flex flex-col lg:flex-row items-center lg:justify-between w-full gap-[50px] lg:gap-none">
+            <div class="flex flex-col items-center w-[364px] lg:w-[626px] text-white">
+                <a href="{% url 'blog_1_client' %}" class="flex items-center justify-center w-full h-[364px] lg:h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
                     <img alt="Hình ảnh 1" src="{% if obj_Count_2.Photo1  %}{{obj_Count_2.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </a>
                 <div class=" w-full min-h-[98px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
@@ -38,8 +43,8 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="flex flex-col items-center w-[787px] text-white">
-                <a href="{% url 'blog_2_client' %}" class=" flex items-center justify-center w-full h-[626px] bg-[#11284A]  uppercase font-bold text-[30px] rounded-md overflow-hidden">
+            <div class="flex flex-col items-center w-[364px] lg:w-[787px] text-white">
+                <a href="{% url 'blog_2_client' %}" class=" flex items-center justify-center w-full h-[364px] lg:h-[626px] bg-[#11284A]  uppercase font-bold text-[30px] rounded-md overflow-hidden">
                     <img alt="Hình ảnh 2" src="{% if obj_Count_2.Photo2  %}{{obj_Count_2.Photo2.url}}{% endif %}"  class="w-full h-full object-cover" />
                 </a>
                 <div class=" w-full min-h-[98px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
@@ -55,8 +60,8 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col items-center w-full text-white">
-            <a href="{% url 'blog_3_client' %}" class="flex items-center justify-center w-full h-[626px] bg-[#11284A] uppercase font-bold text-[30px] rounded-md overflow-hidden">
+        <div class="flex flex-col items-center w-[364px] lg:w-full text-white mt-[25px] lg:mt-none">
+            <a href="{% url 'blog_3_client' %}" class="flex items-center justify-center w-full h-[364px] lg:h-[626px] bg-[#11284A] uppercase font-bold text-[30px] rounded-md overflow-hidden">
                 <img alt="Hình ảnh 3" src="{% if obj_Count_2.Photo3  %}{{obj_Count_2.Photo3.url}}{% endif %}"  class="w-full h-full object-cover" />
             </a>
             <div class=" w-full min-h-[98px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
@@ -70,6 +75,52 @@
                     </p>
                     {% endif %}
             </div>
+        </div>
+    </div>
+    <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px] mt-[25px]">
+        <span class="font-bold text-black text-[21px] lg:text-[55px]">
+            THE RESULTS ARE IN
+        </span>
+        <div class="w-full flex justify-center">
+            <div class="swiper mySwiper2 w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px] ">
+                <div class="swiper-wrapper">
+                    {% for i in list_image_slider_3 %}
+                    <div class="swiper-slide">
+                        <img class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Chỉ có dấu chấm -->
+                <div class="swiper-pagination hidden lg:block"></div>
+            </div>
+            <script>
+                var swiper = new Swiper(".mySwiper2", {
+                  loop: true, 
+                  autoplay: { delay: 3000 }, // Tự động chạy
+                  pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                  },
+                });
+              </script>
+              <style>
+                /* Màu xám cho chấm tròn */
+                .swiper-pagination-bullet {
+                    background: #9ca3af !important; /* Tailwind gray-400 */
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    opacity: 1;
+                }
+            
+                /* Màu trắng và kích thước lớn hơn khi active */
+                .swiper-pagination-bullet-active {
+                    background: #ffffff !important; /* Tailwind white */
+                    width: 22px;
+                    height: 22px;
+                }
+            </style>
         </div>
     </div>
 </main>

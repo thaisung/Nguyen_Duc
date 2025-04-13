@@ -53,21 +53,27 @@
     <style>
         @font-face {
             font-family: 'UTM Aptima';
-            src: url('static/fonts/00022-UTM-Aptima.ttf') format('truetype');
+            src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
             font-weight: 400;
             font-style: normal;
         }
 
         @font-face {
             font-family: 'UTM Aptima';
-            src: url('static/fonts/00024-UTM-AptimaBoldItalic.ttf') format('truetype');
+            src: url("{% static 'fonts/UTM-AptimaItalic.ttf' %}") format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/00024-UTM-AptimaBoldItalic.ttf' %}") format('truetype');
             font-weight: 700;
             font-style: italic;
         }
 
         @font-face {
             font-family: 'UTM Bebas';
-            src: url('static/fonts/00041-UTM-Bebas.ttf') format('truetype');
+            src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
             font-weight: 700;
             font-style: italic;
         }
@@ -75,6 +81,11 @@
         body {
             font-family: 'UTM Aptima', sans-serif !important;
         }
+
+        .ff-bb{
+            font-family: 'UTM Bebas', sans-serif !important;
+        }
+
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -764,7 +775,7 @@
                             </div>
                             <div class="flex items-center justify-center w-full min-h-[98px] bg-[#11284A]  p-3 uppercase font-bold text-[30px] mt-6">
                                 {% if obj_Count_1.Content1 %}
-                                <p class="font-medium text-[20px] normal-case w-full text-justify">
+                                <p class="readmore-box-1 font-medium text-[20px] normal-case w-full text-justify h-[50px] overflow-hidden">
                                     {{obj_Count_1.Content1}}
                                 </p>
                                 {% else %}
@@ -773,7 +784,7 @@
                                 </p>
                                 {% endif %}
                             </div>
-                            <div class=" w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
+                            <div class="readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
                                 Read More
                             </div>
                         </div>
@@ -783,7 +794,7 @@
                             </div>
                             <div class="flex items-center justify-center w-full min-h-[98px] bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6">
                                 {% if obj_Count_1.Content2 %}
-                                <p class="font-medium text-[20px] normal-case w-full text-justify">
+                                <p class="readmore-box-1 font-medium h-[50px] overflow-hidden text-[20px] normal-case w-full text-justify">
                                     {{obj_Count_1.Content2}}
                                 </p>
                                 {% else %}
@@ -792,10 +803,25 @@
                                 </p>
                                 {% endif %}
                             </div>
-                            <div class=" w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
+                            <div class=" readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
                                 Read More
                             </div>
                         </div>
+                        <script>
+                            $(document).ready(function () {
+                                $('.readmore-toggle-1').click(function () {
+                                    const container = $(this).closest('.flex.flex-col'); // hoặc class wrapper cụ thể hơn nếu có
+                                    const box = container.find('.readmore-box-1');
+                                    if (box.hasClass('h-[50px]')) {
+                                    box.removeClass('h-[50px]').addClass('h-auto');
+                                    // $(this).text('Thu gọn');
+                                    } else {
+                                    box.removeClass('h-auto').addClass('h-[50px]');
+                                    // $(this).text('Read More');
+                                    }
+                                });
+                                });
+                        </script>
                     </div>
                     <div class="flex lg:hidden flex-col justify-center items-center gap-6 w-full">
                         <div class="flex  justify-between gap-3">
@@ -842,7 +868,7 @@
                                 $(this).prev('.readmore-box').toggleClass('h-[181px]');
                               });
                             });
-                          </script>                                                                              
+                        </script>                                                                              
                     </div>
                 </div>
                 <div class="flex items-center justify-center text-white  w-full h-[100px] lg:h-[450px] bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[20px] lg:mt-[58px]">

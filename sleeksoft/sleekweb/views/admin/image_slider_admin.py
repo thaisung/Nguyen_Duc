@@ -71,7 +71,13 @@ def image_slider_admin(request):
         context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1)
         context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2)
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        return render(request, 'sleekweb/admin/image_slider_admin.html', context, status=200)
+        
+        if request.user.is_authenticated and request.user.is_superuser:
+            return render(request, 'sleekweb/admin/image_slider_admin.html', context, status=200)
+        else:
+            return redirect('login_admin')
+
+    
     if request.method == 'POST':
         context = {}
         Count = request.POST.get('Count')

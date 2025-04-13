@@ -63,7 +63,7 @@
       </script>
       
 
-    <style>
+      <style>
         @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
@@ -73,7 +73,13 @@
 
         @font-face {
             font-family: 'UTM Aptima';
-            src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
+            src: url("{% static 'fonts/UTM-AptimaItalic.ttf' %}") format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/00024-UTM-AptimaBoldItalic.ttf' %}") format('truetype');
             font-weight: 700;
             font-style: italic;
         }
@@ -88,13 +94,20 @@
         body {
             font-family: 'UTM Aptima', sans-serif !important;
         }
+
+        .ff-bb{
+            font-family: 'UTM Bebas', sans-serif !important;
+        }
+
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
 </head>
 
 <body class=" flex  items-center justify-center bg-red-500" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
     <div class="flex  w-full min-h-screen">
-        <div class="click_menu lg:hidden flex justify-center items-center fixed top-4 left-4 cursor-pointer bg-[#eaebe7] p-1 ">
+        <div class="click_menu lg:hidden flex justify-center items-center fixed top-2 left-2 cursor-pointer bg-[#eaebe7] p-1 border-[1px] border-[#0e203c] rounded-md ">
             <svg class="w-[25px] fill-[#0e203c]" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
                 <title>menu</title>
@@ -113,7 +126,7 @@
                 </g>
             </svg>
         </div>
-        <div class="menu fixed lg:static  h-screen bg-[#eaebe7] lg:bg-transparent hidden lg:flex flex-col  text-white w-[350px]">
+        <div id="menu" class="menu fixed lg:static  h-screen bg-[#eaebe7] lg:bg-transparent hidden lg:flex flex-col  text-white w-[350px]">
             <div class="uppercase flex justify-center items-center py-[20px] bg-[#11284A] border-b-[1px] border-[#0e203c] text-[30px]">
                 admin
             </div>
@@ -149,7 +162,7 @@
                 </a> -->
             </nav>
         </div>
-        <script>
+        <!-- <script>
             $(document).ready(function () {
                 $(".click_menu").click(function () {
                     $(".menu").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
@@ -161,6 +174,49 @@
                         $(".menu").removeClass("open"); // Ẩn menu khi click ra ngoài
                     }
                 });
+            });
+        </script> -->
+        <script>
+            let isOpen = false;
+        
+            $(".click_menu").click(function () {
+                const $menu = $("#menu");
+        
+                if (!isOpen) {
+                    $menu.show(); // hiện ra trước khi chạy hiệu ứng
+                    gsap.to($menu, {
+                        duration: 0.4,
+                        x: "0%",
+                        ease: "power2.out"
+                    });
+                } else {
+                    gsap.to($menu, {
+                        duration: 0.4,
+                        x: "-100%",
+                        ease: "power2.in",
+                        onComplete: function () {
+                            $menu.hide(); // ẩn sau khi animation xong
+                        }
+                    });
+                }
+        
+                isOpen = !isOpen;
+            });
+        
+            // Đóng khi click ra ngoài
+            $(document).click(function (e) {
+                const $menu = $("#menu");
+                if (isOpen && !$(e.target).closest("#menu, .click_menu").length) {
+                    gsap.to($menu, {
+                        duration: 0.4,
+                        x: "-100%",
+                        ease: "power2.in",
+                        onComplete: function () {
+                            $menu.hide();
+                        }
+                    });
+                    isOpen = false;
+                }
             });
         </script>
         {% block content %}{% endblock %}

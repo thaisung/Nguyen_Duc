@@ -74,14 +74,22 @@ def product_admin(request):
             context['list_Product'] = context['list_Product'].filter(Q(Name__icontains=s)).order_by('-id')
             context['s'] = s
         print('context:',context)
-        return render(request, 'sleekweb/admin/product_admin.html', context, status=200)
+        if request.user.is_authenticated and request.user.is_superuser:
+            return render(request, 'sleekweb/admin/product_admin.html', context, status=200)
+        else:
+            return redirect('login_admin')
+        
 
 def product_add_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
         print('context:',context)
-        return render(request, 'sleekweb/admin/product_add_admin.html', context, status=200)
+        if request.user.is_authenticated and request.user.is_superuser:
+            return render(request, 'sleekweb/admin/product_add_admin.html', context, status=200)
+        else:
+            return redirect('login_admin')
+        
     elif request.method == 'POST':
         fields = {}
         fields['Avatar']= request.FILES.get('Avatar')
@@ -110,7 +118,10 @@ def product_edit_admin(request,pk):
         context['domain'] = settings.DOMAIN
         context['obj_Product'] = Product.objects.get(pk=pk)
         print('context:',context)
-        return render(request, 'sleekweb/admin/product_edit_admin.html', context, status=200)
+        if request.user.is_authenticated and request.user.is_superuser:
+            return render(request, 'sleekweb/admin/product_edit_admin.html', context, status=200)
+        else:
+            return redirect('login_admin')
     elif request.method == 'POST':
         fields = {}
         # fields['id']= request.FILES.get('id')

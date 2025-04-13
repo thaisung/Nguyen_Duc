@@ -98,8 +98,12 @@ def image_content_admin(request):
             context['obj_Count_6'] = Photo_Content.objects.get(Count=6)
         except:
             context['obj_Count_6'] = {}
+            
+        if request.user.is_authenticated and request.user.is_superuser:
+            return render(request, 'sleekweb/admin/image_content_admin.html', context, status=200)
+        else:
+            return redirect('login_admin')
         
-        return render(request, 'sleekweb/admin/image_content_admin.html', context, status=200)
     if request.method == 'POST':
         context = {}
         fields = {}

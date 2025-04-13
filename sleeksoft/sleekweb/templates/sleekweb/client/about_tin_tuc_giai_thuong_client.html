@@ -15,33 +15,87 @@
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex flex-col w-full justify-start">
-        <div class="relative flex justify-center items-center w-full h-[500px] overflow-hidden">
+        <div class="relative flex justify-center items-center w-full h-[186px] lg:h-[500px] overflow-hidden">
             <img class="w-full h-full object-cover" src="/upload/ttgt/a.jpg" />
             <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
-                <div class="flex flex-col gap-3 w-[1250px]">
-                    <h2 class="font-normal text-[60px] uppercase text-[#25394f]">LET'S TALK <br>#HYDRINITY</h2>
+                <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[25px] lg:p-none">
+                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">LET'S TALK <br>#HYDRINITY</h2>
                 </div>
             </div>
         </div>
     </div>
-    <div class="w-full flex justify-center items-center p-[50px]">
-        <div class="grid grid-cols-2 w-[1200px] gap-[50px]">
-            <div class="flex gap-[30px]">
+    <div class="w-full flex justify-center items-center p-[25px] lg:p-[50px]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-[1200px] gap-[25px] lg:gap-[50px]">
+            <div class="flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
                 <img class="w-[320px]" src="/upload/ttgt/b1.webp" />
-                <div class="flex flex-col gap-[20px]">
-                    <div class="font-semibold text-[14px] text-[#5bbad6]">27 December, 2023</div>
-                    <p class="font-normal text-[22px]text-[#101828]">CULTIVATING CONFIDENCE: THE HYDRINITY WAY TO A LUXURIOUS SKIN JOURNEY</p>
-                    <a class="font-semibold text-[14px] text-[#5bbad6]">Read More</a>
+                <div class="flex flex-col gap-[5px] lg:gap-[20px]">
+                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A] lg:text-[#5bbad6]">27 December, 2023</div>
+                    <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lgtext-[#101828]">CULTIVATING CONFIDENCE: THE HYDRINITY WAY TO A LUXURIOUS SKIN JOURNEY</p>
+                    <a class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-[#5bbad6] mt-2 lg:mt-none">
+                        <span class="bg-[#11284A] text-center rounded px-2 py-1">
+                            Read More
+                        </span>
+                    </a>
                 </div>
             </div>
-            <div class="flex gap-[30px]">
+            <div class="flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
                 <img class="w-[320px]" src="/upload/ttgt/b2.webp" />
-                <div class="flex flex-col gap-[20px]">
-                    <div class="font-semibold text-[14px] text-[#5bbad6]">27 December, 2023</div>
-                    <p class="font-normal text-[22px]text-[#101828]">Hydrinity Accelerated Skin Science Expands into the United Kingdom and Ireland</p>
-                    <a class="font-semibold text-[14px] text-[#5bbad6]">Read More</a>
+                <div class="flex flex-col gap-[5px] lg:gap-[20px]">
+                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A] lg:text-[#5bbad6]">27 December, 2023</div>
+                    <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lg:text-[#101828]">Hydrinity Accelerated Skin Science Expands into the United Kingdom and Ireland</p>
+                    <a class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-[#5bbad6] mt-2 lg:mt-none">
+                        <span class="bg-[#11284A] text-center rounded px-2 py-1">
+                            Read More
+                        </span>
+                    </a>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px]">
+        <span class="font-bold text-black text-[21px] lg:text-[55px]">
+            THE RESULTS ARE IN
+        </span>
+        <div class="w-full flex justify-center">
+            <div class="swiper mySwiper2 w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px] ">
+                <div class="swiper-wrapper">
+                    {% for i in list_image_slider_3 %}
+                    <div class="swiper-slide">
+                        <img class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Chỉ có dấu chấm -->
+                <div class="swiper-pagination hidden lg:block"></div>
+            </div>
+            <script>
+                var swiper = new Swiper(".mySwiper2", {
+                  loop: true, 
+                  autoplay: { delay: 3000 }, // Tự động chạy
+                  pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                  },
+                });
+              </script>
+              <style>
+                /* Màu xám cho chấm tròn */
+                .swiper-pagination-bullet {
+                    background: #9ca3af !important; /* Tailwind gray-400 */
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    opacity: 1;
+                }
+            
+                /* Màu trắng và kích thước lớn hơn khi active */
+                .swiper-pagination-bullet-active {
+                    background: #ffffff !important; /* Tailwind white */
+                    width: 22px;
+                    height: 22px;
+                }
+            </style>
         </div>
     </div>
 </main>

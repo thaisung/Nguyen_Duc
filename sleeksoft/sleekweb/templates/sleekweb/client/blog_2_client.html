@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
-    <div class="flex flex-col items-center w-[1597px] mt-[50px] mb-[50px]">
+    <div class="hidden lg:flex flex-col items-center w-[1597px] mt-[50px] mb-[50px]">
         <div class="flex justify-between w-full gap-[48px]">
             <div class="flex flex-col  items-start  text-white gap-6">
                 <div class="flex items-center justify-center w-[787px] h-[1013px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
@@ -37,6 +37,70 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="flex lg:hidden flex-col w-full">
+        <div class="w-full h-[364px]">
+            <img alt="Hình ảnh 1" src="{% if obj_Count_4.Photo1  %}{{obj_Count_4.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
+        </div>
+        <div class="w-full px-[20px]">
+            <div class="flex  bg-[#11284A] p-3 uppercase font-bold text-[30px] mt-6 text-white">
+                {% if obj_Count_4.Content1 %}
+                <p class="font-medium text-[20px] normal-case w-full text-justify h-full">
+                    {{obj_Count_4.Content1}}
+                </p>
+                {% else %}
+                <p class="uppercase">
+                    Nội dung 1
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px] mt-[25px]">
+        <span class="font-bold text-black text-[21px] lg:text-[55px]">
+            THE RESULTS ARE IN
+        </span>
+        <div class="w-full flex justify-center">
+            <div class="swiper mySwiper2 w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px] ">
+                <div class="swiper-wrapper">
+                    {% for i in list_image_slider_3 %}
+                    <div class="swiper-slide">
+                        <img class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Chỉ có dấu chấm -->
+                <div class="swiper-pagination hidden lg:block"></div>
+            </div>
+            <script>
+                var swiper = new Swiper(".mySwiper2", {
+                  loop: true, 
+                  autoplay: { delay: 3000 }, // Tự động chạy
+                  pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                  },
+                });
+              </script>
+              <style>
+                /* Màu xám cho chấm tròn */
+                .swiper-pagination-bullet {
+                    background: #9ca3af !important; /* Tailwind gray-400 */
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    opacity: 1;
+                }
+            
+                /* Màu trắng và kích thước lớn hơn khi active */
+                .swiper-pagination-bullet-active {
+                    background: #ffffff !important; /* Tailwind white */
+                    width: 22px;
+                    height: 22px;
+                }
+            </style>
         </div>
     </div>
 </main>

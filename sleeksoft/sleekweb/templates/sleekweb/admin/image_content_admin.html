@@ -3,7 +3,7 @@
 {% block content %}
 <div class="w-full flex-col ">
     <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
-        <span class="uppercase">
+        <span class="uppercase w-full flex justify-center lg:justify-start">
             Trang Ảnh và Content
         </span>
         <!-- <div class="flex items-center gap-3">
@@ -87,7 +87,7 @@
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="1" class="" />
-                <div class="flex gap-5">
+                <div class="flex flex-col lg:flex-row gap-5">
                     <div class="flex flex-col gap-2 w-full">
                         <span class="font-semibold">- Hình ảnh 1 và Nội dung 1</span>
                         <div class="flex flex-col gap-1">
@@ -125,7 +125,7 @@
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="2" class="" />
-                <div class="flex gap-5">
+                <div class="flex flex-col lg:flex-row gap-5">
                     <div class="flex flex-col gap-2 w-full">
                         <span class="font-semibold">- Hình ảnh 1 và Nội dung 1</span>
                         <div class="flex flex-col gap-1">
@@ -163,7 +163,7 @@
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="3" class="" />
-                <div class="flex gap-5">
+                <div class="flex flex-col lg:flex-row gap-5">
                     <div class="flex flex-col gap-2 w-full">
                         <span class="font-semibold">- Hình ảnh 1 và Nội dung 1</span>
                         <div class="flex flex-col gap-1">

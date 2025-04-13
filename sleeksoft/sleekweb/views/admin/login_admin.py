@@ -68,7 +68,10 @@ def login_admin(request):
         context = {}
         context['domain'] = settings.DOMAIN
         print('context:',context)
-        return render(request, 'sleekweb/admin/login_admin.html', context, status=200)
+        if request.user.is_authenticated:
+            return redirect('product_admin')
+        else:
+            return render(request, 'sleekweb/admin/login_admin.html', context, status=200)
     elif request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
