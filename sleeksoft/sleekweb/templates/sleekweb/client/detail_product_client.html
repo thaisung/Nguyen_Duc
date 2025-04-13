@@ -14,13 +14,13 @@
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
-    <div class="flex flex-col lg:flex-row items-center lg:justify-between gap-[20px] lg:gap-[150px]">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-[20px] ">
         <div class="grid grid-cols-2 w-full lg:w-[50%] gap-2 px-2 lg:px-none">
             {% for i in obj_Product.list_photo.all %}
-                <img class="min-w-[50%] max-w-[50%] lg:min-w-[405px] lg:min-h-[405px]" src="{{i.Avatar.url}}" />
+                <img class="lg:max-w-[405px] h-auto lg:max-h-[405px]" src="{{i.Avatar.url}}" />
             {% endfor %}
         </div>
-        <div class="flex flex-col w-full lg:w-[50%] px-[20px] lg:px-none text-[#11284A] lg:text-black">
+        <div class="flex flex-col w-full h-full lg:w-[50%] px-[20px] lg:px-none text-[#11284A] lg:text-black">
             <h1 class="uppercase text-[26px] lg:text-[36px] font-bold lg:font-medium">{{obj_Product.Name}}</h1>
             <span class="hidden lg:block text-[24px] font-medium format_number">{{obj_Product.Price}}đ</span>
             <div class="flex justify-center">
