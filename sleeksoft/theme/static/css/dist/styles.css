@@ -1526,6 +1526,10 @@ select {
   width: 100vw;
 }
 
+.w-auto {
+  width: auto;
+}
+
 .min-w-\[25px\] {
   min-width: 25px;
 }
