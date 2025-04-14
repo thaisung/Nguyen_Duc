@@ -91,15 +91,15 @@
                 <a class="uppercase z-[-2] font-bold text-[15px] text-black  product_add_admin">
                     DANH MỤC: <span class="format_number">{{i.Category|default:''}}</span>
                 </a>
-                <a class="uppercase z-[-2] font-bold text-[15px] text-black  product_add_admin">
+                <!-- <a class="uppercase z-[-2] font-bold text-[15px] text-black  product_add_admin">
                     GIÁ: <span class="format_number">{{i.Price}}</span> VNĐ
-                </a>
+                </a> -->
                 <div class="flex flex-col">
                     <span class="font-bold">Các Size:</span>
                     <div class="flex flex-col pl-2">
                         {% for j in i.list_size.all %}
                         <div class="flex items-center">
-                            <span>- {{j.Name}}</span>
+                            <span>- {{j.Name}} (<span class="format_number">{{j.Price}} VNĐ</span>)</span>
                             <form method="post" action="{% url 'size_product_remove_admin' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{j.id}}"/>
@@ -116,12 +116,15 @@
                         {% endfor %}
                     </div>
                 </div>
-                <form method="post" action="{% url 'size_product_add_admin' %}" style="display: none;" class="input_Size  flex items-center h-[30px] gap-1">
+                <form method="post" action="{% url 'size_product_add_admin' %}" style="display: none;" class="input_Size  flex items-center h-auto gap-1">
                     {% csrf_token %}
                     <input type="hidden" name="id" value="{{i.id}}" class="rounded-md  bg-transparent h-[30px]"/>
-                    <input type="text" name="Name" value="" class="rounded-md  bg-transparent h-[30px]"/>
+                    <div class="flex flex-col gap-2">
+                        <input type="text" name="Name" required value="" placeholder="Tên Size" class="rounded-md  bg-transparent h-[30px]"/>
+                        <input type="number" name="Price" required value="" placeholder="Giá theo Size" class="rounded-md  bg-transparent h-[30px]"/>
+                    </div>
                     <button type="submit"
-                        class="flex items-center justify-center p-2 rounded-md bg-sky-500 font-semibold text-sm hover:cursor-pointer h-[30px]">
+                        class="flex items-center justify-center p-2 rounded-md bg-sky-500 font-semibold text-sm hover:cursor-pointer h-full">
                         <svg class="w-[20px]" enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 " stroke="#000000" stroke-miterlimit="10" stroke-width="2"></polyline></svg>
                     </button>
                 </form>

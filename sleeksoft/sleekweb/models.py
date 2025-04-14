@@ -77,6 +77,7 @@ class Size(models.Model):
         verbose_name_plural = "Size sản phẩm"
     
     Name = models.CharField('Tên Size SP', max_length=500,blank=True, null=True)
+    Price = models.CharField('Giá', max_length=255,blank=True, null=True)
     Belong_Product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='list_size',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)

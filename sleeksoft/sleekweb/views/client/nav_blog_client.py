@@ -73,10 +73,22 @@ def nav_blog_client(request):
         context = {}
         context['domain'] = settings.DOMAIN
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+        # try:
+        #     context['obj_Count_2'] = Photo_Content.objects.get(Count=2)
+        # except:
+        #     context['obj_Count_2'] = {}
         try:
-            context['obj_Count_2'] = Photo_Content.objects.get(Count=2)
+            context['obj_Count_3'] = Photo_Content.objects.get(Count=3)
         except:
-            context['obj_Count_2'] = {}
+            context['obj_Count_3'] = {}
+        try:
+            context['obj_Count_4'] = Photo_Content.objects.get(Count=4)
+        except:
+            context['obj_Count_4'] = {}
+        try:
+            context['obj_Count_5'] = Photo_Content.objects.get(Count=5)
+        except:
+            context['obj_Count_5'] = {}
         context['list_Product'] = Product.objects.all()
         print('context:',context)
         return render(request, 'sleekweb/client/nav_blog_client.html', context, status=200)

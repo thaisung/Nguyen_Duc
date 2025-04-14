@@ -95,7 +95,7 @@ def product_add_admin(request):
         fields['Avatar']= request.FILES.get('Avatar')
         fields['Name'] = request.POST.get('Name')
         fields['Category'] = request.POST.get('Category')
-        fields['Price'] = request.POST.get('Price')
+        # fields['Price'] = request.POST.get('Price')
         fields['Introduce'] = request.POST.get('Introduce')
         fields['Describe'] = request.POST.get('Describe')
         fields['Main_ingredients'] = request.POST.get('Main_ingredients')
@@ -128,7 +128,7 @@ def product_edit_admin(request,pk):
         fields['Avatar']= request.FILES.get('Avatar')
         fields['Name'] = request.POST.get('Name')
         fields['Category'] = request.POST.get('Category')
-        fields['Price'] = request.POST.get('Price')
+        # fields['Price'] = request.POST.get('Price')
         fields['Introduce'] = request.POST.get('Introduce')
         fields['Describe'] = request.POST.get('Describe')
         fields['Main_ingredients'] = request.POST.get('Main_ingredients')
@@ -140,7 +140,7 @@ def product_edit_admin(request,pk):
         obj = Product.objects.get(pk=pk)
         obj.Name = fields['Name']
         obj.Category = fields['Category']
-        obj.Price = fields['Price']
+        # obj.Price = fields['Price']
         obj.Introduce = fields['Introduce'] 
         obj.Describe = fields['Describe']
         obj.Main_ingredients = fields['Main_ingredients'] 
@@ -174,9 +174,10 @@ def size_product_add_admin(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         Name = request.POST.get('Name')
+        Price = request.POST.get('Price')
         try:
             obj = Product.objects.get(pk=id)
-            Size.objects.create(Name=Name,Belong_Product=obj)
+            Size.objects.create(Name=Name,Price=Price,Belong_Product=obj)
         except:
             print('not')
         return redirect('product_admin')

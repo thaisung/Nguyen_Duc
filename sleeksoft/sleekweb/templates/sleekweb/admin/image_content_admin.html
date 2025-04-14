@@ -88,7 +88,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="1" class="" />
                 <div class="flex flex-col lg:flex-row gap-5">
-                    <div class="flex flex-col gap-2 w-full">
+                    <!-- <div class="flex flex-col gap-2 w-full">
                         <span class="font-semibold">- Hình ảnh 1 và Nội dung 1</span>
                         <div class="flex flex-col gap-1">
                             <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo1  %}{{obj_Count_1.Photo1.url}}{% endif %}" class="w-full h-auto" />
@@ -103,8 +103,8 @@
                             <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo2"  />
                         </div>
                         <textarea name="Content2" class="autoresize rounded-md" placeholder="Nội dung 2">{{obj_Count_1.Content2|default:''}}</textarea>
-                    </div>
-                    <div class="flex flex-col gap-2 w-full">
+                    </div> -->
+                    <div class="flex flex-col gap-2 w-[50%]">
                         <span class="font-semibold">- Hình ảnh 3</span>
                         <div class="flex flex-col gap-1">
                             <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}" class="w-full h-auto" />
@@ -118,7 +118,7 @@
                 </button>
             </form>
         </div>
-        <div class="flex flex-col gap-1">
+        <!-- <div class="flex flex-col gap-1">
             <a href="{% url 'nav_blog_client' %}" class="font-semibold text-[18px] hover:underline">
                 2.Trang Blog
             </a>
@@ -155,10 +155,10 @@
                     Cập nhật
                 </button>
             </form>
-        </div>
+        </div> -->
         <div class="flex flex-col gap-1">
             <a href="{% url 'blog_1_client' %}" class="font-semibold text-[18px] hover:underline">
-                3.Trang Blog 1
+                2.Trang Blog 1
             </a>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
@@ -188,7 +188,7 @@
         </div>
         <div class="flex flex-col gap-1">
             <a href="{% url 'blog_2_client' %}" class="font-semibold text-[18px] hover:underline">
-                4.Trang Blog 2
+                3.Trang Blog 2
             </a>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
@@ -218,7 +218,7 @@
         </div>
         <div class="flex flex-col gap-1">
             <a href="{% url 'blog_3_client' %}" class="font-semibold text-[18px] hover:underline">
-                5.Trang Blog 3
+                4.Trang Blog 3
             </a>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
@@ -256,7 +256,7 @@
         </div>
         <div class="flex flex-col gap-1">
             <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="font-semibold text-[18px] hover:underline">
-                6.Nghiên cứu lâm sàn
+                5.Nghiên cứu lâm sàn
             </a>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}

@@ -91,6 +91,22 @@
         }
 
     </style>
+    <script>
+        $(document).ready(function(){
+            $('.product-item .size-option').on('click', function() {
+          var name = $(this).data('name');
+          var price = $(this).data('price');
+    
+          var parent = $(this).closest('.product-item');
+    
+          // Cập nhật tên size
+          parent.find('.name-display').text(name);
+    
+          // Cập nhật giá có format số
+          parent.find('.price-display').text(formatNumber(price));
+        });
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
@@ -101,19 +117,53 @@
         <header class=" w-full hidden lg:flex flex-col">
             <div class="w-full h-[50px] bg-[#11284A] flex items-center justify-between px-[74px]">
                 <div class="flex flex-col text-[10px] text-white">
-                    <span class="">
+                    <span class="whitespace-normal">
                         Chào mừng đến với <span class="font-bold">Hydirinity VietNam</span>
                     </span>
-                    <span class="">
+                    <span class="whitespace-nowrap">
                         Hotline: <span class="font-bold">098 705 0122</span>
                     </span>
                 </div>
-                <div class="h-[33px] text-[15px] flex justify-between items-center gap-6">
+                <!-- <div class="h-[33px] text-[15px] flex justify-between items-center gap-6">
                     <a href="#" class="text-white  tracking-widest uppercase ">Accelerated Skin Science</a>
                     <a href="#" class="text-white  tracking-widest uppercase ">Accelerated Skin Science</a>
                     <a href="#" class="text-white  tracking-widest uppercase ">Accelerated Skin Science</a>
                     <a href="#" class="text-white  tracking-widest uppercase ">Accelerated</a>
+                </div> -->
+                <div class="relative mx-[100px] w-full  overflow-hidden  h-[33px] ">
+                    <div class="absolute whitespace-nowrap flex animate-marquee gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">Accelerated Skin Science</span>
+                    </div>
+                    <!-- Nhân đôi để nối đuôi -->
+                    <div class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">Accelerated Skin Science</span>
+                    </div>
                 </div>
+                <style>
+                  @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-100%); }
+                  }
+                  
+                  @keyframes marquee2 {
+                    0% { transform: translateX(100%); }
+                    100% { transform: translateX(0); }
+                  }
+                  
+                  .animate-marquee {
+                    animation: marquee 15s linear infinite;
+                  }
+                  
+                  .animate-marquee2 {
+                    animation: marquee2 15s linear infinite;
+                  }
+                </style>
                 <div class="flex justify-between items-center gap-3">
                     <a href="#" class="">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -454,13 +504,13 @@
                     </div>
                     <div class="flex flex-col lg:flex-row  lg:items-center justify-between w-full lg:h-full mt-[20px] lg:mt-none">
                         <div class="flex flex-col gap-2 text-[7px] lg:text-[14px] font-normal lg:font-medium text-[#FBFBFB]">
-                            <a class="">Sản phẩm</a>
-                            <a class="">Nghiên Cứu Khoa Học</a>
-                            <a class="">Kết Quả Lâm Sàng</a>
-                            <a class="">Infinity Blog</a>
-                            <a class="">Tầm Nhìn & Sứ Mệnh</a>
-                            <a class="">Liên Hệ</a>
-                            <a class="">Tin Tức & Giải Thưởng</a>
+                            <a href="{% url 'nav_products_client' %}" class="">Sản phẩm</a>
+                            <a href="{% url 'link_nghien_cuu_khoa_hoc_client' %}" class="">Nghiên Cứu Khoa Học</a>
+                            <a href="{% url 'link_ket_qua_lam_san_client' %}" class="">Kết Quả Lâm Sàng</a>
+                            <a href="{% url 'nav_blog_client' %}" class="">Infinity Blog</a>
+                            <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="">Tầm Nhìn & Sứ Mệnh</a>
+                            <a href="{% url 'about_lien_he_client' %}" class="">Liên Hệ</a>
+                            <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="">Tin Tức & Giải Thưởng</a>
                         </div>
                         <div class="flex flex-col gap-3 mt-[20px] lg:mt-none">
                             <span class="font-bold text-[15px] lg:text-[20px] text-[#FBFBFB] italic">
