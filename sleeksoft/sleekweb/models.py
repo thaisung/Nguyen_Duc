@@ -41,6 +41,7 @@ class Product(models.Model):
     
     Avatar = models.ImageField(upload_to='PRODUCT_AVATAR',null=True,blank=True)
     Name = models.CharField('Tên SP', max_length=500,blank=True, null=True)
+    Title = models.CharField('Chi tiết SP', max_length=500,blank=True, null=True)
     Category = models.CharField('Danh mục', max_length=250,blank=True, null=True)
     Price = models.CharField('Giá', max_length=255,blank=True, null=True)
     Introduce = models.TextField('Giới thiệu',blank=True, null=True)

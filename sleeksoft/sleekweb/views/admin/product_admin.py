@@ -94,6 +94,7 @@ def product_add_admin(request):
         fields = {}
         fields['Avatar']= request.FILES.get('Avatar')
         fields['Name'] = request.POST.get('Name')
+        fields['Title'] = request.POST.get('Title')
         fields['Category'] = request.POST.get('Category')
         # fields['Price'] = request.POST.get('Price')
         fields['Introduce'] = request.POST.get('Introduce')
@@ -127,6 +128,7 @@ def product_edit_admin(request,pk):
         # fields['id']= request.FILES.get('id')
         fields['Avatar']= request.FILES.get('Avatar')
         fields['Name'] = request.POST.get('Name')
+        fields['Title'] = request.POST.get('Title')
         fields['Category'] = request.POST.get('Category')
         # fields['Price'] = request.POST.get('Price')
         fields['Introduce'] = request.POST.get('Introduce')
@@ -139,6 +141,7 @@ def product_edit_admin(request,pk):
         # if fields['id']:
         obj = Product.objects.get(pk=pk)
         obj.Name = fields['Name']
+        obj.Title = fields['Title']
         obj.Category = fields['Category']
         # obj.Price = fields['Price']
         obj.Introduce = fields['Introduce'] 
