@@ -64,6 +64,7 @@
       
 
       <style>
+        
         @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
@@ -73,10 +74,18 @@
 
         @font-face {
             font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'UTM Aptima';
             src: url("{% static 'fonts/UTM-AptimaItalic.ttf' %}") format('truetype');
             font-weight: 400;
             font-style: italic;
         }
+
         @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/00024-UTM-AptimaBoldItalic.ttf' %}") format('truetype');
@@ -88,7 +97,7 @@
             font-family: 'UTM Bebas';
             src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
             font-weight: 700;
-            font-style: italic;
+            font-style: normal;
         }
 
         body {

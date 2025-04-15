@@ -24,26 +24,32 @@
             </div>
         </div>
     </div>
-    <div class="w-full flex justify-center items-center p-[25px] lg:p-[50px]">
+    <div class="w-full flex flex-col justify-center items-center p-[25px] lg:p-[50px]">
+        <div class="tabs mb-6 lg:mb-8 font-normal text-[20px] lg:text-[25px] flex items-center w-full justify-between lg:justify-center text-[#11284A]">
+            <button class="tab-btn active px-4 py-2 whitespace-nowrap" data-filter="all">All</button>
+            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="press">Press Releases</button>
+            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="media">Media</button>
+            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="awards">Awards</button>
+        </div>                  
         <div class="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-[1200px] gap-[25px] lg:gap-[50px]">
-            <div class="flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
+            <div class="item all awards flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
                 <img class="w-[320px]" src="/upload/ttgt/b1.webp" />
-                <div class="flex flex-col gap-[5px] lg:gap-[20px]">
-                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A] lg:text-[#5bbad6]">27 December, 2023</div>
+                <div class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
+                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A] ">27 December, 2023</div>
                     <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lgtext-[#101828]">CULTIVATING CONFIDENCE: THE HYDRINITY WAY TO A LUXURIOUS SKIN JOURNEY</p>
-                    <a href="{% url 'link_tt_gt_1_client' %}" class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-[#5bbad6] mt-2 lg:mt-none">
+                    <a href="{% url 'link_tt_gt_1_client' %}" class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-white mt-2 lg:mt-none">
                         <span class="bg-[#11284A] text-center rounded px-2 py-1">
                             Read More
                         </span>
                     </a>
                 </div>
             </div>
-            <div class="flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
+            <div class="item all press flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
                 <img class="w-[320px]" src="/upload/ttgt/b2.webp" />
-                <div class="flex flex-col gap-[5px] lg:gap-[20px]">
-                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A] lg:text-[#5bbad6]">27 December, 2023</div>
+                <div class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
+                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A]">27 December, 2023</div>
                     <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lg:text-[#101828]">Hydrinity Accelerated Skin Science Expands into the United Kingdom and Ireland</p>
-                    <a href="{% url 'link_tt_gt_2_client' %}" class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-[#5bbad6] mt-2 lg:mt-none">
+                    <a href="{% url 'link_tt_gt_2_client' %}" class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-white mt-2 lg:mt-none">
                         <span class="bg-[#11284A] text-center rounded px-2 py-1">
                             Read More
                         </span>
@@ -52,6 +58,39 @@
             </div>
         </div>
     </div>
+    <style>
+        .item { display: none; }
+        .item.show { display: block; }
+      
+        .tab-btn.active {
+          background-color: #11284A;
+          color: white;
+          border-radius: 6px;
+        }
+      </style>      
+    <script>
+        $(document).ready(function () {
+          $('.item').addClass('show'); // Hiện tất cả khi load
+      
+          $('.tab-btn').click(function () {
+            var filter = $(this).data('filter');
+      
+            // Đổi nút active
+            $('.tab-btn').removeClass('active');
+            $(this).addClass('active');
+      
+            // Ẩn tất cả
+            $('.item').removeClass('show');
+      
+            // Hiện theo lọc
+            if (filter === 'all') {
+              $('.item').addClass('show');
+            } else {
+              $('.item.' + filter).addClass('show');
+            }
+          });
+        });
+      </script>
     <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px]">
         <span class="font-bold text-black text-[21px] lg:text-[55px]">
             THE RESULTS ARE IN
