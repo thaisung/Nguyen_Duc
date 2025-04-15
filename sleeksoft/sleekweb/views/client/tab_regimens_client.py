@@ -75,7 +75,7 @@ def tab_regimens_client(request):
         context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1)
         context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2)
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        context['list_Product'] = Product.objects.filter(Q(Category__icontains='REGIMENS')).order_by('-id')
+        context['list_Product'] = Product.objects.filter(Q(Category__icontains='REGIMENS'))
         print('context:',context)
         return render(request, 'sleekweb/client/tab_regimens_client.html', context, status=200)
     

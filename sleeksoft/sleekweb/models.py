@@ -48,7 +48,7 @@ class Product(models.Model):
     Describe = models.TextField('Mô tả',blank=True, null=True)
     Main_ingredients = models.TextField('Thành phần chính',blank=True, null=True)
     How_use = models.TextField('Cách sử dụng',blank=True, null=True)
-    Ingredients_table = models.TextField('Bảng thành phần',blank=True, null=True)
+    # Ingredients_table = models.TextField('Bảng thành phần',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 

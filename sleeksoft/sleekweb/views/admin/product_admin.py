@@ -101,7 +101,7 @@ def product_add_admin(request):
         fields['Describe'] = request.POST.get('Describe')
         fields['Main_ingredients'] = request.POST.get('Main_ingredients')
         fields['How_use'] = request.POST.get('How_use')
-        fields['Ingredients_table'] = request.POST.get('Ingredients_table')
+        # fields['Ingredients_table'] = request.POST.get('Ingredients_table')
         List_Photo= request.FILES.getlist('List_Photo')
         List_Photo_NCLS= request.FILES.getlist('List_Photo_NCLS')
         obj = Product.objects.create(**fields)
@@ -135,7 +135,7 @@ def product_edit_admin(request,pk):
         fields['Describe'] = request.POST.get('Describe')
         fields['Main_ingredients'] = request.POST.get('Main_ingredients')
         fields['How_use'] = request.POST.get('How_use')
-        fields['Ingredients_table'] = request.POST.get('Ingredients_table')
+        # fields['Ingredients_table'] = request.POST.get('Ingredients_table')
         List_Photo= request.FILES.getlist('List_Photo')
         List_Photo_NCLS= request.FILES.getlist('List_Photo_NCLS')
         # if fields['id']:
@@ -148,7 +148,7 @@ def product_edit_admin(request,pk):
         obj.Describe = fields['Describe']
         obj.Main_ingredients = fields['Main_ingredients'] 
         obj.How_use = fields['How_use'] 
-        obj.Ingredients_table = fields['Ingredients_table']
+        # obj.Ingredients_table = fields['Ingredients_table']
         if fields['Avatar']:
             obj.Avatar = fields['Avatar']
         obj.save()
