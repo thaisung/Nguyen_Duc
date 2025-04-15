@@ -242,7 +242,7 @@ def image_content_admin(request):
                     context['obj_Count_6'].Photo1 = fields['Photo1']
                 if fields['Photo2']:
                     context['obj_Count_6'].Photo2 = fields['Photo2']
-                context['obj_Count_5'].save()
+                context['obj_Count_6'].save()
             else:
                 fields['Count'] = 6   
                 Photo_Content.objects.create(**fields)
