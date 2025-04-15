@@ -2813,6 +2813,11 @@ select {
     padding-bottom: 80px;
   }
 
+  .lg\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
   .lg\:pt-\[100px\] {
     padding-top: 100px;
   }

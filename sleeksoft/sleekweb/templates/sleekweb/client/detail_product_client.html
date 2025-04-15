@@ -30,57 +30,92 @@
             <div class="flex flex-col mt-3">
                 <div class="flex flex-col border-t-[1px] border-[#ddd]" >
                     <div class="click_pr cursor-pointer flex gap-2 py-3">
-                        <div class="">
-                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
-                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        <div class=" flex items-center">
+                            <svg class="open_icon_pr" width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+                            <svg class="close_icon_pr hidden" width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
                         </div>
                         <span  class="font-normal text-[13px] lg:text-[15px] lg:nt-medium uppercase">
                             Mô Tả Sản Phẩm
                         </span>
                     </div>
-                    <p class="hidden tab_pr py-3">
+                    <p class="hidden tab_pr py-2 lg:py-3">
                         {{obj_Product.Describe}}
                     </p>
                 </div>
                 <div class="flex flex-col border-t-[1px] border-[#ddd]" >
                     <div class="click_pr cursor-pointer flex gap-2 py-3">
-                        <div class="">
-                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
-                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        <div class=" flex items-center">
+                            <svg class="open_icon_pr" width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+        
+                            <svg class="close_icon_pr hidden"  width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
                         </div>
                         <span  class="font-normal text-[13px] lg:text-[15px] lg:nt-medium uppercase">
                             Thành phần chính
                         </span>
                     </div>
-                    <p class="hidden tab_pr py-3">
+                    <p class="hidden tab_pr py-2 lg:py-3">
                         {{obj_Product.Main_ingredients}}
                     </p>
                 </div>
                 <div class="flex flex-col border-t-[1px] border-[#ddd]" >
                     <div class="click_pr cursor-pointer flex gap-2 py-3">
-                        <div class="">
-                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
-                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        <div class=" flex items-center">
+                            <svg class="open_icon_pr" width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+        
+                            <svg class="close_icon_pr hidden"  width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
                         </div>
                         <span  class="font-normal text-[13px] lg:text-[15px] lg:nt-medium uppercase">
                             Cách sử dụng
                         </span>
                     </div>
-                    <p class="hidden tab_pr py-3">
+                    <p class="hidden tab_pr py-2 lg:py-3">
                         {{obj_Product.How_use}}
                     </p>
                 </div>
                 <div class="flex flex-col border-t-[1px] border-[#ddd]" >
                     <div class="click_pr cursor-pointer flex gap-2  py-3">
-                        <div class="">
-                            <svg class=" open_icon_pr fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1.8369701987210297e-16,-1,1,-1.8369701987210297e-16,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
-                            <svg class=" close_icon_pr hidden fill-[#585757] w-[25px]" id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(6.123233995736766e-17,1,-1,6.123233995736766e-17,0,0)"><polygon points="352,128.4 319.7,96 160,256 160,256 160,256 319.7,416 352,383.6 224.7,256 "></polygon></svg>
+                        <div class=" flex items-center">
+                            <svg class="open_icon_pr" width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+        
+                            <svg class="close_icon_pr hidden"  width="25" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
                         </div>
                         <span  class="font-normal text-[13px] lg:text-[15px] lg:nt-medium uppercase">
                             Bảng thành phần
                         </span>
                     </div>
-                    <p class="hidden tab_pr py-3">
+                    <p class="hidden tab_pr py-2 lg:py-3">
                         {{obj_Product.Ingredients_table}}
                     </p>
                 </div>
@@ -104,7 +139,7 @@
                             // Chuyển đổi icon và thêm/xóa nền
                             openIcon.toggleClass('hidden');
                             closeIcon.toggleClass('hidden');
-                            $(this).toggleClass('bg-[#f8f7f7]');
+                            // $(this).toggleClass('bg-[#f8f7f7]');
                         });
                     });
                 </script>
