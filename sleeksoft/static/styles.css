@@ -1263,6 +1263,18 @@ select {
   height: 233px;
 }
 
+.h-\[12px\] {
+  height: 12px;
+}
+
+.h-\[14px\] {
+  height: 14px;
+}
+
+.h-\[16px\] {
+  height: 16px;
+}
+
 .max-h-\[50px\] {
   max-height: 50px;
 }
@@ -1557,6 +1569,14 @@ select {
 
 .w-\[85px\] {
   width: 85px;
+}
+
+.w-\[70px\] {
+  width: 70px;
+}
+
+.w-\[65px\] {
+  width: 65px;
 }
 
 .min-w-\[134px\] {
