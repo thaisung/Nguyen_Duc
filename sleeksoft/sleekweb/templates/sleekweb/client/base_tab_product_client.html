@@ -543,11 +543,11 @@
                 <div class="flex w-full lg:w-[934px] lg:h-[121px] items-center justify-center ">
                     <div class="hidden lg:flex w-[646px] h-[57px] items-center justify-between font-bold text-[25px]">
                         <a href="{% url 'tab_best_sellers_client' %}" 
-                        class="uppercase py-1 px-2 rounded-md text-[#11284A] {% if request.resolver_match.url_name == 'tab_best_sellers_client' %}bg-[#11284A] text-[#FBFBFB]{% endif %}">BEST SELLERS</a>
+                        class="uppercase py-1 px-2 rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_best_sellers_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">BEST SELLERS</a>
                         <a href="{% url 'tab_products_client' %}" 
-                        class="uppercase py-1 px-2   rounded-md font-medium text-[#11284A] {% if request.resolver_match.url_name == 'tab_products_client' %}bg-[#11284A] text-[#FBFBFB]{% endif %}">PRODUCTS</a>
+                        class="uppercase py-1 px-2   rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_products_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">PRODUCTS</a>
                         <a href="{% url 'tab_regimens_client' %}" 
-                        class="uppercase py-1 px-2  rounded-md font-medium text-[#11284A] {% if request.resolver_match.url_name == 'tab_regimens_client' %}bg-[#11284A] text-[#FBFBFB]{% endif %}">REGIMENS</a>
+                        class="uppercase py-1 px-2  rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_regimens_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">REGIMENS</a>
                     </div>
                     <div class=" flex lg:hidden flex-col w-full h-full items-center justify-center font-normal text-[20px] divide-y-[2px]  divide-white text-white">
                         <div class="flex flex-col w-full">
