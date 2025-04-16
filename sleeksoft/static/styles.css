@@ -867,6 +867,10 @@ select {
   top: 50px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -2143,6 +2147,10 @@ select {
 
 .pt-\[30px\] {
   padding-top: 30px;
+}
+
+.pl-\[10px\] {
+  padding-left: 10px;
 }
 
 .text-center {
