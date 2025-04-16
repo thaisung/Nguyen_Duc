@@ -831,6 +831,10 @@ select {
   left: 110px;
 }
 
+.right-2 {
+  right: 0.5rem;
+}
+
 .right-\[60px\] {
   right: 60px;
 }
@@ -861,10 +865,6 @@ select {
 
 .top-\[50px\] {
   top: 50px;
-}
-
-.right-2 {
-  right: 0.5rem;
 }
 
 .z-10 {
