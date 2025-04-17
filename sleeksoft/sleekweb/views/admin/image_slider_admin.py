@@ -84,18 +84,40 @@ def image_slider_admin(request):
         list_image_slider_1 = request.FILES.getlist('list_image_slider_1')
         list_image_slider_2 = request.FILES.getlist('list_image_slider_2')
         list_image_slider_3 = request.FILES.getlist('list_image_slider_3')
+        list_image_slider_1_1 = request.FILES.get('list_image_slider_1_1')
+        list_image_slider_2_2 = request.FILES.get('list_image_slider_2_2')
+        list_image_slider_3_3 = request.FILES.get('list_image_slider_3_3')
         if int(Count) == 1 and list_image_slider_1:
+            Photo_Slider.objects.filter(Count=1).delete()
             for i in list_image_slider_1:
                 Photo_Slider.objects.create(Photo=i,Count=1)
         if int(Count) == 2 and list_image_slider_2:
+            Photo_Slider.objects.filter(Count=2).delete()
             for i in list_image_slider_2:
                 Photo_Slider.objects.create(Photo=i,Count=2)
         if int(Count) == 3 and list_image_slider_3:
+            Photo_Slider.objects.filter(Count=3).delete()
             for i in list_image_slider_3:
                 Photo_Slider.objects.create(Photo=i,Count=3)
+
+        if int(Count) == 1 and list_image_slider_1_1:
+            Photo_Slider.objects.create(Photo=list_image_slider_1_1,Count=1)
+        if int(Count) == 2 and list_image_slider_2_2:
+            Photo_Slider.objects.create(Photo=list_image_slider_2_2,Count=2)
+        if int(Count) == 3 and list_image_slider_3_3:
+            Photo_Slider.objects.create(Photo=list_image_slider_3_3,Count=3)
+        
         return redirect('image_slider_admin')
         
-
+def image_slider_remove_admin(request):    
+    if request.method == 'POST':
+        context = {}
+        id = request.POST.get('id')
+        try:
+            Photo_Slider.objects.get(pk=id).delete()
+        except:
+            return redirect('image_slider_admin')
+        return redirect('image_slider_admin')
 
 # def product_add_admin(request):
 #     if request.method == 'GET':

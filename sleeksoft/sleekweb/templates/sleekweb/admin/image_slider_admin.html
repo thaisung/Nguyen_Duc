@@ -18,61 +18,136 @@
             <a href="{% url 'tab_best_sellers_client' %}" class="font-semibold text-[18px] hover:underline">
                 1.Ảnh Slider đầu trang
             </a>
-            <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
-                {% csrf_token %}
-                <input type="hidden" name="Count" value="1" class="" />
+            <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-2">
-                    <div class="grid grid-cols-2 gap-1">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
                         {% for i in list_image_slider_1 %}
-                        <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        <div class="relative w-full h-auto">
+                            <form method="post"  action="{% url 'image_slider_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{i.id}}" class="" />
+                                <button type="submit" class="fill-red-500 w-[30px]">
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
+                                        <path style="" d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
+                                            s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
+                                            l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
+                                        </svg>
+                                </button>
+                            </form>
+                            <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        </div>
                         {% endfor %}
                     </div>
-                    <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_1"  />
+                    <div class="flex flex-col lg:flex-row gap-3 mt-3">
+                        <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="Count" value="1" class="" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*"  name="list_image_slider_1_1" />
+                            <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                                Thêm
+                            </button>
+                        </form>
+                        <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="Count" value="1" class="" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_1"  />
+                            <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                                Cập nhật danh sách mới
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                    Cập nhật
-                </button>
-            </form>
+            </div>
         </div>
         <div class="flex flex-col gap-1">
             <a href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
                 2.Ảnh Slider giữa trang
             </a>
-            <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
-                {% csrf_token %}
-                <input type="hidden" name="Count" value="2" class="" />
+            <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-2">
-                    <div class="grid grid-cols-2 gap-1">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
                         {% for i in list_image_slider_2 %}
-                        <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        <div class="relative w-full h-auto">
+                            <form method="post"  action="{% url 'image_slider_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{i.id}}" class="" />
+                                <button type="submit" class="fill-red-500 w-[30px]">
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
+                                        <path style="" d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
+                                            s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
+                                            l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
+                                        </svg>
+                                </button>
+                            </form>
+                            <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        </div>
                         {% endfor %}
                     </div>
-                    <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_2"  />
+                    <div class="flex flex-col lg:flex-row gap-3 mt-3">
+                        <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="Count" value="2" class="" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*"  name="list_image_slider_2_2" />
+                            <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                                Thêm
+                            </button>
+                        </form>
+                        <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="Count" value="2" class="" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_2"  />
+                            <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                                Cập nhật danh sách mới
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                    Cập nhật
-                </button>
-            </form>
+            </div>
         </div>
         <div class="flex flex-col gap-1">
             <a href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
                 3.Ảnh Slider cuối trang
             </a>
-            <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
-                {% csrf_token %}
-                <input type="hidden" name="Count" value="3" class="" />
+            <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-2">
-                    <div class="grid grid-cols-2 gap-1">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
                         {% for i in list_image_slider_3 %}
-                        <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        <div class="relative w-full h-auto">
+                            <form method="post"  action="{% url 'image_slider_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{i.id}}" class="" />
+                                <button type="submit" class="fill-red-500 w-[30px]">
+                                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
+                                        <path style="" d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
+                                            s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
+                                            l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
+                                        </svg>
+                                </button>
+                            </form>
+                            <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                        </div>
                         {% endfor %}
                     </div>
-                    <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_3"  />
+                    <div class="flex flex-col lg:flex-row gap-3 mt-3">
+                        <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="Count" value="3" class="" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*"  name="list_image_slider_3_3" />
+                            <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                                Thêm
+                            </button>
+                        </form>
+                        <form method="post" action="{% url 'image_slider_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="Count" value="3" class="" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" multiple name="list_image_slider_3"  />
+                            <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                                Cập nhật danh sách mới
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                    Cập nhật
-                </button>
-            </form>
+            </div>
         </div>
     </div>
 </div>

@@ -831,6 +831,10 @@ select {
   left: 110px;
 }
 
+.right-0 {
+  right: 0px;
+}
+
 .right-2 {
   right: 0.5rem;
 }
@@ -867,8 +871,12 @@ select {
   top: 50px;
 }
 
-.right-0 {
-  right: 0px;
+.right-3 {
+  right: 0.75rem;
+}
+
+.top-3 {
+  top: 0.75rem;
 }
 
 .z-10 {
@@ -1563,6 +1571,10 @@ select {
   width: 100vw;
 }
 
+.w-\[30px\] {
+  width: 30px;
+}
+
 .min-w-\[134px\] {
   min-width: 134px;
 }
@@ -1768,10 +1780,6 @@ select {
 
 .overflow-hidden {
   overflow: hidden;
-}
-
-.whitespace-normal {
-  white-space: normal;
 }
 
 .whitespace-nowrap {
@@ -2113,6 +2121,10 @@ select {
   padding-left: 0.5rem;
 }
 
+.pl-\[10px\] {
+  padding-left: 10px;
+}
+
 .pl-\[40px\] {
   padding-left: 40px;
 }
@@ -2147,10 +2159,6 @@ select {
 
 .pt-\[30px\] {
   padding-top: 30px;
-}
-
-.pl-\[10px\] {
-  padding-left: 10px;
 }
 
 .text-center {
@@ -2698,6 +2706,10 @@ select {
 
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .lg\:flex-row {

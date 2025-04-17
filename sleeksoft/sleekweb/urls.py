@@ -127,6 +127,7 @@ urlpatterns = [
 
     path('admin/image-content',image_content_admin,name='image_content_admin'),
     path('admin/image-slider',image_slider_admin,name='image_slider_admin'),
+    path('admin/image-slider-remove',image_slider_remove_admin,name='image_slider_remove_admin'),
 
 
     path('signup-email',signup_email_client,name='signup_email_client'),
