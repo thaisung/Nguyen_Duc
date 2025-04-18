@@ -23,6 +23,16 @@
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
                         {% for i in list_image_slider_1 %}
                         <div class="relative w-full h-auto">
+                            <form method="post"  action="{% url 'image_slider_order_admin' %}" class="absolute top-3 left-3 flex gap-1 items-center fill-red-500">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{i.id}}"  />
+                                <div class=" relative flex gap-1 items-center">
+                                    <input type="number" name="Order" value="{{i.Order}}" class="font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"  style="background: transparent;" />
+                                    <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
+                                        <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
+                                    </button>
+                                </div>
+                            </form>
                             <form method="post"  action="{% url 'image_slider_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{i.id}}" class="" />
@@ -68,6 +78,16 @@
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
                         {% for i in list_image_slider_2 %}
                         <div class="relative w-full h-auto">
+                            <form method="post"  action="{% url 'image_slider_order_admin' %}" class="absolute top-3 left-3 flex gap-1 items-center fill-red-500">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{i.id}}"  />
+                                <div class=" relative flex gap-1 items-center">
+                                    <input type="number" name="Order" value="{{i.Order}}" class="font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"  style="background: transparent;" />
+                                    <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
+                                        <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
+                                    </button>
+                                </div>
+                            </form>
                             <form method="post"  action="{% url 'image_slider_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{i.id}}" class="" />
@@ -113,6 +133,16 @@
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
                         {% for i in list_image_slider_3 %}
                         <div class="relative w-full h-auto">
+                            <form method="post"  action="{% url 'image_slider_order_admin' %}" class="absolute top-3 left-3 flex gap-1 items-center fill-red-500">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{i.id}}"  />
+                                <div class=" relative flex gap-1 items-center">
+                                    <input type="number" name="Order" value="{{i.Order}}" class="font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"  style="background: transparent;" />
+                                    <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
+                                        <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
+                                    </button>
+                                </div>
+                            </form>
                             <form method="post"  action="{% url 'image_slider_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{i.id}}" class="" />

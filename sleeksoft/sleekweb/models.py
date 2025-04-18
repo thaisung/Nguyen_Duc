@@ -114,6 +114,7 @@ class Photo_Slider(models.Model):
     
     Photo = models.ImageField(upload_to='PHOTO_SLIDER',null=True,blank=True)
     Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Order = models.IntegerField('Thứ tự xuất hiện',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 

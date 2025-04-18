@@ -68,9 +68,9 @@ def image_slider_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1)
-        context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2)
-        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+        context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1).order_by('Order')
+        context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2).order_by('Order')
+        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3).order_by('Order')
         
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/image_slider_admin.html', context, status=200)
@@ -115,6 +115,19 @@ def image_slider_remove_admin(request):
         id = request.POST.get('id')
         try:
             Photo_Slider.objects.get(pk=id).delete()
+        except:
+            return redirect('image_slider_admin')
+        return redirect('image_slider_admin')
+
+def image_slider_order_admin(request):    
+    if request.method == 'POST':
+        context = {}
+        id = request.POST.get('id')
+        Order = request.POST.get('Order')
+        try:
+            obj = Photo_Slider.objects.get(pk=id)
+            obj.Order = Order
+            obj.save()
         except:
             return redirect('image_slider_admin')
         return redirect('image_slider_admin')

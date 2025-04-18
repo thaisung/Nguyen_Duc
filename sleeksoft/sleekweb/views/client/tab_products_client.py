@@ -72,9 +72,9 @@ def tab_products_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1)
-        context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2)
-        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+        context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1).order_by('Order')
+        context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2).order_by('Order')
+        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3).order_by('Order')
         context['list_Product'] = Product.objects.filter(Q(Category__icontains='PRODUCTS'))
         print('context:',context)
         return render(request, 'sleekweb/client/tab_products_client.html', context, status=200)
