@@ -60,7 +60,9 @@
                 <h3 class="hidden lg:block font-bold lg:font-normal text-[24px] lg:text-[36px] text-center uppercase ff-bb ">
                     {{obj1.Title2}}
                 </h3>
-                <p class="text-center text-[10px] lg:text-[16px] mt-6 italic lg:not-italic px-[20px] lg:px-none">Làn da được cung cấp độ ẩm tối ưu chính là làn da không tuổi, khỏe mạnh và rạng rỡ – một làn da mịn màng, trắng sáng và dịu nhẹ. Và tất cả bắt đầu từ công thức độc quyền của chúng tôi phát triển dựa trên thành phần Hyaluronic Acid siêu cường độ với trọng lượng kép.</p>
+                <p class="text-center text-[10px] lg:text-[16px] mt-6 italic lg:not-italic px-[20px] lg:px-none">
+                    {{obj1.Content3|safe}}
+                </p>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] lg:gap-[50px] mt-[25px] lg:mt-[50px]">
                     {% for i in list_Edit_vct1 %}
                     <div class="flex flex-col items-center  lg:gap-2">
