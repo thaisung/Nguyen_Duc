@@ -17,7 +17,11 @@
     <div class="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-[20px] ">
         <div class="grid grid-cols-2 w-full lg:w-[50%] gap-2 px-2 lg:px-none">
             {% for i in obj_Product.list_photo.all %}
-                <img class="w-full h-auto" src="{{i.Avatar.url}}" />
+                <a data-fancybox="gallery" href="{{ i.Avatar.url }}" class="">
+                    <!-- <img src="{{ i.Avatar.url }}"  class="shadow-md  transition w-full h-auto brightness-110" /> -->
+                    <img class="w-full h-auto transition" src="{{i.Avatar.url}}" />
+                </a>
+                <!-- <img class="w-full h-auto" src="{{i.Avatar.url}}" /> -->
             {% endfor %}
         </div>
         <div class="flex flex-col w-full h-full lg:w-[50%] px-[20px] lg:px-none text-[#11284A] lg:text-black">
