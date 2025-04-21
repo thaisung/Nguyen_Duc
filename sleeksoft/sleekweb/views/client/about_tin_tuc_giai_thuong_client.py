@@ -70,10 +70,36 @@ def about_tin_tuc_giai_thuong_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        try:
+            context['obj1'] = Edit_ttgt.objects.get(Count=1)
+        except:
+            context['obj1'] = {}
+        context['list_Edit_ttgt1'] = Edit_ttgt1.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         print('context:',context)
         return render(request, 'sleekweb/client/about_tin_tuc_giai_thuong_client.html', context, status=200)
+    
+def about_tin_tuc_giai_thuong_detail_client(request,pk):
+    if request.method == 'GET':
+        context = {}
+        context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        try:
+            context['obj1'] = Edit_ttgt1.objects.get(pk=pk)
+        except:
+            context['obj1'] = {}
+        context['list_Product'] = Product.objects.all()
+        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+        print('context:',context)
+        return render(request, 'sleekweb/client/link_tt_gt_1_client.html', context, status=200)
 
 def link_tt_gt_1_client(request):
     if request.method == 'GET':

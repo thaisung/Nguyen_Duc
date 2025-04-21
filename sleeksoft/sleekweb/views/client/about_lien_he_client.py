@@ -70,6 +70,11 @@ def about_lien_he_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        context['obj1'] = Edit_lh.objects.get(Count=1)
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         print('context:',context)

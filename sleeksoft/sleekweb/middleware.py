@@ -4,6 +4,27 @@ from django.template.loader import render_to_string
 # myapp/middleware.py
 
 from django.shortcuts import redirect
+import datetime
+from django.http import HttpResponse
+
+class BlockAfterDateMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+        # Thiết lập ngày hết hạn
+        self.expiry_date = datetime.datetime(2025, 4, 25)
+
+    def __call__(self, request):
+        current_time = datetime.datetime.now()
+
+        if current_time > self.expiry_date:
+            return HttpResponse(
+                "<h1>Website đã hết hạn truy cập do chưa hoàn tất thanh toán.</h1><p>Vui lòng liên hệ người đã tạo ra mã nguồn.</p>",
+                content_type="text/html; charset=utf-8", 
+                status=403
+            )
+
+        response = self.get_response(request)
+        return response
 
 class Redirect404ToHomeMiddleware:
     def __init__(self, get_response):

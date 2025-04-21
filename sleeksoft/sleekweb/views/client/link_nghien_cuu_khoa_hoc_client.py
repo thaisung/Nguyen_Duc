@@ -72,6 +72,16 @@ def link_nghien_cuu_khoa_hoc_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        try:
+            context['obj1'] = Edit_nckh.objects.get(Count=1)
+        except:
+            context['obj1'] = {}
+        context['list_Edit_nckh1'] = Edit_nckh1.objects.all().order_by('Order')
+        context['list_Edit_nckh2'] = Edit_nckh2.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         print('context:',context)

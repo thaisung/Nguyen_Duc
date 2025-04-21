@@ -119,15 +119,199 @@ class Photo_Slider(models.Model):
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
 
-# class Banner(models.Model):
-#     class Meta:
-#         ordering = ["id"]
-#         verbose_name_plural = "Ảnh Banner"
+class Website(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin trang web"
     
-#     Photo = models.ImageField(upload_to='website/banner',null=True,blank=True)
-#     Belong_Website = models.ForeignKey(Website, on_delete=models.CASCADE, related_name='list_photo_banner',blank=True, null=True)
-#     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
-#     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+    Logo = models.ImageField(upload_to='Change_Website',null=True,blank=True)
+    Phone_number = models.CharField('Số điện thoại', max_length=50,blank=True, null=True)
+    Text_run = models.CharField('Chữ chạy', max_length=100,blank=True, null=True)
+    Email = models.CharField('Email', max_length=50,blank=True, null=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_home(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thay đổi trang chủ"
+    
+    Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_ncls(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin trang ncls"
+    
+    Nckh = models.ImageField(upload_to='Edit_ncls',null=True,blank=True)
+    Kqls = models.ImageField(upload_to='Edit_ncls',null=True,blank=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_vct(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin trang vct"
+    
+    Title1 = models.CharField('Tiêu đề 1', max_length=200,blank=True, null=True)
+    Content1 = models.CharField('Nội dung 1',blank=True, null=True)
+    Content2 = models.CharField('Nội dung 2',blank=True, null=True)
+    Title2 = models.CharField('Tiêu đề 2', max_length=200,blank=True, null=True)
+    Content3 = models.CharField('Nội dung 3',blank=True, null=True)
+    Photo1 = models.ImageField(upload_to='Edit_vct',null=True,blank=True)
+    Photo2 = models.ImageField(upload_to='Edit_vct',null=True,blank=True)
+    Photo3 = models.ImageField(upload_to='Edit_vct',null=True,blank=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_vct1(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin vct phần con"
+    
+    Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Content = models.CharField('Nội dung',blank=True, null=True)
+    Photo = models.ImageField(upload_to='Edit_vct',null=True,blank=True)
+    Order = models.IntegerField('Thứ tự',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_tnsm(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin trang tnsm"
+    
+    Title1 = models.CharField('Tiêu đề 1', max_length=200,blank=True, null=True)
+    Content1 = models.CharField('Nội dung 1',blank=True, null=True)
+    Photo1 = models.ImageField(upload_to='Edit_tnsm',null=True,blank=True)
+    Title2 = models.CharField('Tiêu đề 2', max_length=50,blank=True, null=True)
+    Title3 = models.CharField('Tiêu đề 2', max_length=50,blank=True, null=True)
+    Content2 = models.CharField('Nội dung 3',blank=True, null=True)
+    Photo2 = models.ImageField(upload_to='Edit_tnsm',null=True,blank=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_tnsm1(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin tnsm phần con"
+    
+    Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Content = models.CharField('Nội dung',blank=True, null=True)
+    Photo = models.ImageField(upload_to='Edit_tnsm',null=True,blank=True)
+    Order = models.IntegerField('Thứ tự',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_ttgt(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin tin tức, giải thưởng"
+    
+    Title1 = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Photo1 = models.ImageField(upload_to='Edit_ttgt',null=True,blank=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_ttgt1(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin tin tức, giải thưởng"
+    
+    Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Category = models.CharField('Danh mục', max_length=200,blank=True, null=True)
+    Photo = models.ImageField(upload_to='Edit_ttgt',null=True,blank=True)
+    Order = models.IntegerField('Thứ tự',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_lh(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin map"
+    
+    Address = models.CharField('Địa chỉ liên hệ', max_length=200,blank=True, null=True)
+    Link_map = models.CharField('Link map', max_length=1000,blank=True, null=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_dsdt(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Danh sách đối tác"
+    
+    Name = models.CharField('Tên phòng khám', max_length=200,blank=True, null=True)
+    Address = models.CharField('Địa chỉ liên hệ', max_length=200,blank=True, null=True)
+    Link = models.CharField('Link', max_length=200,blank=True, null=True)
+    Photo = models.ImageField(upload_to='Edit_dsdt',null=True,blank=True)
+    Order = models.IntegerField('Thứ tự',blank=True, null=True)
+    Category = models.CharField('Danh mục', max_length=200,blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_nckh(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin trang nckh"
+    
+    Photo1 = models.ImageField(upload_to='Edit_nckh',null=True,blank=True)
+    Title1 = models.CharField('Tiêu đề 1', max_length=200,blank=True, null=True)
+    Content1 = models.CharField('Nội dung 1',blank=True, null=True)
+    Title2 = models.CharField('Tiêu đề 2', max_length=200,blank=True, null=True)
+    Photo2 = models.ImageField(upload_to='Edit_tnsm',null=True,blank=True)
+    Title3 = models.CharField('Tiêu đề 2', max_length=200,blank=True, null=True)
+    Photo3 = models.ImageField(upload_to='Edit_tnsm',null=True,blank=True)
+    Content2 = models.CharField('Nội dung 3',blank=True, null=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_nckh1(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin nckh phần con"
+    
+    Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Content = models.CharField('Nội dung',blank=True, null=True)
+    Photo = models.ImageField(upload_to='Edit_nckh',null=True,blank=True)
+    Order = models.IntegerField('Thứ tự',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_nckh2(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin nckh phần con"
+    
+    Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Content = models.CharField('Nội dung',blank=True, null=True)
+    Photo = models.ImageField(upload_to='Edit_nckh',null=True,blank=True)
+    Order = models.IntegerField('Thứ tự',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+class Edit_kqls(models.Model):
+    class Meta:
+        ordering = ["id"]
+        verbose_name_plural = "Thông tin trang kqls"
+    
+    Photo1 = models.ImageField(upload_to='Edit_kqls',null=True,blank=True)
+    Title1 = models.CharField('Tiêu đề 1', max_length=200,blank=True, null=True)
+    Content1 = models.CharField('Nội dung 1',blank=True, null=True)
+    Title2 = models.CharField('Tiêu đề 2', max_length=50,blank=True, null=True)
+    Content2 = models.CharField('Nội dung 3',blank=True, null=True)
+    Count = models.IntegerField('Số bản ghi',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
     
 
 

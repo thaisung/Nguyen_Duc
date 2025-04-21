@@ -19,100 +19,63 @@
     </h1>
     <div class="flex flex-col w-full">
         <div class="relative flex justify-center items-center w-full h-[156px] lg:h-[400px] overflow-hidden">
-            <img class="w-full h-full object-cover" src="/upload/nc_kh/a.jpg" />
+            <img class="w-full h-full object-cover" src="{{obj1.Photo1.url|default:''}}" />
             <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
                 <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[20px] lg:p-none">
-                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">KHOA HỌC <br> CỦA HYDRINITY</h2>
-                    <p class="font-normal text-[8px] lg:text-[20px]  text-[#25394f]">Hydrinity <strong>TĂNG TỐC</strong> hiệu quả chăm
-                        sóc da với <strong>dòng HA ĐỘC QUYỀN</strong><br>
-                        Supercharged Hyaluronic Acid – HA siêu cường độ.</p>
+                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">
+                        {{obj1.Title1|safe}}
+                    </h2>
+                    <p class="font-normal text-[8px] lg:text-[20px]  text-[#25394f]">
+                        {{obj1.Content1|safe}}
+                    </p>
                 </div>
             </div>
         </div>
         <div class="w-full h-[186px] lg:h-[700px] flex justify-center items-center overflow-hidden bg-white">
             <div class="flex flex-col items-center">
-                <h3 class="uppercase font-normal text-[10px] lg:text-[36px] text-[#25394f]">CÔNG THỨC ĐỘC QUYỀN</h3>
-                <h3 class="uppercase font-normal text-[10px] lg:text-[36px] text-[#25394f] mt-2">TINH KHIẾT - HIỆU QUẢ - CHÍNH XÁC</h3>
-                <img class="w-full lg:w-[1100px]" src="/upload/nc_kh/b.webp" />
+                <h3 class="uppercase font-normal text-[10px] lg:text-[36px] text-[#25394f]">
+                    {{obj1.Title2|safe}}
+                </h3>
+                <img class="w-full lg:w-[1100px]" src="{{obj1.Photo2.url|default:''}}" />
             </div>
         </div>
         <div class="w-full h-[290px] lg:h-[900px] flex justify-center  overflow-hidden pt-[30px] lg:pt-[100px]"
             style="background-color: rgb(19, 41, 75);">
             <div class="flex flex-col items-center" style="color: rgb(255, 255, 255);">
                 <h3 class="font-norma text-[16px] lg:text-[36px] uppercase">
-                    Hyaluronic Acid MÀ BẠN CHƯA TỪNG BIẾT
+                    {{obj1.Title3|safe}}
                 </h3>
                 <div class="flex justify-between w-full lg:w-[1100px]  mt-[15px] lg:mt-[50px]">
+                    {% for i in list_Edit_nckh1 %}
                     <div class="flex flex-col items-center gap-3 lg:gap-6 w-full lg:w-[390px] px-4">
-                        <img class="w-[22px] lg:w-[69px]" src="/upload/nc_kh/c1.png" />
-                        <h5 class="font-normal text-[10px] lg:text-[28px]">HA ĐẬM ĐẶC</h5>
-                        <p class="text-center text-[6px] lg:text-[16px]"><strong>Nồng độ Hyaluronic Acid cao nhất</strong> hiện nay – gấp 2
-                            lần so với các thương hiệu chăm sóc da hàng đầu khác.</p>
-                    </div>
-                    <div class="flex flex-col items-center gap-3 lg:gap-6 w-full lg:w-[390px] px-4">
-                        <img class="w-[22px] lg:w-[69px]" src="/upload/nc_kh/c3.webp" />
-                        <h5 class="font-normal text-[10px] lg:text-[28px]">HA TRỌNG LƯỢNG KÉP</h5>
-                        <p class="text-center text-[6px] lg:text-[16px]">HA phân tử trọng lượng cao hút độ ẩm lên bề mặt da, làm
-                            <strong>giảm sự xuất hiện của nếp nhăn nông và sâu</strong>, đồng thời
-                            <strong>tăng cường độ ẩm dự trữ cần thiết cho da</strong>, <strong>giúp da chắc
-                                khoẻ</strong>, <strong>cải thiện hàng rào bảo vệ da</strong> <strong>và&nbsp;độ đàn
-                                hồi của da</strong>.
+                        <img class="w-[22px] lg:w-[69px]" src="{{i.Photo.url|default:''}}" />
+                        <h5 class="font-normal text-[10px] lg:text-[28px]">{{i.Title|safe}}</h5>
+                        <p class="text-center text-[6px] lg:text-[16px]">
+                            {{i.Content|safe}}
                         </p>
-                        <p class=" mt-[15] lg:mt-[50px] text-center text-[6px] lg:text-[16px]">HA trọng lượng thấp hơn sẽ thẩm thấu sâu vào bên trong
-                            biểu bì da, cung cấp peptide quan trọng và các chất chống oxy hóa được minh chứng
-                            giúp <strong>tái tạo nền da khỏe mạnh, mịn màng, tươi sáng</strong>.</p>
                     </div>
-                    <div class="flexpx flex-col items-center gap-3 lg:gap-6 w-full lg:w-[390px] px-4">
-                        <img class="w-[22px] lg:w-[69px]" src="/upload/nc_kh/c2.webp" />
-                        <h5 class="font-normal text-[10px] lg:text-[28px]">HA ĐẬM ĐẶC</h5>
-                        <p class="text-center text-[6px] lg:text-[16px]"><strong>HA chống viêm cực mạnh</strong> của chúng tôi nhanh chóng kích
-                            thích quá trình sản sinh collagen và elastin trong khi cung cấp độ ẩm sâu ở trên và dưới bề
-                            mặt da.</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
         <div class="w-full h-[343px] lg:h-[900px] flex justify-center overflow-hidden px-[20px] lg:px-none" style="background-color: rgb(255, 255, 255);">
             <div class="flex flex-col items-center w-full lg:w-[1100px] mt-[17px] lg:mt-[50px]">
-                <img class=" w-[52px] lg:w-[152px]" src="/upload/nc_kh/d1.svg" />
-                <p class="text-[#25394F] text-[0.4rem] lg:text-[1.35rem] text-center mt-1 lg:mt-2">Chúng tôi kết hợp HA siêu tinh khiết với
-                    <strong>6 loại peptide</strong> mạnh mẽ cùng các <strong>chất chống oxy hóa có nguồn gốc từ thực
-                        vật</strong> để tăng tốc hiệu quả trên da.
+                <img class=" w-[52px] lg:w-[152px]" src="{{obj1.Photo3.url|default:''}}" />
+                <p class="text-[#25394F] text-[0.4rem] lg:text-[1.35rem] text-center mt-1 lg:mt-2">
+                    {{obj1.Content2|safe}}
                 </p>
                 <div class="grid grid-cols-2 gap-[17px] lg:gap-[50px] mt-[15px] lg:mt-[50px]">
+                    {% for i in list_Edit_nckh2 %}
                     <div class="flex flex-col items-center gap-2 lg:gap-6">
-                        <img class="w-[23px] lg:w-[69px]" src="/upload/nc_kh/d2.webp" />
-                        <h5 class="uppercase font-normal text-[9px] lg:text-[28px] text-black text-center">03 CHUỖI PEPTIDE ĐẶC BIỆT
+                        <img class="w-[23px] lg:w-[69px]" src="{{i.Photo.url|default:''}}" />
+                        <h5 class="uppercase font-normal text-[9px] lg:text-[28px] text-black text-center">
+                            {{i.Title|safe}}
                         </h5>
-                        <p class="font-normal text-[6px] lg:text-[16px] text-black text-center">Khác với nhiều công thức peptide khác,
-                            PPM⁶ chứa cả 3 chuỗi polypeptide được tìm thấy trong collagen, một trong những nhân tố hình
-                            thành quan trọng nhất của da.</p>
+                        <p class="font-normal text-[6px] lg:text-[16px] text-black text-center">
+                            {{i.Content|safe}}
+                        </p>
                     </div>
-                    <div class="flex flex-col items-center gap-2 lg:gap-6">
-                        <img class=" w-[22px] lg:w-[69px]" src="/upload/nc_kh/d3.webp" />
-                        <h5 class="uppercase font-normal text-[9px] lg:text-[28px] text-black text-center">THÀNH PHẦN BỔ TRỢ TỐT NHẤT
-                        </h5>
-                        <p class="font-normal text-[6px] lg:text-[16px] text-black text-center">Ngoài các peptide chính, chúng tôi
-                            công thức hóa PPM⁶ với các chất chống oxy hóa chiết xuất từ thực vật đã được kiểm chứng,
-                            cùng các phân tử HA độc quyền của Hydrinity để phục hồi, tái tạo và bảo vệ da.</p>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 lg:gap-6">
-                        <img class="w-[23px] lg:w-[69px]" src="/upload/nc_kh/d4.webp" />
-                        <h5 class="uppercase font-normal text-[9px] lg:text-[28px] text-black text-center">KHẢ NĂNG ĐA NHIỆM</h5>
-                        <p class="font-normal text-[6px] lg:text-[16px] text-black text-center">Công nghệ PPM⁶ của chúng tôi giúp bảo
-                            vệ da khỏi các gốc tự do, cung cấp độ ẩm sâu cho da, đồng thời đảm bảo tính nguyên vẹn của
-                            các protein quan trọng (collagen và elastin), và keratinocytes (tế bào chính tạo nên cấu
-                            trúc da) giúp làn da săn chắc, trắng sáng, mịn màng và hoàn toàn dịu nhẹ.</p>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 lg:gap-6">
-                        <img class="w-[22px] lg:w-[69px]" src="/upload/nc_kh/d5.webp" />
-                        <h5 class="uppercase font-normal text-[9px] lg:text-[28px] text-black text-center">TÁI TẠO TỪ TRONG RA NGOÀI
-                        </h5>
-                        <p class="font-normal text-[6px] lg:text-[16px] text-black text-center">Công nghệ PPM⁶ độc quyền của chúng tôi
-                            giúp tái tạo và bảo vệ lớp ngoài cùng của da, đồng thời thẩm thấu vào da, cải thiện tình
-                            trạng viêm nhiễm và tối ưu hóa quá trình sản sinh collagen, elastin và keratinocytes của làn
-                            da.</p>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

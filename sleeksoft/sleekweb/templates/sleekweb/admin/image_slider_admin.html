@@ -1,10 +1,10 @@
 {% extends './base.html' %}
-{% block title %}Trang quản lý Ảnh Slider{% endblock %}
+{% block title %}Trang thay đổi thông tin Trang chủ{% endblock %}
 {% block content %}
 <div class="w-full flex-col ">
     <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
         <span class="uppercase w-full flex justify-center lg:justify-start">
-            Trang Ảnh Slider
+            Trang thay đổi thông tin Trang chủ
         </span>
         <style>
             input:focus {
@@ -15,9 +15,9 @@
     </div>
     <div class="flex flex-col gap-3 p-3">
         <div class="flex flex-col gap-1">
-            <a href="{% url 'tab_best_sellers_client' %}" class="font-semibold text-[18px] hover:underline">
+            <span href="{% url 'tab_best_sellers_client' %}" class="font-semibold text-[18px] hover:underline">
                 1.Ảnh Slider đầu trang
-            </a>
+            </span>
             <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-2">
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
@@ -27,7 +27,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{i.id}}"  />
                                 <div class=" relative flex gap-1 items-center">
-                                    <input type="number" name="Order" value="{{i.Order}}" class="font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"  style="background: transparent;" />
+                                    <input type="number" name="Order" value="{{i.Order}}" class="bg-[#0e203c] font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"  />
                                     <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
                                         <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
                                     </button>
@@ -70,9 +70,23 @@
             </div>
         </div>
         <div class="flex flex-col gap-1">
-            <a href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
-                2.Ảnh Slider giữa trang
-            </a>
+            <span href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
+                2.Dòng tiêu đề
+            </span>
+            <div class="flex flex-col gap-2">
+                <form method="post" action="{% url 'change_home_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3 lg:w-[50%] w-full">
+                    {% csrf_token %}
+                    <input type="text" value="{{obj.Title}}" class="rounded-md w-full"    name="Title" />
+                    <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                        Cập nhật tiêu đề
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="flex flex-col gap-1">
+            <span href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
+                3.Ảnh Slider giữa trang
+            </span>
             <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-2">
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
@@ -82,7 +96,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{i.id}}"  />
                                 <div class=" relative flex gap-1 items-center">
-                                    <input type="number" name="Order" value="{{i.Order}}" class="font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"  style="background: transparent;" />
+                                    <input type="number" name="Order" value="{{i.Order}}" class="bg-[#0e203c] font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"   />
                                     <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
                                         <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
                                     </button>
@@ -125,9 +139,31 @@
             </div>
         </div>
         <div class="flex flex-col gap-1">
-            <a href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
-                3.Ảnh Slider cuối trang
-            </a>
+            <span href="{% url 'tab_best_sellers_client' %}" class="font-semibold text-[18px] hover:underline">
+                4.Ảnh Banner
+            </span>
+            <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2 lg:w-[50%] w-full">
+                {% csrf_token %}
+                <input type="hidden" name="Count" value="1" class="" />
+                <div class="flex flex-col lg:flex-row gap-5">
+                    <div class="flex flex-col gap-2 w-full">
+                        <!-- <span class="font-semibold">- Hình ảnh 1</span> -->
+                        <div class="flex flex-col gap-1 w-full">
+                            <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}" class="w-full h-auto" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo3"  />
+                        </div>
+                        <!-- <textarea name="Content3" class="autoresize rounded-md" placeholder="Nội dung 3">{{obj_Count_1.Content3|default:''}}</textarea> -->
+                    </div>
+                </div>
+                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                    Cập nhật
+                </button>
+            </form>
+        </div>
+        <div class="flex flex-col gap-1">
+            <span href="{% url 'image_slider_admin' %}" class="font-semibold text-[18px] hover:underline">
+                5.Ảnh Slider cuối trang
+            </span>
             <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-2">
                     <div class="grid grid-cols-2 lg:grid-cols-4 gap-1">
@@ -137,7 +173,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{i.id}}"  />
                                 <div class=" relative flex gap-1 items-center">
-                                    <input type="number" name="Order" value="{{i.Order}}" class="font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"  style="background: transparent;" />
+                                    <input type="number" name="Order" value="{{i.Order}}" class="bg-[#0e203c] font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"   />
                                     <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
                                         <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
                                     </button>

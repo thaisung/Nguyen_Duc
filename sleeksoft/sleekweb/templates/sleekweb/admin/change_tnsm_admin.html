@@ -1,0 +1,135 @@
+{% extends './base.html' %}
+{% block title %}Trang thay dổi thông tin trang TNVSM{% endblock %}
+{% block content %}
+<div class="w-full flex-col ">
+    <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
+        <span class="uppercase w-full flex justify-center lg:justify-start">
+            Trang thay dổi thông tin trang TNVSM
+        </span>
+        <style>
+            input:focus {
+                outline: none !important;
+            }
+        </style>
+
+    </div>
+    <div class="flex flex-col gap-3 p-3">
+        <div class="flex flex-col gap-1">
+            <span class="font-semibold">1.Banner & Tiêu đề 1 & Nội dung 1</span>
+            <form method="post" action="{% url 'change_tnsm_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2 w-full lg:w-[50%]">
+                {% csrf_token %}
+                <div class="flex gap-5">
+                    <div class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-1">
+                            <img alt="Hình ảnh 1" src="{% if obj.Photo1  %}{{obj.Photo1.url}}{% endif %}" class="w-full h-auto" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo1"  />
+                            <input type="text" value="{{obj.Title1}}" class="rounded-md w-full" name="Title1" placeholder="Tiêu đề 1" />
+                            <textarea placeholder="Nội dung 1" name="Content1" class="rounded-md w-full h-[150px]">{{obj.Content1}}</textarea>        
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button type="submit" class=" flex justify-center items-center w-full  p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                        Cập nhật
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="flex flex-col gap-1">
+            <span  class="font-semibold text-[18px] hover:underline">
+                2.Thành phần
+            </span>
+            <div class="flex flex-col lg:flex-row gap-2">
+                <form method="post" action="{% url 'change_tnsm1_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3 lg:w-[50%] w-full">
+                    {% csrf_token %}
+                    <input type="text"  class="rounded-md w-full" name="Title" placeholder="Tiêu đề" />
+                    <textarea placeholder="Nội dung" name="Content" class="rounded-md w-full h-[150px]"></textarea>
+                    <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />
+                    <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                        Thêm thành phần
+                    </button>
+                </form>
+            </div>
+            <span href="#" class="font-semibold text-[18px] hover:underline">
+                Danh sách các thành phần con :
+            </span>
+            <div class="w-full grid grid-cols-1 lg:grid-cols-4 gap-[15px]">
+                {% for i in list_Edit_tnsm1 %}
+                <div class="relative w-full flex flex-col gap-2">
+                    <form method="post" action="{% url 'change_tnsm1_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3 w-full">
+                        {% csrf_token %}
+                        <img alt="Hình ảnh" src="{% if i.Photo  %}{{i.Photo.url}}{% endif %}" class="w-[50%] h-auto" />
+                        <input type="hidden"  class="rounded-md w-full" name="id" value="{{i.id}}"  />
+                        <input type="text"  class="rounded-md w-full" name="Title" value="{{i.Title}}" placeholder="Tiêu đề" />
+                        <textarea placeholder="Nội dung" name="Content" class="rounded-md w-full h-[150px]">{{i.Content}}</textarea>
+                        <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />
+                        <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                            Cập nhật
+                        </button>
+                    </form>
+                    <form method="get" action="{% url 'change_tnsm1_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-3  w-full">
+                        {% csrf_token %}
+                        <input type="hidden"  class="rounded-md w-full" name="id" value="{{i.id}}" />
+                        <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-red-500 font-semibold text-md hover:cursor-pointer">
+                            Xoá
+                        </button>
+                    </form>
+                    <form method="post"  action="{% url 'change_tnsm1_order_admin' %}" class="absolute top-3 left-3 flex gap-1 items-center fill-red-500">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{i.id}}"  />
+                        <div class=" relative flex gap-1 items-center">
+                            <input type="number" name="Order" value="{{i.Order}}" class=" bg-[#0e203c] font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]" />
+                            <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
+                                <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="flex flex-col gap-1">
+            <span class="font-semibold">3.Hình ảnh & Tiêu đề 2 & Tiêu đề 3 & Nội dung 2</span>
+            <form method="post" action="{% url 'change_tnsm_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2 w-full lg:w-[50%]">
+                {% csrf_token %}
+                <div class="flex gap-5">
+                    <div class="flex flex-col gap-2 w-full">
+                        <div class="flex flex-col gap-1">
+                            <img alt="Hình ảnh" src="{% if obj.Photo2  %}{{obj.Photo2.url}}{% endif %}" class="w-full h-auto" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo2"  />
+                            <input type="text" value="{{obj.Title2}}" class="rounded-md w-full" name="Title2" placeholder="Tiêu đề 2" />
+                            <input type="text" value="{{obj.Title3}}" class="rounded-md w-full" name="Title3" placeholder="Tiêu đề 3" />
+                            <textarea placeholder="Nội dung 2" name="Content2" class="rounded-md w-full h-[150px]">{{obj.Content2}}</textarea>        
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button type="submit" class=" flex justify-center items-center w-full  p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                        Cập nhật
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.open_input_Size').on('click', function() {
+            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
+        });
+    });
+</script>
+<script>
+    function autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('textarea.autoresize').forEach(function (el) {
+            autoResize(el);
+            el.addEventListener('input', () => autoResize(el));
+        });
+    });
+</script>
+{% endblock %}

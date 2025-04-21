@@ -126,7 +126,9 @@
                         Chào mừng đến với <span class="font-bold">Hydirinity VietNam</span>
                     </span>
                     <span class=" whitespace-nowrap">
-                        Hotline: <span class="font-bold">098 705 0122</span>
+                        Hotline: <span 
+                        {% if request.user.is_superuser %}ondblclick="window.location.href='{% url 'login_admin' %}'"{% endif %}
+                        class="dblclick-link font-bold cursor-pointer">{{obj.Phone_number}}</span>
                     </span>
                 </div>
                 <!-- <div class="overflow-hidden whitespace-nowrap">
@@ -149,17 +151,23 @@
                 </style> -->
                 <div class="relative mx-[100px] w-full  overflow-hidden  h-[33px] ">
                     <div class="absolute whitespace-nowrap flex animate-marquee gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
-                      <span class="px-4">Accelerated Skin Science</span>
-                      <span class="px-4">Accelerated Skin Science</span>
-                      <span class="px-4">Accelerated Skin Science</span>
-                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
                     </div>
                     <!-- Nhân đôi để nối đuôi -->
                     <div class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
-                      <span class="px-4">Accelerated Skin Science</span>
-                      <span class="px-4">Accelerated Skin Science</span>
-                      <span class="px-4">Accelerated Skin Science</span>
-                      <span class="px-4">Accelerated Skin Science</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                    </div>
+                    <div class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
                     </div>
                 </div>
                 <style>
@@ -272,7 +280,7 @@
                     <a class="" href="{% url 'nav_blog_client' %}">Blog</a>
                 </div>
                 <a class="tab" href="/">
-                    <img alt="logo" src="{{domain}}/upload/website/logo.png" class="w-[135px]" />
+                    <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[135px]" />
                 </a>
                 <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
                     <div class="click_tab_doitac relative flex items-center gap-2 hover:cursor-pointer" href="">
@@ -364,7 +372,7 @@
         </header>
         <header class="relative flex lg:hidden items-center justify-center w-full">
             <a class="tab w-full flex justify-center items-center p-[10px]" href="/">
-                <img alt="logo" src="{{domain}}/upload/website/logo.png" class="w-[46px]" />
+                <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[46px]" />
             </a>
             <div   class=" click_menu absolute left-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
                 <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -383,7 +391,7 @@
                     </span>
                 </div>
                 <a class="tab w-full flex justify-center items-center p-[20px]" href="/">
-                    <img alt="logo" src="{{domain}}/upload/website/logo.png" class="w-[56px]" />
+                    <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[56px]" />
                 </a>
                 <nav class=" w-full flex flex-col  text-[#11284A] text-[20px] divide-y-[2px]  divide-[#11284A]"
                     style="font-family: 'UTM Bebas';">
@@ -818,7 +826,7 @@
             </div>
             <div class="flex flex-col items-center w-full mt-[20px] lg:mt-none">
                 <div class="flex items-center justify-center w-full h-[33px] lg:h-[95px] bg-[#11284A]">
-                    <span class=" font-normal text-[20px] lg:font-bold lg:text-[48px] text-white">CÔNG NGHỆ PPM6</span>
+                    <span class=" font-normal text-[20px] lg:font-bold lg:text-[48px] text-white uppercase">{{obj1.Title}}</span>
                 </div>
                 <div class="flex flex-col items-center w-full">
                     <div class="w-full lg:w-[1597px] py-[20px] lg:py-[58px] p-[20px]">
@@ -1024,10 +1032,10 @@
                         </span>
                         <div class="flex flex-col">
                             <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB] italic">
-                                <span class="font-bold">Hotline:</span> +84 987 050 122
+                                <span class="font-bold">Hotline:</span> {{obj.Phone_number}}
                             </span>
                             <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB] italic">
-                                <span class="font-bold">Email:</span> cosbeautyvietnam@gmail.com
+                                <span class="font-bold">Email:</span> {{obj.Email}}
                             </span>
                         </div>
                         <div class="border-b-[1px] border-[#FBFBFB] w-[162px]">

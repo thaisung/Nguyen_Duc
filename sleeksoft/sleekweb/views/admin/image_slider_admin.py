@@ -68,6 +68,14 @@ def image_slider_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Edit_home.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        try:
+            context['obj_Count_1'] = Photo_Content.objects.get(Count=1)
+        except:
+            context['obj_Count_1'] = {}
         context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1).order_by('Order')
         context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2).order_by('Order')
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3).order_by('Order')
@@ -132,106 +140,20 @@ def image_slider_order_admin(request):
             return redirect('image_slider_admin')
         return redirect('image_slider_admin')
 
-# def product_add_admin(request):
-#     if request.method == 'GET':
-#         context = {}
-#         context['domain'] = settings.DOMAIN
-#         print('context:',context)
-#         return render(request, 'sleekweb/admin/product_add_admin.html', context, status=200)
-#     elif request.method == 'POST':
-#         fields = {}
-#         fields['Avatar']= request.FILES.get('Avatar')
-#         fields['Name'] = request.POST.get('Name')
-#         fields['Category'] = request.POST.get('Category')
-#         fields['Price'] = request.POST.get('Price')
-#         fields['Introduce'] = request.POST.get('Introduce')
-#         fields['Describe'] = request.POST.get('Describe')
-#         fields['Main_ingredients'] = request.POST.get('Main_ingredients')
-#         fields['How_use'] = request.POST.get('How_use')
-#         fields['Ingredients_table'] = request.POST.get('Ingredients_table')
-#         List_Photo= request.FILES.getlist('List_Photo')
-#         List_Photo_NCLS= request.FILES.getlist('List_Photo_NCLS')
-#         obj = Product.objects.create(**fields)
-#         if obj and List_Photo:
-#             for i in List_Photo:
-#                 Photo.objects.create(Avatar=i,Belong_Product=obj)
-#         if obj and List_Photo_NCLS:
-#             for j in List_Photo_NCLS:
-#                 Photo_ncls.objects.create(Avatar=j,Belong_Product=obj)
-#         return redirect('product_admin')
-    
-# def product_edit_admin(request,pk):
-#     if request.method == 'GET':
-#         context = {}
-#         context['domain'] = settings.DOMAIN
-#         context['obj_Product'] = Product.objects.get(pk=pk)
-#         print('context:',context)
-#         return render(request, 'sleekweb/admin/product_edit_admin.html', context, status=200)
-#     elif request.method == 'POST':
-#         fields = {}
-#         # fields['id']= request.FILES.get('id')
-#         fields['Avatar']= request.FILES.get('Avatar')
-#         fields['Name'] = request.POST.get('Name')
-#         fields['Category'] = request.POST.get('Category')
-#         fields['Price'] = request.POST.get('Price')
-#         fields['Introduce'] = request.POST.get('Introduce')
-#         fields['Describe'] = request.POST.get('Describe')
-#         fields['Main_ingredients'] = request.POST.get('Main_ingredients')
-#         fields['How_use'] = request.POST.get('How_use')
-#         fields['Ingredients_table'] = request.POST.get('Ingredients_table')
-#         List_Photo= request.FILES.getlist('List_Photo')
-#         List_Photo_NCLS= request.FILES.getlist('List_Photo_NCLS')
-#         # if fields['id']:
-#         obj = Product.objects.get(pk=pk)
-#         obj.Name = fields['Name']
-#         obj.Category = fields['Category']
-#         obj.Price = fields['Price']
-#         obj.Introduce = fields['Introduce'] 
-#         obj.Describe = fields['Describe']
-#         obj.Main_ingredients = fields['Main_ingredients'] 
-#         obj.How_use = fields['How_use'] 
-#         obj.Ingredients_table = fields['Ingredients_table']
-#         if fields['Avatar']:
-#             obj.Avatar = fields['Avatar']
-#         obj.save()
-#         if List_Photo:
-#             obj.list_photo.all().delete()
-#             for i in List_Photo:
-#                 Photo.objects.create(Avatar=i,Belong_Product=obj)
-#         if List_Photo_NCLS:
-#             obj.list_photo_ncls.all().delete()
-#             for j in List_Photo_NCLS:
-#                 Photo_ncls.objects.create(Avatar=j,Belong_Product=obj)
-#         return redirect('product_edit_admin',pk=pk)
-    
-# def product_remove_admin(request):
-#     if request.method == 'POST':
-#         id = request.POST.get('id')
-#         try:
-#             obj = Product.objects.get(pk=id)
-#             obj.delete()
-#         except:
-#             print('not')
-#         return redirect('product_admin')
-    
-
-# def size_product_add_admin(request):
-#     if request.method == 'POST':
-#         id = request.POST.get('id')
-#         Name = request.POST.get('Name')
-#         try:
-#             obj = Product.objects.get(pk=id)
-#             Size.objects.create(Name=Name,Belong_Product=obj)
-#         except:
-#             print('not')
-#         return redirect('product_admin')
-    
-# def size_product_remove_admin(request):
-#     if request.method == 'POST':
-#         id = request.POST.get('id')
-#         try:
-#             obj = Size.objects.get(pk=id)
-#             obj.delete()
-#         except:
-#             print('not')
-#         return redirect('product_admin')
+def change_home_admin(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated and request.user.is_superuser:
+            fields = {}
+            fields['Title'] = request.POST.get('Title')
+            try:
+                obj = Edit_home.objects.get(Count=1)
+                for key, value in fields.items():
+                    if value:
+                        setattr(obj, key, value)
+                obj.save()
+            except:
+                fields['Count'] = 1
+                Edit_home.objects.create(**fields)
+            return redirect('image_slider_admin')
+        else:
+            return JsonResponse({'success': False, 'message': 'Bạn chưa được cấp quyền do tài khoản chưa đăng nhập hoặc tài khoản không có quyền truy cập'})

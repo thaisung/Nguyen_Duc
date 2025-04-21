@@ -73,9 +73,21 @@ def nav_nghien_cuu_lam_san(request):
         context = {}
         context['domain'] = settings.DOMAIN
         try:
-            context['obj_Count_6'] = Photo_Content.objects.get(Count=6)
+            context['obj'] = Website.objects.get(Count=1)
         except:
-            context['obj_Count_6'] = {}
+            context['obj'] = {}
+        # try:
+        #     context['obj1'] = Edit_ncls.objects.get(Count=1)
+        # except:
+        #     context['obj1'] = {}
+        try:
+            context['obj1'] = Edit_nckh.objects.get(Count=1)
+        except:
+            context['obj1'] = {}
+        try:
+            context['obj2'] = Edit_kqls.objects.get(Count=1)
+        except:
+            context['obj2'] = {}
         context['list_Product'] = Product.objects.all()
         print('context:',context)
         return render(request, 'sleekweb/client/nav_nghien_cuu_lam_san.html', context, status=200)

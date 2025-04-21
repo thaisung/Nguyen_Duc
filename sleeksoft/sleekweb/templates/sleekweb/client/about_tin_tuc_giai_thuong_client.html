@@ -16,10 +16,12 @@
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex flex-col w-full justify-start">
         <div class="relative flex justify-center items-center w-full h-[186px] lg:h-[500px] overflow-hidden">
-            <img class="w-full h-full object-cover" src="/upload/ttgt/a.jpg" />
+            <img class="w-full h-full object-cover" src="{{obj1.Photo1.url|default:''}}" />
             <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
                 <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[25px] lg:p-none">
-                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">LET'S TALK <br>#HYDRINITY</h2>
+                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">
+                        {{obj1.Title1|safe}}
+                    </h2>
                 </div>
             </div>
         </div>
@@ -32,30 +34,20 @@
             <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="awards">Awards</button>
         </div>                  
         <div class="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-[1200px] gap-[25px] lg:gap-[50px]">
+            {% for i in list_Edit_ttgt1 %}
             <div class="item all awards flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
-                <img class="w-[320px]" src="/upload/ttgt/b1.webp" />
+                <img class="w-[320px]" src="{{i.Photo.url|default:''}}" />
                 <div class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
-                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A] ">27 December, 2023</div>
-                    <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lgtext-[#101828]">CULTIVATING CONFIDENCE: THE HYDRINITY WAY TO A LUXURIOUS SKIN JOURNEY</p>
-                    <a href="{% url 'link_tt_gt_1_client' %}" class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-white mt-2 lg:mt-none">
+                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold  text-[#11284A] ">{{ i.Creation_time|date:"d/m/Y" }}</div>
+                    <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lgtext-[#101828]">{{i.Title}}</p>
+                    <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' pk=i.id %}" class="font-normal text-[20px] lg:font-semibold  text-white lg:text-white mt-2 lg:mt-none">
                         <span class="bg-[#11284A] text-center rounded px-2 py-1">
                             Read More
                         </span>
                     </a>
                 </div>
             </div>
-            <div class="item all press flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
-                <img class="w-[320px]" src="/upload/ttgt/b2.webp" />
-                <div class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
-                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold lg:text-[14px] text-[#11284A]">27 December, 2023</div>
-                    <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lg:text-[#101828]">Hydrinity Accelerated Skin Science Expands into the United Kingdom and Ireland</p>
-                    <a href="{% url 'link_tt_gt_2_client' %}" class="font-normal text-[20px] lg:font-semibold lg:text-[14px] text-white lg:text-white mt-2 lg:mt-none">
-                        <span class="bg-[#11284A] text-center rounded px-2 py-1">
-                            Read More
-                        </span>
-                    </a>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <style>

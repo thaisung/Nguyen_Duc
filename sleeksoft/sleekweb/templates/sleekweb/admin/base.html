@@ -115,7 +115,7 @@
 </head>
 
 <body class=" flex  items-center justify-center bg-red-500" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
-    <div class="flex  w-full h-full">
+    <div class="flex  w-full min-h-screen h-full">
         <div class="click_menu lg:hidden flex justify-center items-center fixed top-2 left-2 cursor-pointer bg-[#eaebe7] p-1 border-[1px] border-[#0e203c] rounded-md ">
             <svg class="w-[25px] fill-[#0e203c]" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
@@ -140,21 +140,75 @@
                 admin
             </div>
             <nav class="flex flex-col p-3 font-bold border-r-[1px] border-[#0e203c]  text-[#11284A] grow h-full">
-                <a href="{% url 'product_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                    Sản phẩm
-                    {% if request.resolver_match.url_name == 'product_admin' or 'admin/product/edit' in request.path or 'admin/product/add' in request.path %}
+                <a href="{% url 'change_website_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Thông tin Website
+                    {% if request.resolver_match.url_name == 'change_website_admin' %}
                     <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
                     {% endif %}
                 </a>
                 <a href="{% url 'image_slider_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                    Ảnh Slider
+                    Edit - Trang chủ
                     {% if request.resolver_match.url_name == 'image_slider_admin' %}
                     <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
                     {% endif %}
                 </a>
                 <a href="{% url 'image_content_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                    Ảnh và Content
+                    Edit - Trang Blog
                     {% if request.resolver_match.url_name == 'image_content_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <!-- <a href="{% url 'change_ncls_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Nghiên cứu lâm sàn
+                    {% if request.resolver_match.url_name == 'change_ncls_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a> -->
+                <a href="{% url 'change_vct_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Về chúng tôi
+                    {% if request.resolver_match.url_name == 'change_vct_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <a href="{% url 'change_tnsm_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Tầm nhìn và sứ mệnh
+                    {% if request.resolver_match.url_name == 'change_tnsm_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <a href="{% url 'change_ttgt_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Tin tức & Giải thưởng
+                    {% if request.resolver_match.url_name == 'change_ttgt_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <a href="{% url 'change_lh_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Liên hệ
+                    {% if request.resolver_match.url_name == 'change_lh_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <a href="{% url 'change_dsdt_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Danh sách đối tác
+                    {% if request.resolver_match.url_name == 'change_dsdt_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <a href="{% url 'change_nckh_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Ngiên cứu khoa học
+                    {% if request.resolver_match.url_name == 'change_nckh_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <a href="{% url 'change_kqls_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Kết quả lâm sàn
+                    {% if request.resolver_match.url_name == 'change_kqls_admin' %}
+                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
+                    {% endif %}
+                </a>
+                <a href="{% url 'product_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                    Edit - Sản phẩm
+                    {% if request.resolver_match.url_name == 'product_admin' or 'admin/product/edit' in request.path or 'admin/product/add' in request.path %}
                     <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
                     {% endif %}
                 </a>

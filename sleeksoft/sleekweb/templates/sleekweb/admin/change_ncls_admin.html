@@ -1,0 +1,70 @@
+{% extends './base.html' %}
+{% block title %}Trang thay dổi thông tin trang NCLS{% endblock %}
+{% block content %}
+<div class="w-full flex-col ">
+    <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
+        <span class="uppercase w-full flex justify-center lg:justify-start">
+            Trang thay dổi thông tin trang NCLS
+        </span>
+        <style>
+            input:focus {
+                outline: none !important;
+            }
+        </style>
+
+    </div>
+    <div class="flex flex-col gap-3 p-3">
+        <div class="flex flex-col gap-1">
+            <!-- <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="font-semibold text-[18px] hover:underline">
+                5.Nghiên cứu lâm sàn
+            </a> -->
+            <form method="post" action="{% url 'change_ncls_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
+                {% csrf_token %}
+                <div class="flex gap-5">
+                    <div class="flex flex-col gap-2 w-full">
+                        <span class="font-semibold">1.Hình ảnh 1</span>
+                        <div class="flex flex-col gap-1">
+                            <img alt="Hình ảnh 1" src="{% if obj.Nckh  %}{{obj.Nckh.url}}{% endif %}" class="w-full h-auto" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Nckh"  />
+                        </div>
+                        <!-- <textarea name="Content11" class="autoresize rounded-md h-auto" placeholder="Nội dung 1">{{obj_Count_6.Content1|default:''}}</textarea> -->
+                    </div>
+                    <div class="flex flex-col gap-2 w-full">
+                        <span class="font-semibold">2. Hình ảnh 2</span>
+                        <div class="flex flex-col gap-1">
+                            <img alt="Hình ảnh 2" src="{% if obj.Kqls  %}{{obj.Kqls.url}}{% endif %}" class="w-full h-auto" />
+                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Kqls"  />
+                        </div>
+                        <!-- <textarea name="Content8" class="autoresize rounded-md" placeholder="Nội dung 2">{{obj_Count_3.Content2|default:''}}</textarea> -->
+                    </div>
+                </div>
+                <div class="flex items-center w-full">
+                    <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                        Cập nhật
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.open_input_Size').on('click', function() {
+            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
+        });
+    });
+</script>
+<script>
+    function autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('textarea.autoresize').forEach(function (el) {
+            autoResize(el);
+            el.addEventListener('input', () => autoResize(el));
+        });
+    });
+</script>
+{% endblock %}

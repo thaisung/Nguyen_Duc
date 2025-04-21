@@ -1,10 +1,10 @@
 {% extends './base.html' %}
-{% block title %}Trang quản lý Ảnh và Content{% endblock %}
+{% block title %}Trang thay đổi thông tin Blog{% endblock %}
 {% block content %}
 <div class="w-full flex-col ">
     <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
         <span class="uppercase w-full flex justify-center lg:justify-start">
-            Trang Ảnh và Content
+            Trang thay đổi thông tin Blog
         </span>
         <!-- <div class="flex items-center gap-3">
             <form  class="flex items-center justify-center rounded-full border-[1px] border-[#0e203c] px-2">
@@ -21,7 +21,7 @@
                 </svg>
                 </button>
             </form>
-            <a href="{% url 'product_add_admin' %}">
+            <span href="{% url 'product_add_admin' %}">
                 <svg class="w-[35px] fill-[#0e203c]" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="438.533px" height="438.533px"
                     viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;"
@@ -70,7 +70,7 @@
                     <g>
                     </g>
                 </svg>
-            </a>
+            </span>
         </div> -->
         <style>
             input:focus {
@@ -80,48 +80,10 @@
 
     </div>
     <div class="flex flex-col gap-3 p-3">
-        <div class="flex flex-col gap-1">
-            <a href="{% url 'tab_best_sellers_client' %}" class="font-semibold text-[18px] hover:underline">
-                1.Trang chủ
-            </a>
-            <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
-                {% csrf_token %}
-                <input type="hidden" name="Count" value="1" class="" />
-                <div class="flex flex-col lg:flex-row gap-5">
-                    <!-- <div class="flex flex-col gap-2 w-full">
-                        <span class="font-semibold">- Hình ảnh 1 và Nội dung 1</span>
-                        <div class="flex flex-col gap-1">
-                            <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo1  %}{{obj_Count_1.Photo1.url}}{% endif %}" class="w-full h-auto" />
-                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo1"  />
-                        </div>
-                        <textarea name="Content1" class="autoresize rounded-md h-auto" placeholder="Nội dung 1">{{obj_Count_1.Content1|default:''}}</textarea>
-                    </div>
-                    <div class="flex flex-col gap-2 w-full">
-                        <span class="font-semibold">- Hình ảnh 2 và Nội dung 2</span>
-                        <div class="flex flex-col gap-1">
-                            <img alt="Hình ảnh 2" src="{% if obj_Count_1.Photo2  %}{{obj_Count_1.Photo2.url}}{% endif %}" class="w-full h-auto" />
-                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo2"  />
-                        </div>
-                        <textarea name="Content2" class="autoresize rounded-md" placeholder="Nội dung 2">{{obj_Count_1.Content2|default:''}}</textarea>
-                    </div> -->
-                    <div class="flex flex-col gap-2 w-[50%]">
-                        <span class="font-semibold">- Hình ảnh 1</span>
-                        <div class="flex flex-col gap-1">
-                            <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}" class="w-full h-auto" />
-                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo3"  />
-                        </div>
-                        <!-- <textarea name="Content3" class="autoresize rounded-md" placeholder="Nội dung 3">{{obj_Count_1.Content3|default:''}}</textarea> -->
-                    </div>
-                </div>
-                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                    Cập nhật
-                </button>
-            </form>
-        </div>
         <!-- <div class="flex flex-col gap-1">
-            <a href="{% url 'nav_blog_client' %}" class="font-semibold text-[18px] hover:underline">
+            <span href="{% url 'nav_blog_client' %}" class="font-semibold text-[18px] hover:underline">
                 2.Trang Blog
-            </a>
+            </span>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="2" class="" />
@@ -157,9 +119,9 @@
             </form>
         </div> -->
         <div class="flex flex-col gap-1">
-            <a href="{% url 'blog_1_client' %}" class="font-semibold text-[18px] hover:underline">
-                2.Trang Blog 1
-            </a>
+            <span href="{% url 'blog_1_client' %}" class="font-semibold text-[18px] hover:underline">
+                1.Trang Blog 1
+            </span>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="3" class="" />
@@ -187,9 +149,9 @@
             </form>
         </div>
         <div class="flex flex-col gap-1">
-            <a href="{% url 'blog_2_client' %}" class="font-semibold text-[18px] hover:underline">
-                3.Trang Blog 2
-            </a>
+            <span href="{% url 'blog_2_client' %}" class="font-semibold text-[18px] hover:underline">
+                2.Trang Blog 2
+            </span>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="4" class="" />
@@ -217,9 +179,9 @@
             </form>
         </div>
         <div class="flex flex-col gap-1">
-            <a href="{% url 'blog_3_client' %}" class="font-semibold text-[18px] hover:underline">
-                4.Trang Blog 3
-            </a>
+            <span href="{% url 'blog_3_client' %}" class="font-semibold text-[18px] hover:underline">
+                3.Trang Blog 3
+            </span>
             <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
                 {% csrf_token %}
                 <input type="hidden" name="Count" value="5" class="" />
@@ -245,36 +207,6 @@
                         <div class="flex flex-col gap-1">
                             <img alt="Hình ảnh 3" src="{% if obj_Count_5.Photo3  %}{{obj_Count_5.Photo3.url}}{% endif %}" class="w-full h-auto" />
                             <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo13"  />
-                        </div>
-                        <!-- <textarea name="Content8" class="autoresize rounded-md" placeholder="Nội dung 2">{{obj_Count_3.Content2|default:''}}</textarea> -->
-                    </div>
-                </div>
-                <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                    Cập nhật
-                </button>
-            </form>
-        </div>
-        <div class="flex flex-col gap-1">
-            <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="font-semibold text-[18px] hover:underline">
-                5.Nghiên cứu lâm sàn
-            </a>
-            <form method="post" action="{% url 'image_content_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-2">
-                {% csrf_token %}
-                <input type="hidden" name="Count" value="6" class="" />
-                <div class="flex gap-5">
-                    <div class="flex flex-col gap-2 w-full">
-                        <span class="font-semibold">- Hình ảnh 1</span>
-                        <div class="flex flex-col gap-1">
-                            <img alt="Hình ảnh 1" src="{% if obj_Count_6.Photo1  %}{{obj_Count_6.Photo1.url}}{% endif %}" class="w-full h-auto" />
-                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo13"  />
-                        </div>
-                        <!-- <textarea name="Content11" class="autoresize rounded-md h-auto" placeholder="Nội dung 1">{{obj_Count_6.Content1|default:''}}</textarea> -->
-                    </div>
-                    <div class="flex flex-col gap-2 w-full">
-                        <span class="font-semibold">- Hình ảnh 2</span>
-                        <div class="flex flex-col gap-1">
-                            <img alt="Hình ảnh 2" src="{% if obj_Count_6.Photo2  %}{{obj_Count_6.Photo2.url}}{% endif %}" class="w-full h-auto" />
-                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo14"  />
                         </div>
                         <!-- <textarea name="Content8" class="autoresize rounded-md" placeholder="Nội dung 2">{{obj_Count_3.Content2|default:''}}</textarea> -->
                     </div>

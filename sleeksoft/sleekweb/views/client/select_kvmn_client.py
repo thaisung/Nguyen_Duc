@@ -72,6 +72,12 @@ def select_kvmn_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        context['list_Edit_dsdt_mb'] = Edit_dsdt.objects.filter(Category=0)
+        context['list_Edit_dsdt_mn'] = Edit_dsdt.objects.filter(Category=1)
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         try:
             context['obj_Count_1'] = Photo_Content.objects.get(Count=1)

@@ -72,6 +72,15 @@ def about_ve_chung_toi_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        try:
+            context['obj1'] = Edit_vct.objects.get(Count=1)
+        except:
+            context['obj1'] = {}
+        context['list_Edit_vct1'] = Edit_vct1.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         print('context:',context)

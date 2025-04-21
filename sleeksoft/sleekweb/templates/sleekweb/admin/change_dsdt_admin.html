@@ -1,0 +1,132 @@
+{% extends './base.html' %}
+{% block title %}Trang thay dổi DSDT{% endblock %}
+{% block content %}
+<div class="w-full flex-col ">
+    <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
+        <span class="uppercase w-full flex justify-center lg:justify-start">
+            Trang thay dổi DSDT
+        </span>
+        <style>
+            input:focus {
+                outline: none !important;
+            }
+        </style>
+
+    </div>
+    <div class="flex flex-col gap-3 p-3">
+        <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+                <a href="{% url 'change_dsdt_admin' %}?Category=0" 
+                class=" flex justify-center items-center rounded-full py-1 px-3 font-bold {% if Category == '0' %}text-white bg-[#0e203c]{% endif %}" >DSDT miền Bắc</a>
+                <a href="{% url 'change_dsdt_admin' %}?Category=1" 
+                class=" flex justify-center items-center rounded-full py-1 px-3 font-bold {% if Category == '1' %}text-white bg-[#0e203c]{% endif %}"
+                >DSDT miền Nam</a>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-4">
+                <form method="post" action="{% url 'change_dsdt_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
+                    {% csrf_token %}
+                    <input type="text" value="" placeholder="Tên" class="rounded-md w-full" name="Name" />
+                    <input type="text" value="" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
+                    <input type="text" value="" placeholder="Link" class="rounded-md w-full" name="Link" />
+                    {% if Category == '0' %}
+                    <input type="hidden" value="0" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
+                    {% endif %}
+                    {% if Category == '1' %}
+                    <input type="hidden" value="1" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
+                    {% endif %}
+                    <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />
+                    <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                        Thêm
+                    </button>
+                </form>
+            </div>
+            <span href="#" class="font-semibold text-[18px] hover:underline">
+                Danh sách:
+            </span>
+            <div class="w-full grid grid-cols-2 lg:grid-cols-6 gap-[15px]">
+                {% if Category == '0' %}
+                {% for i in list_Edit_dsdt_mb %}
+                <div class="relative flex flex-col justify-between gap-[10px]  show">
+                    <img class="w-full" src="{{i.Photo.url}}">
+                    <form method="post" action="{% url 'change_ttgt_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px]">
+                        {% csrf_token %}
+                        <input type="text" value="{{i.Name}}" placeholder="Tên" class="rounded-md w-full" name="Name" />
+                        <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
+                        <input type="text" value="{{i.Link}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Link" />
+                        <input type="hidden" value="0" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
+                        <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />    
+                        <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                            Cập nhật
+                        </button>
+                    </form>
+                    <form method="post"  action="{% url 'change_dsdt_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{i.id}}" class="" />
+                        <input type="hidden" name="Category" value="0" class="" />
+                        <button type="submit" class="fill-red-500 w-[30px]">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
+                                <path style="" d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
+                                    s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
+                                    l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
+                                </svg>
+                        </button>
+                    </form>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% if Category == '1' %}
+                {% for i in list_Edit_dsdt_mn %}
+                <div class="relative flex flex-col justify-between gap-[10px]  show">
+                    <img class="w-full" src="{{i.Photo.url}}">
+                    <form method="post" action="{% url 'change_ttgt_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px]">
+                        {% csrf_token %}
+                        <input type="text" value="{{i.Name}}" placeholder="Tên" class="rounded-md w-full" name="Name" />
+                        <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
+                        <input type="text" value="{{i.Link}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Link" />
+                        <input type="hidden" value="0" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
+                        <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />    
+                        <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
+                            Cập nhật
+                        </button>
+                    </form>
+                    <form method="post"  action="{% url 'change_dsdt_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{i.id}}" class="" />
+                        <input type="hidden" name="Category" value="1" class="" />
+                        <button type="submit" class="fill-red-500 w-[30px]">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
+                                <path style="" d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
+                                    s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
+                                    l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
+                                </svg>
+                        </button>
+                    </form>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.open_input_Size').on('click', function() {
+            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
+        });
+    });
+</script>
+<script>
+    function autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('textarea.autoresize').forEach(function (el) {
+            autoResize(el);
+            el.addEventListener('input', () => autoResize(el));
+        });
+    });
+</script>
+{% endblock %}

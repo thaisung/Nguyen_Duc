@@ -72,6 +72,14 @@ def link_ket_qua_lam_san_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+        try:
+            context['obj1'] = Edit_kqls.objects.get(Count=1)
+        except:
+            context['obj1'] = {}
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         print('context:',context)

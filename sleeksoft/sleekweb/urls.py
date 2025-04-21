@@ -65,11 +65,21 @@ from .views.client.link_ket_qua_lam_san_client import *
 from .views.client.link_nghien_cuu_khoa_hoc_client import *
 from .views.client.detail_product_client import *
 from .views.client.signup_email_client import *
+from .views.client.api_client import *
 
 from .views.admin.login_admin import *
 from .views.admin.product_admin import *
 from .views.admin.image_content_admin import *
 from .views.admin.image_slider_admin import *
+from .views.admin.change_website_admin import *
+from .views.admin.change_ncls_admin import *
+from .views.admin.change_vct_admin import *
+from .views.admin.change_tnsm_admin import *
+from .views.admin.change_ttgt_admin import *
+from .views.admin.change_lh_admin import *
+from .views.admin.change_dsdt_admin import *
+from .views.admin.change_nckh_admin import *
+from .views.admin.change_kqls_admin import *
 
 from sleekweb.sitemaps import *
 from django.contrib.sitemaps.views import sitemap
@@ -80,6 +90,11 @@ sitemaps_dict = {
 }
 
 urlpatterns = [
+
+    #api
+    path('add-mb', add_dsdt_mb,name='add_dsdt_mb'),
+    path('add-mn', add_dsdt_mn,name='add_dsdt_mn'),
+    #endapi
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='sitemap'),
 
 
@@ -103,6 +118,7 @@ urlpatterns = [
 
     path('about-us', about_ve_chung_toi_client,name='about_ve_chung_toi_client'),
     path('news-awards', about_tin_tuc_giai_thuong_client,name='about_tin_tuc_giai_thuong_client'),
+    path('news-awards/<int:pk>/',about_tin_tuc_giai_thuong_detail_client,name='about_tin_tuc_giai_thuong_detail_client'),
     path('news-awards/cultivating-confidence-the-hydrinity-way-to-a-luxurious-skin-journey', link_tt_gt_1_client,name='link_tt_gt_1_client'),
     path('news-awards/hydrinity-accelerated-skin-science-expands-into-the-united-kingdom-and-ireland', link_tt_gt_2_client,name='link_tt_gt_2_client'),
     path('vision-mission', about_tam_nhin_va_su_menh_client,name='about_tam_nhin_va_su_menh_client'),
@@ -130,6 +146,28 @@ urlpatterns = [
     path('admin/image-slider-remove',image_slider_remove_admin,name='image_slider_remove_admin'),
     path('admin/image-slider-order',image_slider_order_admin,name='image_slider_order_admin'),
 
+    path('admin/change-website',change_website_admin,name='change_website_admin'),
+    path('admin/change-home',change_home_admin,name='change_home_admin'),
+    path('admin/change-ncls',change_ncls_admin,name='change_ncls_admin'),
+    path('admin/change-vct',change_vct_admin,name='change_vct_admin'),
+    path('admin/change-vct1',change_vct1_admin,name='change_vct1_admin'),
+    path('admin/order-change-vct1',change_vct1_order_admin,name='change_vct1_order_admin'),
+    path('admin/change-tnsm',change_tnsm_admin,name='change_tnsm_admin'),
+    path('admin/change-tnsm1',change_tnsm1_admin,name='change_tnsm1_admin'),
+    path('admin/order-change-tnsm1',change_tnsm1_order_admin,name='change_tnsm1_order_admin'),
+    path('admin/change-ttgt',change_ttgt_admin,name='change_ttgt_admin'),
+    path('admin/change-ttgt1',change_ttgt1_admin,name='change_ttgt1_admin'),
+    path('admin/order-change-ttgt1',change_ttgt1_order_admin,name='change_ttgt1_order_admin'),
+    path('admin/change-lh',change_lh_admin,name='change_lh_admin'),
+    path('admin/change-dsdt-mb',change_lh_admin,name='change_lh_admin'),
+    path('admin/change-nckh',change_nckh_admin,name='change_nckh_admin'),
+    path('admin/change-nckh1',change_nckh1_admin,name='change_nckh1_admin'),
+    path('admin/order-change-nckh1',change_nckh1_order_admin,name='change_nckh1_order_admin'),
+    path('admin/change-nckh2',change_nckh2_admin,name='change_nckh2_admin'),
+    path('admin/order-change-nckh2',change_nckh2_order_admin,name='change_nckh2_order_admin'),
+    path('admin/change-kqls',change_kqls_admin,name='change_kqls_admin'),
+    path('admin/change-dsdt',change_dsdt_admin,name='change_dsdt_admin'),
+    path('admin/change-dsdt-remove',change_dsdt_remove_admin,name='change_dsdt_remove_admin'),
 
     path('signup-email',signup_email_client,name='signup_email_client'),
 
