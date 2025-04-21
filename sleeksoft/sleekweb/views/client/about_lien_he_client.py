@@ -74,7 +74,10 @@ def about_lien_he_client(request):
             context['obj'] = Website.objects.get(Count=1)
         except:
             context['obj'] = {}
-        context['obj1'] = Edit_lh.objects.get(Count=1)
+        try:
+            context['obj1'] = Edit_lh.objects.get(Count=1)
+        except:
+            context['obj1'] = {}
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         print('context:',context)

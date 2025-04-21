@@ -54,7 +54,7 @@
             </span>
             <div class="w-full grid grid-cols-1 lg:grid-cols-4 gap-[15px]">
                 {% for i in list_Edit_ttgt1 %}
-                <div class="relative flex flex-col gap-[10px]  show">
+                <div class="relative flex flex-col justify-between gap-[10px]  show">
                     <img class="w-full" src="{{i.Photo.url}}">
                     <form method="post" action="{% url 'change_ttgt1_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px]">
                         {% csrf_token %}
