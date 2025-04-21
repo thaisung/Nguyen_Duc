@@ -66,7 +66,10 @@ def change_lh_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        context['obj'] = Edit_lh.objects.get(Count=1)
+        try:
+            context['obj'] = Edit_lh.objects.get(Count=1)
+        except:
+            context['obj'] = {}
         print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_lh_admin.html', context, status=200)
