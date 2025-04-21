@@ -46,6 +46,23 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
+        // Trước khi unload, lưu vị trí scroll
+        window.addEventListener('beforeunload', function () {
+            localStorage.setItem('scrollPos', window.scrollY);
+        });
+    
+        // Khi load lại, cuộn đến vị trí cũ
+        window.addEventListener('DOMContentLoaded', function () {
+            const scrollPos = localStorage.getItem('scrollPos');
+            if (scrollPos) {
+                window.scrollTo(0, parseInt(scrollPos));
+                localStorage.removeItem('scrollPos');  // chỉ giữ cho 1 lần load lại
+            }
+        });
+    </script>
+    
+
+    <script>
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
