@@ -24,9 +24,9 @@
         </div>
         <div class="flex flex-col w-full h-full lg:w-[50%] px-[20px] lg:px-none text-[#11284A] lg:text-black">
             <h1 class="uppercase text-[26px] lg:text-[36px] font-bold lg:font-medium">{{obj_Product.Name}}</h1>
-            <span class="hidden lg:block text-[24px] font-medium format_number">{{obj_Product.Price}}đ</span>
+            <span class="hidden lg:block text-[24px] font-medium format_number">{{obj_Product.list_size.all.last.Price}}đ</span>
             <div class="flex justify-center">
-                <span class="block lg:hidden text-[20px] font-bold format_number bg-[#11284A] text-white rounded-md px-3 py-1 my-3">GIÁ: {{obj_Product.Price}} VNĐ</span>
+                <span class="block lg:hidden text-[20px] font-bold format_number bg-[#11284A] text-white rounded-md px-3 py-1 my-3">GIÁ: {{obj_Product.list_size.all.last.Price}} VNĐ</span>
             </div>
             <p class="font-normal text-[13px] lg:text-[16px]">{{obj_Product.Introduce}}</p>
             <div class="flex flex-col mt-3">
