@@ -72,6 +72,10 @@ def detail_product_client(request,pk):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
         context['list_Product'] = Product.objects.all()
         context['obj_Product'] = Product.objects.get(pk=pk)
         print('context:',context)

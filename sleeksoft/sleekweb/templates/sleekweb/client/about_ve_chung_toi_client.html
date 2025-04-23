@@ -15,7 +15,7 @@
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex items-center justify-center w-full h-[128px] lg:h-[560px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-        <img src="{{ obj1.Photo1.url|default:'' }}" alt="Hình ảnh" class="w-full h-full object-cover text-white flex justify-center items-center" />
+        <img alt="img" src="{{ obj1.Photo1.url|default:'' }}" alt="Hình ảnh" class="w-full h-full object-cover text-white flex justify-center items-center" />
     </div>
     <div class="flex flex-col w-full">
         <div class="w-full py-[15px] lg:py-[50px] flex items-center justify-center overflow-hidden">
@@ -29,7 +29,7 @@
         </div>
         <div class=" hidden lg:flex items-center justify-center  w-full h-[500px] overflow-hidden " style="background-color: rgb(222, 232, 241);"> 
             <div class="flex relative w-[1100px] h-full p-[15px] lg:p-[50px]">
-                <img class="w-[130px] h-[80px] object-cover" src="/upload/kq_ls/c.webp" />
+                <img alt="img" class="w-[130px] h-[80px] object-cover" src="/upload/kq_ls/c.webp" />
                 <div class=" absolute top-[110px] left-[110px] flex flex-col gap-2">
                     <p class="font-normal text-[32px] text-[#111827] italic">
                         {{obj1.Content2|safe}}
@@ -78,8 +78,8 @@
         </div>
         <div class="w-full hidden lg:flex justify-center items-center overflow-hidden p-[50px]" style="background-color: rgb(222, 232, 241);">
             <div class="flex w-[1000px] flex-col gap-3">
-                <img class="w-full h-full" src="{{obj1.Photo2.url|default:''}}" />
-                <img class="w-full h-full" src="{{obj1.Photo3.url|default:''}}" />
+                <img alt="img" class="w-full h-full" src="{{obj1.Photo2.url|default:''}}" />
+                <img alt="img" class="w-full h-full" src="{{obj1.Photo3.url|default:''}}" />
             </div>
         </div>
     </div>
@@ -92,7 +92,7 @@
                 <div class="swiper-wrapper">
                     {% for i in list_image_slider_3 %}
                     <div class="swiper-slide">
-                        <img class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                        <img alt="img" class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
                     </div>
                     {% endfor %}
                 </div>
@@ -136,7 +136,7 @@
         {% for i in list_Product %}
         <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
             <a href="{% url 'detail_product_client' pk=i.id %}">
-                <img class="w-full" src="{{i.Avatar.url}}"/>
+                <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
             </a>
             <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
                 <a href="{% url 'detail_product_client' pk=i.id %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">
@@ -147,7 +147,7 @@
                         <div class="click_tab_size_product hover:cursor-pointer z-20 relative flex items-center w-[264px] h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
                             <div class="absolute bottom-6 left-8">
                                 <div class="relative flex items-center justify-center">
-                                    <img class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                    <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
                                     <span class=" absolute inset-0 font-medium text-[12px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
                                 </div>
                             </div>

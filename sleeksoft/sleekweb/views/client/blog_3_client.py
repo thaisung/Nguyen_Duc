@@ -72,6 +72,10 @@ def blog_3_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         try:
             context['obj_Count_5'] = Photo_Content.objects.get(Count=5)

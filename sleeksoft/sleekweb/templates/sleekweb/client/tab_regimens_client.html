@@ -16,7 +16,7 @@
 {% for i in list_Product %}
 <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
     <a href="{% url 'detail_product_client' pk=i.id %}">
-        <img class="w-full" src="{{i.Avatar.url}}"/>
+        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
     </a>
     <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
         <a href="{% url 'detail_product_client' pk=i.id %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">

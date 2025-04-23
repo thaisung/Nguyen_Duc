@@ -28,7 +28,7 @@
         {% for i in list_Edit_dsdt_mn %}
         <div class="flex gap-2 ">
             <div class="pt-2">
-                <img class="min-w-[50px] max-w-[50px] h-auto " src="{{i.Photo.url|default:''}}" >
+                <img alt="img" class="min-w-[50px] max-w-[50px] h-auto " src="{{i.Photo.url|default:''}}" >
             </div>
             <div class="flex flex-col gap-1">
                 <span class="uppercase font-medium text-[18px] lg:text-[25px] text-[#11284A] ff-bb ">{{i.Name}}</span>
@@ -612,7 +612,7 @@
                 <div class="swiper-wrapper">
                     {% for i in list_image_slider_3 %}
                     <div class="swiper-slide">
-                        <img class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                        <img alt="img" class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
                     </div>
                     {% endfor %}
                 </div>
