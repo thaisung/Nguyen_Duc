@@ -60,17 +60,36 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 import base64
+from ...forms import *
 
 
 def change_ttgt_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
+
+        form = ttgt1Form()
+        context = {
+        'form': form,
+        }
+        list_Edit_ttgt1 =Edit_ttgt1.objects.all().order_by('Order')
+        s = request.GET.get('s')
+        if s:
+            list_Edit_ttgt1 = list_Edit_ttgt1.filter(Q(Title__icontains=s)).order_by('Order')
+            context['s'] = s
+        p = request.GET.get('p','1')
+        context['p'] = p
+        # Sử dụng Paginator để chia nhỏ danh sách (10 là số lượng mục trên mỗi trang)
+        paginator = Paginator(list_Edit_ttgt1, settings.PAGE)
+        # Lấy số trang hiện tại từ URL, nếu không mặc định là trang 1
+        context['list_Edit_ttgt1'] = paginator.get_page(p)
+        context['list_Edit_ttgt1'] = list_Edit_ttgt1
+
         try:
             context['obj'] = Edit_ttgt.objects.get(Count=1)
         except:
             context['obj'] = {}
-        context['list_Edit_ttgt1'] = Edit_ttgt1.objects.all().order_by('Order')
+
         print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_ttgt_admin.html', context, status=200)
@@ -106,27 +125,43 @@ def change_ttgt1_admin(request):
             except:
                 print('Not obj')
             return redirect('change_ttgt_admin')
+        
+def change_ttgt1_add_admin(request):
+    if request.method == 'GET':
+        form = ttgt1Form()
+        context = {
+        'form': form,
+        }
+        return render(request, 'sleekweb/admin/change_ttgt1_add_admin.html',context, status=200)
     if request.method == 'POST':
-        if request.user.is_authenticated and request.user.is_superuser:
-            fields = {}
-            fields['Title'] = request.POST.get('Title')
-            fields['Category'] = request.POST.get('Category')
-            fields['Photo'] = request.FILES.get('Photo')
-            fields['id'] = request.POST.get('id')
-            if fields['id']:
-                try:
-                    obj = Edit_ttgt1.objects.get(id=fields['id'])
-                    for key, value in fields.items():
-                        if value:
-                            setattr(obj, key, value)
-                    obj.save()
-                except:
-                    print('Not obj')
-            else:
-                Edit_ttgt1.objects.create(**fields)
-            return redirect('change_ttgt_admin')
-        else:
-            return JsonResponse({'success': False, 'message': 'Bạn chưa được cấp quyền do tài khoản chưa đăng nhập hoặc tài khoản không có quyền truy cập'})
+        form = ttgt1Form(request.POST, request.FILES)  # BẮT BUỘC phải có request.FILES
+        if form.is_valid():
+            form.save()
+            return redirect('change_ttgt_admin')  # hoặc chuyển đến trang khác
+
+def change_ttgt1_edit_admin(request, pk):
+    obj_ttgt1 = Edit_ttgt1.objects.get(pk=pk)  # Lấy bài viết theo pk
+
+    if request.method == 'GET':
+        form = ttgt1Form(instance=obj_ttgt1)  # Gán instance
+        context = {
+            'form': form,
+            'obj_ttgt1': obj_ttgt1,
+        }
+        return render(request, 'sleekweb/admin/change_ttgt1_edit_admin.html', context, status=200)
+
+    if request.method == 'POST':
+        form = ttgt1Form(request.POST, request.FILES, instance=obj_ttgt1)  # Cập nhật đúng bài viết
+        if form.is_valid():
+            form.save()
+            return redirect('change_ttgt_admin')  # hoặc chuyển đến nơi khác
+        
+def change_ttgt1_remove_admin(request, pk):
+    obj_ttgt1 = Edit_ttgt1.objects.get(pk=pk)  # Lấy bài viết theo pk
+
+    if request.method == 'GET':
+        obj_ttgt1.delete()
+        return redirect('change_ttgt_admin')
 
 def change_ttgt1_order_admin(request):    
     if request.method == 'POST':

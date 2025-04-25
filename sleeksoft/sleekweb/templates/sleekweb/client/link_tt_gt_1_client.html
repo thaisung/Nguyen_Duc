@@ -3,14 +3,14 @@
 {% block seo_tag %}
 <meta name="description" content="{{obj1.Title}}">
 <meta name="keywords" content="{{obj1.Title}}" />
-<link rel="canonical" href="{% url 'about_tin_tuc_giai_thuong_detail_client' pk=obj1.id %}" />
+<link rel="canonical" href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" />
 {% endblock %}
 {% block meta_tag %}
 <meta property="og:title" content="{{obj1.Title}}">
 <meta property="og:description" content="{{obj1.Title}}">
 <meta property="og:image" content="{{domain}}/upload/website/logo.png">
 <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
-<meta property="og:url" content="{% url 'about_tin_tuc_giai_thuong_detail_client' pk=obj1.id %}">
+<meta property="og:url" content="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}">
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
@@ -25,7 +25,48 @@
         </div>
     </div>
     <div class="w-full flex flex-col justify-center items-center p-[25px] lg:p-[50px] gap-6">
-        <img alt="img" class="w-[1140px] h-auto object-cover" src="{{obj1.Photo.url|default:''}}" />
+        <!-- <img alt="img" class="w-[1140px] h-auto object-cover" src="{{obj1.Photo.url|default:''}}" /> -->
+        <div class="flex gap-[20px] w-full lg:w-[1200px]">
+            <div class="content-container ckeditor-content text-justify grow w-full">
+                {{ obj1.Content|safe }}  <!-- Chỉ cần hiển thị, không cần thêm <p> ngoài -->
+            </div>
+            <div class="hidden lg:flex flex-col min-w-[300px] gap-[30px]">
+                <div class="flex flex-col w-full rounded overflow-hidden">
+                    <span class="whitespace-nowrap bg-[#11284A] text-white p-[10px] font-bold">Bài viết mới</span>
+                    <div class="flex flex-col p-[10px] gap-[10px]">
+                        {% for i in list_ttgt1|slice:":5" %}
+                        <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" class="cursor-pointer">            
+                            <div class="flex gap-2 items-start">
+                                <div class=" pt-[7px]">
+                                    <img alt="img" src="{{i.Photo.url|default:''}}" class="min-w-[50px] max-w-[50px]  h-auto" />
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <p class="p-0 m-0 text-[14px]">{{i.Title}}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- <div class="flex flex-col w-full rounded overflow-hidden">
+                    <span class="whitespace-nowrap bg-[#11284A] text-white p-[10px] font-bold">Sản phẩm</span>
+                    <div class="flex flex-col p-[10px] gap-[10px]">
+                        {% for i in list_Product|slice:":5" %}
+                        <a href="{% url 'detail_product_client' slug=i.Slug %}" class="cursor-pointer">            
+                            <div class="flex gap-2 items-start">
+                                <div class=" pt-[7px]">
+                                    <img alt="img" src="{{i.Photo.url|default:''}}" class="min-w-[50px] max-w-[50px]  h-auto" />
+                                </div>
+                                <div class="flex flex-col gap-2">
+                                    <p class="p-0 m-0 uppercase text-[14px]">{{i.Name}}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div> -->
+            </div>
+        </div>
         <div class="flex gap-2 items-center">
             <a href="https://www.facebook.com/sharer.php?u=https://hydrinity.com.vn/featured_item/hydrinity-accelerated-skin-science-expands-into-the-united-kingdom-and-ireland/"
             class="w-[25px] lg:w-[50px]">
@@ -158,4 +199,12 @@
         </div>
     </div>
 </main>
+<style>
+    .ckeditor-content img {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+        margin: 0 auto; /* tuỳ chọn: căn giữa ảnh */
+}
+</style>
 {% endblock %}

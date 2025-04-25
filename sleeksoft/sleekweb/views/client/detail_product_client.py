@@ -68,7 +68,7 @@ from django.core.mail import send_mail,EmailMessage
 
 
     
-def detail_product_client(request,pk):
+def detail_product_client(request,slug):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
@@ -77,7 +77,7 @@ def detail_product_client(request,pk):
         except:
             context['obj'] = {}
         context['list_Product'] = Product.objects.all()
-        context['obj_Product'] = Product.objects.get(pk=pk)
+        context['obj_Product'] = Product.objects.get(Slug=slug)
         print('context:',context)
         return render(request, 'sleekweb/client/detail_product_client.html', context, status=200)
     

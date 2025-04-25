@@ -40,7 +40,7 @@
                 <div class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
                     <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold  text-[#11284A] ">{{ i.Creation_time|date:"d/m/Y" }}</div>
                     <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lgtext-[#101828]">{{i.Title}}</p>
-                    <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' pk=i.id %}" class="font-normal text-[20px] lg:font-semibold  text-white lg:text-white mt-2 lg:mt-none">
+                    <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" class="font-normal text-[20px] lg:font-semibold  text-white lg:text-white mt-2 lg:mt-none">
                         <span class="bg-[#11284A] text-center rounded px-2 py-1">
                             Read More
                         </span>

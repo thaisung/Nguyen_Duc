@@ -84,7 +84,7 @@ def about_tin_tuc_giai_thuong_client(request):
         print('context:',context)
         return render(request, 'sleekweb/client/about_tin_tuc_giai_thuong_client.html', context, status=200)
     
-def about_tin_tuc_giai_thuong_detail_client(request,pk):
+def about_tin_tuc_giai_thuong_detail_client(request,slug):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
@@ -93,9 +93,10 @@ def about_tin_tuc_giai_thuong_detail_client(request,pk):
         except:
             context['obj'] = {}
         try:
-            context['obj1'] = Edit_ttgt1.objects.get(pk=pk)
+            context['obj1'] = Edit_ttgt1.objects.get(Slug=slug)
         except:
             context['obj1'] = {}
+        context['list_ttgt1'] = Edit_ttgt1.objects.all().order_by('-id')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         print('context:',context)

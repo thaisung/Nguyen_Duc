@@ -76,6 +76,19 @@ def nav_blog_client(request):
             context['obj'] = Website.objects.get(Count=1)
         except:
             context['obj'] = {}
+
+        context['list_BlogPost'] =  BlogPost.objects.all().order_by('-id')
+        s = request.GET.get('s')
+        if s:
+            context['list_BlogPost'] = context['list_BlogPost'].filter(Q(Title__icontains=s)).order_by('-id')
+            context['s'] = s
+        p = request.GET.get('p','1')
+        context['p'] = p
+        # Sử dụng Paginator để chia nhỏ danh sách (10 là số lượng mục trên mỗi trang)
+        paginator = Paginator(context['list_BlogPost'], settings.PAGE)
+        # Lấy số trang hiện tại từ URL, nếu không mặc định là trang 1
+        context['list_BlogPost'] = paginator.get_page(p)
+
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         # try:
         #     context['obj_Count_2'] = Photo_Content.objects.get(Count=2)
@@ -97,3 +110,18 @@ def nav_blog_client(request):
         print('context:',context)
         return render(request, 'sleekweb/client/nav_blog_client.html', context, status=200)
     
+def nav_blog_detail_client(request,slug):
+    if request.method == 'GET':
+        context = {}
+        
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+
+        context['list_BlogPost'] =  BlogPost.objects.all().order_by('-id')
+
+        context['obj_Blog'] = BlogPost.objects.get(Slug=slug)
+
+        context['list_Product'] = Product.objects.all().order_by('-id')
+        return render(request, 'sleekweb/client/nav_blog_detail_client.html', context, status=200)

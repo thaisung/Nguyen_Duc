@@ -76,6 +76,7 @@ def tab_best_sellers_client(request):
             context['obj'] = Website.objects.get(Count=1)
         except:
             context['obj'] = {}
+        context['list_BlogPost'] =  BlogPost.objects.all().order_by('-id')
         try:
             context['obj1'] = Edit_home.objects.get(Count=1)
         except:

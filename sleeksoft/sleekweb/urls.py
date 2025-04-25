@@ -80,6 +80,7 @@ from .views.admin.change_lh_admin import *
 from .views.admin.change_dsdt_admin import *
 from .views.admin.change_nckh_admin import *
 from .views.admin.change_kqls_admin import *
+from .views.admin.change_blog_admin import *
 
 from sleekweb.sitemaps import *
 from django.contrib.sitemaps.views import sitemap
@@ -90,6 +91,8 @@ sitemaps_dict = {
 }
 
 urlpatterns = [
+
+    # path('admin/', admin.site.urls),
 
     #api
     path('add-mb', add_dsdt_mb,name='add_dsdt_mb'),
@@ -106,6 +109,7 @@ urlpatterns = [
     
 
     path('blog', nav_blog_client,name='nav_blog_client'),
+    path('blog/<str:slug>', nav_blog_detail_client,name='nav_blog_detail_client'),
     path('mineral-research', nav_nghien_cuu_lam_san,name='nav_nghien_cuu_lam_san'),
     path('products', nav_products_client,name='nav_products_client'),
 
@@ -118,7 +122,7 @@ urlpatterns = [
 
     path('about-us', about_ve_chung_toi_client,name='about_ve_chung_toi_client'),
     path('news-awards', about_tin_tuc_giai_thuong_client,name='about_tin_tuc_giai_thuong_client'),
-    path('news-awards/<int:pk>/',about_tin_tuc_giai_thuong_detail_client,name='about_tin_tuc_giai_thuong_detail_client'),
+    path('news-awards/<str:slug>/',about_tin_tuc_giai_thuong_detail_client,name='about_tin_tuc_giai_thuong_detail_client'),
     path('news-awards/cultivating-confidence-the-hydrinity-way-to-a-luxurious-skin-journey', link_tt_gt_1_client,name='link_tt_gt_1_client'),
     path('news-awards/hydrinity-accelerated-skin-science-expands-into-the-united-kingdom-and-ireland', link_tt_gt_2_client,name='link_tt_gt_2_client'),
     path('vision-mission', about_tam_nhin_va_su_menh_client,name='about_tam_nhin_va_su_menh_client'),
@@ -129,7 +133,7 @@ urlpatterns = [
     path('scientific-research', link_nghien_cuu_khoa_hoc_client,name='link_nghien_cuu_khoa_hoc_client'),
     path('clinical-results', link_ket_qua_lam_san_client,name='link_ket_qua_lam_san_client'),
 
-    path('detail-proudct/<int:pk>/', detail_product_client,name='detail_product_client'),
+    path('detail-proudct/<str:slug>/', detail_product_client,name='detail_product_client'),
 
     path('admin/login', login_admin,name='login_admin'),
     path('admin/logout', logout_admin,name='logout_admin'),
@@ -157,6 +161,11 @@ urlpatterns = [
     path('admin/order-change-tnsm1',change_tnsm1_order_admin,name='change_tnsm1_order_admin'),
     path('admin/change-ttgt',change_ttgt_admin,name='change_ttgt_admin'),
     path('admin/change-ttgt1',change_ttgt1_admin,name='change_ttgt1_admin'),
+
+    path('admin/change-ttgt1/add', change_ttgt1_add_admin, name='change_ttgt1_add_admin'),
+    path('admin/change-ttgt1/edit/<int:pk>/', change_ttgt1_edit_admin, name='change_ttgt1_edit_admin'),
+    path('admin/change-ttgt1/remove/<int:pk>/', change_ttgt1_remove_admin, name='change_ttgt1_remove_admin'),
+
     path('admin/order-change-ttgt1',change_ttgt1_order_admin,name='change_ttgt1_order_admin'),
     path('admin/change-lh',change_lh_admin,name='change_lh_admin'),
     path('admin/change-dsdt-mb',change_lh_admin,name='change_lh_admin'),
@@ -168,6 +177,13 @@ urlpatterns = [
     path('admin/change-kqls',change_kqls_admin,name='change_kqls_admin'),
     path('admin/change-dsdt',change_dsdt_admin,name='change_dsdt_admin'),
     path('admin/change-dsdt-remove',change_dsdt_remove_admin,name='change_dsdt_remove_admin'),
+
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+
+    path('admin/change-blog', change_blog_admin, name='change_blog_admin'),
+    path('admin/change-blog/add', change_blog_add_admin, name='change_blog_add_admin'),
+    path('admin/change-blog/edit/<int:pk>/', change_blog_edit_admin, name='change_blog_edit_admin'),
+    path('admin/change-blog/remove/<int:pk>/', change_blog_remove_admin, name='change_blog_remove_admin'),
 
     path('signup-email',signup_email_client,name='signup_email_client'),
 

@@ -8,6 +8,9 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager,PermissionsMixin
 
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.utils.text import slugify
+
 # Create your models here.
 
 class User(AbstractUser):
@@ -41,6 +44,7 @@ class Product(models.Model):
     
     Avatar = models.ImageField(upload_to='PRODUCT_AVATAR',null=True,blank=True)
     Name = models.CharField('Tên SP', max_length=500,blank=True, null=True)
+    Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)  # Thêm slug
     Title = models.CharField('Chi tiết SP', max_length=500,blank=True, null=True)
     Category = models.CharField('Danh mục', max_length=250,blank=True, null=True)
     Price = models.CharField('Giá', max_length=255,blank=True, null=True)
@@ -51,6 +55,18 @@ class Product(models.Model):
     # Ingredients_table = models.TextField('Bảng thành phần',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.Slug:
+            base_slug = slugify(self.Name)
+            slug = base_slug
+            n = 1
+            # Nếu slug đã tồn tại thì thêm số đuôi
+            while BlogPost.objects.filter(Slug=slug).exists():
+                slug = f"{base_slug}-{n}"
+                n += 1
+            self.Slug = slug
+        super().save(*args, **kwargs)
 
 class Photo(models.Model):
     class Meta:
@@ -227,11 +243,25 @@ class Edit_ttgt1(models.Model):
         verbose_name_plural = "Thông tin tin tức, giải thưởng"
     
     Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
+    Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)
     Category = models.CharField('Danh mục', max_length=200,blank=True, null=True)
+    Content = RichTextUploadingField(blank=True, null=True)
     Photo = models.ImageField(upload_to='Edit_ttgt',null=True,blank=True)
     Order = models.IntegerField('Thứ tự',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.Slug:
+            base_slug = slugify(self.Title)
+            slug = base_slug
+            n = 1
+            # Nếu slug đã tồn tại thì thêm số đuôi
+            while Edit_ttgt1.objects.filter(Slug=slug).exists():
+                slug = f"{base_slug}-{n}"
+                n += 1
+            self.Slug = slug
+        super().save(*args, **kwargs)
 
 class Edit_lh(models.Model):
     class Meta:
@@ -312,6 +342,28 @@ class Edit_kqls(models.Model):
     Count = models.IntegerField('Số bản ghi',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+
+class BlogPost(models.Model):
+    Title = models.CharField(max_length=350, blank=True, null=True)
+    Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)  # Thêm slug
+    Content = RichTextUploadingField(blank=True, null=True)
+    Avatar = models.ImageField(upload_to='AVATAR_BLOG',null=True,blank=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.Slug:
+            base_slug = slugify(self.Title)
+            slug = base_slug
+            n = 1
+            # Nếu slug đã tồn tại thì thêm số đuôi
+            while BlogPost.objects.filter(Slug=slug).exists():
+                slug = f"{base_slug}-{n}"
+                n += 1
+            self.Slug = slug
+        super().save(*args, **kwargs)
+
     
 
 
