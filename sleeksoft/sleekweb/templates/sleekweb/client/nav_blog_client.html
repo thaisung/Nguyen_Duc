@@ -30,7 +30,7 @@
             <a href="{% url 'nav_blog_detail_client' slug=i.Slug %}" class="cursor-pointer">            
                 <div class="flex gap-3 items-start">
                     <div class=" pt-[7px]">
-                        <img alt="img" src="{{i.Avatar.url|default:''}}" class="min-w-[100px] max-w-[100px] lg:min-w-[150px] lg:max-w-[150px]  h-auto" />
+                        <img alt="img" src="{% if i.Avatar %}{{i.Avatar.url|default:''}}{% endif %}" class="min-w-[100px] max-w-[100px] lg:min-w-[150px] lg:max-w-[150px]  h-auto" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <p class="p-0 m-0 font-bold text-[15px] lg:text-[20px]">{{i.Title}}</p>
@@ -42,58 +42,6 @@
     <div class="pagination {% if list_BlogPost.paginator.num_pages <= 1 %}hidden{% endif %}  flex items-center justify-center py-3" >
         <ul class="flex items-center justify-center">page</ul>
     </div>
-    <!-- <div class="flex flex-col items-center w-full lg:w-[1597px]  lg:mt-[50px] gap-6">
-        <div class="flex flex-col lg:flex-row items-center lg:justify-between w-full gap-[50px] lg:gap-none">
-            <div class="flex flex-col items-center w-[364px] lg:w-[626px] text-white">
-                <a href="{% url 'blog_1_client' %}" class="flex items-center justify-center w-full h-[364px] lg:h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                    <img alt="Hình ảnh 1" src="{% if obj_Count_3.Photo1  %}{{obj_Count_3.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
-                </a>
-                <div class=" w-full h-[52px] lg:h-[98px] bg-[#11284A] p-1 lg: uppercase font-bold text-[30px] mt-2  lg:mt-6">
-                    {% if obj_Count_3.Content1 %}
-                    <p class="font-medium text-[14px] lg:text-[20px] normal-case w-full text-justify">
-                        {{obj_Count_3.Content1}}
-                    </p>
-                    {% else %}
-                    <p class="uppercase">
-                        Nội dung 1
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="flex flex-col items-center w-[364px] lg:w-[787px] text-white">
-                <a href="{% url 'blog_2_client' %}" class=" flex items-center justify-center w-full h-[364px] lg:h-[626px] bg-[#11284A]  uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                    <img alt="Hình ảnh 2" src="{% if obj_Count_4.Photo1  %}{{obj_Count_4.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
-                </a>
-                <div class=" w-full h-[52px] lg:h-[98px] bg-[#11284A] p-1 lg: uppercase font-bold text-[30px] mt-2  lg:mt-6">
-                    {% if obj_Count_4.Content1 %}
-                    <p class="font-medium text-[14px] lg:text-[20px] normal-case w-full text-justify">
-                        {{obj_Count_4.Content1}}
-                    </p>
-                    {% else %}
-                    <p class="uppercase">
-                        Nội dung 2
-                    </p>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-col items-center w-full text-white mt-[25px] lg:mt-none">
-            <a href="{% url 'blog_3_client' %}" class="flex items-center justify-center w-full h-[233px] lg:h-[626px] bg-[#11284A] uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                <img alt="Hình ảnh 3" src="{% if obj_Count_5.Photo1  %}{{obj_Count_5.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
-            </a>
-            <div class=" w-full h-[25px] lg:h-[98px] bg-[#11284A] p-1 lg:p-3 uppercase font-bold text-[30px] mt-2 lg:mt-6">
-                {% if obj_Count_5.Content1 %}
-                    <p class="font-medium text-[14px] lg:text-[20px] normal-case w-full text-justify">
-                        {{obj_Count_5.Content1}}
-                    </p>
-                    {% else %}
-                    <p class="uppercase">
-                        Nội dung 3
-                    </p>
-                    {% endif %}
-            </div>
-        </div>
-    </div> -->
     <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px] mt-[25px]">
         <span class="font-bold text-black text-[21px] lg:text-[55px]">
             THE RESULTS ARE IN
@@ -103,7 +51,7 @@
                 <div class="swiper-wrapper">
                     {% for i in list_image_slider_3 %}
                     <div class="swiper-slide">
-                        <img alt="img" class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                        <img alt="img" class="w-[362px] h-[170px] lg:w-[1280px] lg:h-[600px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
                     </div>
                     {% endfor %}
                 </div>

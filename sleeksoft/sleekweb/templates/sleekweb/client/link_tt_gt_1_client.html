@@ -26,7 +26,7 @@
     </div>
     <div class="w-full flex flex-col justify-center items-center p-[25px] lg:p-[50px] gap-6">
         <div class="flex gap-[20px] w-full lg:max-w-[1200px]">
-            <div class="content-container ckeditor-content  w-full">
+            <div class="content-container ckeditor-content  w-full lg:border-r-[1px] border-[#11284A] lg:pr-[20px]">
                 {{ obj1.Content|safe }} 
             </div>
             <div class="hidden lg:flex flex-col min-w-[300px] max-w-[300px] gap-[30px]">
@@ -47,23 +47,6 @@
                         {% endfor %}
                     </div>
                 </div>
-                <!-- <div class="flex flex-col w-full rounded overflow-hidden">
-                    <span class="whitespace-nowrap bg-[#11284A] text-white p-[10px] font-bold">Sản phẩm</span>
-                    <div class="flex flex-col p-[10px] gap-[10px]">
-                        {% for i in list_Product|slice:":5" %}
-                        <a href="{% url 'detail_product_client' slug=i.Slug %}" class="cursor-pointer">            
-                            <div class="flex gap-2 items-start">
-                                <div class=" pt-[7px]">
-                                    <img alt="img" src="{{i.Photo.url|default:''}}" class="min-w-[50px] max-w-[50px]  h-auto" />
-                                </div>
-                                <div class="flex flex-col gap-2">
-                                    <p class="p-0 m-0 uppercase text-[14px]">{{i.Name}}</p>
-                                </div>
-                            </div>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="flex gap-2 items-center">
@@ -199,15 +182,30 @@
     </div>
 </main>
 <style>
+    /* Điều chỉnh ảnh trong nội dung */
     .ckeditor-content img {
         max-width: 100% !important;
         height: auto !important;
         display: block;
-        margin: 0 auto; /* tuỳ chọn: căn giữa ảnh */
+        margin: 0 auto;
+        object-fit: contain;  /* Giữ hình ảnh trong vùng chứa mà không bị kéo dài */
     }
+</style>
+<style>
     .ckeditor-content {
-        word-break: break-word;
-        overflow-wrap: break-word;
+        white-space: normal;  /* Đảm bảo nội dung có thể xuống dòng */
+        word-break: break-word; /* Tự động ngắt từ khi cần */
+        overflow-wrap: break-word; /* Tương tự word-break, giúp ngắt từ đúng chỗ */
+        word-wrap: break-word; /* Đảm bảo các từ dài không tràn */
+        max-width: 100%; /* Đảm bảo nội dung không vượt quá chiều rộng của vùng chứa */
+        box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước */
+    }
+
+    .ckeditor-content img {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+        margin: 0 auto;
     }
 
     .ckeditor-content table {
@@ -216,7 +214,6 @@
         overflow-x: auto;
     }
 
-    .ckeditor-content img,
     .ckeditor-content iframe {
         max-width: 100%;
         height: auto;
