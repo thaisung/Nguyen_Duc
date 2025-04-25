@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content %}
 {% for i in list_Product %}
-<div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
+<div class="product-item flex flex-col items-center  w-[306px] h-full gap-3">
     <a href="{% url 'detail_product_client' slug=i.Slug %}">
         <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
     </a>

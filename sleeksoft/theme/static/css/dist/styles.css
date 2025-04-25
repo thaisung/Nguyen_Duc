@@ -2504,6 +2504,14 @@ select {
 }
 
 @media (min-width: 768px) {
+  .md\:h-auto {
+    height: auto;
+  }
+
+  .md\:w-\[500px\] {
+    width: 500px;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2760,6 +2768,10 @@ select {
 
   .lg\:w-auto {
     width: auto;
+  }
+
+  .lg\:w-\[306px\] {
+    width: 306px;
   }
 
   .lg\:min-w-\[150px\] {
