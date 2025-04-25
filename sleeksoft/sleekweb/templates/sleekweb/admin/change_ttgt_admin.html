@@ -107,7 +107,7 @@
             <div class="w-full grid grid-cols-1 lg:grid-cols-4 gap-[15px]">
                 {% for i in list_Edit_ttgt1 %}
                 <div class="relative flex flex-col justify-between gap-[10px]  show">
-                    <img class="w-full" src="{{i.Photo.url}}">
+                    <img class="w-full" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}">
                     <div class="flex flex-col w-full gap-[10px] justify-between">
                         <p  class="w-full font-bold">{{i.Title}}</p>
                         <div class="flex gap-1 font-bold text-[16px] w-full">
@@ -140,7 +140,7 @@
                 {% endfor %}
             </div>
             <div class="pagination {% if list_BlogPost.paginator.num_pages <= 1 %}hidden{% endif %}  flex items-center justify-center py-3" >
-                <ul class="flex items-center justify-center">page</ul>
+                <ul class="flex items-center justify-center"></ul>
             </div>
         </div>
         

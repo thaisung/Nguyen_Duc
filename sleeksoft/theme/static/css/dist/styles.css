@@ -1019,6 +1019,10 @@ select {
   display: flex;
 }
 
+.table {
+  display: table;
+}
+
 .grid {
   display: grid;
 }
@@ -1627,8 +1631,16 @@ select {
   max-width: 50px;
 }
 
+.max-w-\[300px\] {
+  max-width: 300px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .grow {
@@ -1814,8 +1826,16 @@ select {
   overflow: hidden;
 }
 
+.whitespace-normal {
+  white-space: normal;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
+}
+
+.whitespace-pre {
+  white-space: pre;
 }
 
 .rounded {
@@ -2213,6 +2233,10 @@ select {
 
 .pt-\[7px\] {
   padding-top: 7px;
+}
+
+.text-left {
+  text-align: left;
 }
 
 .text-center {
@@ -2764,6 +2788,10 @@ select {
 
   .lg\:max-w-\[150px\] {
     max-width: 150px;
+  }
+
+  .lg\:max-w-\[1200px\] {
+    max-width: 1200px;
   }
 
   .lg\:grid-cols-2 {

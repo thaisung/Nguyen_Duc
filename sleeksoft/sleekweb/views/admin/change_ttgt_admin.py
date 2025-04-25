@@ -125,7 +125,19 @@ def change_ttgt1_admin(request):
             except:
                 print('Not obj')
             return redirect('change_ttgt_admin')
-        
+def clean_content(content):
+    # Loại bỏ các ký tự &nbsp; và thay thế bằng khoảng trắng thông thường
+    content = content.replace('&nbsp;', ' ')
+    
+    # # Loại bỏ các thẻ HTML không mong muốn (có thể thêm hoặc chỉnh sửa tùy ý)
+    # content = re.sub(r'<script.*?>.*?</script>', '', content, flags=re.DOTALL)  # Loại bỏ thẻ script
+    # content = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)  # Loại bỏ bình luận HTML
+
+    # # Thêm bất kỳ xử lý làm sạch nào khác nếu cần
+    
+    return content
+
+
 def change_ttgt1_add_admin(request):
     if request.method == 'GET':
         form = ttgt1Form()
@@ -136,6 +148,14 @@ def change_ttgt1_add_admin(request):
     if request.method == 'POST':
         form = ttgt1Form(request.POST, request.FILES)  # BẮT BUỘC phải có request.FILES
         if form.is_valid():
+            # Lấy nội dung từ form
+            content = form.cleaned_data['Content']
+            
+            # Làm sạch nội dung trước khi lưu
+            cleaned_content = clean_content(content)
+            
+            # Lưu vào model (hoặc xử lý thêm nếu cần)
+            form.instance.Content = cleaned_content
             form.save()
             return redirect('change_ttgt_admin')  # hoặc chuyển đến trang khác
 
@@ -153,6 +173,14 @@ def change_ttgt1_edit_admin(request, pk):
     if request.method == 'POST':
         form = ttgt1Form(request.POST, request.FILES, instance=obj_ttgt1)  # Cập nhật đúng bài viết
         if form.is_valid():
+            # Lấy nội dung từ form
+            content = form.cleaned_data['Content']
+            
+            # Làm sạch nội dung trước khi lưu
+            cleaned_content = clean_content(content)
+            
+            # Lưu vào model (hoặc xử lý thêm nếu cần)
+            form.instance.Content = cleaned_content
             form.save()
             return redirect('change_ttgt_admin')  # hoặc chuyển đến nơi khác
         

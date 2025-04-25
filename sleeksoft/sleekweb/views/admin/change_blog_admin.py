@@ -81,6 +81,18 @@ def change_blog_admin(request):
         context['list_BlogPost'] = paginator.get_page(p)
         return render(request, 'sleekweb/admin/change_blog_admin.html',context, status=200)
 
+def clean_content(content):
+    # Loại bỏ các ký tự &nbsp; và thay thế bằng khoảng trắng thông thường
+    content = content.replace('&nbsp;', ' ')
+    
+    # # Loại bỏ các thẻ HTML không mong muốn (có thể thêm hoặc chỉnh sửa tùy ý)
+    # content = re.sub(r'<script.*?>.*?</script>', '', content, flags=re.DOTALL)  # Loại bỏ thẻ script
+    # content = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)  # Loại bỏ bình luận HTML
+
+    # # Thêm bất kỳ xử lý làm sạch nào khác nếu cần
+    
+    return content
+
 def change_blog_add_admin(request):
     if request.method == 'GET':
         form = BlogPostForm()
@@ -92,8 +104,17 @@ def change_blog_add_admin(request):
     if request.method == 'POST':
         form = BlogPostForm(request.POST, request.FILES)  # BẮT BUỘC phải có request.FILES
         if form.is_valid():
+            # Lấy nội dung từ form
+            content = form.cleaned_data['Content']
+            
+            # Làm sạch nội dung trước khi lưu
+            cleaned_content = clean_content(content)
+            
+            # Lưu vào model (hoặc xử lý thêm nếu cần)
+            form.instance.Content = cleaned_content
             form.save()
             return redirect('change_blog_admin')  # hoặc chuyển đến trang khác
+
 
 def change_blog_edit_admin(request, pk):
     obj_Blog = BlogPost.objects.get(pk=pk)  # Lấy bài viết theo pk
@@ -110,6 +131,15 @@ def change_blog_edit_admin(request, pk):
     if request.method == 'POST':
         form = BlogPostForm(request.POST, request.FILES, instance=obj_Blog)  # Cập nhật đúng bài viết
         if form.is_valid():
+            # Lấy nội dung từ form
+            content = form.cleaned_data['Content']
+            
+            # Làm sạch nội dung trước khi lưu
+            cleaned_content = clean_content(content)
+            
+            # Lưu vào model (hoặc xử lý thêm nếu cần)
+            form.instance.Content = cleaned_content
+
             form.save()
             return redirect('change_blog_admin')  # hoặc chuyển đến nơi khác
         

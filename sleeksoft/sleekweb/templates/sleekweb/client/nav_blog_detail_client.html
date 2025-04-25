@@ -17,7 +17,7 @@
     <div class="flex flex-col gap-[20px] max-w-[1200px] p-[15px] lg:p-[0px] w-full">
         <h1 class="text-[18px] lg:text-[22px] font-bold">{{ obj_Blog.Title }}</h1>
         <div class="flex gap-[20px] w-full">
-            <div class="content-container ckeditor-content text-justify grow w-full">
+            <div class="content-container ckeditor-content text-left  grow w-full">
                 {{ obj_Blog.Content|safe }}  <!-- Chỉ cần hiển thị, không cần thêm <p> ngoài -->
             </div>
             <div class="hidden lg:flex flex-col min-w-[300px] gap-[30px]">
@@ -60,11 +60,46 @@
     </div>
 </main>
 <style>
+    /* Điều chỉnh ảnh trong nội dung */
     .ckeditor-content img {
         max-width: 100% !important;
         height: auto !important;
         display: block;
-        margin: 0 auto; /* tuỳ chọn: căn giữa ảnh */
-}
+        margin: 0 auto;
+        object-fit: contain;  /* Giữ hình ảnh trong vùng chứa mà không bị kéo dài */
+    }
+</style>
+<style>
+    .ckeditor-content {
+        white-space: normal;  /* Đảm bảo nội dung có thể xuống dòng */
+        word-break: break-word; /* Tự động ngắt từ khi cần */
+        overflow-wrap: break-word; /* Tương tự word-break, giúp ngắt từ đúng chỗ */
+        word-wrap: break-word; /* Đảm bảo các từ dài không tràn */
+        max-width: 100%; /* Đảm bảo nội dung không vượt quá chiều rộng của vùng chứa */
+        box-sizing: border-box; /* Đảm bảo padding và border không làm tăng kích thước */
+    }
+
+    .ckeditor-content img {
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .ckeditor-content table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .ckeditor-content iframe {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .ckeditor-content pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
 </style>
 {% endblock %}
