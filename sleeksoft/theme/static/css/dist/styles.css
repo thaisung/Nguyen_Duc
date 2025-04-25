@@ -1287,6 +1287,10 @@ select {
   max-height: 60px;
 }
 
+.max-h-\[181px\] {
+  max-height: 181px;
+}
+
 .min-h-\[680px\] {
   min-height: 680px;
 }
@@ -2970,6 +2974,10 @@ select {
 
   .lg\:text-\[64px\] {
     font-size: 64px;
+  }
+
+  .lg\:text-\[23px\] {
+    font-size: 23px;
   }
 
   .lg\:font-bold {
