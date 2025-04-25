@@ -20,7 +20,7 @@
         </h1>
         <div class="w-[128px] h-[2px] bg-[#11284A]"></div>
     </div>
-    <div class="hidden lg:grid grid-cols-3 items-center w-[1274px] mt-[50px] gap-[50px]">
+    <div class="hidden lg:grid grid-cols-3 items-center w-[1274px] mt-[50px] gap-[50px] place-items-center">
         {% for i in list_Product %}
         <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
             <a href="{% url 'detail_product_client' slug=i.Slug %}">
