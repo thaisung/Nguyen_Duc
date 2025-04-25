@@ -1579,20 +1579,44 @@ select {
   width: 100vw;
 }
 
+.min-w-\[100px\] {
+  min-width: 100px;
+}
+
 .min-w-\[134px\] {
   min-width: 134px;
+}
+
+.min-w-\[150px\] {
+  min-width: 150px;
 }
 
 .min-w-\[25px\] {
   min-width: 25px;
 }
 
+.min-w-\[300px\] {
+  min-width: 300px;
+}
+
 .min-w-\[50px\] {
   min-width: 50px;
 }
 
+.max-w-\[100px\] {
+  max-width: 100px;
+}
+
+.max-w-\[1200px\] {
+  max-width: 1200px;
+}
+
 .max-w-\[134px\] {
   max-width: 134px;
+}
+
+.max-w-\[150px\] {
+  max-width: 150px;
 }
 
 .max-w-\[1920px\] {
@@ -1638,6 +1662,10 @@ select {
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .place-items-center {
@@ -1997,6 +2025,10 @@ select {
      object-fit: fill;
 }
 
+.p-0 {
+  padding: 0px;
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -2177,6 +2209,10 @@ select {
 
 .pt-\[30px\] {
   padding-top: 30px;
+}
+
+.pt-\[7px\] {
+  padding-top: 7px;
 }
 
 .text-center {
@@ -2434,12 +2470,6 @@ select {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-.shadow-md {
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -2447,11 +2477,6 @@ select {
 
 .outline {
   outline-style: solid;
-}
-
-.brightness-110 {
-  --tw-brightness: brightness(1.1);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .filter {
@@ -2661,6 +2686,10 @@ select {
     width: 1280px;
   }
 
+  .lg\:w-\[1500px\] {
+    width: 1500px;
+  }
+
   .lg\:w-\[152px\] {
     width: 152px;
   }
@@ -2729,6 +2758,18 @@ select {
     width: auto;
   }
 
+  .lg\:min-w-\[150px\] {
+    min-width: 150px;
+  }
+
+  .lg\:max-w-\[150px\] {
+    max-width: 150px;
+  }
+
+  .lg\:max-w-\[1500px\] {
+    max-width: 1500px;
+  }
+
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2785,6 +2826,10 @@ select {
     gap: 10px;
   }
 
+  .lg\:gap-\[20px\] {
+    gap: 20px;
+  }
+
   .lg\:gap-\[25px\] {
     gap: 25px;
   }
@@ -2816,6 +2861,10 @@ select {
 
   .lg\:p-3 {
     padding: 0.75rem;
+  }
+
+  .lg\:p-\[0px\] {
+    padding: 0px;
   }
 
   .lg\:p-\[50px\] {
