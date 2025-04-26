@@ -19,6 +19,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL='/upload/'
 MEDIA_ROOT=os.path.join(BASE_DIR,"upload")
 
+CKEDITOR_UPLOAD_PATH = "CKeditor/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'height': 600,  # tăng chiều cao vùng soạn thảo
+#         'width': 'auto',
+#         'toolbar': 'Full',
+#         'tabSpaces': 4,
+#     },
+# }
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # Ví dụ cho phép tải lên 10MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # Tương tự cho file upload
+
+PAGE = 12
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -46,6 +61,8 @@ INSTALLED_APPS = [
     'theme',
     'django_browser_reload',
     'sleekweb',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -66,6 +83,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'sleekweb.middleware.MaintenanceMiddleware',
+    # 'sleekweb.middleware.Redirect404ToHomeMiddleware',
+    'sleekweb.middleware.BlockAfterDateMiddleware',
 ]
 
 
