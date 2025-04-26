@@ -562,7 +562,7 @@
                         <a href="{% url 'tab_regimens_client' %}" 
                         class="uppercase py-1 px-2  rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_regimens_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">REGIMENS</a>
                     </div>
-                    <div class=" flex lg:hidden flex-col w-full h-full items-center justify-center font-normal text-[20px] divide-y-[2px]  divide-white text-white">
+                    <div class=" flex lg:hidden flex-col w-full h-full items-center justify-center font-normal text-[20px] divide-y-[2px]  divide-white text-white mt-[10px]">
                         <div class="flex flex-col w-full">
                             <div  class="click_tab_product_mobile uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
                                 <span>
@@ -837,7 +837,7 @@
                             <div class="swiper-wrapper w-full">
                                 {% for i in list_image_slider_2 %}
                                 <div class="swiper-slide w-full flex justify-center rounded">
-                                    <img alt="img" class="h-[192px] lg:h-[465px] w-[192px] lg:w-[465px] rounded" alt="banner" src="{{i.Photo.url}}" />
+                                    <img alt="img" class="h-[192px] lg:h-[465px] w-[192px] lg:w-[465px] md:w-full md:h-full rounded" alt="banner" src="{{i.Photo.url}}" />
                                 </div>
                                 {% endfor %}
                             </div>
@@ -861,7 +861,7 @@
                                 speed: 1000,           // Tốc độ trượt
                                 slidesPerGroup: 1,     // Trượt từng ảnh một,
                                 breakpoints: {
-                                    1024: {
+                                    768: {
                                         slidesPerView: 3, // >= 1024px (lg trở lên): hiển thị 3
                                     },
                                 },
@@ -945,11 +945,11 @@
                         THE RESULTS ARE IN
                     </span>
                     <div class="w-full flex justify-center">
-                        <div class="swiper mySwiper2 w-[362px] h-[170px]  lg:w-[1280px] lg:h-[600px] ">
+                        <div class="swiper mySwiper2 w-[362px] h-[170px] md:w-[600px] md:h-[300px]  lg:w-[1280px] lg:h-[600px] ">
                             <div class="swiper-wrapper">
                                 {% for i in list_image_slider_3 %}
                                 <div class="swiper-slide">
-                                    <img class="w-[362px] h-[170px]  lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                                    <img class="w-[362px] h-[170px] md:w-[600px] md:h-[300px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
                                 </div>
                                 {% endfor %}
                             </div>
