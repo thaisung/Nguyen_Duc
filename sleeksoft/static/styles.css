@@ -2524,6 +2524,10 @@ select {
     height: 300px;
   }
 
+  .md\:h-\[400px\] {
+    height: 400px;
+  }
+
   .md\:w-full {
     width: 100%;
   }

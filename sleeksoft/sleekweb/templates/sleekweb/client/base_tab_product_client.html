@@ -516,7 +516,7 @@
                     <div class="swiper-wrapper">
                         {% for i in list_image_slider_1 %}
                         <div class="swiper-slide">
-                            <img alt="img" class="h-[183px] lg:h-[801px]  w-full" alt="banner" src="{{i.Photo.url}}" />
+                            <img alt="img" class="h-auto  w-full" alt="banner" src="{{i.Photo.url}}" />
                         </div>
                         {% endfor %}
                     </div>
@@ -837,7 +837,7 @@
                             <div class="swiper-wrapper w-full">
                                 {% for i in list_image_slider_2 %}
                                 <div class="swiper-slide w-full flex justify-center rounded">
-                                    <img alt="img" class="w-full h-full rounded" alt="banner" src="{{i.Photo.url}}" />
+                                    <img alt="img" class="w-full h-auto rounded" alt="banner" src="{{i.Photo.url}}" />
                                 </div>
                                 {% endfor %}
                             </div>
@@ -945,11 +945,11 @@
                         THE RESULTS ARE IN
                     </span>
                     <div class="w-full flex justify-center">
-                        <div class="swiper mySwiper2 w-[362px] h-[170px] md:w-[600px] md:h-[300px]  lg:w-[1280px] lg:h-[600px] ">
+                        <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
                             <div class="swiper-wrapper">
                                 {% for i in list_image_slider_3 %}
                                 <div class="swiper-slide">
-                                    <img class="w-[362px] h-[170px] md:w-[600px] md:h-[300px] lg:w-[1280px] lg:h-[600px]" src="{{i.Photo.url}}" />
+                                    <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
                                 </div>
                                 {% endfor %}
                             </div>
