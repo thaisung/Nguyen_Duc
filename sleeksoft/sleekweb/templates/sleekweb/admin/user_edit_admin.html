@@ -4,7 +4,7 @@
 <div class="w-full flex-col min-h-screen h-full">
     <div class="flex flex-col lg:flex-row items-center  lg:justify-between border-b-[1px] border-[#0e203c] lg:max-h-[50px] px-3 py-2 font-bold">
         <span class="uppercase w-full flex justify-center lg:justify-start">
-            User page
+            Trang thông tin tài khoản
         </span>
         <div class="flex items-center gap-3 max-h-[60px] lg:max-h-none">
             <div class="flex items-center justify-center rounded-full border-[1px] border-[#0e203c] px-2">
@@ -78,17 +78,17 @@
     </div>
     <div class="flex flex-col gap-[20px] justify-center h-full p-[15px] lg:p-none">
         <div class="flex flex-col gap-1 text-[13px]">
-            <span class="uppercase font-bold text-[14px]">Information :</span>
-            <div>Username : {{obj_user.username}}</div>
-            <div>Creation date : {{obj_user.Creation_time|date:'d/m/y'}}</div>
+            <span class="uppercase font-bold text-[14px]">Thông tin tài khoản :</span>
+            <div>Tên tài khoản : {{obj_user.username}}</div>
+            <div>Ngày tạo : {{obj_user.Creation_time|date:'d/m/y'}}</div>
         </div>
         <div class="flex flex-col gap-3 text-[13px]">
-            <span class="uppercase font-bold text-[14px]">Action :</span>
+            <span class="uppercase font-bold text-[14px]">Chức năng :</span>
             <form id="change_password" class="flex items-center gap-1 max-h-[40px]">
                 {% csrf_token %}
                 <input type="hidden" value="{{obj_user.id}}" name="id" class="rounded-md"/>
-                <input type="password" name="new_password" class="rounded-md" placeholder="Password" />
-                <button class="flex justify-center items-center rounded-md bg-green-500 px-3 font-bold h-[40px]">Change Password</button>
+                <input type="password" name="new_password" class="rounded-md" placeholder="Mật khẩu" />
+                <button class="flex justify-center items-center rounded-md bg-green-500 px-3 font-bold h-[40px]">Đổi mật khẩu</button>
             </form>
         </div>
     </div>
