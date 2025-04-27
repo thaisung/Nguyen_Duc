@@ -177,8 +177,8 @@
                         </a>
                         <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
                             <div class="relative w-full">
-                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
-                                    <div class="absolute bottom-3 left-8">
+                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
                                         <div class="relative flex items-center justify-center">
                                             <img alt="img" class="w-[65px] h-[16px]" src="/upload/website/background.png" />
                                             <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
@@ -202,7 +202,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
                                     {% for j in i.list_size.all %}
                                     <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
                                     {% endfor %}
