@@ -2007,6 +2007,11 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-\[\#5085d4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(80 133 212 / var(--tw-bg-opacity, 1));
+}
+
 .bg-opacity-90 {
   --tw-bg-opacity: 0.9;
 }
@@ -2494,6 +2499,21 @@ select {
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+
+.text-yellow-500 {
+  --tw-text-opacity: 1;
+  color: rgb(234 179 8 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#3f73c0\] {
+  --tw-text-opacity: 1;
+  color: rgb(63 115 192 / var(--tw-text-opacity, 1));
+}
+
+.text-\[\#2767c8\] {
+  --tw-text-opacity: 1;
+  color: rgb(39 103 200 / var(--tw-text-opacity, 1));
 }
 
 .outline-none {
