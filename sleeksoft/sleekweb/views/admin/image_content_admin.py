@@ -135,7 +135,7 @@ def image_content_admin(request):
             else:
                 fields['Count'] = 1
                 Photo_Content.objects.create(**fields)
-            return redirect('image_content_admin')
+            return redirect('image_slider_admin')
         # 2.Trang Blog
         # Photo_Content.objects.filter(Count=2).delete()
         fields['Photo1'] = request.FILES.get('Photo4')
