@@ -136,7 +136,6 @@
     <div class="flex  w-full min-h-screen h-full">
         <div class="click_menu lg:hidden flex justify-center items-center fixed top-2 left-2 cursor-pointer bg-[#eaebe7] p-1 border-[1px] border-[#0e203c] rounded-md ">
             <svg class="w-[25px] fill-[#0e203c]" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
                 <title>menu</title>
                 <desc>Created with Sketch.</desc>
                 <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -160,7 +159,7 @@
                 <span class="text-[14px] text-yellow-500">{{request.user.username}}</span>
             </div>
             <nav class="flex flex-col p-3 font-bold border-r-[1px] border-[#0e203c]  text-[#11284A] grow h-full">
-                <a href="{% url 'change_website_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
+                <a href="{% url 'change_website_admin' %}"  class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
                      Thông tin Website
                     {% if request.resolver_match.url_name == 'change_website_admin' %}
                     <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
@@ -172,18 +171,6 @@
                     <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
                     {% endif %}
                 </a>
-                <!-- <a href="{% url 'image_content_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Trang Blog
-                    {% if request.resolver_match.url_name == 'image_content_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a> -->
-                <!-- <a href="{% url 'change_ncls_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Nghiên cứu lâm sàn
-                    {% if request.resolver_match.url_name == 'change_ncls_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a> -->
                 <a href="{% url 'change_vct_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
                      Về chúng tôi
                     {% if request.resolver_match.url_name == 'change_vct_admin' %}
@@ -246,28 +233,8 @@
                         <svg class="fill-white w-[24px]" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title></title><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"></path><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"></path></g></svg>
                     </a>
                 </div>
-                <!-- <a class="border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                    Blog
-                    {% if request.resolver_match.url_name == 'product_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a> -->
             </nav>
         </div>
-        <!-- <script>
-            $(document).ready(function () {
-                $(".click_menu").click(function () {
-                    $(".menu").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
-                });
-
-                // Ẩn menu khi click ra ngoài
-                $(document).click(function (event) {
-                    if (!$(event.target).closest(".menu, .click_menu").length) {
-                        $(".menu").removeClass("open"); // Ẩn menu khi click ra ngoài
-                    }
-                });
-            });
-        </script> -->
         <script>
             let isOpen = false;
         
