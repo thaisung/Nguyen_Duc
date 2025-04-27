@@ -979,6 +979,10 @@ select {
   margin-top: 2rem;
 }
 
+.mt-\[10px\] {
+  margin-top: 10px;
+}
+
 .mt-\[15px\] {
   margin-top: 15px;
 }
@@ -1005,10 +1009,6 @@ select {
 
 .mt-\[58px\] {
   margin-top: 58px;
-}
-
-.mt-\[10px\] {
-  margin-top: 10px;
 }
 
 .block {
@@ -1085,10 +1085,6 @@ select {
 
 .h-\[177px\] {
   height: 177px;
-}
-
-.h-\[183px\] {
-  height: 183px;
 }
 
 .h-\[186px\] {
@@ -1279,6 +1275,10 @@ select {
   height: 100vh;
 }
 
+.h-\[40px\] {
+  height: 40px;
+}
+
 .max-h-\[181px\] {
   max-height: 181px;
 }
@@ -1289,6 +1289,10 @@ select {
 
 .max-h-\[60px\] {
   max-height: 60px;
+}
+
+.max-h-\[40px\] {
+  max-height: 40px;
 }
 
 .min-h-\[680px\] {
@@ -1377,10 +1381,6 @@ select {
 
 .w-\[162px\] {
   width: 162px;
-}
-
-.w-\[192px\] {
-  width: 192px;
 }
 
 .w-\[200px\] {
@@ -1577,6 +1577,14 @@ select {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-\[24px\] {
+  width: 24px;
+}
+
+.w-\[137px\] {
+  width: 137px;
 }
 
 .min-w-\[100px\] {
@@ -2478,6 +2486,16 @@ select {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -2508,32 +2526,8 @@ select {
 }
 
 @media (min-width: 768px) {
-  .md\:h-full {
-    height: 100%;
-  }
-
-  .md\:h-auto {
-    height: auto;
-  }
-
-  .md\:h-\[350px\] {
-    height: 350px;
-  }
-
   .md\:h-\[300px\] {
     height: 300px;
-  }
-
-  .md\:h-\[400px\] {
-    height: 400px;
-  }
-
-  .md\:w-full {
-    width: 100%;
-  }
-
-  .md\:w-\[500px\] {
-    width: 500px;
   }
 
   .md\:w-\[600px\] {
@@ -2634,10 +2628,6 @@ select {
     height: 450px;
   }
 
-  .lg\:h-\[465px\] {
-    height: 465px;
-  }
-
   .lg\:h-\[499px\] {
     height: 499px;
   }
@@ -2660,10 +2650,6 @@ select {
 
   .lg\:h-\[788px\] {
     height: 788px;
-  }
-
-  .lg\:h-\[801px\] {
-    height: 801px;
   }
 
   .lg\:h-\[80px\] {
@@ -2744,10 +2730,6 @@ select {
 
   .lg\:w-\[450px\] {
     width: 450px;
-  }
-
-  .lg\:w-\[465px\] {
-    width: 465px;
   }
 
   .lg\:w-\[50\%\] {

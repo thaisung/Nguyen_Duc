@@ -81,6 +81,7 @@ from .views.admin.change_dsdt_admin import *
 from .views.admin.change_nckh_admin import *
 from .views.admin.change_kqls_admin import *
 from .views.admin.change_blog_admin import *
+from .views.admin.user_admin import *
 
 from sleekweb.sitemaps import *
 from django.contrib.sitemaps.views import sitemap
@@ -184,6 +185,10 @@ urlpatterns = [
     path('admin/change-blog/add', change_blog_add_admin, name='change_blog_add_admin'),
     path('admin/change-blog/edit/<int:pk>/', change_blog_edit_admin, name='change_blog_edit_admin'),
     path('admin/change-blog/remove/<int:pk>/', change_blog_remove_admin, name='change_blog_remove_admin'),
+
+    path('admin/user/edit/<int:pk>/', user_edit_admin,name='user_edit_admin'),
+    path('admin/user/change-password/', user_change_password_admin,name='user_change_password_admin'),
+
 
     path('signup-email',signup_email_client,name='signup_email_client'),
 
