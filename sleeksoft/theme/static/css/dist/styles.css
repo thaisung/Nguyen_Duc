@@ -2985,6 +2985,10 @@ select {
     font-size: 64px;
   }
 
+  .lg\:text-\[45px\] {
+    font-size: 45px;
+  }
+
   .lg\:font-bold {
     font-weight: 700;
   }
