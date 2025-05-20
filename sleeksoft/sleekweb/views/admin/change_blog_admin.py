@@ -84,25 +84,15 @@ def change_blog_admin(request):
         return render(request, 'sleekweb/admin/change_blog_admin.html',context, status=200)
 
 def clean_content(content):
-    placeholder = "__P_NBSP__"
+    # Bước 1: Tạm thời thay thế các &nbsp; mà đứng một mình trong thẻ thành placeholder để giữ lại
+    content = re.sub(r'>(\s*&nbsp;\s*)<', r'>__NBSP_PLACEHOLDER__<', content)
 
-    # Thay <p>&nbsp;</p> thành placeholder
-    content = content.replace('<p>&nbsp;</p>', placeholder)
-
-    # Thay thế tất cả &nbsp; còn lại thành dấu cách
+    # Bước 2: Thay tất cả các &nbsp; còn lại thành dấu cách
     content = content.replace('&nbsp;', ' ')
 
-    # Trả lại placeholder thành <p>&nbsp;</p>
-    content = content.replace(placeholder, '<p>&nbsp;</p>')
+    # Bước 3: Khôi phục lại các placeholder thành &nbsp;
+    content = content.replace('__NBSP_PLACEHOLDER__', '&nbsp;')
 
-    return content
-    
-    # # Loại bỏ các thẻ HTML không mong muốn (có thể thêm hoặc chỉnh sửa tùy ý)
-    # content = re.sub(r'<script.*?>.*?</script>', '', content, flags=re.DOTALL)  # Loại bỏ thẻ script
-    # content = re.sub(r'<!--.*?-->', '', content, flags=re.DOTALL)  # Loại bỏ bình luận HTML
-
-    # # Thêm bất kỳ xử lý làm sạch nào khác nếu cần
-    
     return content
 
 def change_blog_add_admin(request):
