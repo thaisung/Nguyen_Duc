@@ -86,6 +86,27 @@
         </form>
     </div>
 </div>
+<script>
+    CKEDITOR.on('instanceReady', function (evt) {
+        const editor = evt.editor;
+
+        editor.on('paste', function (e) {
+            // Lấy nội dung dán gốc
+            const html = e.data.dataValue || '';
+
+            // Làm sạch HTML: xoá tag, &nbsp;, giữ lại text thôi
+            const cleanText = html
+                .replace(/&nbsp;/g, ' ')
+                .replace(/<[^>]+>/g, '');
+
+            // Ngăn CKEditor xử lý mặc định
+            e.stop(); // Ngăn paste mặc định
+
+            // Chèn nội dung đã làm sạch vào vị trí con trỏ
+            editor.insertText(cleanText);
+        });
+    });
+</script>
 <style>
     form.blog-form {
         max-width: 100%;
