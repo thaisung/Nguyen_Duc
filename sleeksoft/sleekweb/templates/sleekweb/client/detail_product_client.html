@@ -18,7 +18,7 @@
         <div class="grid grid-cols-2 w-full lg:w-[50%] gap-2 px-2 lg:px-none">
             {% for i in obj_Product.list_photo.all %}
                 <a data-fancybox="gallery" href="{{ i.Avatar.url }}" class=" overflow-hidden">
-                    <img alt="img" class="w-full h-auto transition object-fill" src="{{i.Avatar.url}}" />
+                    <img alt="img" class="w-full h-full transition object-fill" src="{{i.Avatar.url}}" />
                 </a>
             {% endfor %}
         </div>
