@@ -63,6 +63,8 @@ import base64
 from ...forms import *
 
 def change_blog_admin(request):
+    if not request.user.is_authenticated:
+        return redirect('login_admin')
     if request.method == 'GET':
         form = BlogPostForm()
         context = {
@@ -94,6 +96,8 @@ def clean_content(content):
     return content
 
 def change_blog_add_admin(request):
+    if not request.user.is_authenticated:
+        return redirect('login_admin')
     if request.method == 'GET':
         form = BlogPostForm()
         context = {
@@ -118,6 +122,8 @@ def change_blog_add_admin(request):
 
 
 def change_blog_edit_admin(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login_admin')
     obj_Blog = BlogPost.objects.get(pk=pk)  # Lấy bài viết theo pk
 
     if request.method == 'GET':
@@ -146,6 +152,8 @@ def change_blog_edit_admin(request, pk):
             return redirect('change_blog_admin')  # hoặc chuyển đến nơi khác
         
 def change_blog_remove_admin(request, pk):
+    if not request.user.is_authenticated:
+        return redirect('login_admin')
     obj_Blog = BlogPost.objects.get(pk=pk)  # Lấy bài viết theo pk
 
     if request.method == 'GET':
