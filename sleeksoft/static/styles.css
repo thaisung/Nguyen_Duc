@@ -2517,32 +2517,8 @@ select {
 }
 
 @media (min-width: 768px) {
-  .md\:bottom-4 {
-    bottom: 1rem;
-  }
-
-  .md\:bottom-6 {
-    bottom: 1.5rem;
-  }
-
-  .md\:bottom-5 {
-    bottom: 1.25rem;
-  }
-
   .md\:bottom-\[1\.35rem\] {
     bottom: 1.35rem;
-  }
-
-  .md\:top-\[13px\] {
-    top: 13px;
-  }
-
-  .md\:top-\[16px\] {
-    top: 16px;
-  }
-
-  .md\:top-\[19px\] {
-    top: 19px;
   }
 
   .md\:top-\[18px\] {

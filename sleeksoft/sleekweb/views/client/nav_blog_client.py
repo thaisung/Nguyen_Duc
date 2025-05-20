@@ -121,7 +121,11 @@ def nav_blog_detail_client(request,slug):
 
         context['list_BlogPost'] =  BlogPost.objects.all().order_by('-id')
 
-        context['obj_Blog'] = BlogPost.objects.get(Slug=slug)
+        try:
+            context['obj_Blog'] = BlogPost.objects.get(Slug=slug)
+        except BlogPost.DoesNotExist:
+            # Trả về redirect về trang chủ hoặc trang 404 tùy ý
+            return redirect('/')
 
         context['list_Product'] = Product.objects.all().order_by('-id')
         return render(request, 'sleekweb/client/nav_blog_detail_client.html', context, status=200)
