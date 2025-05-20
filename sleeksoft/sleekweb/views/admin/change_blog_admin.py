@@ -108,7 +108,8 @@ def change_blog_add_admin(request):
             content = form.cleaned_data['Content']
             
             # Làm sạch nội dung trước khi lưu
-            cleaned_content = clean_content(content)
+            # cleaned_content = clean_content(content)
+            cleaned_content = content
             
             # Lưu vào model (hoặc xử lý thêm nếu cần)
             form.instance.Content = cleaned_content
@@ -135,7 +136,8 @@ def change_blog_edit_admin(request, pk):
             content = form.cleaned_data['Content']
             
             # Làm sạch nội dung trước khi lưu
-            cleaned_content = clean_content(content)
+            # cleaned_content = sclean_content(content)
+            cleaned_content = content
             
             # Lưu vào model (hoặc xử lý thêm nếu cần)
             form.instance.Content = cleaned_content
