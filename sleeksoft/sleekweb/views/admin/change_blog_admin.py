@@ -84,8 +84,18 @@ def change_blog_admin(request):
         return render(request, 'sleekweb/admin/change_blog_admin.html',context, status=200)
 
 def clean_content(content):
-    # Loại bỏ các ký tự &nbsp; và thay thế bằng khoảng trắng thông thường
+    placeholder = "__P_NBSP__"
+
+    # Thay <p>&nbsp;</p> thành placeholder
+    content = content.replace('<p>&nbsp;</p>', placeholder)
+
+    # Thay thế tất cả &nbsp; còn lại thành dấu cách
     content = content.replace('&nbsp;', ' ')
+
+    # Trả lại placeholder thành <p>&nbsp;</p>
+    content = content.replace(placeholder, '<p>&nbsp;</p>')
+
+    return content
     
     # # Loại bỏ các thẻ HTML không mong muốn (có thể thêm hoặc chỉnh sửa tùy ý)
     # content = re.sub(r'<script.*?>.*?</script>', '', content, flags=re.DOTALL)  # Loại bỏ thẻ script
@@ -112,8 +122,8 @@ def change_blog_add_admin(request):
             content = form.cleaned_data['Content']
             
             # Làm sạch nội dung trước khi lưu
-            # cleaned_content = clean_content(content)
-            cleaned_content = content
+            cleaned_content = clean_content(content)
+            # cleaned_content = content
             
             # Lưu vào model (hoặc xử lý thêm nếu cần)
             form.instance.Content = cleaned_content
@@ -142,8 +152,8 @@ def change_blog_edit_admin(request, pk):
             content = form.cleaned_data['Content']
             
             # Làm sạch nội dung trước khi lưu
-            # cleaned_content = sclean_content(content)
-            cleaned_content = content
+            cleaned_content = clean_content(content)
+            # cleaned_content = content
             
             # Lưu vào model (hoặc xử lý thêm nếu cần)
             form.instance.Content = cleaned_content
