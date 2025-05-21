@@ -1635,6 +1635,10 @@ select {
   max-width: 50px;
 }
 
+.max-w-\[1300px\] {
+  max-width: 1300px;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2983,10 +2987,6 @@ select {
 
   .lg\:text-\[64px\] {
     font-size: 64px;
-  }
-
-  .lg\:text-\[45px\] {
-    font-size: 45px;
   }
 
   .lg\:font-bold {

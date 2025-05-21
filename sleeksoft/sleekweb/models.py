@@ -364,6 +364,13 @@ class BlogPost(models.Model):
             self.Slug = slug
         super().save(*args, **kwargs)
 
+class Edit_kqls1(models.Model):
+    Content = RichTextUploadingField(blank=True, null=True)
+    Order = models.IntegerField('Thứ tự',blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+
     
 
 

@@ -18,7 +18,7 @@
         KẾT QUẢ LÂM SÀN
     </h1>
     <div class="flex flex-col w-full">
-        <div class="relative flex justify-center items-center w-full h-[177px] lg:h-[500px] overflow-hidden">
+        <!-- <div class="relative flex justify-center items-center w-full h-[177px] lg:h-[500px] overflow-hidden">
             <img alt="img" class="w-full h-full object-cover" src="{{obj1.Photo1.url|default:''}}" />
             <div class="absolute flex justify-center items-center gap-1 lg:gap-3 inset-0  z-50 p-[20px] lg:p-none">
                 <div class="flex flex-col  gap-1 lg:gap-3 w-full lg:w-[1250px]">
@@ -30,8 +30,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="w-full h-[300px] lg:h-[400px] flex justify-center items-center overflow-hidden bg-white">
+        </div> -->
+        <!-- <div class="w-full h-[300px] lg:h-[400px] flex justify-center items-center overflow-hidden bg-white">
             <div class="flex flex-col items-center w-full lg:w-[800px] p-[20px] lg:p-none">
                 <h3 class="ff-bb font-normal text-[24px] lg:text-[36px] text-center text-[#25394f]">
                     {{obj1.Title2|safe}}
@@ -40,6 +40,9 @@
                     {{obj1.Content2|safe}}
                 </p>
             </div>
+        </div> -->
+        <div class="grow w-full flex items-center justify-center px-[20px]">
+            <div class="content-container ckeditor-content max-w-[1300px] w-full">{{ obj_kqls.Content|safe }}</div>
         </div>
         <div class="flex flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
             <span class="font-bold text-black text-[21px] lg:text-[55px]">

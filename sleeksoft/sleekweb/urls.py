@@ -80,6 +80,7 @@ from .views.admin.change_lh_admin import *
 from .views.admin.change_dsdt_admin import *
 from .views.admin.change_nckh_admin import *
 from .views.admin.change_kqls_admin import *
+from .views.admin.change_kqls1_admin import *
 from .views.admin.change_blog_admin import *
 from .views.admin.user_admin import *
 
@@ -176,6 +177,7 @@ urlpatterns = [
     path('admin/change-nckh2',change_nckh2_admin,name='change_nckh2_admin'),
     path('admin/order-change-nckh2',change_nckh2_order_admin,name='change_nckh2_order_admin'),
     path('admin/change-kqls',change_kqls_admin,name='change_kqls_admin'),
+    path('admin/change-kqls1',change_kqls1_admin,name='change_kqls1_admin'),
     path('admin/change-dsdt',change_dsdt_admin,name='change_dsdt_admin'),
     path('admin/change-dsdt-remove',change_dsdt_remove_admin,name='change_dsdt_remove_admin'),
 

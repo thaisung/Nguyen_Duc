@@ -68,6 +68,23 @@ from django.core.mail import send_mail,EmailMessage
 
 
     
+# def link_ket_qua_lam_san_client(request):
+#     if request.method == 'GET':
+#         context = {}
+#         context['domain'] = settings.DOMAIN
+#         try:
+#             context['obj'] = Website.objects.get(Count=1)
+#         except:
+#             context['obj'] = {}
+#         try:
+#             context['obj1'] = Edit_kqls.objects.get(Count=1)
+#         except:
+#             context['obj1'] = {}
+#         context['list_Product'] = Product.objects.all()
+#         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+#         print('context:',context)
+#         return render(request, 'sleekweb/client/link_ket_qua_lam_san_client.html', context, status=200)
+    
 def link_ket_qua_lam_san_client(request):
     if request.method == 'GET':
         context = {}
@@ -76,12 +93,14 @@ def link_ket_qua_lam_san_client(request):
             context['obj'] = Website.objects.get(Count=1)
         except:
             context['obj'] = {}
-        try:
-            context['obj1'] = Edit_kqls.objects.get(Count=1)
-        except:
-            context['obj1'] = {}
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        print('context:',context)
+        try:
+            context['obj_kqls'] = Edit_kqls1.objects.get(Order=1)
+        except Edit_kqls1.DoesNotExist:
+            # Trả về redirect về trang chủ hoặc trang 404 tùy ý
+            return redirect('/')
         return render(request, 'sleekweb/client/link_ket_qua_lam_san_client.html', context, status=200)
+    
+    
     
