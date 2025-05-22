@@ -1615,6 +1615,10 @@ select {
   max-width: 1200px;
 }
 
+.max-w-\[1300px\] {
+  max-width: 1300px;
+}
+
 .max-w-\[134px\] {
   max-width: 134px;
 }
@@ -1633,10 +1637,6 @@ select {
 
 .max-w-\[50px\] {
   max-width: 50px;
-}
-
-.max-w-\[1300px\] {
-  max-width: 1300px;
 }
 
 .flex-1 {
