@@ -915,13 +915,13 @@
                     </div>
                     <div class="flex lg:hidden flex-col justify-center items-center gap-6 w-full px-[15px]">
                         {% if list_BlogPost|length > 0 %}
-                        <a href="{% url 'nav_blog_detail_client' slug=list_BlogPost.0.Slug %}" class="flex w-full justify-between gap-3">
+                        <a href="{% url 'nav_blog_detail_client' slug=list_BlogPost.0.Slug %}" class="flex flex-col w-full justify-between gap-3">
                             <div class="h-auto w-full flex items-center justify-center rounded-md overflow-hidden bg-[#11284A] text-white">
                                 <img alt="Hình ảnh 1" src="{% if list_BlogPost.0.Avatar  %}{{list_BlogPost.0.Avatar.url}}{% endif %}"  class="w-full h-full object-fill" />
                             </div>
-                            <div class="flex flex-col min-w-[134px] max-w-[134px] h-full gap-5 items-center">
+                            <div class="flex flex-col w-full h-full gap-3 items-center">
                                 {% if list_BlogPost.0.Content %}
-                                <div class="readmore-box font-medium text-[14px] lg:text-[20px] max-h-[181px] normal-case w-full  text-justify bg-[#D9D9D9] p-2 grow overflow-hidden">
+                                <div class="readmore-box font-medium text-[14px] lg:text-[20px] max-h-[60px] normal-case w-full  text-justify bg-[#D9D9D9] p-2 grow overflow-hidden">
                                     {{list_BlogPost.0.Content|safe}}
                                 </div>
                                 {% else %}

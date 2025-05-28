@@ -1295,6 +1295,10 @@ select {
   max-height: 60px;
 }
 
+.max-h-\[30px\] {
+  max-height: 30px;
+}
+
 .min-h-\[680px\] {
   min-height: 680px;
 }
@@ -1615,6 +1619,10 @@ select {
   max-width: 1200px;
 }
 
+.max-w-\[1300px\] {
+  max-width: 1300px;
+}
+
 .max-w-\[134px\] {
   max-width: 134px;
 }
@@ -1633,10 +1641,6 @@ select {
 
 .max-w-\[50px\] {
   max-width: 50px;
-}
-
-.max-w-\[1300px\] {
-  max-width: 1300px;
 }
 
 .flex-1 {
