@@ -103,4 +103,3 @@ def link_ket_qua_lam_san_client(request):
         return render(request, 'sleekweb/client/link_ket_qua_lam_san_client.html', context, status=200)
     
     
-    

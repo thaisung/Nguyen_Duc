@@ -66,8 +66,8 @@ def change_dsdt_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        context['list_Edit_dsdt_mb'] = Edit_dsdt.objects.filter(Category=0)
-        context['list_Edit_dsdt_mn'] = Edit_dsdt.objects.filter(Category=1)
+        context['list_Edit_dsdt_mb'] = Edit_dsdt.objects.filter(Category=0).order_by('-id')
+        context['list_Edit_dsdt_mn'] = Edit_dsdt.objects.filter(Category=1).order_by('-id')
         context['Category'] = request.GET.get('Category')
         if not context['Category']:
             context['Category'] = '0'
