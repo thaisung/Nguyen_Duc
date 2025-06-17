@@ -17,3 +17,8 @@ class Edit_kqls1_Form(forms.ModelForm):
         model = Edit_kqls1
         fields = ['Content']
 
+class KqlsPostForm(forms.ModelForm):
+    class Meta:
+        model = KqlsPost
+        fields = ['Title', 'Content','Avatar']
+

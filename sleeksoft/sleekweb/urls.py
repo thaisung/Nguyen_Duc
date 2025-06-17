@@ -82,6 +82,7 @@ from .views.admin.change_nckh_admin import *
 from .views.admin.change_kqls_admin import *
 from .views.admin.change_kqls1_admin import *
 from .views.admin.change_blog_admin import *
+from .views.admin.change_kqls_post_admin import *
 from .views.admin.user_admin import *
 
 from sleekweb.sitemaps import *
@@ -188,10 +189,17 @@ urlpatterns = [
     path('admin/change-blog/edit/<int:pk>/', change_blog_edit_admin, name='change_blog_edit_admin'),
     path('admin/change-blog/remove/<int:pk>/', change_blog_remove_admin, name='change_blog_remove_admin'),
 
+    path('admin/change-kqls-post', change_kqls_post_admin, name='change_kqls_post_admin'),
+    path('admin/change-kqls-post/add', change_kqls_post_add_admin, name='change_kqls_post_add_admin'),
+    path('admin/change-kqls-post/edit/<int:pk>/', change_kqls_post_edit_admin, name='change_kqls_post_edit_admin'),
+    path('admin/change-kqls-post/remove/<int:pk>/', change_kqls_post_remove_admin, name='change_kqls_post_remove_admin'),
+
     path('admin/user/edit/<int:pk>/', user_edit_admin,name='user_edit_admin'),
     path('admin/user/change-password/', user_change_password_admin,name='user_change_password_admin'),
 
 
     path('signup-email',signup_email_client,name='signup_email_client'),
+
+    path('kqls-post/<str:slug>', kqls_post_detail_client,name='kqls_post_detail_client'),
 
 ]

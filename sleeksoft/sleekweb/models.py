@@ -370,6 +370,26 @@ class Edit_kqls1(models.Model):
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
+class KqlsPost(models.Model):
+    Title = models.CharField(max_length=350, blank=True, null=True)
+    Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)  # Thêm slug
+    Content = RichTextUploadingField(blank=True, null=True)
+    Avatar = models.ImageField(upload_to='AVATAR_KQLS',null=True,blank=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.Slug:
+            base_slug = slugify(self.Title)
+            slug = base_slug
+            n = 1
+            # Nếu slug đã tồn tại thì thêm số đuôi
+            while BlogPost.objects.filter(Slug=slug).exists():
+                slug = f"{base_slug}-{n}"
+                n += 1
+            self.Slug = slug
+        super().save(*args, **kwargs)
+
 
     
 

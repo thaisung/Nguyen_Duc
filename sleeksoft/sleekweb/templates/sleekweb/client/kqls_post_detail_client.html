@@ -1,24 +1,24 @@
 {% extends './base_client.html' %}
-{% block title %}{{ obj_Blog.Title }}{% endblock %}
+{% block title %}{{ obj_Kqls_post.Title }}{% endblock %}
 {% block seo_tag %}
     <meta name="description" content="Blog">
     <meta name="keywords" content="Blog" />
-    <link rel="canonical" href="{% url 'nav_blog_client' %}" />
+    <link rel="canonical" href="{% url 'link_ket_qua_lam_san_client' %}" />
 {% endblock %}
 {% block meta_tag %}
-    <meta property="og:title" content="{{ obj_Blog.Title }}">
+    <meta property="og:title" content="{{ obj_Kqls_post.Title }}">
     <meta property="og:description" content="Blog">
     <meta property="og:image" content="{{domain}}/upload/website/logo.png">
     <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:url" content="{% url 'nav_blog_client' %}">
+    <meta property="og:url" content="{% url 'link_ket_qua_lam_san_client' %}">
 {% endblock %}
 {% block content %}
 <main class="flex flex-col items-center w-full mb-6">
     <div class="flex flex-col gap-[20px] max-w-[1200px] p-[15px] lg:p-[0px] w-full">
         <div class="flex gap-[20px] w-full">
             <div class="content-container ckeditor-content flex flex-col text-left  grow w-full lg:border-r-[1px] border-[#11284A] lg:pr-[20px]">
-                <h1 class="text-[18px] lg:text-[22px] font-bold">{{ obj_Blog.Title }}</h1>
-                {{ obj_Blog.Content|safe }}  <!-- Chỉ cần hiển thị, không cần thêm <p> ngoài -->
+                <h1 class="text-[18px] lg:text-[22px] font-bold mb-3">{{ obj_Kqls_post.Title }}</h1>
+                {{ obj_Kqls_post.Content|safe }}  <!-- Chỉ cần hiển thị, không cần thêm <p> ngoài -->
             </div>
             <div class="hidden lg:flex flex-col min-w-[300px] max-w-[300px] gap-[30px]">
                 <div class="flex flex-col w-full rounded overflow-hidden">

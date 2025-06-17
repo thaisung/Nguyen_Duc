@@ -95,11 +95,43 @@ def link_ket_qua_lam_san_client(request):
             context['obj'] = {}
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        try:
-            context['obj_kqls'] = Edit_kqls1.objects.get(Order=1)
-        except Edit_kqls1.DoesNotExist:
-            # Trả về redirect về trang chủ hoặc trang 404 tùy ý
-            return redirect('/')
+        # try:
+        #     context['obj_kqls'] = Edit_kqls1.objects.get(Order=1)
+        # except Edit_kqls1.DoesNotExist:
+        #     # Trả về redirect về trang chủ hoặc trang 404 tùy ý
+        #     return redirect('/')
+
+        context['list_KqlsPost'] =  KqlsPost.objects.all().order_by('-id')
+        s = request.GET.get('s')
+        if s:
+            context['list_KqlsPost'] = context['list_KqlsPost'].filter(Q(Title__icontains=s)).order_by('-id')
+            context['s'] = s
+        p = request.GET.get('p','1')
+        context['p'] = p
+        # Sử dụng Paginator để chia nhỏ danh sách (10 là số lượng mục trên mỗi trang)
+        paginator = Paginator(context['list_KqlsPost'], settings.PAGE)
+        # Lấy số trang hiện tại từ URL, nếu không mặc định là trang 1
+        context['list_KqlsPost'] = paginator.get_page(p)
+
         return render(request, 'sleekweb/client/link_ket_qua_lam_san_client.html', context, status=200)
     
     
+def kqls_post_detail_client(request,slug):
+    if request.method == 'GET':
+        context = {}
+        
+        try:
+            context['obj'] = Website.objects.get(Count=1)
+        except:
+            context['obj'] = {}
+
+        context['list_KqlsPost'] =  KqlsPost.objects.all().order_by('-id')
+
+        try:
+            context['obj_Kqls_post'] = KqlsPost.objects.get(Slug=slug)
+        except KqlsPost.DoesNotExist:
+            # Trả về redirect về trang chủ hoặc trang 404 tùy ý
+            return redirect('/')
+
+        context['list_Product'] = Product.objects.all().order_by('-id')
+        return render(request, 'sleekweb/client/kqls_post_detail_client.html', context, status=200)
