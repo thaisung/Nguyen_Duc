@@ -1011,10 +1011,6 @@ select {
   margin-top: 58px;
 }
 
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
 .block {
   display: block;
 }
@@ -2759,14 +2755,6 @@ select {
     width: auto;
   }
 
-  .lg\:w-\[1000px\] {
-    width: 1000px;
-  }
-
-  .lg\:w-\[1300px\] {
-    width: 1300px;
-  }
-
   .lg\:min-w-\[150px\] {
     min-width: 150px;
   }
@@ -2777,14 +2765,6 @@ select {
 
   .lg\:max-w-\[150px\] {
     max-width: 150px;
-  }
-
-  .lg\:max-w-\[1500px\] {
-    max-width: 1500px;
-  }
-
-  .lg\:max-w-\[1000px\] {
-    max-width: 1000px;
   }
 
   .lg\:grid-cols-2 {
