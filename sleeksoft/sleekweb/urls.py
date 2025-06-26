@@ -181,6 +181,7 @@ urlpatterns = [
     path('admin/change-kqls1',change_kqls1_admin,name='change_kqls1_admin'),
     path('admin/change-dsdt',change_dsdt_admin,name='change_dsdt_admin'),
     path('admin/change-dsdt-remove',change_dsdt_remove_admin,name='change_dsdt_remove_admin'),
+    path('admin/change-dsdt-order',change_dsdt_order_admin,name='change_dsdt_order_admin'),
 
     path('ckeditor/', include('ckeditor_uploader.urls')),
 

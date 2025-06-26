@@ -1,3 +1,7 @@
+45.251.115.154
+3z8f2cTEUuA9
+
+
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 
 py -0p

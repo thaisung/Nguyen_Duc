@@ -66,8 +66,8 @@ def change_dsdt_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        context['list_Edit_dsdt_mb'] = Edit_dsdt.objects.filter(Category=0).order_by('-id')
-        context['list_Edit_dsdt_mn'] = Edit_dsdt.objects.filter(Category=1).order_by('-id')
+        context['list_Edit_dsdt_mb'] = Edit_dsdt.objects.filter(Category=0).order_by('Order')
+        context['list_Edit_dsdt_mn'] = Edit_dsdt.objects.filter(Category=1).order_by('Order')
         context['Category'] = request.GET.get('Category')
         if not context['Category']:
             context['Category'] = '0'
@@ -101,18 +101,18 @@ def change_dsdt_admin(request):
             return JsonResponse({'success': False, 'message': 'Bạn chưa được cấp quyền do tài khoản chưa đăng nhập hoặc tài khoản không có quyền truy cập'})
 
 
-# def change_dsdt_order_admin(request):    
-#     if request.method == 'POST':
-#         context = {}
-#         id = request.POST.get('id')
-#         Order = request.POST.get('Order')
-#         try:
-#             obj = Edit_dsdt.objects.get(pk=id)
-#             obj.Order = Order
-#             obj.save()
-#         except:
-#             return redirect('change_dsdt_admin')
-#         return redirect('change_dsdt_admin')
+def change_dsdt_order_admin(request):    
+    if request.method == 'POST':
+        context = {}
+        id = request.POST.get('id')
+        Order = request.POST.get('Order')
+        try:
+            obj = Edit_dsdt.objects.get(pk=id)
+            obj.Order = Order
+            obj.save()
+        except:
+            return redirect('change_dsdt_admin')
+        return redirect('change_dsdt_admin')
     
 def change_dsdt_remove_admin(request):    
     if request.method == 'POST':
