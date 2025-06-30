@@ -78,7 +78,7 @@ class detail_product_Sitemap(Sitemap):
 
     def location(self, item):
         # Dùng slug của mỗi category_product để tạo đường dẫn
-        return reverse('detail_product_client', kwargs={'pk': item.Slug})
+        return reverse('detail_product_client', kwargs={'slug': item.Slug})
     
 class detail_BlogPost_Sitemap(Sitemap):
     changefreq = "daily"
