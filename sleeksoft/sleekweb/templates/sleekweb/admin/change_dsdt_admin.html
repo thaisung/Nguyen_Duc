@@ -52,7 +52,7 @@
                         {% csrf_token %}
                         <input type="text" value="{{i.Name}}" placeholder="Tên" class="rounded-md w-full" name="Name" />
                         <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
-                        <input type="text" value="{{i.Link}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Link" />
+                        <input type="text" value="{{i.Link}}" placeholder="Link" class="rounded-md w-full" name="Link" />
                         <input type="hidden" value="0" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
                         <input type="hidden" value="{{i.id}}" placeholder="Danh mục" class="rounded-md w-full" name="id" />
                         <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />    
@@ -93,7 +93,7 @@
                         {% csrf_token %}
                         <input type="text" value="{{i.Name}}" placeholder="Tên" class="rounded-md w-full" name="Name" />
                         <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
-                        <input type="text" value="{{i.Link}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Link" />
+                        <input type="text" value="{{i.Link}}" placeholder="Link" class="rounded-md w-full" name="Link" />
                         <input type="hidden" value="1" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
                         <input type="hidden" value="{{i.id}}" placeholder="Danh mục" class="rounded-md w-full" name="id" />
                         <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />    

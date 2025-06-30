@@ -21,14 +21,37 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"upload")
 
 CKEDITOR_UPLOAD_PATH = "CKeditor/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'height': 600,  # tăng chiều cao vùng soạn thảo
-#         'width': 'auto',
-#         'toolbar': 'Full',
-#         'tabSpaces': 4,
-#     },
-# }
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'height': 400,
+        'width': '100%',
+        'toolbar_Custom': [
+            ['Format', 'Font', 'FontSize'],
+            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['TextColor', 'BGColor'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList'],
+            ['Outdent', 'Indent'],
+            ['Link', 'Unlink', 'Image', 'Embed'],
+            ['Undo', 'Redo'],
+            ['RemoveFormat', 'Source', 'Maximize'],
+        ],
+        'fontSize_sizes': '12/12px;14/14px;16/16px;18/18px;20/20px;24/24px;28/28px;32/32px;36/36px;',
+        'extraPlugins': ','.join([
+            'justify',
+            'font',
+            'colorbutton',
+            'embed',         # để chèn video
+            'embedbase',
+            'autoembed',
+            'image2',        # cải tiến hiển thị ảnh
+        ]),
+        'removePlugins': 'image',  # bỏ plugin ảnh mặc định nếu dùng image2
+        'allowedContent': True,    # cho phép tất cả các thẻ HTML (cần thiết cho justify, font-size...)
+    }
+}
+
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # Ví dụ cho phép tải lên 10MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # Tương tự cho file upload
@@ -83,8 +106,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'sleekweb.middleware.MaintenanceMiddleware',
-    # 'sleekweb.middleware.Redirect404ToHomeMiddleware',
-    'sleekweb.middleware.BlockAfterDateMiddleware',
+    'sleekweb.middleware.Redirect404ToHomeMiddleware',
+    # 'sleekweb.middleware.BlockAfterDateMiddleware',
 ]
 
 

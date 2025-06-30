@@ -79,6 +79,38 @@ class detail_product_Sitemap(Sitemap):
     def location(self, item):
         # Dùng slug của mỗi category_product để tạo đường dẫn
         return reverse('detail_product_client', kwargs={'pk': item.id})
+    
+class detail_BlogPost_Sitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.9
+    protocol = protocol
+
+    def items(self):
+        # Lấy tất cả các Category_product từ cơ sở dữ liệu
+        return BlogPost.objects.all()
+
+    def lastmod(self, obj):
+        return obj.Update_time
+
+    def location(self, item):
+        # Dùng slug của mỗi category_product để tạo đường dẫn
+        return reverse('nav_blog_detail_client', kwargs={'slug': item.Slug})
+    
+class detail_KqlsPost_Sitemap(Sitemap):
+    changefreq = "daily"
+    priority = 0.9
+    protocol = protocol
+
+    def items(self):
+        # Lấy tất cả các Category_product từ cơ sở dữ liệu
+        return KqlsPost.objects.all()
+
+    def lastmod(self, obj):
+        return obj.Update_time
+
+    def location(self, item):
+        # Dùng slug của mỗi category_product để tạo đường dẫn
+        return reverse('kqls_post_detail_client', kwargs={'slug': item.Slug})
 
 # class detail_sound_Sitemap(Sitemap):
 #     changefreq = "weekly"

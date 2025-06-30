@@ -91,6 +91,8 @@ from django.contrib.sitemaps.views import sitemap
 sitemaps_dict = {
     'static': StaticViewSitemap,
     'product': detail_product_Sitemap,
+    'blog':detail_BlogPost_Sitemap,
+    'kqls':detail_KqlsPost_Sitemap,
 }
 
 urlpatterns = [
