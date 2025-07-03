@@ -104,7 +104,6 @@ INTERNAL_IPS = [
 ]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 AUTH_USER_MODEL = 'sleekweb.User'
-DOMAIN = 'http://127.0.0.1:8000'
 
 MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
