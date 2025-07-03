@@ -56,18 +56,28 @@ CKEDITOR_CONFIGS = {
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # Ví dụ cho phép tải lên 10MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # Tương tự cho file upload
 
-PAGE = 12
+import environ
+
+env = environ.Env()
+# environ.Env.read_env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+DEBUG = env.bool('DEBUG', default=False)
+SECRET_KEY = env('SECRET_KEY')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+DOMAIN = env('DOMAIN')
+PAGE = env('PAGE_DATA')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xh1lfx$+z@65@v(86t*t7kh)l7)3dh9b4d6rxa3yv)77-_*-7#'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','hydrinity.com.vn']
 
 
 # Application definition
@@ -146,9 +156,9 @@ WSGI_APPLICATION = 'sleeksoft.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Nguyen_Duc',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',   
+        'NAME': env('NAME_DB'),
+        'USER': env('USER_DB'),
+        'PASSWORD': env('PASSWORD_DB'),   
         'HOST': 'localhost',
         'PORT': '',
     }
