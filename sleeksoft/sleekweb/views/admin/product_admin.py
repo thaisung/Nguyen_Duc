@@ -84,7 +84,7 @@ def product_add_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        print('context:',context)
+        # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/product_add_admin.html', context, status=200)
         else:
@@ -118,7 +118,7 @@ def product_edit_admin(request,pk):
         context = {}
         context['domain'] = settings.DOMAIN
         context['obj_Product'] = Product.objects.get(pk=pk)
-        print('context:',context)
+        # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/product_edit_admin.html', context, status=200)
         else:
