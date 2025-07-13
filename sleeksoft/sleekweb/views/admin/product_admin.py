@@ -73,7 +73,7 @@ def product_admin(request):
         if s:
             context['list_Product'] = context['list_Product'].filter(Q(Name__icontains=s)).order_by('-id')
             context['s'] = s
-        print('context:',context)
+        # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/product_admin.html', context, status=200)
         else:
