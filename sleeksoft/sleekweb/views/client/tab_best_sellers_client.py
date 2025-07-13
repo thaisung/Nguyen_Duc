@@ -103,6 +103,6 @@ def tab_best_sellers_client(request):
         context['list_Product'] = Product.objects.filter(Q(Category__icontains='BEST SELLERS'))
         context['list_Product1'] = Product.objects.filter(Q(Category__icontains='PRODUCTS'))
         context['list_Product2'] = Product.objects.filter(Q(Category__icontains='REGIMENS'))
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/tab_best_sellers_client.html', context, status=200)
     
