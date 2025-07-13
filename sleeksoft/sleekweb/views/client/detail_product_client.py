@@ -78,6 +78,6 @@ def detail_product_client(request,slug):
             context['obj'] = {}
         context['list_Product'] = Product.objects.all()
         context['obj_Product'] = Product.objects.get(Slug=slug)
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/detail_product_client.html', context, status=200)
     

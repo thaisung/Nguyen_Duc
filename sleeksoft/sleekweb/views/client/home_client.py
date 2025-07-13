@@ -73,6 +73,6 @@ def home_client(request):
         context = {}
         context['domain'] = settings.DOMAIN
         context['list_Product'] = Product.objects.all()
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/home_client.html', context, status=200)
     

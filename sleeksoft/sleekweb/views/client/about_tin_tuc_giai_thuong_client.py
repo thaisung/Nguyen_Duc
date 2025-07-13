@@ -81,7 +81,7 @@ def about_tin_tuc_giai_thuong_client(request):
         context['list_Edit_ttgt1'] = Edit_ttgt1.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/about_tin_tuc_giai_thuong_client.html', context, status=200)
     
 def about_tin_tuc_giai_thuong_detail_client(request,slug):
@@ -99,7 +99,7 @@ def about_tin_tuc_giai_thuong_detail_client(request,slug):
         context['list_ttgt1'] = Edit_ttgt1.objects.all().order_by('-id')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/link_tt_gt_1_client.html', context, status=200)
 
 def link_tt_gt_1_client(request):
@@ -108,7 +108,7 @@ def link_tt_gt_1_client(request):
         context['domain'] = settings.DOMAIN
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/link_tt_gt_1_client.html', context, status=200)
     
 def link_tt_gt_2_client(request):
@@ -117,5 +117,5 @@ def link_tt_gt_2_client(request):
         context['domain'] = settings.DOMAIN
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/link_tt_gt_2_client.html', context, status=200)

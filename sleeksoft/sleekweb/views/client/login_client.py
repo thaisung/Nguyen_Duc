@@ -72,6 +72,6 @@ def login_client(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/login_client.html', context, status=200)
     

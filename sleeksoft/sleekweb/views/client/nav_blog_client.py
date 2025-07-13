@@ -107,7 +107,7 @@ def nav_blog_client(request):
         except:
             context['obj_Count_5'] = {}
         context['list_Product'] = Product.objects.all().order_by('-id')
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/nav_blog_client.html', context, status=200)
     
 def nav_blog_detail_client(request,slug):

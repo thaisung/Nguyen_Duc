@@ -67,7 +67,7 @@ def login_admin(request):
     if request.method == 'GET':
         context = {}
         context['domain'] = settings.DOMAIN
-        print('context:',context)
+        # print('context:',context)
         if request.user.is_authenticated:
             return redirect('product_admin')
         else:

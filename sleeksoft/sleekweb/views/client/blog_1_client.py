@@ -82,6 +82,6 @@ def blog_1_client(request):
         except:
             context['obj_Count_3'] = {}
         context['list_Product'] = Product.objects.all()
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/blog_1_client.html', context, status=200)
     

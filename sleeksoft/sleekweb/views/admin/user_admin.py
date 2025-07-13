@@ -72,7 +72,7 @@ def user_edit_admin(request,pk):
                 context['obj_user'] = User.objects.get(pk=pk)
             except:
                 context['obj_user'] = {}
-            print('context:',context)
+            # print('context:',context)
             if request.user.is_authenticated:
                 return render(request, 'sleekweb/admin/user_edit_admin.html', context, status=200)
             else:

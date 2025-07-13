@@ -89,6 +89,6 @@ def nav_nghien_cuu_lam_san(request):
         except:
             context['obj2'] = {}
         context['list_Product'] = Product.objects.all()
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/nav_nghien_cuu_lam_san.html', context, status=200)
     

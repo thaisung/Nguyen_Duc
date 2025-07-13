@@ -90,7 +90,7 @@ def change_ttgt_admin(request):
         except:
             context['obj'] = {}
 
-        print('context:',context)
+        # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_ttgt_admin.html', context, status=200)
         else:

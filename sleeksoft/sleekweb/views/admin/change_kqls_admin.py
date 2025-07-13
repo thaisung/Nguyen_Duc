@@ -70,7 +70,7 @@ def change_kqls_admin(request):
             context['obj'] = Edit_kqls.objects.get(Count=1)
         except:
             context['obj'] = {}
-        print('context:',context)
+        # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_kqls_admin.html', context, status=200)
         else:

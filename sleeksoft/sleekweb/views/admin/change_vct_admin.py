@@ -71,7 +71,7 @@ def change_vct_admin(request):
         except:
             context['obj'] = {}
         context['list_Edit_vct1'] = Edit_vct1.objects.all().order_by('Order')
-        print('context:',context)
+        # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_vct_admin.html', context, status=200)
         else:

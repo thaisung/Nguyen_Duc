@@ -84,6 +84,6 @@ def link_nghien_cuu_khoa_hoc_client(request):
         context['list_Edit_nckh2'] = Edit_nckh2.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/link_nghien_cuu_khoa_hoc_client.html', context, status=200)
     

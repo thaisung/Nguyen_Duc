@@ -77,6 +77,6 @@ def nav_products_client(request):
         except:
             context['obj'] = {}
         context['list_Product'] = Product.objects.all()
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/nav_products_client.html', context, status=200)
     

@@ -83,6 +83,6 @@ def select_kvmb_client(request):
             context['obj_Count_1'] = Photo_Content.objects.get(Count=1)
         except:
             context['obj_Count_1'] = {}
-        print('context:',context)
+        # print('context:',context)
         return render(request, 'sleekweb/client/select_kvmb_client.html', context, status=200)
     
