@@ -56,8 +56,26 @@
       </script>
 
     <style>
-        
+
         @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/UTMAptima.woff2' %}") format('woff2'),
+                url("{% static 'fonts/UTMAptima.woff' %}") format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/UTMAptimaBold.woff2' %}") format('woff2'),
+                url("{% static 'fonts/UTMAptimaBold.woff' %}") format('woff');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        /* @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
             font-weight: 400;
@@ -66,38 +84,10 @@
 
         @font-face {
             font-family: 'UTM Aptima';
-            src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
-            font-weight: 500;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'UTM Aptima';
-            src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
-            font-weight: 600;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'UTM Aptima';
             src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
             font-weight: 700;
             font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'UTM Aptima';
-            src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
-            font-weight: 800;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'UTM Aptima';
-            src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
-            font-weight: 900;
-            font-style: normal;
-        }
+        } */
 
         @font-face {
             font-family: 'UTM Aptima';
