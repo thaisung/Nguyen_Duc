@@ -19,7 +19,6 @@
             <div class="content-container ckeditor-content flex flex-col text-left  grow w-full lg:border-r-[1px] border-[#11284A] lg:pr-[20px]"
             style="font-family: 'UTM Aptima', sans-serif !important;">
                 <h1 class="text-[18px] lg:text-[25px] font-bold">{{ obj_Blog.Title }}</h1>
-                <br>
                 {{ obj_Blog.Content|safe }}  <!-- Chỉ cần hiển thị, không cần thêm <p> ngoài -->
             </div>
             <div class="hidden lg:flex flex-col min-w-[300px] max-w-[300px] gap-[30px]">
@@ -61,6 +60,65 @@
         </div>
     </div>
 </main>
+<style>
+    .ckeditor-content {
+        font-family: 'UTM Aptima', sans-serif;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #222;
+    }
+
+    .ckeditor-content p {
+        margin: 0 0 1.2em;
+    }
+
+    .ckeditor-content h1,
+    .ckeditor-content h2,
+    .ckeditor-content h3,
+    .ckeditor-content h4 {
+        font-weight: bold;
+        margin: 1.4em 0 0.8em;
+        line-height: 1.4;
+    }
+
+    .ckeditor-content ul,
+    .ckeditor-content ol {
+        margin-left: 2em;
+        margin-bottom: 1.2em;
+    }
+
+    .ckeditor-content li {
+        margin-bottom: 0.5em;
+    }
+
+    .ckeditor-content blockquote {
+        padding: 0.5em 1em;
+        margin: 1em 0;
+        border-left: 4px solid #ccc;
+        background-color: #f9f9f9;
+    }
+
+    .ckeditor-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1em 0;
+    }
+
+    .ckeditor-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1em;
+    }
+
+    .ckeditor-content table, 
+    .ckeditor-content th, 
+    .ckeditor-content td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+</style>
+
 <style>
     /* Điều chỉnh ảnh trong nội dung */
     .ckeditor-content img {
