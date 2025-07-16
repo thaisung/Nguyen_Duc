@@ -1,6 +1,16 @@
 45.251.115.154
 3z8f2cTEUuA9
 
+## backup dữ liệu
+mkdir -p /home/backup
+
+cd /tmp && sudo -u postgres pg_dump -F c -f db_backup_$(date +%F).dump
+mv /tmp/db_backup_$(date +%F).dump /home/backup/
+
+tar czpf /home/backup/upload_backup_$(date +%F).tar.gz /home/sleekproject/sleeksoft/upload/
+## end
+
+
 
 python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 
