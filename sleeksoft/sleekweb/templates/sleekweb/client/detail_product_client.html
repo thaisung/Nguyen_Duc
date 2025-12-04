@@ -28,7 +28,7 @@
             <div class="flex justify-center">
                 <span class="block lg:hidden text-[20px] font-bold format_number bg-[#11284A] text-white rounded-md px-3 py-1 my-3">GIÁ: {{obj_Product.list_size.all.last.Price}} VNĐ</span>
             </div>
-            <p class="font-normal text-[13px] lg:text-[16px]">{{obj_Product.Introduce}}</p>
+            <p class="font-normal text-[13px] lg:text-[16px]">{{obj_Product.Introduce|linebreaksbr}}</p>
             <div class="flex flex-col mt-3">
                 <div class="flex flex-col border-t-[1px] border-[#ddd]" >
                     <div class="click_pr cursor-pointer flex gap-2 py-3">
@@ -72,7 +72,7 @@
                         </span>
                     </div>
                     <p class="hidden tab_pr py-2 lg:py-3">
-                        {{obj_Product.Main_ingredients}}
+                        {{obj_Product.Main_ingredients|linebreaksbr}}
                     </p>
                 </div>
                 <div class="flex flex-col border-t-[1px] border-[#ddd]" >
@@ -95,7 +95,7 @@
                         </span>
                     </div>
                     <p class="hidden tab_pr py-2 lg:py-3">
-                        {{obj_Product.How_use}}
+                        {{obj_Product.How_use|linebreaksbr}}
                     </p>
                 </div>
                 <!-- <div class="flex flex-col border-t-[1px] border-[#ddd]" >
