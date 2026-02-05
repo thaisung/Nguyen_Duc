@@ -30,7 +30,7 @@
             <a href="{% url 'nav_blog_detail_client' slug=i.Slug %}" class="cursor-pointer">            
                 <div class="flex gap-3 items-start">
                     <div class=" pt-[7px]">
-                        <img alt="img" src="{% if i.Avatar %}{{i.Avatar.url|default:''}}{% endif %}" class="min-w-[100px] max-w-[100px] lg:min-w-[150px] lg:max-w-[150px]  h-auto" />
+                        <img alt="img" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" class="min-w-[100px] max-w-[100px] lg:min-w-[150px] lg:max-w-[150px]  h-auto" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <p class="p-0 m-0 font-bold text-[15px] lg:text-[20px]">{{i.Title}}</p>

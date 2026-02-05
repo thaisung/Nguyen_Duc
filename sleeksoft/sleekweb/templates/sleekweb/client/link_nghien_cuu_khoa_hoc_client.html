@@ -19,7 +19,7 @@
     </h1>
     <div class="flex flex-col w-full">
         <div class="relative flex justify-center items-center w-full h-[156px] lg:h-[400px] overflow-hidden">
-            <img alt="img" class="w-full h-full object-cover" src="{{obj1.Photo1.url|default:''}}" />
+            <img alt="img" class="w-full h-full object-cover" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" />
             <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
                 <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[20px] lg:p-none">
                     <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">
@@ -36,7 +36,7 @@
                 <h3 class="uppercase font-normal text-[10px] lg:text-[36px] text-[#25394f]">
                     {{obj1.Title2|safe}}
                 </h3>
-                <img alt="img" class="w-full lg:w-[1100px]" src="{{obj1.Photo2.url|default:''}}" />
+                <img alt="img" class="w-full lg:w-[1100px]" src="{% if obj1.Photo2 %}{{obj1.Photo2.url}}{% endif %}" />
             </div>
         </div>
         <div class="w-full h-[290px] lg:h-[900px] flex justify-center  overflow-hidden pt-[30px] lg:pt-[100px]"
@@ -48,7 +48,7 @@
                 <div class="flex justify-between w-full lg:w-[1100px]  mt-[15px] lg:mt-[50px]">
                     {% for i in list_Edit_nckh1 %}
                     <div class="flex flex-col items-center gap-3 lg:gap-6 w-full lg:w-[390px] px-4">
-                        <img alt="img" class="w-[22px] lg:w-[69px]" src="{{i.Photo.url|default:''}}" />
+                        <img alt="img" class="w-[22px] lg:w-[69px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
                         <h5 class="font-normal text-[10px] lg:text-[28px]">{{i.Title|safe}}</h5>
                         <p class="text-center text-[6px] lg:text-[16px]">
                             {{i.Content|safe}}
@@ -60,14 +60,14 @@
         </div>
         <div class="w-full h-[343px] lg:h-[900px] flex justify-center overflow-hidden px-[20px] lg:px-none" style="background-color: rgb(255, 255, 255);">
             <div class="flex flex-col items-center w-full lg:w-[1100px] mt-[17px] lg:mt-[50px]">
-                <img alt="img" class=" w-[52px] lg:w-[152px]" src="{{obj1.Photo3.url|default:''}}" />
+                <img alt="img" class=" w-[52px] lg:w-[152px]" src="{% if obj1.Photo3 %}{{obj1.Photo3.url}}{% endif %}" />
                 <p class="text-[#25394F] text-[0.4rem] lg:text-[1.35rem] text-center mt-1 lg:mt-2">
                     {{obj1.Content2|safe}}
                 </p>
                 <div class="grid grid-cols-2 gap-[17px] lg:gap-[50px] mt-[15px] lg:mt-[50px]">
                     {% for i in list_Edit_nckh2 %}
                     <div class="flex flex-col items-center gap-2 lg:gap-6">
-                        <img alt="img" class="w-[23px] lg:w-[69px]" src="{{i.Photo.url|default:''}}" />
+                        <img alt="img" class="w-[23px] lg:w-[69px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
                         <h5 class="uppercase font-normal text-[9px] lg:text-[28px] text-black text-center">
                             {{i.Title|safe}}
                         </h5>

@@ -15,7 +15,7 @@
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex items-center justify-center w-full h-[128px] lg:h-[560px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-        <img alt="img" src="{{ obj1.Photo1.url|default:'' }}" alt="Hình ảnh" class="w-full h-full object-cover text-white flex justify-center items-center" />
+        <img alt="img" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" alt="Hình ảnh" class="w-full h-full object-cover text-white flex justify-center items-center" />
     </div>
     <div class="flex flex-col w-full">
         <div class="w-full py-[15px] lg:py-[50px] flex items-center justify-center overflow-hidden">
@@ -66,7 +66,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] lg:gap-[50px] mt-[25px] lg:mt-[50px]">
                     {% for i in list_Edit_vct1 %}
                     <div class="flex flex-col items-center  lg:gap-2">
-                        <img class="w-[63px] lg:w-[69px]" src="{{i.Photo.url|default:''}}" />
+                        <img class="w-[63px] lg:w-[69px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
                         <h5 class="uppercase font-bold  text-[16px] lg:text-[28px]">{{i.Title}}</h5>
                         <p class="font-normal text-[12px] lg:text-[16px] italic lg:not-italic px-[20px] lg:px-none">
                             {{i.Content}}
@@ -78,8 +78,8 @@
         </div>
         <div class="w-full hidden lg:flex justify-center items-center overflow-hidden p-[50px]" style="background-color: rgb(222, 232, 241);">
             <div class="flex w-[1000px] flex-col gap-3">
-                <img alt="img" class="w-full h-full" src="{{obj1.Photo2.url|default:''}}" />
-                <img alt="img" class="w-full h-full" src="{{obj1.Photo3.url|default:''}}" />
+                <img alt="img" class="w-full h-full" src="{% if obj1.Photo2 %}{{obj1.Photo2.url}}{% endif %}" />
+                <img alt="img" class="w-full h-full" src="{% if obj1.Photo3 %}{{obj1.Photo3.url}}{% endif %}" />
             </div>
         </div>
     </div>
@@ -92,7 +92,7 @@
                 <div class="swiper-wrapper">
                     {% for i in list_image_slider_3 %}
                     <div class="swiper-slide">
-                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
+                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
                     </div>
                     {% endfor %}
                 </div>
@@ -136,7 +136,7 @@
         {% for i in list_Product %}
         <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
             <a href="{% url 'detail_product_client' slug=i.Slug %}">
-                <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
+                <img alt="img" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
             </a>
             <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
                 <a href="{% url 'detail_product_client' slug=i.Slug %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">

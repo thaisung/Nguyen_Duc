@@ -16,7 +16,7 @@
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="flex flex-col w-full justify-start">
         <div class="relative flex justify-center items-center w-full h-[189px] lg:h-[500px] overflow-hidden">
-            <img alt="img" class="w-full h-full object-cover lg:object-cover" src="{{obj1.Photo1.url|default:''}}" />
+            <img alt="img" class="w-full h-full object-cover lg:object-cover" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" />
             <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
                 <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[30px] lg:p-none">
                     <h2 class="font-normal text-[15px] lg:text-[60px] uppercase text-[#25394f]">
@@ -32,7 +32,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] lg:gap-[50px] text-[#11284A]">
                 {% for i in list_Edit_tnsm1 %}
                 <div class="w-[369px] flex flex-col gap-3 lg:gap-6 items-center text-center">
-                    <img alt="img" class="w-[59px] lg:w-[100px]" src="{{i.Photo.url|default:''}}" >
+                    <img alt="img" class="w-[59px] lg:w-[100px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" >
                     <h5 class=" lg:hidden uppercase font-bold text-[16px]  lg:text-[28px] text-center">
                         {{i.Title|safe}}
                     </h5>
@@ -48,7 +48,7 @@
         </div>
         <div class="flex justify-center items-center  bg-[#11284A] w-full p-[25px] lg:p-[50px]">
             <div class="flex flex-col items-center text-center text-white gap-[15px] lg:gap-[30px]" > 
-                <img alt="img" class="w-[210px] lg:w-[1142px]" src="{{obj1.Photo2.url|default:''}}" />
+                <img alt="img" class="w-[210px] lg:w-[1142px]" src="{% if obj1.Photo2 %}{{obj1.Photo2.url}}{% endif %}" />
                 <div class="w-full flex flex-col items-center text-center gap-[15px] lg:gap-[30px]">
                     <h5 class="uppercase  font-bold text-[16px] lg:text-[30px]">{{obj1.Title2|safe}}</h5>
                     <h6 class="font-normal text-[16px] lg:text-[30px] italic lg:not-italic">{{obj1.Title3|safe}}</h6>
