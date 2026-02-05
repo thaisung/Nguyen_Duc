@@ -28,11 +28,13 @@
                 </div>
             </div>
         </div>
-        <div class="w-full py-[25px] lg:py-none h-auto lg:h-[700px] flex justify-center items-center overflow-hidden bg-white">
+        <div class="w-full py-[25px] lg:py-none h-auto  flex justify-center items-center overflow-hidden bg-white">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] lg:gap-[50px] text-[#11284A]">
                 {% for i in list_Edit_tnsm1 %}
                 <div class="w-[369px] flex flex-col gap-3 lg:gap-6 items-center text-center">
-                    <img alt="img" class="w-[59px] lg:w-[100px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" >
+                    <div class="w-full px-8">
+                        <img alt="img" class="w-full" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" >
+                    </div>
                     <h5 class=" lg:hidden uppercase font-bold text-[16px]  lg:text-[28px] text-center">
                         {{i.Title|safe}}
                     </h5>

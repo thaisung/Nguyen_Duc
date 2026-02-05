@@ -1499,10 +1499,6 @@ select {
   width: 56px;
 }
 
-.w-\[59px\] {
-  width: 59px;
-}
-
 .w-\[60px\] {
   width: 60px;
 }
@@ -1577,10 +1573,6 @@ select {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[300px\] {
-  width: 300px;
 }
 
 .min-w-\[100px\] {
@@ -2090,6 +2082,11 @@ select {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .px-\[10px\] {
@@ -2677,10 +2674,6 @@ select {
 
   .lg\:max-h-none {
     max-height: none;
-  }
-
-  .lg\:w-\[100px\] {
-    width: 100px;
   }
 
   .lg\:w-\[1100px\] {
