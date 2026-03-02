@@ -107,6 +107,9 @@ def nav_blog_client(request):
         except:
             context['obj_Count_5'] = {}
         context['list_Product'] = Product.objects.all().order_by('-id')
+
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='BL').first()
+        
         # print('context:',context)
         return render(request, 'sleekweb/client/nav_blog_client.html', context, status=200)
     

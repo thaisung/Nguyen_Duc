@@ -113,6 +113,8 @@ def link_ket_qua_lam_san_client(request):
         # Lấy số trang hiện tại từ URL, nếu không mặc định là trang 1
         context['list_KqlsPost'] = paginator.get_page(p)
 
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='KQLS').first()
+
         return render(request, 'sleekweb/client/link_ket_qua_lam_san_client.html', context, status=200)
     
     
@@ -127,11 +129,12 @@ def kqls_post_detail_client(request,slug):
 
         context['list_KqlsPost'] =  KqlsPost.objects.all().order_by('-id')
 
-        try:
-            context['obj_Kqls_post'] = KqlsPost.objects.get(Slug=slug)
-        except KqlsPost.DoesNotExist:
-            # Trả về redirect về trang chủ hoặc trang 404 tùy ý
-            return redirect('/')
+        # try:
+        print('slug:',slug)
+        context['obj_Kqls_post'] = KqlsPost.objects.get(Slug=slug)
+        # except KqlsPost.DoesNotExist:
+        #     # Trả về redirect về trang chủ hoặc trang 404 tùy ý
+        #     return redirect('/')
 
         context['list_Product'] = Product.objects.all().order_by('-id')
         return render(request, 'sleekweb/client/kqls_post_detail_client.html', context, status=200)

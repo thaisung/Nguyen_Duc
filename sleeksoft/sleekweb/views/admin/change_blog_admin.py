@@ -81,6 +81,9 @@ def change_blog_admin(request):
         paginator = Paginator(list_BlogPost, settings.PAGE)
         # Lấy số trang hiện tại từ URL, nếu không mặc định là trang 1
         context['list_BlogPost'] = paginator.get_page(p)
+
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='BL').first()
+
         return render(request, 'sleekweb/admin/change_blog_admin.html',context, status=200)
 
 def clean_content(content):

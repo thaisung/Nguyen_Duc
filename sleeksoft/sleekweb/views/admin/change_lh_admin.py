@@ -70,6 +70,9 @@ def change_lh_admin(request):
             context['obj'] = Edit_lh.objects.get(Count=1)
         except:
             context['obj'] = {}
+
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='LH').first()
+
         # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_lh_admin.html', context, status=200)

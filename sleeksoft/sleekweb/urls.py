@@ -84,9 +84,12 @@ from .views.admin.change_kqls1_admin import *
 from .views.admin.change_blog_admin import *
 from .views.admin.change_kqls_post_admin import *
 from .views.admin.user_admin import *
+from .views.admin.change_seo_admin import *
 
 from sleekweb.sitemaps import *
 from django.contrib.sitemaps.views import sitemap
+
+from sleekweb.robots import *
 
 sitemaps_dict = {
     'static': StaticViewSitemap,
@@ -94,6 +97,20 @@ sitemaps_dict = {
     'blog':detail_BlogPost_Sitemap,
     'kqls':detail_KqlsPost_Sitemap,
 }
+
+from django.http import Http404
+
+def slug_router(request, slug):
+    if Product.objects.filter(Slug=slug).exists():
+        return detail_product_client(request, slug)
+
+    if BlogPost.objects.filter(Slug=slug).exists():
+        return nav_blog_detail_client(request, slug)
+
+    if KqlsPost.objects.filter(Slug=slug).exists():
+        return kqls_post_detail_client(request, slug)
+
+    raise Http404()
 
 urlpatterns = [
 
@@ -103,7 +120,9 @@ urlpatterns = [
     path('add-mb', add_dsdt_mb,name='add_dsdt_mb'),
     path('add-mn', add_dsdt_mn,name='add_dsdt_mn'),
     #endapi
+
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='sitemap'),
+    path("robots.txt", robots_txt),
 
 
     path('account/login', login_client,name='login_client'),
@@ -114,7 +133,6 @@ urlpatterns = [
     
 
     path('blog', nav_blog_client,name='nav_blog_client'),
-    path('blog/<str:slug>', nav_blog_detail_client,name='nav_blog_detail_client'),
     path('mineral-research', nav_nghien_cuu_lam_san,name='nav_nghien_cuu_lam_san'),
     path('products', nav_products_client,name='nav_products_client'),
 
@@ -138,7 +156,10 @@ urlpatterns = [
     path('scientific-research', link_nghien_cuu_khoa_hoc_client,name='link_nghien_cuu_khoa_hoc_client'),
     path('clinical-results', link_ket_qua_lam_san_client,name='link_ket_qua_lam_san_client'),
 
-    path('detail-proudct/<str:slug>/', detail_product_client,name='detail_product_client'),
+    # path('<slug:slug>.html', detail_product_client,name='detail_product_client'),
+    # path('<slug:slug>.html', nav_blog_detail_client,name='nav_blog_detail_client'),
+    # path('<slug:slug>.html', kqls_post_detail_client,name='kqls_post_detail_client'),
+    path('<slug:slug>.html', slug_router,name='slug_router'),
 
     path('admin/login', login_admin,name='login_admin'),
     path('admin/logout', logout_admin,name='logout_admin'),
@@ -203,6 +224,7 @@ urlpatterns = [
 
     path('signup-email',signup_email_client,name='signup_email_client'),
 
-    path('kqls-post/<str:slug>', kqls_post_detail_client,name='kqls_post_detail_client'),
+    path('admin/change-seo-page', change_seo_page_admin, name='change_seo_page_admin'),
+
 
 ]

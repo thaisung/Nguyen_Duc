@@ -71,6 +71,9 @@ def change_dsdt_admin(request):
         context['Category'] = request.GET.get('Category')
         if not context['Category']:
             context['Category'] = '0'
+        
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='DSDT').first()
+
         # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_dsdt_admin.html', context, status=200)

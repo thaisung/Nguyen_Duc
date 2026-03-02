@@ -1,16 +1,16 @@
 {% extends './base_client.html' %}
-{% block title %}Liên hệ{% endblock %}
+{% block title %}{{obj_Seo_Page.Seo_Title}}{% endblock %}
 {% block seo_tag %}
-    <meta name="description" content="Liên hệ">
+    <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta name="keywords" content="Liên hệ" />
-    <link rel="canonical" href="{% url 'about_lien_he_client' %}" />
+    <link rel="canonical" href="{{domain}}{% url 'about_lien_he_client' %}" />
 {% endblock %}
 {% block meta_tag %}
-    <meta property="og:title" content="Liên hệ">
-    <meta property="og:description" content="Liên hệ">
+    <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta property="og:image" content="{{domain}}/upload/website/logo.png">
     <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:url" content="{% url 'about_lien_he_client' %}">
+    <meta property="og:url" content="{{domain}}{% url 'about_lien_he_client' %}">
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center justify-center w-full mb-6 text-[#11284A]">

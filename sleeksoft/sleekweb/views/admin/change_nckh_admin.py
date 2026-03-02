@@ -72,6 +72,9 @@ def change_nckh_admin(request):
             context['obj'] = {}
         context['list_Edit_nckh1'] = Edit_nckh1.objects.all().order_by('Order')
         context['list_Edit_nckh2'] = Edit_nckh2.objects.all().order_by('Order')
+
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='NCKH').first()
+
         # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_nckh_admin.html', context, status=200)

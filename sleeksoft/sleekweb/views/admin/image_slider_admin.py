@@ -79,6 +79,8 @@ def image_slider_admin(request):
         context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1).order_by('Order')
         context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2).order_by('Order')
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3).order_by('Order')
+
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TC').first()
         
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/image_slider_admin.html', context, status=200)

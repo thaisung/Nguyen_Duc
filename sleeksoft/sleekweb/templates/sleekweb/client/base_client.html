@@ -18,6 +18,41 @@
 
     <!-- 3. Favicon -->
     <link rel="shortcut icon" href="{{domain}}/upload/website/logo.png" type="image/x-icon" />
+    
+    <!-- 3.1. Canonical -->
+    <link rel="canonical" href="https://hydrinity.com.vn/">
+
+    <!-- 3.2. Schema -->
+    {% if obj_Product  %}
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "{{ obj_Product.Name }}",
+        "description": "{{ obj_Product.Seo_Description }}"
+        }
+    </script>
+    {% endif %}
+    {% if obj_Blog %}
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "{{ obj_Blog.Title }}",
+        "description": "{{ obj_Blog.Seo_Description }}"
+        }
+    </script>
+    {% endif %}
+    {% if obj_Kqls_post %}
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Clinical results",
+        "name": "{{ obj_Kqls_post.Title }}",
+        "description": "{{ obj_Kqls_post.Seo_Description }}"
+        }
+    </script>
+    {% endif %}
 
     <!-- 4. Open Graph tags (Facebook, Zalo...) -->
     <meta property="og:type" content="website">

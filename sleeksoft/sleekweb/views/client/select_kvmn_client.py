@@ -83,6 +83,8 @@ def select_kvmn_client(request):
             context['obj_Count_1'] = Photo_Content.objects.get(Count=1)
         except:
             context['obj_Count_1'] = {}
+
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='DSDT').first()
         # print('context:',context)
         return render(request, 'sleekweb/client/select_kvmn_client.html', context, status=200)
     

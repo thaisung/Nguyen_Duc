@@ -81,6 +81,9 @@ def about_tam_nhin_va_su_menh_client(request):
         context['list_Edit_tnsm1'] = Edit_tnsm1.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+        
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TNSM').first()
+
         # print('context:',context)
         return render(request, 'sleekweb/client/about_tam_nhin_va_su_menh_client.html', context, status=200)
     

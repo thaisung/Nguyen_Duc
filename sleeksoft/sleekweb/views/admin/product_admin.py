@@ -73,6 +73,9 @@ def product_admin(request):
         if s:
             context['list_Product'] = context['list_Product'].filter(Q(Name__icontains=s)).order_by('-id')
             context['s'] = s
+        
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='SP').first()
+
         # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/product_admin.html', context, status=200)
@@ -92,6 +95,9 @@ def product_add_admin(request):
         
     elif request.method == 'POST':
         fields = {}
+        fields['Slug']= request.POST.get('Slug')
+        fields['Seo_Title']= request.POST.get('Seo_Title')
+        fields['Seo_Description']= request.POST.get('Seo_Description')
         fields['Avatar']= request.FILES.get('Avatar')
         fields['Name'] = request.POST.get('Name')
         fields['Title'] = request.POST.get('Title')
@@ -126,6 +132,9 @@ def product_edit_admin(request,pk):
     elif request.method == 'POST':
         fields = {}
         # fields['id']= request.FILES.get('id')
+        fields['Slug']= request.POST.get('Slug')
+        fields['Seo_Title']= request.POST.get('Seo_Title')
+        fields['Seo_Description']= request.POST.get('Seo_Description')
         fields['Avatar']= request.FILES.get('Avatar')
         fields['Name'] = request.POST.get('Name')
         fields['Title'] = request.POST.get('Title')
@@ -142,6 +151,9 @@ def product_edit_admin(request,pk):
         obj = Product.objects.get(pk=pk)
         obj.Name = fields['Name']
         obj.Title = fields['Title']
+        obj.Slug = fields['Slug']
+        obj.Seo_Title = fields['Seo_Title']
+        obj.Seo_Description = fields['Seo_Description']
         obj.Category = fields['Category']
         # obj.Price = fields['Price']
         obj.Introduce = fields['Introduce'] 

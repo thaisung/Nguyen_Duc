@@ -71,6 +71,9 @@ def change_tnsm_admin(request):
         except:
             context['obj'] = {}
         context['list_Edit_tnsm1'] = Edit_tnsm1.objects.all().order_by('Order')
+        
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TNSM').first()
+
         # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
             return render(request, 'sleekweb/admin/change_tnsm_admin.html', context, status=200)

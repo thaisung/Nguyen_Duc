@@ -1,16 +1,16 @@
 {% extends './base_client.html' %}
-{% block title %}Về chúng tôi{% endblock %}
+{% block title %}{{obj_Seo_Page.Seo_Title}}{% endblock %}
 {% block seo_tag %}
-    <meta name="description" content="Về chúng tôi">
+    <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta name="keywords" content="Về chúng tôi" />
-    <link rel="canonical" href="{% url 'about_ve_chung_toi_client' %}" />
+    <link rel="canonical" href="{{domain}}{% url 'about_ve_chung_toi_client' %}" />
 {% endblock %}
 {% block meta_tag %}
-    <meta property="og:title" content="Về chúng tôi">
-    <meta property="og:description" content="Về chúng tôi">
+    <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta property="og:image" content="{{domain}}/upload/website/logo.png">
     <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:url" content="{% url 'about_ve_chung_toi_client' %}">
+    <meta property="og:url" content="{{domain}}{% url 'about_ve_chung_toi_client' %}">
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">

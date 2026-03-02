@@ -5,7 +5,7 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ['Title', 'Content','Avatar']
+        fields = ['Slug','Seo_Title','Seo_Description','Title', 'Content','Avatar']
 
 class ttgt1Form(forms.ModelForm):
     class Meta:
@@ -20,5 +20,5 @@ class Edit_kqls1_Form(forms.ModelForm):
 class KqlsPostForm(forms.ModelForm):
     class Meta:
         model = KqlsPost
-        fields = ['Title', 'Content','Avatar']
+        fields = ['Slug','Seo_Title','Seo_Description','Title', 'Content','Avatar']
 

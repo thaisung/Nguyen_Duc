@@ -41,7 +41,8 @@ class Product(models.Model):
     class Meta:
         ordering = ["id"]
         verbose_name_plural = "Sản phẩm"
-    
+    Seo_Title = models.CharField(max_length=500, blank=True, null=True)
+    Seo_Description = models.CharField(max_length=1000, blank=True, null=True)
     Avatar = models.ImageField(upload_to='PRODUCT_AVATAR',null=True,blank=True)
     Name = models.CharField('Tên SP', max_length=500,blank=True, null=True)
     Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)  # Thêm slug
@@ -57,15 +58,30 @@ class Product(models.Model):
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
     def save(self, *args, **kwargs):
-        if not self.Slug:
+        if self.Slug:
+            # Kiểm tra slug người dùng nhập đã chuẩn chưa
+            normalized_slug = slugify(self.Slug)
+            if self.Slug == normalized_slug:
+                base_slug = self.Slug
+            else:
+                base_slug = normalized_slug
+        else:
+            # Không nhập slug → lấy theo Name
             base_slug = slugify(self.Name)
-            slug = base_slug
-            n = 1
-            # Nếu slug đã tồn tại thì thêm số đuôi
-            while BlogPost.objects.filter(Slug=slug).exists():
-                slug = f"{base_slug}-{n}"
-                n += 1
-            self.Slug = slug
+
+        slug = base_slug
+        n = 1
+
+        # Đảm bảo slug unique
+        while (
+            Product.objects.filter(Slug=slug).exclude(pk=self.pk).exists()
+            or KqlsPost.objects.filter(Slug=slug).exists()
+            or BlogPost.objects.filter(Slug=slug).exists()
+        ):
+            slug = f"{base_slug}-{n}"
+            n += 1
+
+        self.Slug = slug
         super().save(*args, **kwargs)
 
 class Photo(models.Model):
@@ -345,6 +361,8 @@ class Edit_kqls(models.Model):
 
 
 class BlogPost(models.Model):
+    Seo_Title = models.CharField(max_length=500, blank=True, null=True)
+    Seo_Description = models.CharField(max_length=1000, blank=True, null=True)
     Title = models.CharField(max_length=350, blank=True, null=True)
     Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)  # Thêm slug
     Content = RichTextUploadingField(blank=True, null=True)
@@ -353,15 +371,30 @@ class BlogPost(models.Model):
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
     def save(self, *args, **kwargs):
-        if not self.Slug:
+        if self.Slug:
+            # Kiểm tra slug người dùng nhập đã chuẩn chưa
+            normalized_slug = slugify(self.Slug)
+            if self.Slug == normalized_slug:
+                base_slug = self.Slug
+            else:
+                base_slug = normalized_slug
+        else:
+            # Không nhập slug → lấy theo Name
             base_slug = slugify(self.Title)
-            slug = base_slug
-            n = 1
-            # Nếu slug đã tồn tại thì thêm số đuôi
-            while BlogPost.objects.filter(Slug=slug).exists():
-                slug = f"{base_slug}-{n}"
-                n += 1
-            self.Slug = slug
+
+        slug = base_slug
+        n = 1
+
+        # Đảm bảo slug unique
+        while (
+            BlogPost.objects.filter(Slug=slug).exclude(pk=self.pk).exists()
+            or KqlsPost.objects.filter(Slug=slug).exists()
+            or Product.objects.filter(Slug=slug).exists()
+        ):
+            slug = f"{base_slug}-{n}"
+            n += 1
+
+        self.Slug = slug
         super().save(*args, **kwargs)
 
 class Edit_kqls1(models.Model):
@@ -371,6 +404,8 @@ class Edit_kqls1(models.Model):
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
 class KqlsPost(models.Model):
+    Seo_Title = models.CharField(max_length=500, blank=True, null=True)
+    Seo_Description = models.CharField(max_length=1000, blank=True, null=True)
     Title = models.CharField(max_length=350, blank=True, null=True)
     Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)  # Thêm slug
     Content = RichTextUploadingField(blank=True, null=True)
@@ -379,16 +414,38 @@ class KqlsPost(models.Model):
     Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
     def save(self, *args, **kwargs):
-        if not self.Slug:
+        if self.Slug:
+            # Kiểm tra slug người dùng nhập đã chuẩn chưa
+            normalized_slug = slugify(self.Slug)
+            if self.Slug == normalized_slug:
+                base_slug = self.Slug
+            else:
+                base_slug = normalized_slug
+        else:
+            # Không nhập slug → lấy theo Name
             base_slug = slugify(self.Title)
-            slug = base_slug
-            n = 1
-            # Nếu slug đã tồn tại thì thêm số đuôi
-            while BlogPost.objects.filter(Slug=slug).exists():
-                slug = f"{base_slug}-{n}"
-                n += 1
-            self.Slug = slug
+
+        slug = base_slug
+        n = 1
+
+        # Đảm bảo slug unique
+        while (
+            KqlsPost.objects.filter(Slug=slug).exclude(pk=self.pk).exists()
+            or BlogPost.objects.filter(Slug=slug).exists()
+            or Product.objects.filter(Slug=slug).exists()
+        ):
+            slug = f"{base_slug}-{n}"
+            n += 1
+
+        self.Slug = slug
         super().save(*args, **kwargs)
+
+class Seo_Page(models.Model):
+    Seo_Title = models.CharField(max_length=500, blank=True, null=True)
+    Seo_Description = models.CharField(max_length=500, blank=True, null=True)
+    Name_Page = models.CharField(max_length=50, blank=True, null=True)
+    Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
+    Update_time = models.DateTimeField('Thời gian cập nhật',auto_now=True)
 
 
     

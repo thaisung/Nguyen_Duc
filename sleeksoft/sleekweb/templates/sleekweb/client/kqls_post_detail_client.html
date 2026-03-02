@@ -26,7 +26,7 @@
                     <span class="whitespace-nowrap bg-[#11284A] text-white p-[10px] font-bold">Bài viết mới</span>
                     <div class="flex flex-col p-[10px] gap-[10px]">
                         {% for i in list_BlogPost|slice:":5" %}
-                        <a href="{% url 'nav_blog_detail_client' slug=i.Slug %}" class="cursor-pointer">            
+                        <a href="{% url 'slug_router' slug=i.Slug %}" class="cursor-pointer">            
                             <div class="flex gap-2 items-start">
                                 <div class=" pt-[7px]">
                                     <img alt="img" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" class="min-w-[50px] max-w-[50px]  h-auto" />
@@ -43,7 +43,7 @@
                     <span class="whitespace-nowrap bg-[#11284A] text-white p-[10px] font-bold">Sản phẩm</span>
                     <div class="flex flex-col p-[10px] gap-[10px]">
                         {% for i in list_Product|slice:":5" %}
-                        <a href="{% url 'detail_product_client' slug=i.Slug %}" class="cursor-pointer">            
+                        <a href="{% url 'slug_router' slug=i.Slug %}" class="cursor-pointer">            
                             <div class="flex gap-2 items-start">
                                 <div class=" pt-[7px]">
                                     <img alt="img" src="{%  if i.Avatar %}{{i.Avatar.url}}{% endif %}" class="min-w-[50px] max-w-[50px]  h-auto" />

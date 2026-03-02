@@ -81,6 +81,7 @@ def about_tin_tuc_giai_thuong_client(request):
         context['list_Edit_ttgt1'] = Edit_ttgt1.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TTGT').first()
         # print('context:',context)
         return render(request, 'sleekweb/client/about_tin_tuc_giai_thuong_client.html', context, status=200)
     

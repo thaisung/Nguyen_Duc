@@ -77,6 +77,7 @@ def nav_products_client(request):
         except:
             context['obj'] = {}
         context['list_Product'] = Product.objects.all()
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='SP').first()
         # print('context:',context)
         return render(request, 'sleekweb/client/nav_products_client.html', context, status=200)
     
