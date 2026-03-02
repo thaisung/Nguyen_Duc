@@ -944,7 +944,7 @@
                     </div>
                     <div class="hidden lg:flex justify-between w-[1597px]">
                         {% if list_BlogPost|length > 0 %}
-                        <a href="{% url 'nav_blog_detail_client' slug=list_BlogPost.0.Slug %}" class="flex flex-col items-center w-[626px] text-white">
+                        <a href="{% url 'slug_router' slug=list_BlogPost.0.Slug %}" class="flex flex-col items-center w-[626px] text-white">
                             <div class="flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
                                 <img alt="Hình ảnh 1" src="{% if list_BlogPost.0.Avatar  %}{{list_BlogPost.0.Avatar.url}}{% endif %}"  class="w-full h-full object-cover" />
                             </div>
@@ -965,7 +965,7 @@
                         </a>
                         {% endif %}
                         {% if list_BlogPost|length > 1 %}
-                        <a href="{% url 'nav_blog_detail_client' slug=list_BlogPost.1.Slug %}" class="flex flex-col items-center w-[787px] text-white">
+                        <a href="{% url 'slug_router' slug=list_BlogPost.1.Slug %}" class="flex flex-col items-center w-[787px] text-white">
                             <div class=" flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
                                 <img alt="Hình ảnh 2" src="{% if list_BlogPost.1.Avatar  %}{{list_BlogPost.1.Avatar.url}}{% endif %}"  class="w-full h-full object-cover" />
                             </div>
@@ -988,7 +988,7 @@
                     </div>
                     <div class="flex lg:hidden flex-col justify-center items-center gap-3 w-full px-[15px]">
                         {% if list_BlogPost|length > 0 %}
-                        <a href="{% url 'nav_blog_detail_client' slug=list_BlogPost.0.Slug %}" class="flex flex-col w-full justify-between gap-3">
+                        <a href="{% url 'slug_router' slug=list_BlogPost.0.Slug %}" class="flex flex-col w-full justify-between gap-3">
                             <div class="h-auto w-full flex items-center justify-center rounded-md overflow-hidden bg-[#11284A] text-white">
                                 <img alt="Hình ảnh 1" src="{% if list_BlogPost.0.Avatar  %}{{list_BlogPost.0.Avatar.url}}{% endif %}"  class="w-full h-full object-fill" />
                             </div>
