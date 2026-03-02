@@ -667,11 +667,11 @@
                             <div class="tab_product_mobile  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
                                 {% for i in list_Product %}
                                 <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
-                                    <a href="{% url 'detail_product_client' slug=i.Slug %}">
+                                    <a href="{% url 'slug_router' slug=i.Slug %}">
                                         <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
                                     </a>
                                     <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
-                                        <a href="{% url 'detail_product_client' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
                                             {{i.Name}}
                                         </a>
                                         <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
@@ -747,11 +747,11 @@
                             <div class="tab_product_mobile1  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
                                 {% for i in list_Product1 %}
                                 <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
-                                    <a href="{% url 'detail_product_client' slug=i.Slug %}">
+                                    <a href="{% url 'slug_router' slug=i.Slug %}">
                                         <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
                                     </a>
                                     <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
-                                        <a href="{% url 'detail_product_client' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
                                             {{i.Name}}
                                         </a>
                                         <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
@@ -827,11 +827,11 @@
                             <div class="tab_product_mobile2  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
                                 {% for i in list_Product2 %}
                                 <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
-                                    <a href="{% url 'detail_product_client' slug=i.Slug %}">
+                                    <a href="{% url 'slug_router' slug=i.Slug %}">
                                         <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
                                     </a>
                                     <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
-                                        <a href="{% url 'detail_product_client' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
                                             {{i.Name}}
                                         </a>
                                         <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
