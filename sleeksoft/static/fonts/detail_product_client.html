@@ -28,7 +28,7 @@
             <div class="flex justify-center">
                 <span class="block lg:hidden text-[20px] font-bold format_number bg-[#11284A] text-white rounded-md px-3 py-1 my-3">GIÁ: {{obj_Product.list_size.all.last.Price}} VNĐ</span>
             </div>
-            <p class="font-normal text-[13px] lg:text-[16px]">{{obj_Product.Introduce|linebreaksbr}}</p>
+            <h2 class="font-normal text-[13px] lg:text-[16px]">{{obj_Product.Introduce|linebreaksbr}}</h2>
             <div class="flex flex-col mt-3">
                 <div class="flex flex-col border-t-[1px] border-[#ddd]" >
                     <div class="click_pr cursor-pointer flex gap-2 py-3">
@@ -155,7 +155,7 @@
         <div class="flex flex-col lg:flex-row items-center justify-center w-full gap-[10px] lg:gap-[25px] p-[15px] lg:p-none">
             {% for i in obj_Product.list_photo_ncls.all %}
                 <a data-fancybox="gallery-ncls" href="{{ i.Avatar.url }}" class="">
-                    <img alt="Hình ảnh" class="w-full lg:w-[788px] lg:h-[788px] rounded-md" src="{{i.Avatar.url}}" />
+                    <img alt="banner" class="w-full lg:w-[788px] lg:h-[788px] rounded-md" src="{{i.Avatar.url}}" />
                 </a>
             {% endfor %}
         </div>
@@ -169,7 +169,7 @@
                 {% for i in list_Product %}
                 <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
                     <a href="{% url 'slug_router' slug=i.Slug %}">
-                        <img alt="Hình ảnh" class="w-full" src="{{i.Avatar.url}}"/>
+                        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
                     </a>
                     <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
                         <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
@@ -180,7 +180,7 @@
                                 <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
                                     <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
                                         <div class="relative flex items-center justify-center">
-                                            <img alt="Hình ảnh" class="w-[65px] h-[16px]" src="/upload/website/background.png" />
+                                            <img alt="img" class="w-[65px] h-[16px]" src="/upload/website/background.png" />
                                             <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
                                         </div>
                                     </div>
@@ -236,14 +236,14 @@
             });
         </script>
     </div>
-    <h3 class="uppercase hidden lg:flex items-center justify-center  text-[36px] bg-[#11284A] font-extrabold text-[#FBFBFB] rounded-md w-[450px] h-[80px] mt-[50px]">
+    <h2 class="uppercase hidden lg:flex items-center justify-center  text-[36px] bg-[#11284A] font-extrabold text-[#FBFBFB] rounded-md w-[450px] h-[80px] mt-[50px]">
         RELATED PRODUCTS
-    </h3>
+    </h2>
     <div class="hidden lg:grid grid-cols-3 place-items-center items-center w-[1274px] mt-[50px] gap-[50px]">
         {% for i in list_Product %}
         <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
             <a href="{% url 'slug_router' slug=i.Slug %}">
-                <img alt="Hình ảnh" class="w-full" src="{{i.Avatar.url}}"/>
+                <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
             </a>
             <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
                 <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">
@@ -254,7 +254,7 @@
                         <div class="click_tab_size_product hover:cursor-pointer z-20 relative flex items-center w-[264px] h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
                             <div class="absolute bottom-6 left-8">
                                 <div class="relative flex items-center justify-center">
-                                    <img alt="Hình ảnh" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                    <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
                                     <span class=" absolute inset-0 font-medium text-[12px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
                                 </div>
                             </div>
