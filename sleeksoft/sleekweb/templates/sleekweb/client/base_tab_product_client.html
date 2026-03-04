@@ -30,6 +30,7 @@
         "description": "{{ obj_Product.Seo_Description }}"
         }
     </script>
+    {% endif %}
     <script type="application/ld+json">
         {
         @context: "https://schema.org",
@@ -78,7 +79,7 @@
         }
         }
     </script>
-    {% endif %}
+    
     {% if obj_Blog %}
     <script type="application/ld+json">
         {
