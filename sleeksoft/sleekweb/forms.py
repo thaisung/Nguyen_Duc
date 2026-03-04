@@ -36,19 +36,44 @@ class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
         fields = ['Slug','Seo_Title','Seo_Description','Title', 'Content','Avatar']
+        labels = {
+            'Slug': 'Đường dẫn',
+            'Seo_Title': 'Tiêu đề SEO',
+            'Seo_Description': 'Mô tả SEO',
+            'Title': 'Tiêu đề',
+            'Content': 'Nội dung bài viết',
+            'Avatar': 'Ảnh đại diện'
+        }
 
 class ttgt1Form(forms.ModelForm):
     class Meta:
         model = Edit_ttgt1
         fields = ['Title','Category', 'Content','Photo']
+        labels = {
+            'Title': 'Tiêu đề',
+            'Category':'Danh mục',
+            'Content': 'Nội dung bài viết',
+            'Photo': 'Ảnh'
+        }
 
 class Edit_kqls1_Form(forms.ModelForm):
     class Meta:
         model = Edit_kqls1
         fields = ['Content']
+        labels = {
+            'Content': 'Nội dung bài viết',
+        }
 
 class KqlsPostForm(forms.ModelForm):
     class Meta:
         model = KqlsPost
         fields = ['Slug','Seo_Title','Seo_Description','Title', 'Content','Avatar']
+        labels = {
+            'Slug': 'Đường dẫn',
+            'Seo_Title': 'Tiêu đề SEO',
+            'Seo_Description': 'Mô tả SEO',
+            'Title': 'Tiêu đề',
+            'Content': 'Nội dung bài viết',
+            'Avatar': 'Ảnh đại diện'
+        }
 
