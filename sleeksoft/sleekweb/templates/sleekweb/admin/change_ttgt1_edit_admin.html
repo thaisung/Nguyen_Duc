@@ -81,13 +81,23 @@
     <div class="flex flex-col gap-3 p-3 w-full">
         <form method="POST" class="blog-form" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            {% if obj_ttgt1.Photo %}
-                <div class="mb-4">
-                    <p class="font-bold">Ảnh đại diện hiện tại:</p>
-                    <img src="{{ obj_ttgt1.Photo.url }}" alt="Avatar" style="max-height: 200px;">
+            {% for field in form %}
+                {% if field.name != "Avatar" %}
+                    <p>
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </p>
+                {% endif %}
+            {% endfor %}
+            <div class="mt-4">
+                <label class="font-semibold">Ảnh đại diện:</label>
+                <div class="mb-2">
+                    <img src="{{ obj_ttgt1.Photo.url }}" 
+                            class="w-40 h-auto rounded-lg border shadow">
                 </div>
-            {% endif %}
+                <input type="file" class="rounded-md w-full" accept="image/*" name="Avatar"  />
+            </div>
             <div class="flex items-center justify-between">
                 <button type="submit" class="font-bold whitespace-nowrap">Cập nhật</button>
                 <a href="{% url 'change_ttgt1_remove_admin' pk=obj_ttgt1.id %}" id="remove_blog" class="remove-blog font-bold">Xoá bài viết</a>
