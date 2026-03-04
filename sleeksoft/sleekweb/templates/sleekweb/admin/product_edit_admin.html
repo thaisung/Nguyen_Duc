@@ -76,8 +76,61 @@
             }
         </style>
     </div>
-    <div class="flex justify-center  h-full gap-3 pt-[30px]">
-        <div class="flex flex-col">
+    <div class="flex justify-center  h-full gap-3  w-full">
+        <form method="POST" class="blog-form w-full m-3" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.name != "Avatar" %}
+                    <p>
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </p>
+                {% endif %}
+            {% endfor %}
+            {% comment %} <div class="mt-4">
+                <label class="font-semibold">Ảnh đại diện:</label>
+                {% if form.instance.Avatar %}
+                <div class="mb-2">
+                    <img src="{{ form.instance.Avatar.url }}" 
+                            class="w-40 rounded-lg border shadow">
+                </div>
+                {% endif %}
+                {{ form.Avatar }}
+            </div> {% endcomment %}
+            <div class="mt-4">
+                <label class="font-semibold">Ảnh đại diện:</label>
+                <div class="mb-2">
+                    <img src="{{ obj_Product.Avatar.url }}" 
+                            class="w-40 h-auto rounded-lg border shadow">
+                </div>
+                <input type="file" class="rounded-md w-full" accept="image/*" name="Avatar"  />
+            </div>
+            <div class="mt-4">
+                <label class="font-semibold">Ảnh Sản phẩm:</label>
+                <div class="mb-2 flex gap-3 items-start">
+                    {% for i in obj_Product.list_photo.all %}
+                    <img src="{{ i.Avatar.url }}" 
+                            class="w-40 h-auto rounded-lg border shadow">
+                    {% endfor %}
+                </div>
+                <input type="file" class="rounded-md w-full" multiple accept="image/*" name="List_Photo"  />
+            </div>
+            <div class="mt-4">
+                <label class="font-semibold">Ảnh NCLS:</label>
+                <div class="mb-2 flex gap-3 items-start">
+                    {% for i in obj_Product.list_photo_ncls.all %}
+                    <img src="{{ i.Avatar.url }}" 
+                            class="w-40 h-auto rounded-lg border shadow">
+                    {% endfor %}
+                </div>
+                <input type="file" class="rounded-md w-full" multiple accept="image/*" name="List_Photo_NCLS"  />
+            </div>
+            <div class="flex items-center justify-between mt-6">
+                <button type="submit" class="font-bold whitespace-nowrap">Cập nhật</button>
+            </div>
+        </form>
+        {% comment %} <div class="flex flex-col">
             <img class="w-[100px]" src="{{obj_Product.Avatar.url}}"  />
         </div>
         <form method="post" action="{% url 'product_edit_admin' pk=obj_Product.id %}" enctype="multipart/form-data" class="flex flex-col  items-center w-[500px] gap-3 ">
@@ -188,7 +241,111 @@
             {% for i in obj_Product.list_photo_ncls.all %}
             <img class="w-[100px]" src="{{i.Avatar.url}}"  />
             {% endfor %}
-        </div>
+        </div> {% endcomment %}
     </div>
 </div>
+<style>
+    form.blog-form {
+        max-width: 100%;
+        padding: 30px;
+        background-color: #ffffff;
+        /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    form.blog-form div {
+        width: 100%;
+    }
+
+    form.blog-form p {
+        margin-bottom: 20px;
+    }
+
+    form.blog-form label {
+        display: block;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    form.blog-form input[type="text"],
+    form.blog-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    form.blog-form input[type="text"]:focus,
+    form.blog-form textarea:focus {
+        border-color: #11284A;
+        /* box-shadow: 0 0 5px rgba(0, 123, 255, 0.25); */
+        outline: none;
+    }
+
+    .cke_chrome {
+        border-radius: 8px;
+        /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.05); */
+    }
+
+    form.blog-form button, form.blog-form input[type="submit"] {
+        display: inline-block;
+        background-color: #11284A;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+     a#remove_blog{
+        display: inline-block;
+        background-color: #f00c0c;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    form.blog-form button:hover, form.blog-form input[type="submit"]:hover {
+        background-color: #11284A;
+    }
+</style>
+<script>
+    $('.remove-blog').on('click', function (e) {
+        const confirmDelete = confirm("Bạn có chắc muốn xoá bài viết này?");
+        if (!confirmDelete) {
+            e.preventDefault();
+        }
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.open_input_Size').on('click', function() {
+            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
+        });
+    });
+</script>
+<script>
+    function autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = el.scrollHeight + 'px';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('textarea.autoresize').forEach(function (el) {
+            autoResize(el);
+            el.addEventListener('input', () => autoResize(el));
+        });
+    });
+</script>
+
 {% endblock %}

@@ -50,7 +50,7 @@ class Product(models.Model):
     Category = models.CharField('Danh mục', max_length=250,blank=True, null=True)
     Price = models.CharField('Giá', max_length=255,blank=True, null=True)
     Introduce = models.TextField('Giới thiệu',blank=True, null=True)
-    Describe = models.TextField('Mô tả',blank=True, null=True)
+    Describe = RichTextUploadingField(blank=True, null=True)
     Main_ingredients = models.TextField('Thành phần chính',blank=True, null=True)
     How_use = models.TextField('Cách sử dụng',blank=True, null=True)
     # Ingredients_table = models.TextField('Bảng thành phần',blank=True, null=True)

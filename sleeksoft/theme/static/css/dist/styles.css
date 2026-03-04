@@ -911,6 +911,10 @@ select {
   margin: 0px;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -1018,6 +1022,10 @@ select {
 
 .mt-\[58px\] {
   margin-top: 58px;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .block {
@@ -1580,6 +1588,10 @@ select {
   width: 100vw;
 }
 
+.w-40 {
+  width: 10rem;
+}
+
 .min-w-\[100px\] {
   min-width: 100px;
 }
@@ -1833,6 +1845,10 @@ select {
 
 .rounded-md {
   border-radius: 0.375rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .rounded-b-2xl {
@@ -2492,6 +2508,12 @@ select {
 .text-yellow-500 {
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity, 1));
+}
+
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .outline-none {
