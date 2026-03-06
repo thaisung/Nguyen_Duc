@@ -129,12 +129,11 @@ def kqls_post_detail_client(request,slug):
 
         context['list_KqlsPost'] =  KqlsPost.objects.all().order_by('-id')
 
-        # try:
-        print('slug:',slug)
-        context['obj_Kqls_post'] = KqlsPost.objects.get(Slug=slug)
-        # except KqlsPost.DoesNotExist:
-        #     # Trả về redirect về trang chủ hoặc trang 404 tùy ý
-        #     return redirect('/')
+        try:
+            context['obj_Kqls_post'] = KqlsPost.objects.get(Slug=slug)
+        except KqlsPost.DoesNotExist:
+            # Trả về redirect về trang chủ hoặc trang 404 tùy ý
+            return redirect('/')
 
         context['list_Product'] = Product.objects.all().order_by('-id')
         return render(request, 'sleekweb/client/kqls_post_detail_client.html', context, status=200)
