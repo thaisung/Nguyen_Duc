@@ -78,7 +78,7 @@ class detail_product_Sitemap(Sitemap):
 
     def location(self, item):
         # Dùng slug của mỗi category_product để tạo đường dẫn
-        return reverse('detail_product_client', kwargs={'slug': item.Slug})
+        return reverse('slug_router', kwargs={'slug': item.Slug})
     
 class detail_BlogPost_Sitemap(Sitemap):
     changefreq = "daily"
@@ -94,7 +94,7 @@ class detail_BlogPost_Sitemap(Sitemap):
 
     def location(self, item):
         # Dùng slug của mỗi category_product để tạo đường dẫn
-        return reverse('nav_blog_detail_client', kwargs={'slug': item.Slug})
+        return reverse('slug_router', kwargs={'slug': item.Slug})
     
 class detail_KqlsPost_Sitemap(Sitemap):
     changefreq = "daily"
@@ -110,7 +110,7 @@ class detail_KqlsPost_Sitemap(Sitemap):
 
     def location(self, item):
         # Dùng slug của mỗi category_product để tạo đường dẫn
-        return reverse('kqls_post_detail_client', kwargs={'slug': item.Slug})
+        return reverse('slug_router', kwargs={'slug': item.Slug})
 
 # class detail_sound_Sitemap(Sitemap):
 #     changefreq = "weekly"
