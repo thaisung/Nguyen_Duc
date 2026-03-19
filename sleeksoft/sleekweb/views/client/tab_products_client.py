@@ -80,6 +80,12 @@ def tab_products_client(request):
             context['obj1'] = Edit_home.objects.get(Count=1)
         except:
             context['obj1'] = {}
+        
+        try:
+            context['obj_Count_1'] = Photo_Content.objects.get(Count=1)
+        except:
+            context['obj_Count_1'] = {}
+
         context['list_image_slider_1'] = Photo_Slider.objects.filter(Count=1).order_by('Order')
         context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2).order_by('Order')
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3).order_by('Order')
