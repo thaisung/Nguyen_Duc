@@ -335,19 +335,9 @@
         </script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                // Lấy vị trí cuộn từ LocalStorage
-                const scrollPosition = localStorage.getItem("scrollPosition");
-                if (scrollPosition) {
-                    window.scrollTo(0, scrollPosition);
-                    localStorage.removeItem("scrollPosition"); // Xóa sau khi cuộn
-                }
-        
-                // Lưu vị trí trước khi chuyển trang
-                document.querySelectorAll("a").forEach(link => {
-                    link.addEventListener("click", function () {
-                        localStorage.setItem("scrollPosition", window.scrollY);
-                    });
-                });
+                // Trang chi tiet luon bat dau tu dau trang
+                localStorage.removeItem("scrollPosition");
+                window.scrollTo(0, 0);
             });
         </script>
     </div>

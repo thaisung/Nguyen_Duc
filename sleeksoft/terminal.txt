@@ -1,3 +1,57 @@
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/about --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/AVATAR_BLOG --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/AVATAR_KQLS --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/banner --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/banner_child --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Change_Website --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/CKeditor --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/detail_product --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_dsdt --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_kqls --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_nckh --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_ncls --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_tnsm --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_ttgt --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_vct --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/Edit_Website --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/kq_ls --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/kvmb --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/kvmn --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/map --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/nc_kh --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/ncls --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/photo --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PHOTO_CONTENT --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PHOTO_SLIDER --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/product --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT_AVATAR --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT_NCLS --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/tnvsm --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/ttgt --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/uploads --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/vct --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/website --workers 1 --progress-every 20
+
+
+cd /home/sleekproject/sleeksoft
+
+# 1) Đổi tên thư mục upload hiện tại để dự phòng
+mv upload "upload_before_restore_$(date +%F_%H%M)"
+
+# 2) Chọn đường dẫn backup của bạn
+BACKUP="/home/backup_upload_2026-03-26"
+
+# 3) Khôi phục (tự nhận diện backup có thư mục upload bên trong hay không)
+if [ -d "$BACKUP/upload" ]; then
+  cp -a "$BACKUP/upload" ./upload
+else
+  mkdir -p upload
+  cp -a "$BACKUP/." ./upload/
+fi
+
+# 4) Kiểm tra
+du -sh upload
 
 cd /home/sleekproject
 source sleekenv/bin/activate
