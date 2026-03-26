@@ -1,4 +1,30 @@
 
+cd /home/sleekproject
+source sleekenv/bin/activate
+cd /sleeksoft
+
+cd /home/sleekproject && source sleekenv/bin/activate && cd sleeksoft
+
+
+cd /home/sleekproject/sleeksoft
+
+# 1) tạo thư mục backup theo ngày
+mkdir -p /home/backup_upload_$(date +%F)
+# 2) copy toàn bộ ảnh + thư mục con + giữ quyền/time
+cp -a /home/sleekproject/sleeksoft/upload/. /home/backup_upload_$(date +%F)/
+# 3 ) Kiểm tra backup đã đủ chưa:
+du -sh /home/sleekproject/sleeksoft/upload /home/backup_upload_$(date +%F)
+# 4 ) Nếu sau nén bị lỗi, khôi phục lại:
+cp -a /home/backup_upload_$(date +%F)/. /home/sleekproject/sleeksoft/upload/
+
+cd /home/sleekproject/sleeksoft
+python resize_upload.py --dry-run #chạy thửi ko lưu
+python resize_upload.py
+
+python /home/sleekproject/sleeksoft/resize_upload.py --path /home/sleekproject/sleeksoft/upload --workers 1 --progress-every 20
+
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload --workers 1 --verbose --log-skipped --progress-every 20
+
 
 45.251.115.154
 3z8f2cTEUuA9

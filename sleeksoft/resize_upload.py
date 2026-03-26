@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 import io
+import os
 import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
 from PIL import Image, ImageOps, UnidentifiedImageError
@@ -64,7 +66,23 @@ def parse_args() -> argparse.Namespace:
         "--progress-every",
         type=int,
         default=10,
-        help="Print progress every N files. Default: 10",
+        help="Print progress every N completed files. Default: 10",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=0,
+        help="Parallel workers. 0 = auto (CPU cores - 1).",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Print per-file logs (optimized/failed).",
+    )
+    parser.add_argument(
+        "--log-skipped",
+        action="store_true",
+        help="When used with --verbose, also print skipped files.",
     )
     return parser.parse_args()
 
@@ -79,6 +97,13 @@ def normalize_extensions(ext_list: list[str]) -> set[str]:
             ext = "." + ext
         result.add(ext)
     return result & SUPPORTED_EXTENSIONS
+
+
+def resolve_workers(requested_workers: int) -> int:
+    if requested_workers > 0:
+        return requested_workers
+    cpu = os.cpu_count() or 1
+    return max(1, cpu - 1)
 
 
 def print_progress(
@@ -102,6 +127,36 @@ def print_progress(
         f"optimized={stats['optimized']} failed={stats['failed']} | "
         f"saved={saved_mb:.2f} MB | {speed:.1f} file/s"
     )
+
+
+def format_mb(num_bytes: int) -> str:
+    return f"{num_bytes / (1024 * 1024):.3f} MB"
+
+
+def print_file_log(result: dict[str, int | str], verbose: bool, log_skipped: bool) -> None:
+    if not verbose:
+        return
+
+    status = str(result["status"])
+    path = str(result["path"])
+    before = int(result["before"])
+    after = int(result["after"])
+
+    if status == "optimized":
+        saved = before - after
+        print(
+            f"[FILE] optimized | saved={format_mb(saved)} | "
+            f"before={format_mb(before)} -> after={format_mb(after)} | {path}"
+        )
+        return
+
+    if status == "failed":
+        print(f"[FILE] failed | {path} | {result['error']}")
+        return
+
+    if log_skipped:
+        reason = "small" if status == "skipped_small" else "not_smaller"
+        print(f"[FILE] skipped({reason}) | {format_mb(before)} | {path}")
 
 
 def optimized_payload(path: Path, quality: int, max_width: int, max_height: int) -> bytes | None:
@@ -149,6 +204,88 @@ def optimized_payload(path: Path, quality: int, max_width: int, max_height: int)
         return output.getvalue()
 
 
+def process_one_file(
+    path_str: str,
+    quality: int,
+    max_width: int,
+    max_height: int,
+    min_size_bytes: int,
+    dry_run: bool,
+    force: bool,
+) -> dict[str, int | str]:
+    path = Path(path_str)
+    before = 0
+    before_counted = False
+    result: dict[str, int | str] = {
+        "status": "failed",
+        "before": 0,
+        "after": 0,
+        "path": path_str,
+        "error": "",
+    }
+
+    try:
+        before = path.stat().st_size
+        before_counted = True
+
+        if before < min_size_bytes:
+            result["status"] = "skipped_small"
+            result["before"] = before
+            result["after"] = before
+            return result
+
+        payload = optimized_payload(path, quality, max_width, max_height)
+        if payload is None:
+            result["status"] = "skipped_not_smaller"
+            result["before"] = before
+            result["after"] = before
+            return result
+
+        after = len(payload)
+        should_write = force or after < before
+        if not should_write:
+            result["status"] = "skipped_not_smaller"
+            result["before"] = before
+            result["after"] = before
+            return result
+
+        if not dry_run:
+            tmp = path.with_name(path.name + ".tmp_optimized")
+            tmp.write_bytes(payload)
+            tmp.replace(path)
+
+        result["status"] = "optimized"
+        result["before"] = before
+        result["after"] = after
+        return result
+
+    except (UnidentifiedImageError, OSError, ValueError) as exc:
+        current_size = before if before_counted else (path.stat().st_size if path.exists() else 0)
+        result["status"] = "failed"
+        result["before"] = current_size
+        result["after"] = current_size
+        result["error"] = str(exc)
+        return result
+
+
+def apply_result(stats: dict[str, int], result: dict[str, int | str]) -> None:
+    status = str(result["status"])
+    before = int(result["before"])
+    after = int(result["after"])
+
+    stats["bytes_before"] += before
+    stats["bytes_after"] += after
+
+    if status == "optimized":
+        stats["optimized"] += 1
+    elif status == "skipped_small":
+        stats["skipped_small"] += 1
+    elif status == "skipped_not_smaller":
+        stats["skipped_not_smaller"] += 1
+    else:
+        stats["failed"] += 1
+
+
 def optimize_tree(
     root: Path,
     quality: int,
@@ -159,8 +296,12 @@ def optimize_tree(
     dry_run: bool,
     force: bool,
     progress_every: int,
+    workers: int,
+    verbose: bool,
+    log_skipped: bool,
 ) -> dict[str, int]:
     files = [p for p in root.rglob("*") if p.is_file() and p.suffix.lower() in include_ext]
+
     stats = {
         "files_scanned": len(files),
         "optimized": 0,
@@ -170,55 +311,62 @@ def optimize_tree(
         "bytes_before": 0,
         "bytes_after": 0,
     }
-    min_size_bytes = min_size_kb * 1024
+
     total = len(files)
+    if total == 0:
+        return stats
+
+    min_size_bytes = min_size_kb * 1024
     start = time.time()
 
-    for index, path in enumerate(files, start=1):
-        before = 0
-        before_counted = False
-        try:
-            before = path.stat().st_size
-            stats["bytes_before"] += before
-            before_counted = True
-
-            if before < min_size_bytes:
-                stats["skipped_small"] += 1
-                stats["bytes_after"] += before
-                print_progress(index, total, stats, start, progress_every)
-                continue
-
-            payload = optimized_payload(path, quality, max_width, max_height)
-            if payload is None:
-                stats["skipped_not_smaller"] += 1
-                stats["bytes_after"] += before
-                print_progress(index, total, stats, start, progress_every)
-                continue
-
-            after = len(payload)
-            should_write = force or after < before
-            if not should_write:
-                stats["skipped_not_smaller"] += 1
-                stats["bytes_after"] += before
-                print_progress(index, total, stats, start, progress_every)
-                continue
-
-            if not dry_run:
-                tmp = path.with_name(path.name + ".tmp_optimized")
-                tmp.write_bytes(payload)
-                tmp.replace(path)
-
-            stats["optimized"] += 1
-            stats["bytes_after"] += after
+    if workers <= 1:
+        for index, path in enumerate(files, start=1):
+            result = process_one_file(
+                str(path),
+                quality,
+                max_width,
+                max_height,
+                min_size_bytes,
+                dry_run,
+                force,
+            )
+            apply_result(stats, result)
+            if result["status"] == "failed" and not verbose:
+                print(f"[FAILED] {result['path']}: {result['error']}")
+            print_file_log(result, verbose, log_skipped)
             print_progress(index, total, stats, start, progress_every)
+        return stats
 
-        except (UnidentifiedImageError, OSError, ValueError) as exc:
-            stats["failed"] += 1
-            current_size = before if before_counted else (path.stat().st_size if path.exists() else 0)
-            if not before_counted:
-                stats["bytes_before"] += current_size
-            stats["bytes_after"] += current_size
-            print(f"[FAILED] {path}: {exc}")
+    with ProcessPoolExecutor(max_workers=workers) as executor:
+        futures = [
+            executor.submit(
+                process_one_file,
+                str(path),
+                quality,
+                max_width,
+                max_height,
+                min_size_bytes,
+                dry_run,
+                force,
+            )
+            for path in files
+        ]
+
+        for index, future in enumerate(as_completed(futures), start=1):
+            try:
+                result = future.result()
+            except Exception as exc:  # pragma: no cover
+                result = {
+                    "status": "failed",
+                    "before": 0,
+                    "after": 0,
+                    "path": "<unknown>",
+                    "error": str(exc),
+                }
+            apply_result(stats, result)
+            if result["status"] == "failed" and not verbose:
+                print(f"[FAILED] {result['path']}: {result['error']}")
+            print_file_log(result, verbose, log_skipped)
             print_progress(index, total, stats, start, progress_every)
 
     return stats
@@ -238,9 +386,15 @@ def main() -> int:
     if args.max_width < 0 or args.max_height < 0:
         print("[ERROR] --max-width and --max-height must be >= 0.")
         return 1
+    if args.workers < 0:
+        print("[ERROR] --workers must be >= 0.")
+        return 1
     if not include_ext:
         print("[ERROR] No valid extensions provided in --include-ext.")
         return 1
+
+    workers = resolve_workers(args.workers)
+    print(f"[INFO] Workers: {workers}")
 
     stats = optimize_tree(
         root=root,
@@ -252,6 +406,9 @@ def main() -> int:
         dry_run=bool(args.dry_run),
         force=bool(args.force),
         progress_every=max(1, int(args.progress_every)),
+        workers=workers,
+        verbose=bool(args.verbose),
+        log_skipped=bool(args.log_skipped),
     )
 
     if stats["files_scanned"] == 0:
