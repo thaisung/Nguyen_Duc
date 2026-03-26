@@ -471,3 +471,5 @@ Tín dụng:
 Đại dương kỹ thuật số
 Barath Prabu S
 
+xoá
+ sudo certbot delete
