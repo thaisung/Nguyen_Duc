@@ -36,18 +36,16 @@ class Redirect404ToHomeMiddleware:
         response = self.get_response(request)
 
         if response.status_code == 404:
-            path = request.path  # ví dụ: /blog/ten-bai-viet
+            path = request.path
 
-            # Nếu path bắt đầu bằng /blog/ → redirect sang /ten-bai-viet.html
             if path.startswith('/blog/'):
-                slug = path[len('/blog/'):]          # bỏ /blog/
-                slug = slug.rstrip('/')              # bỏ trailing slash nếu có
-                new_url = f'/{slug}.html'
-                return HttpResponsePermanentRedirect(new_url)
+                slug = path[len('/blog/'):].rstrip('/')
+                return HttpResponsePermanentRedirect(f'/{slug}.html')
 
-            # Render trang 404 tuỳ chỉnh
             html = render_to_string('sleekweb/404.html')
             return HttpResponse(html, status=404)
+
+        return response
 
 
 class MaintenanceMiddleware:
