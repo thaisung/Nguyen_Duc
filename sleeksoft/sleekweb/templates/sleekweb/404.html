@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 — Trang không tồn tại</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #111e35;
+      --bg-deep: #0c1728;
+      --surface: #1a2b46;
+      --border:  rgba(255,255,255,0.07);
+      --accent:  #7eb8f7;
+      --accent2: #f0c96b;
+      --text:    #dce8f5;
+      --muted:   #4d6685;
+      --glow:    rgba(126,184,247,0.15);
+    }
+
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; overflow: hidden; }
+
+    /* Noise */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 100; opacity: 0.7;
+    }
+
+    /* Subtle grid */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 72px 72px;
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Orbs */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(90px); pointer-events: none;
+      animation: drift 9s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(126,184,247,0.10), transparent 70%);
+      top: -160px; left: -160px; animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(240,201,107,0.07), transparent 70%);
+      bottom: -100px; right: -100px; animation-delay: -4s;
+    }
+    .orb-3 {
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(126,184,247,0.06), transparent 70%);
+      bottom: 10%; left: 10%; animation-delay: -2s;
+    }
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to   { transform: translate(25px,18px) scale(1.07); }
+    }
+
+    /* Horizontal rule top */
+    .hr-top {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+      z-index: 10;
+    }
+
+    .scene {
+      position: relative; z-index: 1;
+      height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem; text-align: center;
+    }
+
+    /* Tag */
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface);
+      border: 1px solid rgba(126,184,247,0.2);
+      color: var(--accent);
+      font-size: 10.5px; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 7px 18px; border-radius: 100px;
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) 0.3s both;
+    }
+    .tag::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.3; transform:scale(0.65); }
+    }
+
+    /* 404 */
+    .four-oh-four {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(130px, 21vw, 270px);
+      line-height: 0.85;
+      letter-spacing: -0.01em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--muted);
+      position: relative;
+      user-select: none;
+      animation: fadeUp 0.9s cubic-bezier(.16,1,.3,1) both, flicker 6s 2s infinite;
+    }
+
+    /* Accent fill slice */
+    .four-oh-four::after {
+      content: '404';
+      position: absolute; inset: 0;
+      color: var(--accent);
+      -webkit-text-stroke: 0;
+      clip-path: polygon(0 58%, 100% 52%, 100% 100%, 0 100%);
+      animation: revealSlice 1.1s cubic-bezier(.16,1,.3,1) 0.15s both;
+    }
+
+    /* Gold underline accent */
+    .four-oh-four::before {
+      content: '404';
+      position: absolute; inset: 0;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(240,201,107,0.18);
+      transform: translate(3px, 4px);
+      z-index: -1;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(36px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes revealSlice {
+      from { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); }
+      to   { clip-path: polygon(0 58%, 100% 52%, 100% 100%, 0 100%); }
+    }
+    @keyframes flicker {
+      0%,100% { opacity:1; }
+      91%      { opacity:1; }
+      92%      { opacity:.88; }
+      93%      { opacity:1; }
+      96%      { opacity:.92; }
+      97%      { opacity:1; }
+    }
+
+    h1 {
+      font-size: clamp(1rem, 2.4vw, 1.45rem);
+      font-weight: 300; letter-spacing: 0.01em;
+      color: var(--text); max-width: 420px; line-height: 1.55;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) 0.55s both;
+    }
+    h1 em { font-style: italic; color: var(--accent2); }
+
+    .sub {
+      font-size: 0.87rem; color: var(--muted); font-weight: 300;
+      margin-bottom: 2.8rem;
+      animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) 0.65s both;
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.7s cubic-bezier(.16,1,.3,1) 0.8s both;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 26px; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 400;
+      cursor: pointer; text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary {
+      background: var(--accent); color: #0c1728; border: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px var(--glow), 0 4px 20px rgba(126,184,247,0.25);
+    }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--muted);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent); color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Bottom info */
+    .line {
+      width: 1px; height: 52px;
+      background: linear-gradient(to bottom, transparent, var(--muted), transparent);
+      margin: 3rem auto 1rem;
+      animation: fadeUp 0.7s 1s both;
+    }
+    .hint {
+      font-size: 0.76rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      animation: fadeUp 0.7s 1.05s both;
+    }
+
+    /* Corner coords */
+    .corner {
+      position: fixed; font-size: 0.65rem; color: var(--muted);
+      letter-spacing: 0.1em; font-family: monospace;
+      opacity: 0.5;
+    }
+    .corner-tl { top: 20px; left: 24px; }
+    .corner-tr { top: 20px; right: 24px; text-align: right; }
+    .corner-bl { bottom: 20px; left: 24px; }
+    .corner-br { bottom: 20px; right: 24px; text-align: right; }
+  </style>
+</head>
+<body>
+
+  <div class="hr-top"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="corner corner-tl">SYS // 404</div>
+  <div class="corner corner-tr">ERR_NOT_FOUND</div>
+  <div class="corner corner-bl">LAT 21.02 // LNG 105.83</div>
+  <div class="corner corner-br">VER 2.4.1</div>
+
+  <div class="scene">
+    <div class="four-oh-four">404</div>
+
+    <h1>Trang <em>không tồn tại</em></h1>
+    <p class="sub">Có thể nó chưa từng tồn tại, hoặc đã bị di chuyển đến nơi khác.</p>
+
+    <div class="actions">
+      <a href="/" class="btn btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Trang chủ
+      </a>
+      <a href="javascript:history.back()" class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Quay lại
+      </a>
+    </div>
+
+    <div class="line"></div>
+    <p class="hint">HTTP &nbsp;·&nbsp; 404 Not Found</p>
+  </div>
+
+</body>
+</html>

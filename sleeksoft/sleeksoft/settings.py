@@ -115,7 +115,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'sleekweb.middleware.MaintenanceMiddleware',
-    # 'sleekweb.middleware.Redirect404ToHomeMiddleware',
+    'sleekweb.middleware.Redirect404ToHomeMiddleware',
     # 'sleekweb.middleware.BlockAfterDateMiddleware',
 ]
 

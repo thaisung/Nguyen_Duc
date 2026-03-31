@@ -34,7 +34,8 @@ class Redirect404ToHomeMiddleware:
         response = self.get_response(request)
 
         if response.status_code == 404:
-            return redirect('/')
+            html = render_to_string('sleekweb/404.html')
+            return HttpResponse(html, status=404)
 
         return response
 
