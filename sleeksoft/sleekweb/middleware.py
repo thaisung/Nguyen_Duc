@@ -28,6 +28,25 @@ class BlockAfterDateMiddleware:
         response = self.get_response(request)
         return response
 
+# Mapping URL cũ → URL mới (chỉ phần path, không có domain)
+REDIRECT_MAP = {
+    '/hydrinity-hyacyn-active-mist-xit-phuc-hoi-khang-khuan-lam-diu-da-sau-treatment.html':
+        '/hydrinity-hyacyn-active-mist-xit-khoang-hocl-lam-diu-can-bang-da.html',
+
+    '/encore-body-hydrator-kem-duong-am-toan-than.html':
+        '/hydrinity-encore-body-hydrator-kem-duong-am-toan-than-duy-tri-do-am.html',
+
+    '/hydrinity-restorative-ha-serum-tinh-chat-phuc-hoi-da.html':
+        '/hydrinity-restorative-ha-serum-tinh-chat-cham-soc-da-chuyen-sau.html',
+
+    '/hydrinity-retaxome-daily-retinal-hydrator-kem-duong-da-ho-tro-duong-am-giup-da-trong-sang-va-min-mang-hon.html':
+        '/hydrinity-retaxome-daily-retinal-hydrator-kem-duong-da-cang-min-san-chac.html',
+
+    '/hydrinity-hydri-c-daily-vitamin-c-moisturizer-kem-duong-vitamin-c-tan-trong-dau-cap-am-sang-da.html':
+        '/hydrinity-hydri-c-daily-vitamin-c-moisturizer-kem-duong-vitamin-c-cap-am-sang-da.html',
+}
+
+
 class Redirect404ToHomeMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -38,10 +57,16 @@ class Redirect404ToHomeMiddleware:
         if response.status_code == 404:
             path = request.path
 
+            # 1. Kiểm tra mapping cố định trước
+            if path in REDIRECT_MAP:
+                return HttpResponsePermanentRedirect(REDIRECT_MAP[path])
+
+            # 2. Xử lý /blog/ → /{slug}.html
             if path.startswith('/blog/'):
                 slug = path[len('/blog/'):].rstrip('/')
                 return HttpResponsePermanentRedirect(f'/{slug}.html')
 
+            # 3. Render trang 404 tuỳ chỉnh
             html = render_to_string('sleekweb/404.html')
             return HttpResponse(html, status=404)
 
