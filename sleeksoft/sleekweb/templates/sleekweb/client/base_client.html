@@ -26,109 +26,110 @@
     <!-- 3.2. Schema -->
     {% if obj_Product or obj_Blog or obj_Kqls_post %}
         {% block Schema %}{% endblock %}
-    {% endif %}
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@graph": [
+    {% else %}
+        <script type="application/ld+json">
         {
-        "@type": "WebSite",
-        "@id": "https://hydrinity.com.vn/#website",
-        "url": "https://hydrinity.com.vn/",
-        "name": "Hydrinity Việt Nam",
-        "publisher": {
-            "@id": "https://hydrinity.com.vn/#organization"
-        },
-        "inLanguage": "vi-VN"
-        },
-        {
-        "@type": "Organization",
-        "@id": "https://hydrinity.com.vn/#organization",
-        "name": "Hydrinity Việt Nam",
-        "alternateName": [
-            "Hydrinity Skin Science",
-            "Hydrinity Vietnam"
-        ],
-        "legalName": "CÔNG TY TNHH COSBEAUTY",
-        "url": "https://hydrinity.com.vn/",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png"
-        },
-        "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
-        "email": "cosbeautyvietnam@gmail.com",
-        "telephone": "+84982762783",
-        "taxID": "0317577011",
-        "sameAs": [
-            "https://www.facebook.com/hydrinityvietnam",
-            "https://www.instagram.com/hydrinityvietnam/",
-            "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
-        ],
-        "contactPoint": [
+        "@context": "https://schema.org",
+        "@graph": [
             {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "telephone": "+84982762783",
-            "email": "cosbeautyvietnam@gmail.com",
-            "areaServed": "VN"
-            }
-        ]
-        },
-        {
-        "@type": "HealthAndBeautyBusiness",
-        "@id": "https://hydrinity.com.vn/#localbusiness",
-        "name": "Hydrinity Việt Nam",
-        "url": "https://hydrinity.com.vn/",
-        "mainEntityOfPage": "https://hydrinity.com.vn/",
-        "logo": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
-        "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
-        "telephone": "+84982762783",
-        "email": "cosbeautyvietnam@gmail.com",
-        "priceRange": "$$",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "04 Senic Valley 2, MD4-4, Tân Mỹ",
-            "addressLocality": "Hồ Chí Minh",
-            "addressRegion": "Hồ Chí Minh",
-            "postalCode": "700000",
-            "addressCountry": "VN"
-        },
-        "openingHoursSpecification": [
-            {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-            ],
-            "opens": "09:00",
-            "closes": "18:00"
+            "@type": "WebSite",
+            "@id": "https://hydrinity.com.vn/#website",
+            "url": "https://hydrinity.com.vn/",
+            "name": "Hydrinity Việt Nam",
+            "publisher": {
+                "@id": "https://hydrinity.com.vn/#organization"
+            },
+            "inLanguage": "vi-VN"
             },
             {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Sunday",
-            "opens": "00:00",
-            "closes": "00:00"
+            "@type": "Organization",
+            "@id": "https://hydrinity.com.vn/#organization",
+            "name": "Hydrinity Việt Nam",
+            "alternateName": [
+                "Hydrinity Skin Science",
+                "Hydrinity Vietnam"
+            ],
+            "legalName": "CÔNG TY TNHH COSBEAUTY",
+            "url": "https://hydrinity.com.vn/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png"
+            },
+            "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+            "email": "cosbeautyvietnam@gmail.com",
+            "telephone": "+84982762783",
+            "taxID": "0317577011",
+            "sameAs": [
+                "https://www.facebook.com/hydrinityvietnam",
+                "https://www.instagram.com/hydrinityvietnam/",
+                "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
+            ],
+            "contactPoint": [
+                {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "telephone": "+84982762783",
+                "email": "cosbeautyvietnam@gmail.com",
+                "areaServed": "VN"
+                }
+            ]
+            },
+            {
+            "@type": "HealthAndBeautyBusiness",
+            "@id": "https://hydrinity.com.vn/#localbusiness",
+            "name": "Hydrinity Việt Nam",
+            "url": "https://hydrinity.com.vn/",
+            "mainEntityOfPage": "https://hydrinity.com.vn/",
+            "logo": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+            "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+            "telephone": "+84982762783",
+            "email": "cosbeautyvietnam@gmail.com",
+            "priceRange": "$$",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "04 Senic Valley 2, MD4-4, Tân Mỹ",
+                "addressLocality": "Hồ Chí Minh",
+                "addressRegion": "Hồ Chí Minh",
+                "postalCode": "700000",
+                "addressCountry": "VN"
+            },
+            "openingHoursSpecification": [
+                {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                "opens": "09:00",
+                "closes": "18:00"
+                },
+                {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "00:00",
+                "closes": "00:00"
+                }
+            ],
+            "areaServed": "VN",
+            "currenciesAccepted": "VND",
+            "paymentAccepted": "Cash, Bank Transfer, Credit Card",
+            "sameAs": [
+                "https://www.facebook.com/hydrinityvietnam",
+                "https://www.instagram.com/hydrinityvietnam/",
+                "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
+            ],
+            "parentOrganization": {
+                "@id": "https://hydrinity.com.vn/#organization"
             }
-        ],
-        "areaServed": "VN",
-        "currenciesAccepted": "VND",
-        "paymentAccepted": "Cash, Bank Transfer, Credit Card",
-        "sameAs": [
-            "https://www.facebook.com/hydrinityvietnam",
-            "https://www.instagram.com/hydrinityvietnam/",
-            "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
-        ],
-        "parentOrganization": {
-            "@id": "https://hydrinity.com.vn/#organization"
+            }
+        ]
         }
-        }
-    ]
-    }
-    </script>
+        </script>
+    {% endif %}
 
     <!-- 4. Open Graph tags (Facebook, Zalo...) -->
     {% block meta_tag %}{% endblock %}
