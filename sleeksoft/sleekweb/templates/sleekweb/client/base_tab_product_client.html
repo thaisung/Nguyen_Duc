@@ -19,88 +19,122 @@
     <link rel="shortcut icon" href="{{domain}}/upload/website/logo.png" type="image/x-icon" />
 
     <!-- 3.1. Canonical -->
-    <link rel="canonical" href="https://hydrinity.com.vn/">
+    {% block canonical %}{% endblock %}
 
     <!-- 3.2. Schema -->
-    {% if obj_Product  %}
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": "{{ obj_Product.Name }}",
-        "description": "{{ obj_Product.Seo_Description }}"
-        }
-    </script>
+    {% if obj_Product or obj_Blog or obj_Kqls_post %}
+        {% block Schema %}{% endblock %}
     {% endif %}
     <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@graph": [
         {
-        @context: "https://schema.org",
-        @type: "Organization",
-        name: "HYDRINITY",
-        alternateName: "HYDRINITY",
-        url: "https://hydrinity.com.vn/",
-        logo: "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
-        image: "https://hydrinity.com.vn/upload/PHOTO_SLIDER/Asset_2_hAmTb5r.png",
-        sameAs: [
-        https://x.com/hydrinitycomvn,
-        https://www.pinterest.com/hydrinitycomvn/
+        "@type": "WebSite",
+        "@id": "https://hydrinity.com.vn/#website",
+        "url": "https://hydrinity.com.vn/",
+        "name": "Hydrinity Việt Nam",
+        "publisher": {
+            "@id": "https://hydrinity.com.vn/#organization"
+        },
+        "inLanguage": "vi-VN"
+        },
+        {
+        "@type": "Organization",
+        "@id": "https://hydrinity.com.vn/#organization",
+        "name": "Hydrinity Việt Nam",
+        "alternateName": [
+            "Hydrinity Skin Science",
+            "Hydrinity Vietnam"
         ],
-        description: "Hydrinity – Chăm sóc da chuyên sâu sau laser với công nghệ HA trọng lượng phân tử kép & PPM6, hỗ trợ cấp ẩm sâu, làm dịu da nhạy cảm, sáng mịn và phục hồi hàng rào bảo vệ da với các sản phẩm serum, kem dưỡng và xịt khoáng cao cấp.",
-        address: {
-        @type: "PostalAddress",
-        streetAddress: "Số 9 đường Nội khu Mỹ Phước, Phường Tân Hưng, Thành phố Hồ Chí Minh, Việt Nam.",
-        addressLocality: "Thành Phố Hồ Chí Minh",
-        addressRegion: "Hồ Chí Minh",
-        postalCode: "70000",
-        addressCountry: "VN"
+        "legalName": "CÔNG TY TNHH COSBEAUTY",
+        "url": "https://hydrinity.com.vn/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png"
         },
-        foundingLocation: {
-        @type: "Place",
-        name: "Ho Chi Minh City, Vietnam"
+        "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+        "email": "cosbeautyvietnam@gmail.com",
+        "telephone": "+84982762783",
+        "taxID": "0317577011",
+        "sameAs": [
+            "https://www.facebook.com/hydrinityvietnam",
+            "https://www.instagram.com/hydrinityvietnam/",
+            "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
+        ],
+        "contactPoint": [
+            {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "telephone": "+84982762783",
+            "email": "cosbeautyvietnam@gmail.com",
+            "areaServed": "VN"
+            }
+        ]
         },
-        contactPoint: {
-        @type: "ContactPoint",
-        telephone: "+84982762783",
-        email: "cosbeautyvietnam@gmail.com",
-        contactType: "Customer Service",
-        availableLanguage: ["Vietnamese", "English"]
-        }
-        }
-    </script>
-    <script type="application/ld+json">
         {
-        @context: "https://schema.org",
-        @type: "WebSite",
-        name: "HYDRINITY",
-        url: "https://hydrinity.com.vn/",
-        potentialAction: {
-        @type: "SearchAction",
-        target: "https://hydrinity.com.vn/search.html?q={search_term_string}",
-        query-input: "required name=search_term_string"
+        "@type": "HealthAndBeautyBusiness",
+        "@id": "https://hydrinity.com.vn/#localbusiness",
+        "name": "Hydrinity Việt Nam",
+        "url": "https://hydrinity.com.vn/",
+        "mainEntityOfPage": "https://hydrinity.com.vn/",
+        "logo": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+        "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+        "telephone": "+84982762783",
+        "email": "cosbeautyvietnam@gmail.com",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "04 Senic Valley 2, MD4-4, Tân Mỹ",
+            "addressLocality": "Hồ Chí Minh",
+            "addressRegion": "Hồ Chí Minh",
+            "postalCode": "700000",
+            "addressCountry": "VN"
+        },
+        "openingHoursSpecification": [
+            {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ],
+            "opens": "09:00",
+            "closes": "18:00"
+            },
+            {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "00:00",
+            "closes": "00:00"
+            }
+        ],
+        "areaServed": "VN",
+        "currenciesAccepted": "VND",
+        "paymentAccepted": "Cash, Bank Transfer, Credit Card",
+        "sameAs": [
+            "https://www.facebook.com/hydrinityvietnam",
+            "https://www.instagram.com/hydrinityvietnam/",
+            "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
+        ],
+        "parentOrganization": {
+            "@id": "https://hydrinity.com.vn/#organization"
         }
         }
+    ]
+    }
     </script>
-    
-    {% if obj_Blog %}
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "name": "{{ obj_Blog.Title }}",
-        "description": "{{ obj_Blog.Seo_Description }}"
-        }
-    </script>
-    {% endif %}
-    {% if obj_Kqls_post %}
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "Clinical results",
-        "name": "{{ obj_Kqls_post.Title }}",
-        "description": "{{ obj_Kqls_post.Seo_Description }}"
-        }
-    </script>
-    {% endif %}
+
+    <!-- 4. Open Graph tags (Facebook, Zalo...) -->
+    {% block meta_tag %}{% endblock %}
+
+    <!-- 5. Phần còn lại -->
+    <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="{% static 'css/ckeditor-style.css' %}">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -119,16 +153,6 @@
     src="https://www.facebook.com/tr?id=307459425079583&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-
-    <!-- 4. Open Graph tags (Facebook, Zalo...) -->
-    <meta property="og:type" content="website">
-    {% block meta_tag %}{% endblock %}
-    <meta property="og:site_name" content="Hydrinity">
-
-    <!-- 5. Phần còn lại -->
-    <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
-    <link rel="stylesheet" href="/static/styles.css">
-    <link rel="stylesheet" href="{% static 'css/ckeditor-style.css' %}">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -452,7 +476,7 @@
                     <a class="" href="{% url 'nav_nghien_cuu_lam_san' %}">Nghiên cứu lâm sàng</a>
                 </div>
                 <div class=" absolute right-[60px] top-[20px]">
-                    <form  class=" relative flex items-center justify-center">
+                    <form method="get" action="{% url 'nav_products_client' %}"  class=" relative flex items-center justify-center">
                         <input placeholder="Tìm kiếm...." name="s" value="{{s}}" class=" normal-case font-medium text-[10px] flex items-center w-[276px] h-[25px] rounded-full border-[1px] border-black pl-[10px]" style="background: transparent;"  />
                         <button type="submit" class="absolute right-0 flex justify-center items-center min-w-[25px] h-[25px] bg-[#11284A] rounded-full">
                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

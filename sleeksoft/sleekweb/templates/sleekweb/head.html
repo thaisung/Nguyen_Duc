@@ -1,0 +1,20 @@
+"<head>
+  <meta charset=""UTF-8"">
+  <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+
+  <title>{{ seo_title }}</title>
+  <meta name=""description"" content=""{{ seo_description }}"">
+  <meta name=""robots"" content=""index,follow"">
+  <link rel=""canonical"" href=""{{ canonical_url }}"">
+
+  <meta property=""og:title"" content=""{{ og_title | default: seo_title }}"">
+  <meta property=""og:description"" content=""{{ og_description | default: seo_description }}"">
+  <meta property=""og:url"" content=""{{ canonical_url }}"">
+  <meta property=""og:image"" content=""{{ og_image }}"">
+  <meta property=""og:type"" content=""{{ og_type }}"">
+
+  <meta name=""twitter:card"" content=""summary_large_image"">
+  <meta name=""twitter:title"" content=""{{ og_title | default: seo_title }}"">
+  <meta name=""twitter:description"" content=""{{ og_description | default: seo_description }}"">
+  <meta name=""twitter:image"" content=""{{ og_image }}"">
+</head>"

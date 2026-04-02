@@ -80,6 +80,7 @@ def about_ve_chung_toi_client(request):
             context['obj1'] = Edit_vct.objects.get(Count=1)
         except:
             context['obj1'] = {}
+            
         context['list_Edit_vct1'] = Edit_vct1.objects.all().order_by('Order')
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)

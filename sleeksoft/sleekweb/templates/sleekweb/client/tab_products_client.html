@@ -1,16 +1,26 @@
 {% extends './base_tab_product_client.html' %}
-{% block title %}{{obj_Seo_Page.Seo_Title}}{% endblock %}
+{% block title %}
+    <title>{{obj_Seo_Page.Seo_Title}}</title>
+{% endblock %}
 {% block seo_tag %}
     <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta name="keywords" content="PRODUCTS" />
-    <link rel="canonical" href="{{domain}}{% url 'tab_regimens_client' %}" />
+{% endblock %}
+{% block canonical %}
+    <link rel="canonical" href="{{domain}}{% url 'tab_products_client' %}">
 {% endblock %}
 {% block meta_tag %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hydrinity">
     <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
     <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta property="og:url" content="{{domain}}{% url 'tab_products_client' %}">
     <meta property="og:image" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:url" content="{{domain}}{% url 'tab_regimens_client' %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
 {% endblock %}
 {% block content %}
 {% for i in list_Product %}

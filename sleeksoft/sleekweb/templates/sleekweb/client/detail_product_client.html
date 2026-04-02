@@ -1,16 +1,79 @@
 {% extends './base_client.html' %}
-{% block title %}{{obj_Product.Seo_Title}}{% endblock %}
+{% block title %}
+    <title>{{obj_Product.Seo_Title}}</title>
+{% endblock %}
 {% block seo_tag %}
     <meta name="description" content="{{obj_Product.Seo_Description}}">
-    <meta name="keywords" content="{{obj_Product.Seo_Title}}" />
-    <link rel="canonical" href="{{domain}}{% url 'slug_router' slug=obj_Product.Slug %}" />
+    <meta name="keywords" content="{{obj_Product.Seo_Title}},Hydrinity" />
+{% endblock %}
+{% block canonical %}
+    <link rel="canonical" href="{{domain}}{% url 'slug_router' slug=obj_Product.Slug %}">
+{% endblock %}
+{% block Schema %}
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": "https://hydrinity.com.vn/{{obj_Product.Slug}}.html#product",
+    "url": "https://hydrinity.com.vn/{{obj_Product.Slug}}.html",
+    "name": "{{obj_Product.Name}}",
+    "image": [
+        {% for i in obj_Product.list_photo.all %}
+            "https://hydrinity.com.vn/{{ i.Avatar.url }}",
+        {% endfor %}
+    ],
+    "description": "{{obj_Product.Introduce}}",
+    "brand": {
+        "@type": "Brand",
+        "name": "Hydrinity"
+    },
+    "category": "Skincare > Serum",
+    "size": "{{obj_Product.list_size.all.first}}",
+    "additionalProperty": [
+        {
+        "@type": "PropertyValue",
+        "name": "Công dụng chính",
+        "value": "Hỗ trợ làm sáng da và cải thiện vẻ ngoài xỉn màu, kém rạng rỡ"
+        },
+        {
+        "@type": "PropertyValue",
+        "name": "Phù hợp",
+        "value": "Phù hợp với nhiều loại da, kể cả da nhạy cảm"
+        },
+        {
+        "@type": "PropertyValue",
+        "name": "Không chứa",
+        "value": "Hydroquinone, paraben, dầu khoáng, hương liệu nhân tạo"
+        }
+    ],
+    "offers": {
+        "@type": "Offer",
+        "url": "https://hydrinity.com.vn/{{obj_Product.Slug}}.html",
+        "price": {{obj_Product.list_size.all.last.Price}},
+        "priceCurrency": "VND",
+        "seller": {
+        "@type": "Organization",
+        "name": "CÔNG TY TNHH COSBEAUTY",
+        "url": "https://hydrinity.com.vn/",
+        "telephone": "+84982762783",
+        "email": "cosbeautyvietnam@gmail.com"
+        }
+    }
+    }
+    </script>
 {% endblock %}
 {% block meta_tag %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hydrinity">
     <meta property="og:title" content="{{obj_Product.Seo_Title}}">
     <meta property="og:description" content="{{obj_Product.Seo_Description}}">
-    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
-    <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
     <meta property="og:url" content="{{domain}}{% url 'slug_router' slug=obj_Product.Slug %}">
+    <meta property="og:image" content="{{domain}}{{obj_Product.Avatar.url}}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{obj_Product.Seo_Title}}">
+    <meta name="twitter:description" content="{{obj_Product.Seo_Description}}">
+    <meta name="twitter:image" content="{{domain}}{{obj_Product.Avatar.url}}">
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
