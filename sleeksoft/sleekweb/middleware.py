@@ -44,8 +44,46 @@ REDIRECT_MAP = {
 
     '/hydrinity-hydri-c-daily-vitamin-c-moisturizer-kem-duong-vitamin-c-tan-trong-dau-cap-am-sang-da.html':
         '/hydrinity-hydri-c-daily-vitamin-c-moisturizer-kem-duong-vitamin-c-cap-am-sang-da.html',
+
+    # mới
+    '/detail-proudct/hydrinity-renewing-ha-serum-tinh-chat-tre-hoa-tai-tao-da/':
+        '/hydrinity-renewing-ha-serum-tinh-chat-cham-soc-da-chuyen-sau.html',
+
+    '/detail-proudct/hydrinity-vivid-brightening-serum-serum-lam-sang-da-mo-nam-sau-treatment/':
+        '/hydrinity-vivid-brightening-serum-tinh-chat-cham-soc-da-tuoi-sang.html',
+
+    '/detail-proudct/hydrinity-hyacyn-active-mist-xit-phuc-hoi-khang-khuan-lam-diu-da-sau-treatment/':
+        '/hydrinity-hyacyn-active-mist-xit-khoang-hocl-lam-diu-can-bang-da.html',
+
+    '/detail-proudct/hydrinity-restorative-ha-serum-tinh-chat-phuc-hoi-da/':
+        '/hydrinity-restorative-ha-serum-tinh-chat-cham-soc-da-chuyen-sau.html',
+
+    '/detail-proudct/encore-body-hydrator-kem-duong-am-toan-than/':
+        '/hydrinity-encore-body-hydrator-kem-duong-am-toan-than-duy-tri-do-am.html',
+
+    '/detail-proudct/hydrinity-eye-renew-complex-kem-mat-tre-hoa-giam-quang-tham/':
+        '/hydrinity-eye-renew-complex-kem-duong-cham-soc-vung-da-mat.html',
+
+    '/detail-proudct/hydrinity-prelude-facial-cleanser-sua-rua-mat-lam-sach-sau-diu-nhe-cho-da-nhay-cam/':
+        '/hydrinity-prelude-facial-treatment-cleanser-sua-rua-mat-diu-nhe-duy-tri-do-am.html',
+
+    '/detail-proudct/hydrinity-luxe-lip-hydrator-duong-moi-cang-mong-phuc-hoi-sau-lieu-trinh/':
+        '/hydrinity-luxe-lip-hydrator-son-duong-cap-am-moi-mem-mai.html',
+
+    '/detail-proudct/hydrinity-hydri-c-kem-duong-vitamin-c-kep-lam-sang-cap-am-cho-da-nhay-cam/':
+        '/hydrinity-hydri-c-daily-vitamin-c-moisturizer-kem-duong-vitamin-c-cap-am-sang-da.html',
+
+    '/detail-proudct/hydrinity-retaxome-daily-retinal-hydrator-kem-duong-da-ho-tro-duong-am-giup-da-trong-sang-va-min-mang-hon/':
+        '/hydrinity-retaxome-daily-retinal-hydrator-kem-duong-da-cang-min-san-chac.html',
 }
 
+REDIRECT_MAP_410 = [
+    '/detail-proudct/hydrinity-restorative-ha-masque-mat-na-phuc-hoi-da-voi-ha-thuy-phan-biocellulose-vo-trung/',
+    '/blog-1',
+    '/blog-2',
+    '/blog-3'
+]
+    
 
 class Redirect404ToHomeMiddleware:
     def __init__(self, get_response):
@@ -65,6 +103,10 @@ class Redirect404ToHomeMiddleware:
             if path.startswith('/blog/'):
                 slug = path[len('/blog/'):].rstrip('/')
                 return HttpResponsePermanentRedirect(f'/{slug}.html')
+
+            if path in REDIRECT_MAP_410:
+                html = render_to_string('sleekweb/410.html')
+                return HttpResponse(html, status=410)
 
             # 3. Render trang 404 tuỳ chỉnh
             html = render_to_string('sleekweb/404.html')
