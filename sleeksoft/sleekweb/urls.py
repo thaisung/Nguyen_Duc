@@ -139,9 +139,9 @@ urlpatterns = [
     path('north-partner', select_kvmb_client,name='select_kvmb_client'),
     path('southern-partner', select_kvmn_client,name='select_kvmn_client'),
 
-    path('blog-1', blog_1_client,name='blog_1_client'),
-    path('blog-2', blog_2_client,name='blog_2_client'),
-    path('blog-3', blog_3_client,name='blog_3_client'),
+    # path('blog-1', blog_1_client,name='blog_1_client'),
+    # path('blog-2', blog_2_client,name='blog_2_client'),
+    # path('blog-3', blog_3_client,name='blog_3_client'),
 
     path('about-us', about_ve_chung_toi_client,name='about_ve_chung_toi_client'),
     path('news-awards', about_tin_tuc_giai_thuong_client,name='about_tin_tuc_giai_thuong_client'),
