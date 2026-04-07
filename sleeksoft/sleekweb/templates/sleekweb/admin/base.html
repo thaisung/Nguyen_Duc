@@ -152,13 +152,13 @@
                 </g>
             </svg>
         </div> 
-        <div id="menu" class="menu fixed lg:static  grow bg-[#eaebe7] lg:bg-transparent hidden lg:flex flex-col  text-white w-[350px]" style="z-index: 9999;">
+        <div id="menu" class="menu fixed lg:static  grow bg-[#eaebe7] lg:bg-transparent hidden lg:flex flex-col  text-white w-[350px] min-h-screen border-r-[1px] border-[#0e203c]" style="z-index: 9999;">
             <div class="uppercase flex flex-col justify-center items-center py-[20px] bg-[#11284A] border-b-[1px] border-[#0e203c] text-[30px]">
                 hydrinity
                 <span class="text-[16px]">Quản trị trang web</span>
                 <span class="text-[14px] text-yellow-500">{{request.user.username}}</span>
             </div>
-            <nav class="flex flex-col p-3 font-bold border-r-[1px] border-[#0e203c]  text-[#11284A] grow h-full">
+            <nav class="flex flex-col p-3 font-bold   text-[#11284A] grow h-full">
                 <a href="{% url 'change_website_admin' %}"  class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
                      Thông tin Website
                     {% if request.resolver_match.url_name == 'change_website_admin' %}
