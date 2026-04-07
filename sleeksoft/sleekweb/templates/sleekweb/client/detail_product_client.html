@@ -78,12 +78,12 @@
 {% block breadcrumb %}
     <a href="{% url 'nav_products_client' %}" class="hover:cursor-pointer hover:underline">Sản phẩm</a>
     <a>/</a>
-    <a href="{% url 'slug_router' slug=obj_Product.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Product.Name}}</a>
+    <a href="{% url 'slug_router' slug=obj_Product.Slug %}" class="whitespace-nowrap overflow-hidden text-ellipsis hover:cursor-pointer hover:underline">{{obj_Product.Name}}</a>
 {% endblock %}
 {% block breadcrumb_mb %}
     <a href="{% url 'nav_products_client' %}" class="whitespace-nowrap hover:cursor-pointer hover:underline">Sản phẩm</a>
     <a>/</a>
-    <a href="{% url 'slug_router' slug=obj_Product.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Product.Name}}</a>
+    <a href="{% url 'slug_router' slug=obj_Product.Slug %}" class="whitespace-nowrap overflow-hidden text-ellipsis hover:cursor-pointer hover:underline">{{obj_Product.Name}}</a>
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
