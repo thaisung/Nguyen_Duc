@@ -783,6 +783,10 @@ select {
   }
 }
 
+.visible {
+  visibility: visible;
+}
+
 .collapse {
   visibility: collapse;
 }
@@ -1560,6 +1564,14 @@ select {
   min-width: 50px;
 }
 
+.min-w-\[200px\] {
+  min-width: 200px;
+}
+
+.min-w-\[220px\] {
+  min-width: 220px;
+}
+
 .max-w-\[100px\] {
   max-width: 100px;
 }
@@ -1797,6 +1809,10 @@ select {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.text-ellipsis {
+  text-overflow: ellipsis;
 }
 
 .whitespace-nowrap {
