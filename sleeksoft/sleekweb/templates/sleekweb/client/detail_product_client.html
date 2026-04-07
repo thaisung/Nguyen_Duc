@@ -81,7 +81,7 @@
     <a href="{% url 'slug_router' slug=obj_Product.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Product.Name}}</a>
 {% endblock %}
 {% block breadcrumb_mb %}
-    <a href="{% url 'nav_products_client' %}" class="hover:cursor-pointer hover:underline">Sản phẩm</a>
+    <a href="{% url 'nav_products_client' %}" class="whitespace-nowrap hover:cursor-pointer hover:underline">Sản phẩm</a>
     <a>/</a>
     <a href="{% url 'slug_router' slug=obj_Product.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Product.Name}}</a>
 {% endblock %}

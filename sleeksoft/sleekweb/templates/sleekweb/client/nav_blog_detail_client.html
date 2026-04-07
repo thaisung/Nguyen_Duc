@@ -95,7 +95,7 @@
     <a href="{% url 'slug_router' slug=obj_Blog.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Blog.Title}}</a>
 {% endblock %}
 {% block breadcrumb_mb %}
-    <a href="{% url 'nav_blog_client' %}" class="hover:cursor-pointer hover:underline">Blog</a>
+    <a href="{% url 'nav_blog_client' %}" class="whitespace-nowrap hover:cursor-pointer hover:underline">Blog</a>
     <a>/</a>
     <a href="{% url 'slug_router' slug=obj_Blog.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Blog.Title}}</a>
 {% endblock %}
