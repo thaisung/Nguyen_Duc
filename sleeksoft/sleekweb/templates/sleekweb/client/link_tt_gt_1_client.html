@@ -25,12 +25,12 @@
 {% block breadcrumb %}
     <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
     <a>/</a>
-    <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" class="hover:cursor-pointer hover:underline">Tin tức và giải thưởng</a>
+    <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" class="whitespace-nowrap overflow-hidden text-ellipsis hover:cursor-pointer hover:underline">{{obj1.Title}}</a>
 {% endblock %}
 {% block breadcrumb_mb %}
     <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
     <a>/</a>
-    <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" class="hover:cursor-pointer hover:underline">Tin tức và giải thưởng</a>
+    <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" class="whitespace-nowrap overflow-hidden text-ellipsis hover:cursor-pointer hover:underline">{{obj1.Title}}</a>
 {% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
