@@ -4,17 +4,17 @@
 {% endblock %}
 {% block seo_tag %}
     <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
-    <meta name="keywords" content="Kết quả lâm sàn,Hydrinity" />
+    <meta name="keywords" content="Tầm nhìn,sứ mệnh,Hydrinity" />
 {% endblock %}
 {% block canonical %}
-    <link rel="canonical" href="{{domain}}{% url 'link_ket_qua_lam_san_client' %}">
+    <link rel="canonical" href="{{domain}}{% url 'about_tam_nhin_va_su_menh_client' %}">
 {% endblock %}
 {% block meta_tag %}
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Hydrinity">
     <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
     <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
-    <meta property="og:url" content="{{domain}}{% url 'link_ket_qua_lam_san_client' %}">
+    <meta property="og:url" content="{{domain}}{% url 'about_tam_nhin_va_su_menh_client' %}">
     <meta property="og:image" content="{{domain}}/upload/website/logo.png">
 
     <meta name="twitter:card" content="summary_large_image">
@@ -22,121 +22,49 @@
     <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
 {% endblock %}
-{% block breadcrumb %}
-    <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="hover:cursor-pointer hover:underline">Nghiên cứu lâm sàn</a>
-    <a>/</a>
-    <a href="{% url 'link_ket_qua_lam_san_client' %}" class="hover:cursor-pointer hover:underline">Kết quả lâm sàn</a>
-{% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
-    <h1 class="lg:hidden ff-bb font-normal text-[32px] text-[#11284A] uppercase mb-2">
-        KẾT QUẢ LÂM SÀN
-    </h1>
-    <div class="flex flex-col items-center w-full">
-        <!-- <div class="relative flex justify-center items-center w-full h-[177px] lg:h-[500px] overflow-hidden">
-            <img alt="img" class="w-full h-full object-cover" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" />
-            <div class="absolute flex justify-center items-center gap-1 lg:gap-3 inset-0  z-50 p-[20px] lg:p-none">
-                <div class="flex flex-col  gap-1 lg:gap-3 w-full lg:w-[1250px]">
-                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">
+    <div class="flex flex-col w-full justify-start">
+        <div class="relative flex justify-center items-center w-full h-[189px] lg:h-[500px] overflow-hidden">
+            <img alt="img" class="w-full h-full object-cover lg:object-cover" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" />
+            <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
+                <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[30px] lg:p-none">
+                    <h2 class="font-normal text-[15px] lg:text-[60px] uppercase text-[#25394f]">
                         {{obj1.Title1|safe}}
                     </h2>
-                    <div class="flex flex-col gap-1 font-normal  text-[10px] lg:text-[20px]  text-[#25394f]">
+                    <div class="flex flex-col gap-1 font-normal text-[8px] lg:text-[20px]  text-[#25394f]">
                         <p>{{obj1.Content1|safe}}</p>
                     </div>
                 </div>
             </div>
-        </div> -->
-        <!-- <div class="w-full h-[300px] lg:h-[400px] flex justify-center items-center overflow-hidden bg-white">
-            <div class="flex flex-col items-center w-full lg:w-[800px] p-[20px] lg:p-none">
-                <h3 class="ff-bb font-normal text-[24px] lg:text-[36px] text-center text-[#25394f]">
-                    {{obj1.Title2|safe}}
-                </h3>
-                <p class="font-normal text-[14px] lg:text-[16px] text-center mt-[15px] lg:mt-[50px] text-[#25394f]">
-                    {{obj1.Content2|safe}}
-                </p>
-            </div>
-        </div> -->
-        <!-- <div class="grow w-full flex items-center justify-center px-[20px]">
-            <div class="content-container ckeditor-content max-w-[1300px] w-full">{{ obj_kqls.Content|safe }}</div>
-        </div> -->
-        <!-- <div class="hidden lg:flex flex-col items-center">
-            <h1 class="uppercase font-medium text-[64px] text-black">
-                Kết quả lâm sàn
-            </h1>
-            <div class="w-[128px] h-[2px] bg-[#11284A]"></div>
         </div>
-        <div class="flex lg:hidden flex-col items-center">
-            <h1 class="uppercase font-normal ff-bb text-[32px] lg:text-[40px] text-[#11284A] text-center mb-2">
-                Kết quả lâm sàn
-            </h1>
-        </div> -->
-        <div class="grid grid-cols-1  lg:grid-cols-3 gap-[15px] lg:gap-[20px] p-3 w-full lg:w-[1200px]  lg:mt-[50px]">
-            {% for i in list_KqlsPost %}
-                <a href="{% url 'slug_router' slug=i.Slug %}" class="cursor-pointer">            
-                    <div class="flex gap-3 items-start">
-                        <div class=" pt-[7px]">
-                            <img alt="img" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" class="min-w-[100px] max-w-[100px] lg:min-w-[150px] lg:max-w-[150px]  h-auto" />
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <p class="p-0 m-0 font-bold text-[15px] lg:text-[20px]">{{i.Title}}</p>
-                        </div>
+        <div class="w-full py-[25px] lg:py-none h-auto  flex justify-center items-center overflow-hidden bg-white">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] lg:gap-[50px] text-[#11284A]">
+                {% for i in list_Edit_tnsm1 %}
+                <div class="w-[369px] flex flex-col gap-3 lg:gap-6 items-center text-center">
+                    <div class="w-full px-8">
+                        <img alt="img" class="w-full" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" >
                     </div>
-                </a>
-            {% endfor %}
-        </div>
-        <div class="flex flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
-            <span class="font-bold text-black text-[21px] lg:text-[55px]">
-                THE RESULTS ARE IN
-            </span>
-            <div class="w-full flex justify-center">
-                <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
-                    <div class="swiper-wrapper">
-                        {% for i in list_image_slider_3 %}
-                        <div class="swiper-slide">
-                            <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <!-- Chỉ có dấu chấm -->
-                    <div class="swiper-pagination hidden lg:block"></div>
+                    <h5 class=" lg:hidden uppercase font-bold text-[16px]  lg:text-[28px] text-center">
+                        {{i.Title|safe}}
+                    </h5>
+                    <h5 class="hidden lg:block uppercase font-bold text-[16px]  lg:text-[28px] text-center">
+                        {{i.Title|safe}}
+                    </h5>
+                    <p class="font-normal text-[12px] lg:text-[16px] italic lg:not-italic">
+                        {{i.Content|safe}}
+                    </p>
                 </div>
-                <script>
-                    var swiper = new Swiper(".mySwiper2", {
-                      loop: true, 
-                      autoplay: { delay: 3000 }, // Tự động chạy
-                      pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      },
-                    });
-                  </script>
-                  <style>
-                    /* Màu xám cho chấm tròn */
-                    .swiper-pagination-bullet {
-                        background: #9ca3af !important; /* Tailwind gray-400 */
-                        width: 17px;
-                        height: 17px;
-                        border-radius: 50%;
-                        transition: all 0.3s ease;
-                        opacity: 1;
-                    }
-                
-                    /* Màu trắng và kích thước lớn hơn khi active */
-                    .swiper-pagination-bullet-active {
-                        background: #ffffff !important; /* Tailwind white */
-                        width: 22px;
-                        height: 22px;
-                    }
-                </style>
+                {% endfor %}
             </div>
         </div>
-        <div class="hidden lg:flex items-center justify-center  w-full h-[500px] overflow-hidden bg-white">
-            <div class="flex relative w-[800px] h-full p-[50px]">
-                <img alt="img" class="w-[130px] h-[100px] object-cover" src="/upload/kq_ls/c.webp" />
-                <div class=" absolute top-[110px] left-[110px] flex flex-col gap-2">
-                    <p class="font-normal text-[32px] italic">Làn da của tôi lâu nay không đều màu và có nhiều vết đỏ, nhưng chỉ sau 2 tuần, tất cả đã biến mất. Thật tuyệt vời khi nhìn và cảm nhận làn da của chính mình.</p>
-                    <span class="font-medium text-[16px] text-[#5bbad6]">Khách hàng của Hydrinity</span>
-                    <span class="font-medium text-[16px] text-[#25394f]">Dee Woods</span>
+        <div class="flex justify-center items-center  bg-[#11284A] w-full p-[25px] lg:p-[50px]">
+            <div class="flex flex-col items-center text-center text-white gap-[15px] lg:gap-[30px]" > 
+                <img alt="img" class="w-[210px] lg:w-[1142px]" src="{% if obj1.Photo2 %}{{obj1.Photo2.url}}{% endif %}" />
+                <div class="w-full flex flex-col items-center text-center gap-[15px] lg:gap-[30px]">
+                    <h5 class="uppercase  font-bold text-[16px] lg:text-[30px]">{{obj1.Title2|safe}}</h5>
+                    <h6 class="font-normal text-[16px] lg:text-[30px] italic lg:not-italic">{{obj1.Title3|safe}}</h6>
+                    <p class="font-normal text-[10px] lg:text-[14px]">{{obj1.Content2|safe}}</p>    
                 </div>
             </div>
         </div>
@@ -161,7 +89,7 @@
                                 <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
                                     <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
                                         <div class="relative flex items-center justify-center">
-                                            <img class="w-[65px] h-[16px]" src="/upload/website/background.png" />
+                                            <img alt="img" class="w-[65px] h-[16px]" src="/upload/website/background.png" />
                                             <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
                                         </div>
                                     </div>
@@ -217,10 +145,56 @@
             });
         </script>
     </div>
+    <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px]">
+        <span class="font-bold text-black text-[21px] lg:text-[55px]">
+            THE RESULTS ARE IN
+        </span>
+        <div class="w-full flex justify-center">
+            <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
+                <div class="swiper-wrapper">
+                    {% for i in list_image_slider_3 %}
+                    <div class="swiper-slide">
+                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Chỉ có dấu chấm -->
+                <div class="swiper-pagination hidden lg:block"></div>
+            </div>
+            <script>
+                var swiper = new Swiper(".mySwiper2", {
+                  loop: true, 
+                  autoplay: { delay: 3000 }, // Tự động chạy
+                  pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                  },
+                });
+              </script>
+              <style>
+                /* Màu xám cho chấm tròn */
+                .swiper-pagination-bullet {
+                    background: #9ca3af !important; /* Tailwind gray-400 */
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    opacity: 1;
+                }
+            
+                /* Màu trắng và kích thước lớn hơn khi active */
+                .swiper-pagination-bullet-active {
+                    background: #ffffff !important; /* Tailwind white */
+                    width: 22px;
+                    height: 22px;
+                }
+            </style>
+        </div>
+    </div>
     <span class="uppercase hidden lg:flex justify-center items-center mt-8 mb-6 w-[162px] h-[55px] font-extrabold text-[25px] bg-[#11284A] rounded-md text-white">
         Product
     </span>
-    <div class="hidden lg:grid grid-cols-3 place-items-center items-center w-[1274px]  gap-[50px]">
+    <div class=" hidden lg:grid grid-cols-3 place-items-center items-center w-[1274px] mt-[50px] gap-[50px]">
         {% for i in list_Product %}
         <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
             <a href="{% url 'slug_router' slug=i.Slug %}">

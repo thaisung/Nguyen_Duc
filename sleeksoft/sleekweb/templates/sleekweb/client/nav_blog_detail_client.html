@@ -89,6 +89,11 @@
     <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta name="twitter:image" content="{{domain}}{{ obj_Blog.Avatar.url }}">
 {% endblock %}
+{% block breadcrumb %}
+    <a href="{% url 'nav_blog_client' %}" class="hover:cursor-pointer hover:underline">Blog</a>
+    <a>/</a>
+    <a href="{% url 'slug_router' slug=obj_Blog.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Blog.Title}}</a>
+{% endblock %}
 {% block content %}
 <main class="flex flex-col items-center w-full mb-6">
     <div class="flex flex-col gap-[20px] max-w-[1200px] p-[15px] lg:p-[0px] w-full">

@@ -1,7 +1,6 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="vi">
-{% load static %}
 
 <head>
     {% tailwind_css %}
@@ -153,7 +152,7 @@
     <!-- End Meta Pixel Code -->
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4191J1Z373"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -166,8 +165,9 @@
     <link rel="stylesheet" href="{% static 'ckeditor/ckeditor.css' %}">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
 
-    <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}?v=1743858420">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ckeditor-style.css' %}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Swiper CSS -->
@@ -179,17 +179,17 @@
 
     <script>
         function formatNumber(num) {
+            if (num === null || num === undefined || num === '') {
+                return num;
+            }
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
         $(document).ready(function () {
-            function formatNumberWithDot(num) {
-                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            }
-
             $('.format_number').each(function () {
                 var originalNumber = $(this).text().trim();
-                var formattedNumber = formatNumberWithDot(originalNumber);
-                $(this).text(formattedNumber);
+                if (originalNumber) {
+                    $(this).text(formatNumber(originalNumber));
+                }
             });
         });
     </script>
@@ -280,7 +280,6 @@
             });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
 </head>
@@ -440,81 +439,73 @@
                     </a>
                 </div>
             </div>
-            <nav class=" relative h-[250px]  flex items-center justify-center px-[210px] text-[#11284A]" style="font-family: 'UTM Bebas' !important;">
-                <div class="flex flex-col items-center justify-center">
-                    <div class="flex items-center justify-center gap-[165px]">
-                        <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
-                            <div class="click_tab_about relative flex items-center gap-2 hover:cursor-pointer" href="">
-                                About us
-                                <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                        fill="#11284A" />
-                                </svg>
+            <nav class=" relative h-[163px]  flex items-center justify-between px-[210px] text-[#11284A]"
+                style="font-family: 'UTM Bebas' !important;">
+                <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
+                    <div class="click_tab_about relative flex items-center gap-2 hover:cursor-pointer" href="">
+                        About us
+                        <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                fill="#11284A" />
+                        </svg>
 
-                                <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                        fill="#11284A" />
-                                </svg>
-                                <div class=" tab_about absolute z-90  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium"
-                                    style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
-                                    <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
-                                        Về chúng tôi
-                                    </a>
-                                    <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="h-[38px] flex items-center">
-                                        Tầm nhìn và sứ mệnh
-                                    </a>
-                                    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="h-[38px] flex items-center">
-                                        Tin tức & Giải thưởng
-                                    </a>
-                                    <a href="{% url 'about_lien_he_client' %}" class="h-[38px] flex items-center">
-                                        Liên hệ
-                                    </a>
-                                </div>
-                            </div>
-                            <a class="" href="{% url 'nav_products_client' %}">Sản phẩm</a>
-                            <a class="" href="{% url 'nav_blog_client' %}">Blog</a>
-                        </div>
-                        <a class="tab" href="/">
-                            <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[135px]" />
-                        </a>
-                        <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
-                            <div class="click_tab_doitac relative flex items-center gap-2 hover:cursor-pointer" href="">
-                                Danh sách đối tác
-                                <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                        fill="#11284A" />
-                                </svg>
-
-                                <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                        fill="#11284A" />
-                                </svg>
-                                <div class=" tab_doitac absolute z-50  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium"
-                                    style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
-                                    <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
-                                        Khu vực miền Bắc
-                                    </a>
-                                    <a href="{% url 'select_kvmn_client' %}" class="h-[38px] flex items-center">
-                                        Khu vực miền Nam
-                                    </a>
-                                </div>
-                            </div>
-                            <a class="" href="{% url 'nav_nghien_cuu_lam_san' %}">Nghiên cứu lâm sàng</a>
+                        <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                fill="#11284A" />
+                        </svg>
+                        <div class=" tab_about absolute z-90  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium"
+                            style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
+                                Về chúng tôi
+                            </a>
+                            <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="h-[38px] flex items-center">
+                                Tầm nhìn và sứ mệnh
+                            </a>
+                            <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="h-[38px] flex items-center">
+                                Tin tức & Giải thưởng
+                            </a>
+                            <a href="{% url 'about_lien_he_client' %}" class="h-[38px] flex items-center">
+                                Liên hệ
+                            </a>
                         </div>
                     </div>
-                    <div class="flex items-center w-full gap-[10px] bg-[#11284A] mt-[30px] text-stone-100 normal-case px-3 py-2" style="text-transform: none">
-                        <a href="{{domain}}" class="hover:cursor-pointer hover:underline">Trang chủ</a>
-                        <a>/</a>
-                        {% block breadcrumb %}{% endblock %}
+                    <a class="" href="{% url 'nav_products_client' %}">Sản phẩm</a>
+                    <a class="" href="{% url 'nav_blog_client' %}">Blog</a>
+                </div>
+                <a class="tab" href="/">
+                    <img alt="logo" src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% else %}{{domain}}/upload/website/logo.png{% endif %}" class="w-[135px]" />
+                </a>
+                <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
+                    <div class="click_tab_doitac relative flex items-center gap-2 hover:cursor-pointer" href="">
+                        Danh sách đối tác
+                        <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                fill="#11284A" />
+                        </svg>
+
+                        <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                fill="#11284A" />
+                        </svg>
+                        <div class=" tab_doitac absolute z-50  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium"
+                            style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Bắc
+                            </a>
+                            <a href="{% url 'select_kvmn_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Nam
+                            </a>
+                        </div>
                     </div>
+                    <a class="" href="{% url 'nav_nghien_cuu_lam_san' %}">Nghiên cứu lâm sàng</a>
                 </div>
                 <div class=" absolute right-[60px] top-[20px]">
                     <form method="get" action="{% url 'nav_products_client' %}" class=" relative flex items-center justify-center">
@@ -587,7 +578,7 @@
         </header>
         <header class="relative flex lg:hidden items-center justify-center w-full">
             <a class="tab w-full flex justify-center items-center p-[10px]" href="/">
-                <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[46px]" />
+                <img alt="logo" src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% else %}{{domain}}/upload/website/logo.png{% endif %}" class="w-[46px]" />
             </a>
             <div
                 class=" click_menu absolute left-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
@@ -611,7 +602,7 @@
                     </span>
                 </div>
                 <a class="tab w-full flex justify-center items-center p-[20px]" href="/">
-                    <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[56px]" />
+                    <img alt="logo" src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% else %}{{domain}}/upload/website/logo.png{% endif %}" class="w-[56px]" />
                 </a>
                 <nav class=" w-full flex flex-col  text-[#11284A] text-[20px] divide-y-[2px]  divide-[#11284A]"
                     style="font-family: 'UTM Bebas';">
@@ -736,7 +727,7 @@
             </script>
         </header>
         {% block content %}{% endblock %}
-        <footer class=" flex justify-center items-center w-full  lg:h-[499px] bg-[#11284A] p-[20px]">
+        <footer class=" flex justify-center items-center w-full h-[458px] lg:h-[499px] bg-[#11284A] p-[20px]">
             <div class=" flex flex-col items-center w-full lg:w-[1594px]  lg:h-[384px]">
                 <div class="w-full lg:h-full flex flex-col lg:flex-row">
                     <div class="flex flex-col lg:justify-between w-full lg:h-full gap-[10px] lg:gap-none">

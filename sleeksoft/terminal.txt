@@ -24,14 +24,14 @@ python resize_upload.py --path /home/sleekproject/sleeksoft/upload/photo --worke
 python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PHOTO_CONTENT --workers 2 --progress-every 20
 python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PHOTO_SLIDER --workers 2 --progress-every 20
 python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT --workers 2 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/product --workers 1 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT_AVATAR --workers 1 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT_NCLS --workers 1 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/tnvsm --workers 1 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/ttgt --workers 1 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/uploads --workers 1 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/vct --workers 1 --progress-every 20
-python resize_upload.py --path /home/sleekproject/sleeksoft/upload/website --workers 1 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/product --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT_AVATAR --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/PRODUCT_NCLS --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/tnvsm --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/ttgt --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/uploads --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/vct --workers 2 --progress-every 20
+python resize_upload.py --path /home/sleekproject/sleeksoft/upload/website --workers 2 --progress-every 20
 
 
 cd /home/sleekproject/sleeksoft
