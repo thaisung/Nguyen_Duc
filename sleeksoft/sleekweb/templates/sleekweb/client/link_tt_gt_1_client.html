@@ -23,9 +23,13 @@
     <meta name="twitter:image" content="{{domain}}{{obj1.Photo.url}}">
 {% endblock %}
 {% block breadcrumb %}
+    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
+    <a>/</a>
     <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" class="hover:cursor-pointer hover:underline">Tin tức và giải thưởng</a>
 {% endblock %}
 {% block breadcrumb_mb %}
+    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
+    <a>/</a>
     <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" class="hover:cursor-pointer hover:underline">Tin tức và giải thưởng</a>
 {% endblock %}
 {% block content %}
