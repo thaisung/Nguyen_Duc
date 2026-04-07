@@ -85,7 +85,7 @@ def tab_best_sellers_client(request):
         context['list_image_slider_2'] = Photo_Slider.objects.filter(Count=2).order_by('Order')
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3).order_by('Order')
         
-        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TC').first()
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TC-BEST-SELLERS').first()
 
         try:
             context['obj_Count_1'] = Photo_Content.objects.get(Count=1)

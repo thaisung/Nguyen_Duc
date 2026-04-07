@@ -20,11 +20,11 @@
                 <input type="hidden" name="Name_Page" value="TC-BEST-SELLERS"/>
                 <div class="flex gap-1 items-center">
                     <span class="font-bold">Seo_Title_Best_Sellers</span>
-                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
+                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page_Best_Sellers.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
                 <div class="flex gap-1 items-center">
                     <span class="font-bold">Seo_Description_Best_Sellers</span>
-                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
+                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page_Best_Sellers.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
             </form>
             <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
@@ -32,11 +32,11 @@
                 <input type="hidden" name="Name_Page" value="TC-PRODUCTS"/>
                 <div class="flex gap-1 items-center">
                     <span class="font-bold">Seo_Title_Products</span>
-                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
+                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page_Products.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
                 <div class="flex gap-1 items-center">
                     <span class="font-bold">Seo_Description_Products</span>
-                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
+                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page_Products.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
             </form>
             <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
@@ -44,11 +44,11 @@
                 <input type="hidden" name="Name_Page" value="TC-REGIMENS"/>
                 <div class="flex gap-1 items-center">
                     <span class="font-bold">Seo_Title_Regimens</span>
-                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
+                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page_Regimens.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
                 <div class="flex gap-1 items-center">
                     <span class="font-bold">Seo_Description_Regimens</span>
-                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
+                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page_Regimens.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
             </form>
         </div>

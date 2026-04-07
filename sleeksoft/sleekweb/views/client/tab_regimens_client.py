@@ -92,7 +92,7 @@ def tab_regimens_client(request):
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3).order_by('Order')
         context['list_Product'] = Product.objects.filter(Q(Category__icontains='REGIMENS'))
         
-        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TC').first()
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='TC-REGIMENS').first()
 
         # print('context:',context)
         return render(request, 'sleekweb/client/tab_regimens_client.html', context, status=200)
