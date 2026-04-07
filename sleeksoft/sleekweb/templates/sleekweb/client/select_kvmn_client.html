@@ -49,9 +49,11 @@
             <div class="flex flex-col gap-1">
                 <span class="uppercase font-medium text-[18px] lg:text-[25px] text-[#11284A] ff-bb ">{{i.Name}}</span>
                 <span class="uppercase font-medium text-[13px] text-[#11284A] ">{{i.Address}}</span>
+                {% if i.Link %}
                 <a href="{{i.Link}}" rel="nofollow noopener noreferrer" class=" uppercase flex justify-center items-center w-[110px] font-medium text-[12px] lg:text-[16px] text-white bg-[#11284A] rounded-full py-1">
                     Xem thêm
                 </a>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
