@@ -17,13 +17,37 @@
         <div class="flex flex-col gap-1 bg-stone-300 p-2 rounded-md">
             <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
                 {% csrf_token %}
-                <input type="hidden" name="Name_Page" value="TC"/>
+                <input type="hidden" name="Name_Page" value="TC-BEST-SELLERS"/>
                 <div class="flex gap-1 items-center">
-                    <span class="font-bold">Seo_Title</span>
+                    <span class="font-bold">Seo_Title_Best_Sellers</span>
                     <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
                 <div class="flex gap-1 items-center">
-                    <span class="font-bold">Seo_Description</span>
+                    <span class="font-bold">Seo_Description_Best_Sellers</span>
+                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
+                </div>
+            </form>
+            <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
+                {% csrf_token %}
+                <input type="hidden" name="Name_Page" value="TC-PRODUCTS"/>
+                <div class="flex gap-1 items-center">
+                    <span class="font-bold">Seo_Title_Products</span>
+                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
+                </div>
+                <div class="flex gap-1 items-center">
+                    <span class="font-bold">Seo_Description_Products</span>
+                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
+                </div>
+            </form>
+            <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
+                {% csrf_token %}
+                <input type="hidden" name="Name_Page" value="TC-REGIMENS"/>
+                <div class="flex gap-1 items-center">
+                    <span class="font-bold">Seo_Title_Regimens</span>
+                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
+                </div>
+                <div class="flex gap-1 items-center">
+                    <span class="font-bold">Seo_Description_Regimens</span>
                     <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
                 </div>
             </form>
