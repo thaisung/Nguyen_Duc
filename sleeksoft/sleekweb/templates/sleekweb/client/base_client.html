@@ -587,12 +587,17 @@
                 });
             </script>
         </header>
-        <header class="relative flex lg:hidden items-center justify-center w-full">
+        <header class="relative flex flex-col lg:hidden  w-full">
             <a class="tab w-full flex justify-center items-center p-[10px]" href="/">
                 <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[46px]" />
             </a>
+            <div class="flex gap-1 p-3">
+                <a href="{{domain}}" class="text-[#11284A]">Trang chủ</a>
+                <a>/</a>
+                {% block breadcrumb_mb %}{% endblock %}
+            </div>
             <div
-                class=" click_menu absolute left-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
+                class=" click_menu absolute left-3 top-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
                 <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M0 5C0 2.23858 2.23858 0 5 0H22C24.7614 0 27 2.23858 27 5V21C27 23.7614 24.7614 26 22 26H5C2.23858 26 0 23.7614 0 21V5Z"

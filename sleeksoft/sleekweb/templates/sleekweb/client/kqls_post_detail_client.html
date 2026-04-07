@@ -29,6 +29,13 @@
     <a>/</a>
     <a href="{% url 'slug_router' slug=obj_Kqls_post.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Kqls_post.Title}}</a>
 {% endblock %}
+{% block breadcrumb_mb %}
+    <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="hover:cursor-pointer hover:underline">Nghiên cứu lâm sàn</a>
+    <a>/</a>
+    <a href="{% url 'link_ket_qua_lam_san_client' %}" class="hover:cursor-pointer hover:underline">Kết quả lâm sàn</a>
+    <a>/</a>
+    <a href="{% url 'slug_router' slug=obj_Kqls_post.Slug %}" class="hover:cursor-pointer hover:underline">{{obj_Kqls_post.Title}}</a>
+{% endblock %}
 {% block content %}
 <main class="flex flex-col items-center w-full mb-6">
     <div class="flex flex-col gap-[20px] max-w-[1200px] p-[15px] lg:p-[0px] w-full">

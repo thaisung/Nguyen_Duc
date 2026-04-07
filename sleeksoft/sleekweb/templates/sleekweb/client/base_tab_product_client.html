@@ -1056,7 +1056,9 @@
                                 </div>
                                 {% endif %}
                             </div>
-                            <div class=" flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
+                            <div data-url="{% url 'slug_router' slug=list_BlogPost.0.Slug %}"
+                                 onclick="window.location.href=this.dataset.url" 
+                                 class=" flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
                                 Read More
                             </div>
                         </a>
@@ -1077,7 +1079,9 @@
                                 </div>
                                 {% endif %}
                             </div>
-                            <div class="flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
+                            <div data-url="{% url 'slug_router' slug=list_BlogPost.1.Slug %}"
+                                 onclick="window.location.href=this.dataset.url"
+                                 class="flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
                                 Read More
                             </div>
                         </a>
@@ -1099,7 +1103,9 @@
                                     Nội dung 1
                                 </p>
                                 {% endif %}
-                                <div class="readmore-toggle flex items-center justify-center text-white w-[96px] h-[27px] bg-[#11284A] text-center rounded font-bold text-[12px]">
+                                <div data-url="{% url 'slug_router' slug=list_BlogPost.0.Slug %}"
+                                     onclick="window.location.href=this.dataset.url"
+                                     class="readmore-toggle flex items-center justify-center text-white w-[96px] h-[27px] bg-[#11284A] text-center rounded font-bold text-[12px]">
                                     Read More
                                 </div>
                             </div>  

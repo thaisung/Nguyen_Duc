@@ -22,6 +22,9 @@
     <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
 {% endblock %}
+{% block breadcrumb %}
+    <a href="{% url 'select_kvmb_client' %}" class="hover:cursor-pointer hover:underline">Danh sách đối tác miền bắc</a>
+{% endblock %}
 {% block content %}
 <main class=" flex flex-col items-center w-full mb-6">
     <div class="hidden lg:flex flex-col items-center">
