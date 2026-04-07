@@ -1296,6 +1296,112 @@ AACCJA4AIEjiAACCJA4AIEjiAACCJA4AIEjiAACCJA4AoGbbAXz31/pAfhU/AAAAAElFTkSuQmCC"
             </div>
         </footer>
     </div>
+    <button id="backToTopBtn" type="button" class="back-to-top-btn" aria-label="Ve dau trang" title="Về đầu trang">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 14L12 8L18 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <style>
+        .back-to-top-btn {
+            position: fixed;
+            right: 16px;
+            bottom: 20px;
+            z-index: 70;
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            border: 2px solid rgba(251, 251, 251, 0.9);
+            outline: 1px solid #11284A;
+            outline-offset: 1px;
+            background: rgba(17, 40, 74, 0.92);
+            color: #FBFBFB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(17, 40, 74, 0.25);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background-color 0.2s ease;
+        }
+
+        .back-to-top-btn.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            animation: back-to-top-pulse 1.8s ease-in-out infinite;
+        }
+
+        .back-to-top-btn svg {
+            transition: transform 0.2s ease;
+        }
+
+        .back-to-top-btn:hover {
+            background: #0b1e3a;
+        }
+
+        .back-to-top-btn:hover svg {
+            transform: translateY(-1px) scale(1.08);
+        }
+
+        .back-to-top-btn:focus-visible {
+            outline: 2px solid #FBFBFB;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(17, 40, 74, 0.45);
+        }
+
+        @media (min-width: 1024px) {
+            .back-to-top-btn {
+                right: 24px;
+                bottom: 28px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .back-to-top-btn {
+                transition: none;
+            }
+
+            .back-to-top-btn.is-visible {
+                animation: none;
+            }
+        }
+
+        @keyframes back-to-top-pulse {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(0) scale(1.09);
+            }
+        }
+    </style>
+    <script>
+        (function () {
+            var backToTopBtn = document.getElementById("backToTopBtn");
+            if (!backToTopBtn) {
+                return;
+            }
+
+            function toggleBackToTop() {
+                if (window.scrollY > 260) {
+                    backToTopBtn.classList.add("is-visible");
+                } else {
+                    backToTopBtn.classList.remove("is-visible");
+                }
+            }
+
+            backToTopBtn.addEventListener("click", function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            window.addEventListener("scroll", toggleBackToTop, { passive: true });
+            toggleBackToTop();
+        })();
+    </script>
 </body>
 
 </html>
