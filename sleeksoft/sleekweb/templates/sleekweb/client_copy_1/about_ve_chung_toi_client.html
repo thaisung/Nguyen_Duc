@@ -1,0 +1,264 @@
+{% extends './base_client.html' %}
+{% block title %}
+    <title>{{obj_Seo_Page.Seo_Title}}</title>
+{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="keywords" content="Về chúng tôi,Hydrinity" />
+{% endblock %}
+{% block canonical %}
+    <link rel="canonical" href="{{domain}}{% url 'about_ve_chung_toi_client' %}">
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hydrinity">
+    <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta property="og:url" content="{{domain}}{% url 'about_ve_chung_toi_client' %}">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
+{% endblock %}
+{% block breadcrumb %}
+    <a href="{% url 'about_ve_chung_toi_client' %}" class="hover:cursor-pointer hover:underline">Về chúng tôi</a>
+{% endblock %}
+{% block breadcrumb_mb %}
+    <a href="{% url 'about_ve_chung_toi_client' %}" class="hover:cursor-pointer hover:underline">Về chúng tôi</a>
+{% endblock %}
+{% block content %}
+<main class=" flex flex-col items-center w-full mb-6">
+    <div class="flex items-center justify-center w-full h-[128px] lg:h-[560px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
+        <img alt="img" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" alt="Hình ảnh" class="w-full h-full object-cover text-white flex justify-center items-center" />
+    </div>
+    <div class="flex flex-col w-full">
+        <div class="w-full py-[15px] lg:py-[50px] flex items-center justify-center overflow-hidden">
+            <div class="flex w-[1100px] flex-col items-center text-justify lg:text-center p-[15px] lg:p-none text-[#11284A]">
+                <h3 class="font-semibold text-[22px] lg:text-[36px]  uppercase ff-bb"><b></b><span class="section-title-main">{{obj1.Title1}}</span><b></b></h3>
+                <div class="font-normal text-[14px] lg:text-[16px] mt-[20px] lg:mt-[40px]">
+                    {{obj1.Content1|safe}}
+                </div>
+                <!-- <div class="font-normal text-[14px] lg:text-[16px] mt-2">Báo cáo từ các bác sĩ lâm sàng hàng đầu cho thấy các công thức dựa trên Hyaluronic Acid (HA) siêu cường độ của Hydrinity thúc đẩy quá trình chữa lành tổn thương trên da nhanh chóng, ngay cả những nền da tổn thương mức độ cao ở bệnh nhân đang tiến hành điều trị bằng tia X. Nhận thấy tiềm năng ứng dụng của HA siêu cường độ vào việc chăm sóc da với khả năng chống lão hoá hàng ngày tại nhà, chúng tôi đã tiến hành nghiên cứu và bắt đầu thử nghiệm. Sau 3 năm, với nhiều công thức và nỗ lực nghiên cứu không ngừng nghỉ từ đội ngũ các nhà khoa học và bác sĩ của Hydrinity, công nghệ chăm sóc da tăng tốc ra đời.</div> -->
+            </div>
+        </div>
+        <div class=" hidden lg:flex items-center justify-center  w-full h-[500px] overflow-hidden " style="background-color: rgb(222, 232, 241);"> 
+            <div class="flex relative w-[1100px] h-full p-[15px] lg:p-[50px]">
+                <img alt="img" class="w-[130px] h-[80px] object-cover" src="/upload/kq_ls/c.webp" />
+                <div class=" absolute top-[110px] left-[110px] flex flex-col gap-2">
+                    <p class="font-normal text-[32px] text-[#111827] italic">
+                        {{obj1.Content2|safe}}
+                    </p>
+                    <span class="font-medium text-[16px] text-[#5bbad6]">Keith O'Briant</span>
+                    <span class="font-medium text-[16px] text-[#25394f]">CEO Hydrinity</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex lg:hidden flex-col gap-[15px] pb-[15px]">
+            <p class="font-normal text-[14px] italic text-[#0067FF] text-justify p-[15px] indent-[2em]">
+                {{obj1.Content2|safe}}
+            </p>
+            <div class="flex gap-[15px] items-center justify-center w-full">
+                <div class="w-[50px] h-[3px] bg-[#111827]"></div>
+                <div class="flex flex-col items-center gap-[15px]">
+                    <p class="font-bold text-[14px] italic text-[#0067FF]">CEO Hydrinity</p>
+                    <p class="font-normal text-[14px] italic text-[#11284A]">Keith O’Briant</p>
+                </div>
+                <div class="w-[50px] h-[3px] bg-[#111827]"></div>
+            </div>
+        </div>
+        <div class="w-full flex justify-center  overflow-hidden ">
+            <div class="flex flex-col items-center w-[1200px] py-[20px] lg:py-[80px] px-[15px] lg:px-none text-[#11284A]">
+                <h3 class="lg:hidden font-bold lg:font-normal text-[24px] lg:text-[36px] text-center uppercase ff-bb ">
+                    {{obj1.Title2}}
+                </h3>
+                <h3 class="hidden lg:block font-bold lg:font-normal text-[24px] lg:text-[36px] text-center uppercase ff-bb ">
+                    {{obj1.Title2}}
+                </h3>
+                <p class="text-center text-[10px] lg:text-[16px] mt-6 italic lg:not-italic px-[20px] lg:px-none">
+                    {{obj1.Content3|safe}}
+                </p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-[25px] lg:gap-[50px] mt-[25px] lg:mt-[50px]">
+                    {% for i in list_Edit_vct1 %}
+                    <div class="flex flex-col items-center  lg:gap-2">
+                        <img class="w-[63px] lg:w-[69px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
+                        <h5 class="uppercase font-bold  text-[16px] lg:text-[28px]">{{i.Title}}</h5>
+                        <p class="font-normal text-[12px] lg:text-[16px] italic lg:not-italic px-[20px] lg:px-none">
+                            {{i.Content}}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="w-full hidden lg:flex justify-center items-center overflow-hidden p-[50px]" style="background-color: rgb(222, 232, 241);">
+            <div class="flex w-[1000px] flex-col gap-3">
+                <img alt="img" class="w-full h-full" src="{% if obj1.Photo2 %}{{obj1.Photo2.url}}{% endif %}" />
+                <img alt="img" class="w-full h-full" src="{% if obj1.Photo3 %}{{obj1.Photo3.url}}{% endif %}" />
+            </div>
+        </div>
+    </div>
+    <div class=" flex lg:hidden flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
+        <span class="font-bold text-black text-[21px] lg:text-[55px]">
+            THE RESULTS ARE IN
+        </span>
+        <div class="w-full flex justify-center">
+            <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
+                <div class="swiper-wrapper">
+                    {% for i in list_image_slider_3 %}
+                    <div class="swiper-slide">
+                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Chỉ có dấu chấm -->
+                <div class="swiper-pagination hidden lg:block"></div>
+            </div>
+            <script>
+                var swiper = new Swiper(".mySwiper2", {
+                  loop: true, 
+                  autoplay: { delay: 3000 }, // Tự động chạy
+                  pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                  },
+                });
+              </script>
+              <style>
+                /* Màu xám cho chấm tròn */
+                .swiper-pagination-bullet {
+                    background: #9ca3af !important; /* Tailwind gray-400 */
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    opacity: 1;
+                }
+            
+                /* Màu trắng và kích thước lớn hơn khi active */
+                .swiper-pagination-bullet-active {
+                    background: #ffffff !important; /* Tailwind white */
+                    width: 22px;
+                    height: 22px;
+                }
+            </style>
+        </div>
+    </div>
+    <span class="uppercase hidden lg:flex justify-center items-center mt-8 mb-6 w-[162px] h-[55px] font-extrabold text-[25px] bg-[#11284A] rounded-md text-white">
+        Product
+    </span>
+    <div class="hidden lg:grid grid-cols-3 place-items-center items-center w-[1274px] mt-[50px] gap-[50px]">
+        {% for i in list_Product %}
+        <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
+            <a href="{% url 'slug_router' slug=i.Slug %}">
+                <img alt="img" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
+            </a>
+            <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
+                <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">
+                    {{i.Name}}
+                </a>
+                <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 grow">
+                    <div class="relative">
+                        <div class="click_tab_size_product hover:cursor-pointer z-20 relative flex items-center w-[264px] h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                            <div class="absolute bottom-6 left-8">
+                                <div class="relative flex items-center justify-center">
+                                    <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                    <span class=" absolute inset-0 font-medium text-[12px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                <span class="name-display font-medium text-[12px]  text-[#11284A]">
+                                    {{i.list_size.all.last.Name}}
+                                </span>
+                                <span>
+                                    <svg class="open_tab_size_product" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="#11284A" />
+                                    </svg>
+                                    <svg class="close_tab_size_product" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="#11284A" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="display: none;"  class="tab_size_product z-10 absolute top-[15px] pt-[15px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                            {% for j in i.list_size.all %}
+                            <a class="size-option font-medium text-[12px] text-[#11284A] py-1 cursor-pointer" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <span class="uppercase z-[-2] font-bold text-[25px] text-black text-center">
+                        GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <script>
+            $(document).ready(function(){
+                $('.product-item .size-option').on('click', function() {
+            var name = $(this).data('name');
+            var price = $(this).data('price');
+
+            var parent = $(this).closest('.product-item');
+
+            // Cập nhật tên size
+            parent.find('.name-display').text(name);
+
+            // Cập nhật giá có format số
+            parent.find('.price-display').text(formatNumber(price));
+            });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $(".click_tab_size_product").click(function (event) {
+                    event.stopPropagation(); // Ngăn chặn sự kiện click lan ra ngoài
+        
+                    let $tab = $(this).next(".tab_size_product");
+                    let $openIcon = $(this).find(".open_tab_size_product");
+                    let $closeIcon = $(this).find(".close_tab_size_product");
+        
+                    // Ẩn tất cả dropdown khác
+                    $(".tab_size_product").not($tab).slideUp(200).removeClass("open");
+                    $(".open_tab_size_product").not($openIcon).show();
+                    $(".close_tab_size_product").not($closeIcon).hide();
+        
+                    // Toggle dropdown hiện tại
+                    $tab.slideToggle(200).toggleClass("open");
+                    $openIcon.toggle();
+                    $closeIcon.toggle();
+                });
+        
+                // Click ra ngoài sẽ ẩn dropdown
+                $(document).click(function () {
+                    $(".tab_size_product").slideUp(200).removeClass("open");
+                    $(".close_tab_size_product").hide();
+                    $(".open_tab_size_product").show();
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Lấy vị trí cuộn từ LocalStorage
+                const scrollPosition = localStorage.getItem("scrollPosition");
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    localStorage.removeItem("scrollPosition"); // Xóa sau khi cuộn
+                }
+        
+                // Lưu vị trí trước khi chuyển trang
+                document.querySelectorAll("a").forEach(link => {
+                    link.addEventListener("click", function () {
+                        localStorage.setItem("scrollPosition", window.scrollY);
+                    });
+                });
+            });
+        </script>
+    </div>
+</main>
+{% endblock %}

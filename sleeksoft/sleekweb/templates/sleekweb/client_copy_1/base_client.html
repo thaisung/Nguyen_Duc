@@ -1,7 +1,8 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="vi">
-    {% load static %}
+{% load static %}
+
 <head>
     {% tailwind_css %}
     <!-- 1. Thẻ charset, viewport, title -->
@@ -12,12 +13,13 @@
 
     <!-- 2. Thẻ SEO cơ bản -->
     {% block seo_tag %}{% endblock %}
+
     <meta name='revisit-after' content='1 days' />
     <meta name="robots" content="index,follow" />
 
     <!-- 3. Favicon -->
     <link rel="shortcut icon" href="{{domain}}/upload/website/logo.png" type="image/x-icon" />
-
+    
     <!-- 3.1. Canonical -->
     {% block canonical %}{% endblock %}
 
@@ -132,15 +134,6 @@
     <!-- 4. Open Graph tags (Facebook, Zalo...) -->
     {% block meta_tag %}{% endblock %}
 
-    <!-- 5. Phần còn lại -->
-    <!--
-    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
-    <link rel="stylesheet" href="/static/styles.css">
-    -->
-
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -169,108 +162,133 @@
     </script>
 
 
+    <!-- 5. Phần còn lại -->
+     <!--
+    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
+    <link rel="stylesheet" href="/static/styles.css">
+    -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 
     <script>
         function formatNumber(num) {
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
-        $(document).ready(function() {
+        $(document).ready(function () {
             function formatNumberWithDot(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             }
-        
-            $('.format_number').each(function() {
+
+            $('.format_number').each(function () {
                 var originalNumber = $(this).text().trim();
                 var formattedNumber = formatNumberWithDot(originalNumber);
                 $(this).text(formattedNumber);
             });
         });
-      </script>
+    </script>
 
-<style>
-        
-    @font-face {
-        font-family: 'UTM Aptima';
-        src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
-        font-weight: 400;
-        font-style: normal;
-    }
+    <style>
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/UTMAptima.woff2' %}") format('woff2'),
+            url("{% static 'fonts/UTMAptima.woff' %}") format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
 
-    @font-face {
-        font-family: 'UTM Aptima';
-        src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
-        font-weight: 700;
-        font-style: normal;
-    }
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/UTMAptimaBold.woff2' %}") format('woff2'),
+            url("{% static 'fonts/UTMAptimaBold.woff' %}") format('woff');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
 
-    @font-face {
-        font-family: 'UTM Aptima';
-        src: url("{% static 'fonts/UTM-AptimaItalic.ttf' %}") format('truetype');
-        font-weight: 400;
-        font-style: italic;
-    }
+        /* @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
 
-    @font-face {
-        font-family: 'UTM Aptima';
-        src: url("{% static 'fonts/00024-UTM-AptimaBoldItalic.ttf' %}") format('truetype');
-        font-weight: 700;
-        font-style: italic;
-    }
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        } */
 
-    @font-face {
-        font-family: 'UTM Bebas';
-        src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
-        font-weight: 700;
-        font-style: normal;
-    }
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/UTM-AptimaItalic.ttf' %}") format('truetype');
+            font-weight: 400;
+            font-style: italic;
+        }
 
-    body {
-        font-family: 'UTM Aptima', sans-serif !important;
-    }
+        @font-face {
+            font-family: 'UTM Aptima';
+            src: url("{% static 'fonts/00024-UTM-AptimaBoldItalic.ttf' %}") format('truetype');
+            font-weight: 700;
+            font-style: italic;
+        }
 
-    .ff-bb{
-        font-family: 'UTM Bebas', sans-serif !important;
-    }
+        @font-face {
+            font-family: 'UTM Bebas';
+            src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
 
-    .ckeditor-content {
-    font-family: 'UTM Aptima', sans-serif !important;
-    }
+        body {
+            font-family: 'UTM Aptima', sans-serif !important;
+        }
 
-    .ckeditor-content * {
-        font-family: 'UTM Aptima', sans-serif !important;
-    }
+        .ff-bb {
+            font-family: 'UTM Bebas', sans-serif !important;
+        }
 
-</style>
+        .ckeditor-content {
+            font-family: 'UTM Aptima', sans-serif !important;
+        }
+
+        .ckeditor-content * {
+            font-family: 'UTM Aptima', sans-serif !important;
+        }
+    </style>
     <script>
-        $(document).ready(function(){
-            $('.product-item .size-option').on('click', function() {
-          var name = $(this).data('name');
-          var price = $(this).data('price');
-    
-          var parent = $(this).closest('.product-item');
-    
-          // Cập nhật tên size
-          parent.find('.name-display').text(name);
-    
-          // Cập nhật giá có format số
-          parent.find('.price-display').text(formatNumber(price));
-        });
+        $(document).ready(function () {
+            $('.product-item .size-option').on('click', function () {
+                var name = $(this).data('name');
+                var price = $(this).data('price');
+
+                var parent = $(this).closest('.product-item');
+
+                // Cập nhật tên size
+                parent.find('.name-display').text(name);
+
+                // Cập nhật giá có format số
+                parent.find('.price-display').text(formatNumber(price));
+            });
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-
 </head>
 
-<body class="w-screen min-h-screen flex flex-col items-center bg-red-500" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+<body class="w-full min-h-screen flex flex-col items-center bg-red-500"
+    style="background: url('/upload/website/background.png') no-repeat center center/cover;">
     <div class="w-full max-w-[1920px] flex flex-col items-center">
         <header class=" w-full hidden lg:flex flex-col">
             <div class="w-full h-[50px] bg-[#11284A] flex items-center justify-between px-[74px]">
@@ -278,45 +296,34 @@
                     <span class="whitespace-nowrap">
                         Chào mừng đến với <span class="font-bold">Hydirinity VietNam</span>
                     </span>
-                    <span class=" whitespace-nowrap">
-                        Hotline: <span 
-                        {% if request.user.is_superuser %}ondblclick="window.location.href='{% url 'login_admin' %}'"{% endif %}
-                        class="dblclick-link font-bold cursor-pointer">{{obj.Phone_number}}</span>
+                    <span class="whitespace-nowrap ">
+                        Hotline: <span class="font-bold">{{obj.Phone_number}}</span>
                     </span>
                 </div>
-                <!-- <div class="overflow-hidden whitespace-nowrap">
-                    <div class="animate-marquee flex gap-6 text-[15px] h-[33px] items-center text-white tracking-widest uppercase">
-                      <span class="inline-block px-4">Accelerated Skin Science</span>
-                      <span class="inline-block px-4">Accelerated Skin Science</span>
-                      <span class="inline-block px-4">Accelerated Skin Science</span>
-                      <span class="inline-block px-4">Accelerated</span>
-                    </div>
-                </div>
-                  
-                  <style>
-                  @keyframes marquee {
-                    0%   { transform: translateX(100%); }
-                    100% { transform: translateX(-100%); }
-                  }
-                  .animate-marquee {
-                    animation: marquee 15s linear infinite;
-                  }
-                </style> -->
+                <!-- <div class="h-[33px] text-[15px] flex justify-between items-center gap-6">
+                    <a href="#" class="text-white  tracking-widest uppercase ">Accelerated Skin Science</a>
+                    <a href="#" class="text-white  tracking-widest uppercase ">Accelerated Skin Science</a>
+                    <a href="#" class="text-white  tracking-widest uppercase ">Accelerated Skin Science</a>
+                    <a href="#" class="text-white  tracking-widest uppercase ">Accelerated</a>
+                </div> -->
                 <div class="relative mx-[100px] w-full  overflow-hidden  h-[33px] ">
-                    <div class="absolute whitespace-nowrap flex animate-marquee gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
-                      <span class="px-4">{{obj.Text_run}}</span>
-                      <span class="px-4">{{obj.Text_run}}</span>
-                      <span class="px-4">{{obj.Text_run}}</span>
-                      <span class="px-4">{{obj.Text_run}}</span>
+                    <div
+                        class="absolute whitespace-nowrap flex animate-marquee gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
                     </div>
                     <!-- Nhân đôi để nối đuôi -->
-                    <div class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
-                      <span class="px-4">{{obj.Text_run}}</span>
-                      <span class="px-4">{{obj.Text_run}}</span>
-                      <span class="px-4">{{obj.Text_run}}</span>
-                      <span class="px-4">{{obj.Text_run}}</span>
+                    <div
+                        class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
                     </div>
-                    <div class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                    <div
+                        class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
                         <span class="px-4">{{obj.Text_run}}</span>
                         <span class="px-4">{{obj.Text_run}}</span>
                         <span class="px-4">{{obj.Text_run}}</span>
@@ -324,26 +331,37 @@
                     </div>
                 </div>
                 <style>
-                  @keyframes marquee {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-100%); }
-                  }
-                  
-                  @keyframes marquee2 {
-                    0% { transform: translateX(100%); }
-                    100% { transform: translateX(0); }
-                  }
-                  
-                  .animate-marquee {
-                    animation: marquee 15s linear infinite;
-                  }
-                  
-                  .animate-marquee2 {
-                    animation: marquee2 15s linear infinite;
-                  }
+                    @keyframes marquee {
+                        0% {
+                            transform: translateX(0);
+                        }
+
+                        100% {
+                            transform: translateX(-100%);
+                        }
+                    }
+
+                    @keyframes marquee2 {
+                        0% {
+                            transform: translateX(100%);
+                        }
+
+                        100% {
+                            transform: translateX(0);
+                        }
+                    }
+
+                    .animate-marquee {
+                        animation: marquee 15s linear infinite;
+                    }
+
+                    .animate-marquee2 {
+                        animation: marquee2 15s linear infinite;
+                    }
                 </style>
                 <div class="flex justify-between items-center gap-3">
-                    <a href="https://www.facebook.com/hydrinityvietnam" target="_blank" rel="noopener noreferrer" class="">
+                    <a href="https://www.facebook.com/hydrinityvietnam" target="_blank" rel="noopener noreferrer"
+                        class="">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.82545 3.90541C5.82545 3.74177 5.85818 3.62177 5.95636 3.52359C6.05455 3.42541 6.16364 3.39268 6.33818 3.39268C6.81818 3.39268 7.28727 3.39268 7.76727 3.37086C8.16 3.35996 8.38909 3.14177 8.4 2.78177C8.41091 2.03996 8.41091 1.29814 8.4 0.556319C8.4 0.229046 8.16 0.0108643 7.81091 0.0108643H6.48C6.19636 0.0108643 5.90182 0.0108643 5.61818 0.0108643C4.61455 0.0435915 3.77455 0.414501 3.12 1.14541C2.55273 1.77814 2.25818 2.55268 2.21455 3.51268C2.19273 3.83996 2.20364 4.17814 2.21455 4.52723V5.17086H0.730909C0.207273 5.17086 0.0109091 5.37814 0.0109091 5.90177C0 6.50177 0 7.11268 0 7.72359V7.93086C0 8.53086 0.185455 8.71632 0.774545 8.71632H2.18182V14.2909C2.18182 14.8036 2.38909 15.0109 2.90182 15.0109H5.01818C5.61818 15.0109 5.81455 14.8036 5.81455 14.1927V8.70541H7.65818C8.05091 8.70541 8.28 8.49814 8.28 8.13814C8.30182 7.34177 8.30182 6.54541 8.28 5.75996C8.28 5.38905 8.07273 5.18177 7.69091 5.17086C7.50546 5.17086 7.30909 5.17086 7.12364 5.17086H5.81455V4.66905C5.81455 4.40723 5.81455 4.15632 5.81455 3.90541H5.82545ZM5.22545 5.31268C5.22545 5.66177 5.33455 5.77086 5.69455 5.78177H7.68V8.11632H5.76C5.31273 8.11632 5.23636 8.2145 5.22545 8.67268V14.389H2.78182V9.22905C2.78182 8.67268 2.78182 8.3345 2.67273 8.22541C2.58545 8.13814 2.36727 8.11632 1.99636 8.11632H0.632727L0.610909 7.89814C0.610909 7.83268 0.6 7.77814 0.6 7.71268V5.77086H2.18182C2.70545 5.77086 2.78182 5.68359 2.78182 5.15996C2.78182 4.9745 2.78182 4.79995 2.78182 4.62541C2.78182 4.12359 2.78182 3.59996 2.84727 3.09814C3.04364 1.63632 4.14545 0.654501 5.65091 0.599955C5.89091 0.589046 6.13091 0.589046 6.37091 0.589046H7.75636V2.79268H6.73091C6.55636 2.79268 6.38182 2.79268 6.21818 2.79268C5.56364 2.83632 5.23636 3.18541 5.21455 3.83996C5.20364 4.2545 5.20364 4.65814 5.20364 5.07268V5.29086L5.22545 5.31268Z"
@@ -353,7 +371,8 @@
                                 fill="#FBFBFB" />
                         </svg>
                     </a>
-                    <a href="https://www.instagram.com/hydrinityvietnam/" target="_blank" rel="noopener noreferrer" class="">
+                    <a href="https://www.instagram.com/hydrinityvietnam/" target="_blank" rel="noopener noreferrer"
+                        class="">
                         <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M15.0473 5.09459V4.2655C15.0473 3.26186 14.7745 2.38914 14.2509 1.68004C13.4763 0.632772 12.3745 0.0873176 10.9454 0.0436812C9.2218 -0.0108643 7.46543 -0.0108643 5.77452 -0.0108643H5.08725C4.6618 -0.0108643 4.19271 0.021863 3.62543 0.0982267C1.95634 0.305499 0.701798 1.39641 0.276343 3.02186C0.156344 3.50186 0.0908886 3.97095 0.0799795 4.39641C0.0690705 6.40368 0.0581614 8.52005 0.0799795 10.6691C0.0799795 11.4982 0.254524 12.2291 0.592706 12.8619C1.3018 14.1819 2.49089 14.891 4.13816 14.9673C4.57452 14.9891 5.01089 15 5.44725 15C5.79634 15 6.14543 15 6.48362 15C6.83271 15 7.1818 15 7.5418 15C7.9018 15 9.31998 15.011 9.67998 15.011C10.1054 15.011 10.5309 15.011 10.9563 14.9891C13.3018 14.9019 14.8945 13.3746 14.9818 11.0837C15.0691 9.09823 15.0473 7.05823 15.0363 5.1055L15.0473 5.09459ZM13.9127 11.1055C13.8691 12.7419 12.68 13.8437 10.9018 13.8982C10.4654 13.9091 10.0509 13.92 9.61452 13.92C9.26543 13.92 7.97816 13.9091 7.68361 13.9091H5.73089C5.25089 13.9091 4.77089 13.9091 4.27998 13.9091C3.96362 13.9091 3.62543 13.8437 3.27634 13.7455C1.99998 13.3964 1.22543 12.3928 1.19271 11.0946C1.13816 8.41095 1.13816 6.07641 1.19271 3.94914C1.23634 2.25823 2.41453 1.17823 4.26907 1.13459C5.16362 1.11277 6.04725 1.10186 6.9418 1.10186C7.75998 1.10186 8.57816 1.10186 9.40725 1.10186H10.8145C11.0763 1.11277 11.3709 1.15641 11.7418 1.24368C13.0618 1.58186 13.8691 2.56368 13.9018 3.89459C13.9673 6.55641 13.9673 8.91277 13.9018 11.0946L13.9127 11.1055Z"
@@ -376,7 +395,8 @@
                         </svg>
 
                     </a>
-                    <a href="https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty%20vietnam" target="_blank" class="">
+                    <a href="https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty%20vietnam"
+                        target="_blank" class="">
                         <!-- <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M13.5782 -3.24044e-05H9.17097C6.86915 -3.24044e-05 4.55642 -3.24044e-05 2.24369 -3.24044e-05C2.06915 -3.24044e-05 1.90551 0.0217858 1.74187 0.0545131C0.94551 0.261786 0.432784 0.938149 0.421875 1.78906C0.421875 3.21815 0.421875 4.63633 0.421875 6.06542V9.1636C0.421875 10.4945 0.421875 11.8254 0.421875 13.1563C0.421875 14.2363 1.18551 14.9891 2.26551 14.9891C4.20733 14.9891 6.14915 14.9891 8.09096 14.9891C9.92369 14.9891 11.7455 14.9891 13.5782 14.9891C14.6801 14.9891 15.4219 14.2472 15.4219 13.1345C15.4219 9.37088 15.4219 5.60724 15.4219 1.8436C15.4219 0.730877 14.6801 -0.0218506 13.5673 -0.0218506L13.5782 -3.24044e-05ZM14.7891 13.4072C14.7564 13.9091 14.3528 14.3018 13.8182 14.3782C13.7201 14.3891 13.6328 14.3891 13.5346 14.3891H2.32005C1.49096 14.3891 1.03278 13.9309 1.03278 13.1127V1.87633C1.03278 1.07997 1.49096 0.621786 2.28733 0.610877H4.55642L4.50187 0.698149C4.39278 0.850877 4.28369 1.0036 4.1746 1.14542C3.9346 1.47269 3.70551 1.76724 3.52006 2.10542C1.97097 4.77815 2.3746 8.07269 4.5346 10.2982C4.70915 10.4836 4.76369 10.6691 4.73096 10.9091C4.63278 11.5854 4.34915 12 3.82551 12.1963C3.65096 12.2618 3.65097 12.4254 3.67278 12.5236C3.6946 12.6654 3.78187 12.7418 3.9346 12.7745C4.13096 12.8182 4.33824 12.8291 4.5346 12.8291C4.93824 12.8291 5.33097 12.7527 5.72369 12.5891C5.90915 12.5127 6.10551 12.4254 6.29096 12.3382L6.46551 12.2618C6.64005 12.1854 6.80369 12.1527 6.97824 12.1527C7.13096 12.1527 7.2946 12.1854 7.44733 12.2509C8.45096 12.6436 9.52005 12.84 10.6001 12.84C10.7746 12.84 10.9491 12.84 11.1237 12.8291C12.3237 12.7636 13.4691 12.4582 14.5273 11.9236C14.571 11.9018 14.6037 11.8909 14.6473 11.8691L14.7891 11.8145V11.8909C14.7891 12.0545 14.7891 12.2072 14.7891 12.36C14.7891 12.72 14.8001 13.0582 14.7782 13.4072H14.7891ZM14.5928 11.1927C13.371 11.88 12.0401 12.2291 10.6546 12.2291C10.3601 12.2291 10.0437 12.2182 9.73824 12.1854C9.00733 12.1091 8.3746 11.9563 7.81824 11.7272C7.54551 11.6182 7.28369 11.5636 7.02187 11.5636C6.70551 11.5636 6.38915 11.64 6.05097 11.7818C5.82188 11.88 5.58187 11.9782 5.36369 12.0654C5.2546 12.1091 5.15642 12.1418 5.04733 12.1854H5.00369L4.92733 12.0763L4.94915 12.0436C5.22187 11.6618 5.36369 11.2363 5.3746 10.7345C5.3746 10.4181 5.27642 10.1672 5.05824 9.93815C3.6946 8.51997 3.08369 6.85088 3.24733 4.98542C3.36733 3.53451 3.96733 2.25815 5.08006 1.07997C5.39642 0.752695 5.72369 0.610877 6.20369 0.610877C6.71642 0.610877 7.25096 0.610877 7.82914 0.621786C8.40733 0.621786 9.04006 0.621786 9.74915 0.621786H13.5237C14.3746 0.621786 14.8219 1.06906 14.8219 1.91997V3.5127C14.8219 5.94542 14.8219 8.37815 14.8219 10.8C14.8219 10.9854 14.7564 11.0945 14.5928 11.1818V11.1927Z"
@@ -394,15 +414,19 @@
                                 d="M11.1127 4.36364V6.3491C11.1127 6.7091 11.1127 7.05819 11.1127 7.41819C11.1127 7.59273 11.0581 7.80001 10.8181 7.80001C10.6218 7.80001 10.5127 7.65819 10.5127 7.40728C10.5127 6.37091 10.5127 5.34546 10.5127 4.3091C10.5127 4.10182 10.6 3.98182 10.7636 3.9491C10.7854 3.9491 10.8072 3.9491 10.84 3.9491C10.96 3.9491 11.0472 4.00364 11.1018 4.12364C11.1236 4.1891 11.1345 4.26546 11.1345 4.35273L11.1127 4.36364Z"
                                 fill="#FBFBFB" />
                         </svg> -->
-                            <?xml version="1.0" encoding="utf-8"?>
-                                <!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-                                <svg width="17" height="17" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                    viewBox="0 0 448 448" style="enable-background:new 0 0 448 448;" xml:space="preserve">
-                                <style type="text/css">
-                                    .st0{fill:#FFFFFF;}
-                                </style>
-                                <g>
-                                    <path class="st0" d="M137.8,124.3c2-28.9,7.3-55.8,20.6-80.8c17.9-33.8,50.3-49,86.5-38.6c19.2,5.4,32.5,19.2,42.2,35.9
+                        <?xml version="1.0" encoding="utf-8"?>
+                        <!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                        <svg width="17" height="17" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 448 448"
+                            style="enable-background:new 0 0 448 448;" xml:space="preserve">
+                            <style type="text/css">
+                                .st0 {
+                                    fill: #FFFFFF;
+                                }
+                            </style>
+                            <g>
+                                <path class="st0"
+                                    d="M137.8,124.3c2-28.9,7.3-55.8,20.6-80.8c17.9-33.8,50.3-49,86.5-38.6c19.2,5.4,32.5,19.2,42.2,35.9
                                         c13.8,23.5,21.3,49.1,22.3,76.5c0,2.2,0.5,4.3,0.9,7.1c29.6,0,58.7,0,87.7,0c20.1,0,25.7,6.6,23.8,26.9
                                         c-1.9,18.9-2.6,37.7-3.9,56.6c-3.2,43.7-6.5,87.2-9.9,130.9c-1.7,21.9-2.6,44-5.6,65.8c-3.9,26.9-22.4,41.5-49.5,41.5
                                         c-85.5,0-171-0.3-256.5,0.2c-34.2,0.2-49.1-20.4-51.5-49.5c-4.1-50.2-7.1-100.3-10.7-150.3c-2.4-33.5-5.3-67-7.8-100.5
@@ -412,88 +436,108 @@
                                         c15.6,7.3,27,23,23,41c-3.4,15-14.3,22.8-27.7,27.2c-27.7,9-52.9,1.5-76.3-13.8c-4.8-3.2-9.4-5.1-13.4,0c-4.8,5.8,0.2,9.5,4.4,12.4
                                         c25.2,17.5,52.9,25.2,83.5,19.2c30.8-6,48.8-27.7,46.9-55.9c-1.7-26.4-19-40.5-41.5-49.6c-12.6-5.1-25.5-9-38.1-13.9
                                         c-6.3-2.6-12.2-5.8-17.9-9.5c-10.4-7-18-16.5-15.8-29.8c2.2-14.1,10.7-24,24.3-29.1c21.8-8.2,41.7-1.2,61,8.3
-                                        c5.1,2.4,10,5.8,13.8-1c3.6-6.6-2-9.7-6.6-12.6C260.3,181.5,244.5,177.2,227,175.9z"/>
-                                </g>
-                                </svg>
+                                        c5.1,2.4,10,5.8,13.8-1c3.6-6.6-2-9.7-6.6-12.6C260.3,181.5,244.5,177.2,227,175.9z" />
+                            </g>
+                        </svg>
                     </a>
                 </div>
             </div>
-            <nav class=" relative h-[163px]  flex items-center justify-between px-[210px] text-[#11284A]"
-                style="font-family: 'UTM Bebas';">
-                <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
-                    <div class="click_tab_about relative flex items-center gap-2 hover:cursor-pointer" href="">
-                        About us
-                        <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                fill="#11284A" />
-                        </svg>
+            <nav class=" relative h-[250px]  flex items-center justify-center px-[210px] text-[#11284A]" style="font-family: 'UTM Bebas' !important;">
+                <div class="flex flex-col items-center justify-center">
+                    <div class="flex items-center justify-center gap-[165px]">
+                        <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
+                            <div class="click_tab_about relative flex items-center gap-2 hover:cursor-pointer" href="">
+                                About us
+                                <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                        fill="#11284A" />
+                                </svg>
 
-                        <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                fill="#11284A" />
-                        </svg>
-                        <div class=" tab_about absolute   left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
-                            <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
-                                Về chúng tôi
-                            </a>
-                            <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="h-[38px] flex items-center">
-                                Tầm nhìn và sứ mệnh
-                            </a>
-                            <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="h-[38px] flex items-center">
-                                Tin tức & Giải thưởng
-                            </a>
-                            <a href="{% url 'about_lien_he_client' %}" class="h-[38px] flex items-center">
-                                Liên hệ
-                            </a>
+                                <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                        fill="#11284A" />
+                                </svg>
+                                <div class=" tab_about absolute z-90  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium"
+                                    style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                                    <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
+                                        Về chúng tôi
+                                    </a>
+                                    <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="h-[38px] flex items-center">
+                                        Tầm nhìn và sứ mệnh
+                                    </a>
+                                    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="h-[38px] flex items-center">
+                                        Tin tức & Giải thưởng
+                                    </a>
+                                    <a href="{% url 'about_lien_he_client' %}" class="h-[38px] flex items-center">
+                                        Liên hệ
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="" href="{% url 'nav_products_client' %}">Sản phẩm</a>
+                            <a class="" href="{% url 'nav_blog_client' %}">Blog</a>
+                        </div>
+                        <a class="tab" href="/">
+                            <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[135px]" />
+                        </a>
+                        <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
+                            <div class="click_tab_doitac relative flex items-center gap-2 hover:cursor-pointer" href="">
+                                Danh sách đối tác
+                                <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                        fill="#11284A" />
+                                </svg>
+
+                                <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                        fill="#11284A" />
+                                </svg>
+                                <div class=" tab_doitac absolute z-50  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium"
+                                    style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                                    <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
+                                        Khu vực miền Bắc
+                                    </a>
+                                    <a href="{% url 'select_kvmn_client' %}" class="h-[38px] flex items-center">
+                                        Khu vực miền Nam
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="" href="{% url 'nav_nghien_cuu_lam_san' %}">Nghiên cứu lâm sàng</a>
                         </div>
                     </div>
-                    <a class="" href="{% url 'nav_products_client' %}">Sản phẩm</a>
-                    <a class="" href="{% url 'nav_blog_client' %}">Blog</a>
-                </div>
-                <a class="tab" href="/">
-                    <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[135px]" />
-                </a>
-                <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
-                    <div class="click_tab_doitac relative flex items-center gap-2 hover:cursor-pointer" href="">
-                        Danh sách đối tác
-                        <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                fill="#11284A" />
-                        </svg>
-
-                        <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                fill="#11284A" />
-                        </svg>
-                        <div class=" tab_doitac absolute z-50  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
-                            <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
-                                Khu vực miền Bắc
-                            </a>
-                            <a href="{% url 'select_kvmn_client' %}" class="h-[38px] flex items-center">
-                                Khu vực miền Nam
-                            </a>
-                        </div>
+                    <div class="flex items-center w-full gap-[10px] bg-[#11284A] mt-[30px] text-stone-100 normal-case px-3 py-2" style="text-transform: none">
+                        <a href="{{domain}}" class="hover:cursor-pointer hover:underline">Trang chủ</a>
+                        <a>/</a>
+                        {% block breadcrumb %}{% endblock %}
                     </div>
-                    <a class="" href="{% url 'nav_nghien_cuu_lam_san' %}">Nghiên cứu lâm sàng</a>
                 </div>
                 <div class=" absolute right-[60px] top-[20px]">
-                    <form method="get" action="{% url 'nav_products_client' %}"  class=" relative flex items-center justify-center">
-                        <input placeholder="Tìm kiếm...." name="s" value="{{s}}" class=" normal-case font-medium text-[10px] flex items-center w-[276px] h-[25px] rounded-full border-[1px] border-black pl-[10px]" style="background: transparent;"  />
-                        <button type="submit" class="absolute right-0 flex justify-center items-center min-w-[25px] h-[25px] bg-[#11284A] rounded-full">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <form method="get" action="{% url 'nav_products_client' %}" class=" relative flex items-center justify-center">
+                        <input placeholder="Tìm kiếm...." name="s" value="{{s}}"
+                            class=" normal-case font-medium text-[10px] flex items-center w-[276px] h-[25px] rounded-full border-[1px] border-black pl-[10px]"
+                            style="background: transparent;" />
+                        <button type="submit"
+                            class="absolute right-0 flex justify-center items-center min-w-[25px] h-[25px] bg-[#11284A] rounded-full">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_263_4587)">
-                                <path d="M13.6667 12.0646L11.0493 9.4525C11.7173 8.4815 12.1081 7.30675 12.1081 6.04004C12.1081 2.70408 9.39772 0 6.05403 0C2.71034 0 0 2.70408 0 6.04004C0 9.376 2.71034 12.0801 6.05403 12.0801C7.30672 12.0801 8.47093 11.7005 9.4368 11.0502L12.0601 13.6675C12.504 14.1103 13.2236 14.1103 13.6667 13.6675C14.1106 13.2247 14.1106 12.5075 13.6667 12.0646ZM2.03128 6.04004C2.03128 3.82367 3.83253 2.02659 6.05403 2.02659C8.27554 2.02659 10.076 3.82367 10.076 6.04004C10.076 8.25641 8.27554 10.0528 6.05403 10.0528C3.83253 10.0528 2.03128 8.25641 2.03128 6.04004Z" fill="#FFFFFD"/>
+                                    <path
+                                        d="M13.6667 12.0646L11.0493 9.4525C11.7173 8.4815 12.1081 7.30675 12.1081 6.04004C12.1081 2.70408 9.39772 0 6.05403 0C2.71034 0 0 2.70408 0 6.04004C0 9.376 2.71034 12.0801 6.05403 12.0801C7.30672 12.0801 8.47093 11.7005 9.4368 11.0502L12.0601 13.6675C12.504 14.1103 13.2236 14.1103 13.6667 13.6675C14.1106 13.2247 14.1106 12.5075 13.6667 12.0646ZM2.03128 6.04004C2.03128 3.82367 3.83253 2.02659 6.05403 2.02659C8.27554 2.02659 10.076 3.82367 10.076 6.04004C10.076 8.25641 8.27554 10.0528 6.05403 10.0528C3.83253 10.0528 2.03128 8.25641 2.03128 6.04004Z"
+                                        fill="#FFFFFD" />
                                 </g>
                                 <defs>
-                                <clipPath id="clip0_263_4587">
-                                <rect width="14" height="14" fill="white"/>
-                                </clipPath>
+                                    <clipPath id="clip0_263_4587">
+                                        <rect width="14" height="14" fill="white" />
+                                    </clipPath>
                                 </defs>
-                                </svg>
+                            </svg>
                         </button>
                     </form>
                 </div>
@@ -543,19 +587,29 @@
                 });
             </script>
         </header>
-        <header class="relative flex lg:hidden items-center justify-center w-full">
+        <header class="relative flex flex-col lg:hidden  w-full">
             <a class="tab w-full flex justify-center items-center p-[10px]" href="/">
                 <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[46px]" />
             </a>
-            <div   class=" click_menu absolute left-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
-                <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 5C0 2.23858 2.23858 0 5 0H22C24.7614 0 27 2.23858 27 5V21C27 23.7614 24.7614 26 22 26H5C2.23858 26 0 23.7614 0 21V5Z" fill="#11284A"/>
-                    <path d="M7 7H21V9H7V7Z" fill="white"/>
-                    <path d="M7 12H20V14H7V12Z" fill="white"/>
-                    <path d="M7 17H19V19H7V17Z" fill="white"/>
-                    </svg>
+            <div class="flex gap-1 p-3">
+                <a href="{{domain}}" class="text-[#11284A] whitespace-nowrap">Trang chủ</a>
+                <a>/</a>
+                {% block breadcrumb_mb %}{% endblock %}
             </div>
-            <div id="menu" class="fixed top-0 left-0 min-w-[220px] h-screen bg-[#11284A] text-white z-[999] transform -translate-x-full" style="background: url('/upload/website/background.png') no-repeat center center; background-size: cover; display: none;">
+            <div
+                class=" click_menu absolute left-3 top-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
+                <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0 5C0 2.23858 2.23858 0 5 0H22C24.7614 0 27 2.23858 27 5V21C27 23.7614 24.7614 26 22 26H5C2.23858 26 0 23.7614 0 21V5Z"
+                        fill="#11284A" />
+                    <path d="M7 7H21V9H7V7Z" fill="white" />
+                    <path d="M7 12H20V14H7V12Z" fill="white" />
+                    <path d="M7 17H19V19H7V17Z" fill="white" />
+                </svg>
+            </div>
+            <div id="menu"
+                class="fixed top-0 left-0 w-auto h-screen bg-[#11284A] text-white z-[999] transform -translate-x-full"
+                style="background: url('/upload/website/background.png') no-repeat center center; background-size: cover; display: none;">
                 <div class="w-full h-[31px] flex justify-center items-center text-center bg-[#11284A]">
                     <span class="font-normal text-[6px] text-white">
                         Chào mừng đến với <span class="font-bold">Hydirinity VietNam</span>
@@ -568,22 +622,26 @@
                 </a>
                 <nav class=" w-full flex flex-col  text-[#11284A] text-[20px] divide-y-[2px]  divide-[#11284A]"
                     style="font-family: 'UTM Bebas';">
-                    <div class="click_tab_about relative flex flex-col  justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]" href="">
+                    <div class="click_tab_about relative flex flex-col  justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]"
+                        href="">
                         <div class="flex items-center justify-between w-full">
                             <span class="uppercase whitespace-nowrap">About us</span>
-                            <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
                                     fill="#11284A" />
                             </svg>
-        
-                            <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                            <svg class="close_tab_about" style="display: none;" width="14" height="10"
+                                viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
                                     fill="#11284A" />
                             </svg>
                         </div>
-                        <div class=" tab_about   divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                        <div class=" tab_about   divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium"
+                            style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
                             <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
                                 Về chúng tôi
                             </a>
@@ -604,22 +662,26 @@
                     <a class="px-[20px] py-[10px]" href="{% url 'nav_blog_client' %}">
                         <span class="uppercase whitespace-nowrap">Blog</span>
                     </a>
-                    <div class="click_tab_doitac relative flex flex-col items-center justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]" href="">
+                    <div class="click_tab_doitac relative flex flex-col items-center justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]"
+                        href="">
                         <div class="flex items-center justify-between w-full">
                             <span class="uppercase whitespace-nowrap">Danh sách đối tác</span>
-                            <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
                                     fill="#11284A" />
                             </svg>
-        
-                            <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                            <svg class="close_tab_doitac" style="display: none;" width="14" height="10"
+                                viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
                                     fill="#11284A" />
                             </svg>
                         </div>
-                        <div class=" tab_doitac divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium w-full" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                        <div class=" tab_doitac divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium w-full"
+                            style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
                             <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
                                 Khu vực miền Bắc
                             </a>
@@ -638,10 +700,10 @@
             </div>
             <script>
                 let isOpen = false;
-            
+
                 $(".click_menu").click(function () {
                     const $menu = $("#menu");
-            
+
                     if (!isOpen) {
                         $menu.show(); // hiện ra trước khi chạy hiệu ứng
                         gsap.to($menu, {
@@ -659,10 +721,10 @@
                             }
                         });
                     }
-            
+
                     isOpen = !isOpen;
                 });
-            
+
                 // Đóng khi click ra ngoài
                 $(document).click(function (e) {
                     const $menu = $("#menu");
@@ -680,506 +742,26 @@
                 });
             </script>
         </header>
-        <main class=" flex flex-col items-center w-full">
-            <div class="w-full">
-                <div class="swiper mySwiper w-full ">
-                    <div class="swiper-wrapper">
-                        {% for i in list_image_slider_1 %}
-                        <div class="swiper-slide">
-                            <img alt="img" class="h-auto  w-full" alt="banner" src="{{i.Photo.url}}" />
-                        </div>
-                        {% endfor %}
-                    </div>
-                    <!-- Chỉ có dấu chấm -->
-                    <div class="swiper-pagination hidden lg:block"></div>
-                </div>
-                <script>
-                    var swiper = new Swiper(".mySwiper", {
-                      loop: true, 
-                      autoplay: { delay: 3000 }, // Tự động chạy
-                      pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true,
-                      },
-                    });
-                  </script>
-                  <style>
-                    /* Màu xám cho chấm tròn */
-                    .swiper-pagination-bullet {
-                        background: #9ca3af !important; /* Tailwind gray-400 */
-                        width: 17px;
-                        height: 17px;
-                        border-radius: 50%;
-                        transition: all 0.3s ease;
-                        opacity: 1;
-                    }
-                
-                    /* Màu trắng và kích thước lớn hơn khi active */
-                    .swiper-pagination-bullet-active {
-                        background: #ffffff !important; /* Tailwind white */
-                        width: 22px;
-                        height: 22px;
-                    }
-                </style>
-            </div>
-            <div class="flex flex-col items-center w-full ">
-                <div class="flex w-full lg:w-[934px] lg:h-[121px] items-center justify-center ">
-                    <div class="hidden lg:flex w-[646px] h-[57px] items-center justify-between font-bold text-[25px]">
-                        <a href="{% url 'tab_best_sellers_client' %}" 
-                        class="uppercase py-1 px-2 rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_best_sellers_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">BEST SELLERS</a>
-                        <a href="{% url 'tab_products_client' %}" 
-                        class="uppercase py-1 px-2   rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_products_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">PRODUCTS</a>
-                        <a href="{% url 'tab_regimens_client' %}" 
-                        class="uppercase py-1 px-2  rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_regimens_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">REGIMENS</a>
-                    </div>
-                    <div class=" flex lg:hidden flex-col w-full h-full items-center justify-center font-normal text-[20px] divide-y-[2px]  divide-white text-white mt-[10px]">
-                        <div class="flex flex-col w-full">
-                            <div  class="click_tab_product_mobile uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
-                                <span>
-                                    <svg class="open_tab_product_mobile" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                            fill="white" />
-                                    </svg>
-                                    <svg class="close_tab_product_mobile" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                            fill="white" />
-                                    </svg>
-                                </span>
-                                BEST SELLERS
-                                <span>
-                                    <svg class="open_tab_product_mobile" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                            fill="white" />
-                                    </svg>
-                                    <svg class="close_tab_product_mobile" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                            fill="white" />
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="tab_product_mobile  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
-                                {% for i in list_Product %}
-                                <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
-                                    <a href="{% url 'slug_router' slug=i.Slug %}">
-                                        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
-                                    </a>
-                                    <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
-                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
-                                            {{i.Name}}
-                                        </a>
-                                        <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
-                                            <div class="relative w-full">
-                                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
-                                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
-                                                        <div class="relative flex items-center justify-center">
-                                                            <img alt="img" class="w-[65px] h-[16px]" src="/upload/website/background.png" />
-                                                            <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
-                                                        <span class="name-display font-medium text-[8px]  text-[#11284A]">
-                                                            {{i.list_size.all.last.Name}}
-                                                        </span>
-                                                        <span>
-                                                            <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                                                    fill="#11284A" />
-                                                            </svg>
-                                                            <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                                                    fill="#11284A" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
-                                                    {% for j in i.list_size.all %}
-                                                    <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
-                                                GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div class="flex flex-col w-full">
-                            <div  class="click_tab_product_mobile1 uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
-                                <span>
-                                    <svg class="open_tab_product_mobile1" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                            fill="white" />
-                                    </svg>
-                                    <svg class="close_tab_product_mobile1" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                            fill="white" />
-                                    </svg>
-                                </span>
-                                PRODUCTS
-                                <span>
-                                    <svg class="open_tab_product_mobile1" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                            fill="white" />
-                                    </svg>
-                                    <svg class="close_tab_product_mobile1" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                            fill="white" />
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="tab_product_mobile1  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
-                                {% for i in list_Product1 %}
-                                <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
-                                    <a href="{% url 'slug_router' slug=i.Slug %}">
-                                        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
-                                    </a>
-                                    <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
-                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
-                                            {{i.Name}}
-                                        </a>
-                                        <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
-                                            <div class="relative w-full">
-                                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
-                                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
-                                                        <div class="relative flex items-center justify-center">
-                                                            <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
-                                                            <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
-                                                        <span class="name-display font-medium text-[8px]  text-[#11284A]">
-                                                            {{i.list_size.all.last.Name}}
-                                                        </span>
-                                                        <span>
-                                                            <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                                                    fill="#11284A" />
-                                                            </svg>
-                                                            <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                                                    fill="#11284A" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
-                                                    {% for j in i.list_size.all %}
-                                                    <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
-                                                GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div class="flex flex-col w-full">
-                            <div  class="click_tab_product_mobile2 uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
-                                <span>
-                                    <svg class="open_tab_product_mobile2" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                            fill="white" />
-                                    </svg>
-                                    <svg class="close_tab_product_mobile2" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                            fill="white" />
-                                    </svg>
-                                </span>
-                                REGIMENS
-                                <span>
-                                    <svg class="open_tab_product_mobile2" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                            fill="white" />
-                                    </svg>
-                                    <svg class="close_tab_product_mobile2" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                            fill="white" />
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="tab_product_mobile2  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
-                                {% for i in list_Product2 %}
-                                <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
-                                    <a href="{% url 'slug_router' slug=i.Slug %}">
-                                        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
-                                    </a>
-                                    <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
-                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
-                                            {{i.Name}}
-                                        </a>
-                                        <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
-                                            <div class="relative w-full">
-                                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
-                                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
-                                                        <div class="relative flex items-center justify-center">
-                                                            <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
-                                                            <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
-                                                        <span class="name-display font-medium text-[8px]  text-[#11284A]">
-                                                            {{i.list_size.all.last.Name}}
-                                                        </span>
-                                                        <span>
-                                                            <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
-                                                                    fill="#11284A" />
-                                                            </svg>
-                                                            <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <path
-                                                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
-                                                                    fill="#11284A" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
-                                                    {% for j in i.list_size.all %}
-                                                    <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
-                                                    {% endfor %}
-                                                </div>
-                                            </div>
-                                            <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
-                                                GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <script>
-                            $(document).ready(function () {
-                                $(".click_tab_product_mobile").click(function () {
-                                    $(".tab_product_mobile").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
-                                    $(".open_tab_product_mobile, .close_tab_product_mobile").toggle(); // Đổi icon
-                                });
-
-                                $(".click_tab_product_mobile1").click(function () {
-                                    $(".tab_product_mobile1").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
-                                    $(".open_tab_product_mobile1, .close_tab_product_mobile1").toggle(); // Đổi icon
-                                });
-
-                                $(".click_tab_product_mobile2").click(function () {
-                                    $(".tab_product_mobile2").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
-                                    $(".open_tab_product_mobile2, .close_tab_product_mobile2").toggle(); // Đổi icon
-                                });
-                            });
-                        </script>
-                    </div>
-                </div>
-                <div class="hidden lg:grid grid-cols-1 lg:grid-cols-3 place-items-center my-[20px] gap-[50px]">
-                    {% block content %}{% endblock %}
-                </div>
-            </div>
-            <div class="flex flex-col items-center w-full mt-[20px] lg:mt-none">
-                <div class="flex items-center justify-center w-full h-[33px] lg:h-[95px] bg-[#11284A]">
-                    <span class=" font-normal text-[20px] lg:font-bold lg:text-[48px] text-white uppercase">{{obj1.Title}}</span>
-                </div>
-                <div class="flex flex-col items-center w-full">
-                    <div class="w-full lg:w-[1597px] py-[20px] lg:py-[58px] p-[20px]">
-                        <div class="swiper mySwiper1 w-full">
-                            <div class="swiper-wrapper w-full">
-                                {% for i in list_image_slider_2 %}
-                                <div class="swiper-slide w-full flex justify-center rounded">
-                                    <img alt="img" class="w-full h-auto rounded" alt="banner" src="{{i.Photo.url}}" />
-                                </div>
-                                {% endfor %}
-                            </div>
-                            <!-- Chỉ có dấu chấm -->
-                            <div class="swiper-pagination hidden lg:block"></div>
-                        </div>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                            var swiper = new Swiper(".mySwiper1", {
-                                slidesPerView: 2,      // Hiển thị 4 ảnh cùng lúc trên hàng
-                                spaceBetween: 10,      // Khoảng cách giữa ảnh
-                                loop: true,            // Lặp vô hạn
-                                pagination: {
-                                    el: ".swiper-pagination",
-                                    clickable: true,
-                                },
-                                autoplay: {
-                                    delay: 2000,       // Tự động chạy sau 2 giây
-                                    disableOnInteraction: false,
-                                },
-                                speed: 1000,           // Tốc độ trượt
-                                slidesPerGroup: 1,     // Trượt từng ảnh một,
-                                breakpoints: {
-                                    768: {
-                                        slidesPerView: 3, // >= 1024px (lg trở lên): hiển thị 3
-                                    },
-                                },
-                            });
-                        });
-                        </script>
-                    </div>
-                    <div class="hidden lg:flex justify-between w-[1597px]">
-                        {% if list_BlogPost|length > 0 %}
-                        <a href="{% url 'slug_router' slug=list_BlogPost.0.Slug %}" class="flex flex-col items-center w-[626px] text-white">
-                            <div class="flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                                <img alt="Hình ảnh 1" src="{% if list_BlogPost.0.Avatar  %}{{list_BlogPost.0.Avatar.url}}{% endif %}"  class="w-full h-full object-cover" />
-                            </div>
-                            <div class="flex items-center justify-center w-full  text-[#11284A]   uppercase font-bold text-[30px] mt-6">
-                                {% if list_BlogPost.0.Title %}
-                                <div class="readmore-box-1 font-bold text-center  text-[14px] lg:text-[23px] normal-case w-full">
-                                    {{list_BlogPost.0.Title}}
-                                </div>
-                                {% else %}
-                                <div class="uppercase">
-                                    Nội dung 1
-                                </div>
-                                {% endif %}
-                            </div>
-                            <div data-url="{% url 'slug_router' slug=list_BlogPost.0.Slug %}"
-                                 onclick="window.location.href=this.dataset.url" 
-                                 class=" flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
-                                Read More
-                            </div>
-                        </a>
-                        {% endif %}
-                        {% if list_BlogPost|length > 1 %}
-                        <a href="{% url 'slug_router' slug=list_BlogPost.1.Slug %}" class="flex flex-col items-center w-[787px] text-white">
-                            <div class=" flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                                <img alt="Hình ảnh 2" src="{% if list_BlogPost.1.Avatar  %}{{list_BlogPost.1.Avatar.url}}{% endif %}"  class="w-full h-full object-cover" />
-                            </div>
-                            <div class="flex items-center justify-center w-full  text-[#11284A]  uppercase font-bold text-[30px] mt-6">
-                                {% if list_BlogPost.1.Title %}
-                                <div class="readmore-box-1 font-bold text-center  text-[14px] lg:text-[23px] normal-case w-full ">
-                                    {{list_BlogPost.1.Title}}
-                                </div>
-                                {% else %}
-                                <div class="uppercase">
-                                    Nội dung 2
-                                </div>
-                                {% endif %}
-                            </div>
-                            <div data-url="{% url 'slug_router' slug=list_BlogPost.1.Slug %}"
-                                 onclick="window.location.href=this.dataset.url"
-                                 class="flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
-                                Read More
-                            </div>
-                        </a>
-                        {% endif %}
-                    </div>
-                    <div class="flex lg:hidden flex-col justify-center items-center gap-3 w-full px-[15px]">
-                        {% if list_BlogPost|length > 0 %}
-                        <a href="{% url 'slug_router' slug=list_BlogPost.0.Slug %}" class="flex flex-col w-full justify-between gap-3">
-                            <div class="h-auto w-full flex items-center justify-center rounded-md overflow-hidden bg-[#11284A] text-white">
-                                <img alt="Hình ảnh 1" src="{% if list_BlogPost.0.Avatar  %}{{list_BlogPost.0.Avatar.url}}{% endif %}"  class="w-full h-full object-fill" />
-                            </div>
-                            <div class="flex flex-col w-full h-full gap-3 items-center">
-                                {% if list_BlogPost.0.Content %}
-                                <div class="readmore-box font-medium text-[14px] lg:text-[20px] max-h-[60px] normal-case w-full  text-justify bg-[#D9D9D9] p-2 grow overflow-hidden">
-                                    {{list_BlogPost.0.Content|safe}}
-                                </div>
-                                {% else %}
-                                <p class="uppercase font-medium text-[16px]  w-full  text-justify bg-[#D9D9D9] grow">
-                                    Nội dung 1
-                                </p>
-                                {% endif %}
-                                <div data-url="{% url 'slug_router' slug=list_BlogPost.0.Slug %}"
-                                     onclick="window.location.href=this.dataset.url"
-                                     class="readmore-toggle flex items-center justify-center text-white w-[96px] h-[27px] bg-[#11284A] text-center rounded font-bold text-[12px]">
-                                    Read More
-                                </div>
-                            </div>  
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="flex items-center justify-center text-white  w-full h-auto bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[20px] lg:mt-[58px]">
-                    <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}"  class="w-full h-auto object-cover" />
-                </div>
-                <div class="flex flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
-                    <span class="font-bold text-black text-[21px] lg:text-[55px]">
-                        THE RESULTS ARE IN
-                    </span>
-                    <div class="w-full flex justify-center">
-                        <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
-                            <div class="swiper-wrapper">
-                                {% for i in list_image_slider_3 %}
-                                <div class="swiper-slide">
-                                    <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
-                                </div>
-                                {% endfor %}
-                            </div>
-                            <!-- Chỉ có dấu chấm -->
-                            <div class="swiper-pagination hidden lg:block"></div>
-                        </div>
-                        <script>
-                            var swiper = new Swiper(".mySwiper2", {
-                              loop: true, 
-                              autoplay: { delay: 3000 }, // Tự động chạy
-                              pagination: {
-                                el: ".swiper-pagination",
-                                clickable: true,
-                              },
-                            });
-                          </script>
-                          <style>
-                            /* Màu xám cho chấm tròn */
-                            .swiper-pagination-bullet {
-                                background: #9ca3af !important; /* Tailwind gray-400 */
-                                width: 17px;
-                                height: 17px;
-                                border-radius: 50%;
-                                transition: all 0.3s ease;
-                                opacity: 1;
-                            }
-                        
-                            /* Màu trắng và kích thước lớn hơn khi active */
-                            .swiper-pagination-bullet-active {
-                                background: #ffffff !important; /* Tailwind white */
-                                width: 22px;
-                                height: 22px;
-                            }
-                        </style>
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer class=" flex justify-center items-center w-full lg:h-[499px] bg-[#11284A] p-[20px]">
+        {% block content %}{% endblock %}
+        <footer class=" flex justify-center items-center w-full  lg:h-[499px] bg-[#11284A] p-[20px]">
             <div class=" flex flex-col items-center w-full lg:w-[1594px]  lg:h-[384px]">
                 <div class="w-full lg:h-full flex flex-col lg:flex-row">
                     <div class="flex flex-col lg:justify-between w-full lg:h-full gap-[10px] lg:gap-none">
                         <div class="w-ful flex items-center">
-                            <img class="w-[78px] lg:w-[236px] h-[52px] lg:h-[158px]" src="/upload/website/Body.png" alt="logo" />
+                            <img alt="img" class="w-[78px] lg:w-[236px] h-[52px] lg:h-[158px]"
+                                src="/upload/website/Body.png" alt="logo" />
                         </div>
                         <span class="font-normal lg:font-medium text-[8px] lg:text-[12px] text-[#FBFBFB] italic">
-                            Thương hiệu chăm sóc da cao cấp của Hoa Kỳ với công nghệ PPM6 và thành phần Hyaluronic Acid siêu tinh khiết độc quyền.
+                            Thương hiệu chăm sóc da cao cấp của Hoa Kỳ với công nghệ PPM6 và thành phần Hyaluronic Acid
+                            siêu tinh khiết độc quyền.
                         </span>
                         <div class="flex flex-col mt-2">
                             <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
                                 CÔNG TY TNHH COSBEAUTY
                             </span>
                             <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
-                                <span class="font-bold">Địa chỉ:</span> Số 9 đường Nội khu Mỹ Phước, Phường Tân Hưng, Thành phố Hồ Chí Minh, Việt Nam.
+                                <span class="font-bold">Địa chỉ:</span> Số 9 đường Nội khu Mỹ Phước, Phường Tân Hưng,
+                                Thành phố Hồ Chí Minh, Việt Nam.
                             </span>
                             <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
                                 <span class="font-bold">Điện thoại:</span> 0982762783
@@ -1203,8 +785,10 @@
                             *Các tùy chọn thanh toán thông qua Affirm phải được kiểm tra đủ điều kiện và được cung cấp bởi các đối tác cho vay sau: affirm.com/lenders.
                         </span> -->
                     </div>
-                    <div class="flex flex-col lg:flex-row  lg:items-center justify-between w-full lg:h-full mt-[20px] lg:mt-none">
-                        <div class="flex flex-col gap-0 lg:gap-2 text-[7px] lg:text-[14px] font-normal lg:font-medium text-[#FBFBFB]">
+                    <div
+                        class="flex flex-col lg:flex-row  lg:items-center justify-between w-full lg:h-full mt-[20px] lg:mt-none">
+                        <div
+                            class="flex flex-col gap-0 lg:gap-2 text-[7px] lg:text-[14px] font-normal lg:font-medium text-[#FBFBFB]">
                             <a href="{% url 'nav_products_client' %}" class="">Sản phẩm</a>
                             <a href="{% url 'link_nghien_cuu_khoa_hoc_client' %}" class="">Nghiên Cứu Khoa Học</a>
                             <a href="{% url 'link_ket_qua_lam_san_client' %}" class="">Kết Quả Lâm Sàng</a>
@@ -1221,10 +805,13 @@
                                 Đăng ký tham gia bản tin của chúng tôi để cập nhật tin tức chăm sóc da mới nhất.
                             </span>
                             <div class="flex gap-3 h-[29px] mt-2 w-[353px] lg:w-auto">
-                                <div class="flex gap-3 h-[29px] rounded border-[1px] border-[#D9D9D9] font-medium italic text-[11px] text-[#FBFBFB]">
-                                    <input placeholder="Your email (required)" class="bg-transparent" style="border: none; outline: none;" /> 
+                                <div
+                                    class="flex gap-3 h-[29px] rounded border-[1px] border-[#D9D9D9] font-medium italic text-[11px] text-[#FBFBFB]">
+                                    <input placeholder="Your email (required)" class="bg-transparent"
+                                        style="border: none; outline: none;" />
                                 </div>
-                                <button class="font-medium italic text-[11px] bg-[#D9D9D9] text-[#11284A] w-[60px] h-[29px] rounded-md">
+                                <button
+                                    class="font-medium italic text-[11px] bg-[#D9D9D9] text-[#11284A] w-[60px] h-[29px] rounded-md">
                                     Sign Up
                                 </button>
                             </div>
@@ -1700,7 +1287,8 @@ AACCJA4AIEjiAACCJA4AIEjiAACCJA4AIEjiAACCJA4AoGbbAXz31/pAfhU/AAAAAElFTkSuQmCC"
                         </div>
                     </div>
                 </div>
-                <span class="font-normal lg:font-medium text-[8px] lg:text-[12px] text-[#FBFBFB] italic mt-[20px] lg:mt-[50px] w-full lg:w-auto">
+                <span
+                    class="font-normal lg:font-medium text-[8px] lg:text-[12px] text-[#FBFBFB] italic mt-[20px] lg:mt-[50px] w-full lg:w-auto">
                     © 2025Copyright
                     <br class="lg:hidden">
                     Hydrinity Skin Science
