@@ -81,27 +81,44 @@ def change_dsdt_admin(request):
             return JsonResponse({'success': False, 'message': 'Bạn chưa được cấp quyền do tài khoản chưa đăng nhập hoặc tài khoản không có quyền truy cập'})
     elif request.method == 'POST':
         if request.user.is_authenticated and request.user.is_superuser:
-            fields = {}
-            fields['Name'] = request.POST.get('Name')
-            fields['Address'] = request.POST.get('Address')
-            fields['Link'] = request.POST.get('Link')
-            fields['Category'] = request.POST.get('Category')
-            fields['Photo'] = request.FILES.get('Photo')
-            fields['id'] = request.POST.get('id')
-            try:
-                obj = Edit_dsdt.objects.get(pk=fields['id'])
-                for key, value in fields.items():
-                    if value:
-                        setattr(obj, key, value)
-                obj.save()
-            except:
-                Edit_dsdt.objects.create(**fields)
+            data = {
+                'Name': request.POST.get('Name', ''),
+                'Address': request.POST.get('Address', ''),
+                'Link': request.POST.get('Link', ''),
+                'Category': request.POST.get('Category', ''),
+            }
+            photo = request.FILES.get('Photo')
+            obj_id = request.POST.get('id')
 
+            try:
+                # 👉 UPDATE
+                obj = Edit_dsdt.objects.get(pk=obj_id)
+
+                for key, value in data.items():
+                    setattr(obj, key, value)  # cho phép update cả ""
+
+                if photo:  # chỉ update ảnh nếu có file mới
+                    obj.Photo = photo
+
+                obj.save()
+
+            except Edit_dsdt.DoesNotExist:
+                # 👉 CREATE
+                if photo:
+                    data['Photo'] = photo
+
+                Edit_dsdt.objects.create(**data)
+
+            # 👉 redirect giữ category
             base_url = reverse('change_dsdt_admin')
-            url = f"{base_url}?Category={fields['Category']}"
+            url = f"{base_url}?Category={data['Category']}"
             return redirect(url)
+
         else:
-            return JsonResponse({'success': False, 'message': 'Bạn chưa được cấp quyền do tài khoản chưa đăng nhập hoặc tài khoản không có quyền truy cập'})
+            return JsonResponse({
+                'success': False,
+                'message': 'Bạn chưa được cấp quyền do tài khoản chưa đăng nhập hoặc không có quyền truy cập'
+            })
 
 
 def change_dsdt_order_admin(request):    
