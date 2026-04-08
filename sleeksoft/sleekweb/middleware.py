@@ -45,6 +45,9 @@ REDIRECT_MAP = {
     '/hydrinity-hydri-c-daily-vitamin-c-moisturizer-kem-duong-vitamin-c-tan-trong-dau-cap-am-sang-da.html':
         '/hydrinity-hydri-c-daily-vitamin-c-moisturizer-kem-duong-vitamin-c-cap-am-sang-da.html',
 
+    '/hydrinity-vivid-brightening-serum-serum-lam-sang-da-mo-nam-sau-treatment.html':
+        '/hydrinity-vivid-brightening-serum-tinh-chat-cham-soc-da-tuoi-sang.html',
+
     # mới
     '/detail-proudct/hydrinity-renewing-ha-serum-tinh-chat-tre-hoa-tai-tao-da/':
         '/hydrinity-renewing-ha-serum-tinh-chat-cham-soc-da-chuyen-sau.html',

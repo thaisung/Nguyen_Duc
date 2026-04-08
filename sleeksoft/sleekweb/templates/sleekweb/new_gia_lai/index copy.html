@@ -30,6 +30,10 @@
         .mobile-nav-panel{position:absolute;top:0;right:-300px;width:280px;height:100%;background:white;box-shadow:-4px 0 30px rgba(0,0,0,0.15);transition:right .4s cubic-bezier(0.4,0,0.2,1);padding:24px;display:flex;flex-direction:column}
         .mobile-nav.open .mobile-nav-panel{right:0}
         .mobile-nav-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+        .mobile-nav-top .logo{gap:8px}
+        .mobile-nav-top .logo-icon{width:44px;height:44px;border-radius:12px}
+        .mobile-nav-top .logo-text{color:var(--primary);font-size:20px;line-height:1;letter-spacing:1.5px}
+        .mobile-nav-top .logo-sub{display:block;color:var(--accent);font-size:7px;letter-spacing:2.5px;margin-top:3px}
         .mobile-nav-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--text);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--transition)}
         .mobile-nav-close:hover{background:rgba(17,40,74,0.08)}
         .mobile-nav-links{list-style:none;flex:1}
@@ -37,6 +41,19 @@
         .mobile-nav-links a{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:500;font-size:16px;padding:14px 16px;border-radius:12px;transition:var(--transition)}
         .mobile-nav-links a:hover,.mobile-nav-links a:active{background:rgba(17,40,74,0.06);color:var(--primary)}
         .mobile-nav-links a i{width:20px;text-align:center;color:var(--primary);font-size:18px}
+        .mobile-acc-item{margin-bottom:4px}
+        .mobile-accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;color:var(--text);font-weight:500;font-size:16px;padding:14px 16px;border-radius:12px;transition:var(--transition);text-align:left}
+        .mobile-accordion-trigger:hover{background:rgba(17,40,74,0.06);color:var(--primary)}
+        .mobile-accordion-title{display:flex;align-items:center;gap:12px}
+        .mobile-accordion-title i{width:20px;text-align:center;color:var(--primary);font-size:18px}
+        .mobile-accordion-trigger .chevron{font-size:13px;color:var(--text-light);transition:transform .25s ease,color .25s ease}
+        .mobile-acc-item.open .mobile-accordion-trigger{background:rgba(17,40,74,0.06);color:var(--primary)}
+        .mobile-acc-item.open .mobile-accordion-trigger .chevron{transform:rotate(180deg);color:var(--primary)}
+        .mobile-submenu{max-height:0;overflow:hidden;transition:max-height .3s ease;padding-left:14px}
+        .mobile-acc-item.open .mobile-submenu{max-height:260px}
+        .mobile-submenu a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:500;font-size:14px;padding:10px 12px;border-radius:10px;transition:var(--transition)}
+        .mobile-submenu a:hover,.mobile-submenu a:active{background:rgba(17,40,74,0.06);color:var(--primary)}
+        .mobile-submenu a i{width:18px;text-align:center;color:var(--primary);font-size:15px}
         .mobile-nav-phone{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;text-decoration:none;padding:14px;border-radius:12px;font-weight:600;font-size:15px;margin-top:auto}
         .mobile-nav-phone:hover{box-shadow:0 4px 16px rgba(17,40,74,0.4)}
 
@@ -49,22 +66,38 @@
         .logo:hover .logo-icon{transform:rotate(-5deg) scale(1.05)}
         .logo-text{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:white;letter-spacing:3px;transition:var(--transition)}
         .logo-sub{font-size:10px;color:var(--accent-light);letter-spacing:4px;text-transform:uppercase;font-weight:600;transition:var(--transition)}
-        nav{display:flex;align-items:center;gap:36px}
-        nav a{text-decoration:none;color:rgba(255,255,255,0.85);font-weight:500;font-size:15px;position:relative;transition:var(--transition);padding:8px 0}
-        nav a::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2.5px;background:linear-gradient(90deg,var(--accent),var(--accent-light));transition:var(--transition);border-radius:2px;transform:translateX(-50%)}
-        nav a:hover{color:white}
-        nav a:hover::after{width:100%}
-        .header.scrolled nav a{color:var(--text)}
-        .header.scrolled nav a:hover{color:var(--primary)}
+        nav{display:flex;align-items:center;gap:30px}
+        .nav-item{position:relative}
+        .nav-link{text-decoration:none;color:rgba(255,255,255,0.85);font-weight:500;font-size:15px;position:relative;transition:var(--transition);padding:8px 0;display:inline-flex;align-items:center}
+        .nav-link::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2.5px;background:linear-gradient(90deg,var(--accent),var(--accent-light));transition:var(--transition);border-radius:2px;transform:translateX(-50%)}
+        .nav-link:hover{color:white}
+        .nav-link:hover::after{width:100%}
+        .nav-item.has-dropdown::after{content:'';position:absolute;left:0;right:0;top:100%;height:16px}
+        .nav-dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:230px;background:rgba(253,251,247,0.98);border:1px solid rgba(17,40,74,0.12);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:2px;box-shadow:0 16px 36px rgba(10,24,48,0.18);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease,visibility .22s ease;z-index:1100}
+        .nav-dropdown a{color:var(--text);text-decoration:none;font-size:14px;font-weight:500;padding:10px 12px 14px;border-radius:8px;line-height:1.35;white-space:nowrap;transition:var(--transition);position:relative}
+        .nav-sub-label{position:relative;display:inline-block}
+        .nav-sub-label::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:3px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-light));transition:width .22s ease}
+        .nav-dropdown a:hover{background:transparent;color:var(--primary)}
+        .nav-dropdown a:hover .nav-sub-label::after,.nav-dropdown a:focus-visible .nav-sub-label::after{width:100%}
+        .nav-item.has-dropdown:hover .nav-dropdown,.nav-item.has-dropdown:focus-within .nav-dropdown{opacity:1;visibility:visible;pointer-events:auto}
+        .header.scrolled .nav-link{color:var(--text)}
+        .header.scrolled .nav-link:hover{color:var(--primary)}
         .header.scrolled .logo-text{color:#11284A}
         .header.scrolled .logo-sub{color:var(--accent)}
-        .header-actions{display:flex;align-items:center;gap:20px}
+        .header-actions{display:flex;align-items:center;gap:10px}
+        .header-mini-btn{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;text-decoration:none;color:white;font-size:16px;transition:var(--transition)}
+        .header-mini-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.45)}
+        .header.scrolled .header-mini-btn{color:var(--primary);background:rgba(17,40,74,0.06);border-color:rgba(17,40,74,0.14)}
+        .header.scrolled .header-mini-btn:hover{background:rgba(17,40,74,0.12);border-color:rgba(17,40,74,0.28)}
         .cart-btn{position:relative;background:none;border:2px solid var(--border);border-radius:12px;padding:10px 14px;cursor:pointer;transition:var(--transition);font-size:20px}
         .cart-btn:hover{border-color:var(--accent);background:rgba(200,134,10,0.05);transform:translateY(-2px)}
         .cart-count{position:absolute;top:-6px;right:-6px;background:linear-gradient(135deg,var(--accent),#E53935);color:white;font-size:11px;font-weight:700;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite}
         .phone-btn{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#11284A,#1e4080);color:white;text-decoration:none;padding:10px 20px;border-radius:12px;font-weight:600;font-size:14px;transition:var(--transition);box-shadow:0 4px 12px rgba(17,40,74,0.3)}
         .phone-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(17,40,74,0.5)}
-        .mobile-menu{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--text)}
+        .mobile-menu{display:none;width:42px;height:42px;border-radius:12px;border:1px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);font-size:24px;cursor:pointer;color:#fff;transition:var(--transition)}
+        .mobile-menu:hover{transform:translateY(-2px);background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.45)}
+        .header.scrolled .mobile-menu{color:var(--primary);background:rgba(17,40,74,0.06);border-color:rgba(17,40,74,0.14)}
+        .header.scrolled .mobile-menu:hover{background:rgba(17,40,74,0.12);border-color:rgba(17,40,74,0.28)}
 
         /* HERO */
         .hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;overflow:hidden}
@@ -97,6 +130,50 @@
         .feature-item h4{font-size:14px;font-weight:600;color:var(--text)}
         .feature-item p{font-size:12px;color:var(--text-light);margin-top:2px}
 
+        /* MID SLIDER */
+        .mid-slider{padding:28px 0 8px;background:var(--bg)}
+        .mid-slider-inner{max-width:1280px;margin:0 auto;padding:0 40px}
+        .mid-slider-frame{position:relative;height:420px;border-radius:22px;overflow:hidden;border:1px solid rgba(17,40,74,0.1);box-shadow:0 20px 48px rgba(10,24,48,0.18)}
+        .mid-slide{position:absolute;inset:0;display:block;opacity:0;pointer-events:none;transform:scale(1.04);transition:opacity .55s ease,transform .8s ease}
+        .mid-slide.active{opacity:1;pointer-events:auto;transform:scale(1)}
+        .mid-slide img{width:100%;height:100%;object-fit:cover}
+        .mid-slide::before{content:none}
+        .mid-slide-caption{display:none}
+        .mid-slide-caption h3{font-family:'Playfair Display',serif;font-size:38px;line-height:1.15;color:#fff;margin-bottom:10px}
+        .mid-slide-caption p{font-size:16px;line-height:1.6;color:rgba(255,255,255,0.88)}
+        .mid-slider-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,0.36);background:rgba(255,255,255,0.14);backdrop-filter:blur(8px);color:#fff;font-size:16px;cursor:pointer;transition:var(--transition)}
+        .mid-slider-nav:hover{background:rgba(255,255,255,0.26);border-color:rgba(255,255,255,0.58)}
+        .mid-slider-nav.prev{left:16px}
+        .mid-slider-nav.next{right:16px}
+        .mid-slider-dots{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:3;display:flex;gap:8px}
+        .mid-dot{width:9px;height:9px;border-radius:50%;border:none;background:rgba(255,255,255,0.45);cursor:pointer;transition:var(--transition)}
+        .mid-dot.active,.mid-dot:hover{background:#fff;transform:scale(1.12)}
+
+        /* MID STRIP SLIDER (NEW BLOCK) */
+        .mid-strip{padding:20px 0 36px;background:linear-gradient(135deg,#0f2244 0%,#17356a 100%);position:relative;overflow:hidden}
+        .mid-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 30%,rgba(255,255,255,0.12),transparent 35%),radial-gradient(circle at 85% 80%,rgba(255,255,255,0.1),transparent 32%);pointer-events:none}
+        .mid-strip-inner{max-width:1280px;margin:0 auto;padding:0 40px;position:relative;z-index:1}
+        .mid-strip-title{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:4;margin:0;width:calc(100% - 120px);text-align:center;color:#fff;font-size:clamp(34px,6vw,76px);line-height:1.05;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-shadow:0 6px 20px rgba(0,0,0,0.55),0 2px 6px rgba(0,0,0,0.4);pointer-events:none}
+        .mid-strip-wrap{position:relative;padding:6px 0}
+        .mid-strip-viewport{overflow:hidden;border-radius:18px}
+        .mid-strip-track{display:flex;gap:20px;transition:transform .42s cubic-bezier(0.4,0,0.2,1);will-change:transform}
+        .mid-strip-card{position:relative;flex:0 0 calc((100% - 40px)/3);height:300px;border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;border:1px solid rgba(17,40,74,0.12);box-shadow:0 10px 24px rgba(10,24,48,0.13)}
+        .mid-strip-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(0.4,0,0.2,1)}
+        .mid-strip-card::before{content:none}
+        .mid-strip-card:hover img{transform:scale(1.08)}
+        .mid-strip-content{display:none}
+        .mid-strip-content h3{font-size:16px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:6px;text-shadow:0 1px 4px rgba(0,0,0,0.35)}
+        .mid-strip-content p{font-size:12px;line-height:1.42;color:rgba(255,255,255,0.92);text-shadow:0 1px 3px rgba(0,0,0,0.3)}
+        .mid-strip-content p + p{margin-top:2px}
+        .mid-strip-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,0.38);background:rgba(255,255,255,0.16);backdrop-filter:blur(8px);color:#fff;font-size:15px;cursor:pointer;transition:var(--transition);box-shadow:0 8px 20px rgba(10,24,48,0.25)}
+        .mid-strip-nav:hover{background:#fff;color:var(--primary);transform:translateY(-50%) scale(1.06)}
+        .mid-strip-nav.prev{left:-16px}
+        .mid-strip-nav.next{right:-16px}
+        .mid-strip-nav.disabled{opacity:.45;pointer-events:none}
+        .mid-strip-dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
+        .mid-strip-dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,0.6);background:rgba(255,255,255,0.3);cursor:pointer;transition:var(--transition)}
+        .mid-strip-dot.active,.mid-strip-dot:hover{background:#fff;transform:scale(1.12)}
+
         /* SECTIONS */
         .section{padding:100px 0}
         .section-inner{max-width:1280px;margin:0 auto;padding:0 40px}
@@ -107,17 +184,21 @@
 
         /* CATEGORIES */
         .categories-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
-        .cat-card{background:white;border-radius:var(--radius);text-align:center;border:1px solid var(--border);transition:var(--transition);cursor:pointer;text-decoration:none;color:inherit;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:24px 16px;min-height:180px}
+        .cat-card{background:white;border-radius:var(--radius);text-align:center;border:1px solid var(--border);transition:var(--transition);cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 14px;min-height:180px}
         .cat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.55) 100%);z-index:1;transition:var(--transition)}
         .cat-card:hover::before{background:linear-gradient(180deg,rgba(17,40,74,0.1) 0%,rgba(17,40,74,0.7) 100%)}
         .cat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);border-color:transparent}
         .cat-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(0.4,0,0.2,1)}
         .cat-card:hover img{transform:scale(1.1)}
-        .cat-card h3{font-size:16px;font-weight:700;margin-bottom:4px;color:white;position:relative;z-index:2;text-shadow:0 1px 4px rgba(0,0,0,0.3)}
-        .cat-card p{font-size:12px;color:rgba(255,255,255,0.85);position:relative;z-index:2;text-shadow:0 1px 3px rgba(0,0,0,0.3)}
+        .cat-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;gap:3px}
+        .cat-main-link{font-size:16px;font-weight:700;color:white;text-shadow:0 1px 4px rgba(0,0,0,0.3);text-decoration:none;line-height:1.25}
+        .cat-sub-links{display:flex;flex-direction:column;align-items:center;gap:2px}
+        .cat-sub-link{font-size:12px;color:rgba(255,255,255,0.9);text-shadow:0 1px 3px rgba(0,0,0,0.3);text-decoration:none;line-height:1.25}
+        .cat-main-link:hover,.cat-sub-link:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 
         /* PRODUCTS */
         .products-section{background:linear-gradient(180deg,#F7F3EC 0%,var(--bg) 100%)}
+        .products-section .section-header p{max-width:860px}
         .products-tabs{display:flex;justify-content:center;gap:12px;margin-bottom:48px;flex-wrap:wrap}
         .tab-btn{background:white;border:1px solid var(--border);padding:10px 28px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;transition:var(--transition);color:var(--text)}
         .tab-btn.active,.tab-btn:hover{background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;border-color:transparent;box-shadow:0 4px 16px rgba(17,40,74,0.3)}
@@ -188,7 +269,7 @@
         .cta-section{background:linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 50%,var(--primary-light) 100%);padding:100px 0;text-align:center;position:relative;overflow:hidden}
         .cta-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
         .cta-section h2{font-family:'Playfair Display',serif;font-size:40px;color:white;margin-bottom:16px}
-        .cta-section p{color:rgba(255,255,255,0.82);font-size:17px;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
+        .cta-section p{color:rgba(255,255,255,0.82);font-size:17px;margin-bottom:36px;max-width:860px;margin-left:auto;margin-right:auto;line-height:1.7}
         .cta-form{display:flex;max-width:500px;margin:0 auto;gap:12px}
         .cta-form input{flex:1;padding:16px 24px;border-radius:14px;border:none;font-size:15px;outline:none;background:rgba(255,255,255,0.95);box-shadow:0 4px 16px rgba(0,0,0,0.1)}
         .cta-form input:focus{box-shadow:0 4px 24px rgba(200,134,10,0.3)}
@@ -212,6 +293,8 @@
         .social-links{display:flex;gap:12px}
         .social-link{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;transition:var(--transition);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.06)}
         .social-link:hover{background:linear-gradient(135deg,var(--accent),var(--accent-light));transform:translateY(-4px);color:white;border-color:transparent;box-shadow:0 6px 20px rgba(200,134,10,0.4)}
+        .shopee-mark{display:block;width:21px;height:21px;line-height:0}
+        .shopee-mark svg{display:block;width:100%;height:100%}
         .scroll-top{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;border:none;border-radius:50%;font-size:20px;cursor:pointer;opacity:0;transition:var(--transition);z-index:999;box-shadow:0 6px 20px rgba(17,40,74,0.4)}
         .scroll-top.visible{opacity:1}
         .scroll-top:hover{background:linear-gradient(135deg,var(--accent),var(--accent-light));transform:translateY(-4px)}
@@ -228,6 +311,21 @@
         /* RESPONSIVE — TABLET (≤968px) */
         @media(max-width:968px){
             .features-inner{grid-template-columns:repeat(2,1fr);padding:20px 24px}
+            .mid-slider{padding:22px 0 4px}
+            .mid-slider-inner{padding:0 24px}
+            .mid-slider-frame{height:330px}
+            .mid-slide-caption{left:24px;bottom:24px;max-width:420px}
+            .mid-slide-caption h3{font-size:30px}
+            .mid-slide-caption p{font-size:14px}
+            .mid-strip{padding:10px 0 26px}
+            .mid-strip-inner{padding:0 24px}
+            .mid-strip-title{top:12px;letter-spacing:1.4px}
+            .mid-strip-track{gap:16px}
+            .mid-strip-card{flex:0 0 calc((100% - 16px)/2);height:250px}
+            .mid-strip-content h3{font-size:15px}
+            .mid-strip-content p{font-size:11px}
+            .mid-strip-nav.prev{left:-10px}
+            .mid-strip-nav.next{right:-10px}
             .categories-grid{grid-template-columns:repeat(3,1fr);gap:16px}
             .products-grid,.testimonials-grid{grid-template-columns:repeat(2,1fr);gap:20px}
             .about-grid{grid-template-columns:1fr;gap:40px}
@@ -241,7 +339,9 @@
             .hero p{font-size:16px}
             .hero-badge{font-size:11px;padding:8px 18px}
             nav{display:none}
-            .mobile-menu{display:block}
+            .header-actions{gap:8px}
+            .header-mini-btn{display:flex;width:38px;height:38px}
+            .mobile-menu{display:flex;align-items:center;justify-content:center;width:38px;height:38px;font-size:20px}
             .section{padding:70px 0}
             .section-inner{padding:0 24px}
             .section-header{margin-bottom:48px}
@@ -254,7 +354,8 @@
             .add-cart-btn{padding:8px 16px;font-size:12px}
             .cat-card{padding:24px 14px}
             .cat-icon{font-size:36px}
-            .cat-card h3{font-size:14px}
+            .cat-main-link{font-size:14px}
+            .cat-sub-link{font-size:11px}
             .test-card{padding:28px}
             .test-text{font-size:14px}
             .test-avatar{width:42px;height:42px;font-size:16px}
@@ -269,12 +370,25 @@
             .logo-icon{width:44px;height:44px;font-size:19px;border-radius:12px}
             .logo-text{font-size:24px}
             .logo-sub{font-size:9px}
-            .phone-btn span{display:none}
-            .phone-btn{padding:10px 12px}
+            .phone-btn{display:none}
         }
         /* RESPONSIVE — iPAD PORTRAIT (≤768px) */
         @media(max-width:768px){
             .header-inner{padding:0 20px}
+            .header-actions{gap:6px}
+            .header-mini-btn,.mobile-menu,.phone-btn{width:36px;height:36px}
+            .mid-slider-inner{padding:0 20px}
+            .mid-slider-frame{height:280px;border-radius:16px}
+            .mid-slide-caption{left:18px;bottom:18px;max-width:360px}
+            .mid-slide-caption h3{font-size:24px}
+            .mid-slide-caption p{font-size:13px}
+            .mid-slider-nav{width:38px;height:38px}
+            .mid-strip-inner{padding:0 20px}
+            .mid-strip-title{top:10px;font-size:clamp(24px,6vw,44px)}
+            .mid-strip-card{height:230px}
+            .mid-strip-content h3{font-size:14px}
+            .mid-strip-content p{font-size:11px}
+            .mid-strip-nav{width:38px;height:38px}
             .hero-content{padding:0 20px}
             .hero{height:auto;min-height:auto;padding:110px 0 60px}
             .hero p{font-size:15px;margin-bottom:28px}
@@ -287,8 +401,8 @@
             .categories-grid{grid-template-columns:repeat(3,1fr);gap:12px}
             .cat-card{padding:20px 10px}
             .cat-icon{font-size:30px;margin-bottom:10px}
-            .cat-card h3{font-size:13px}
-            .cat-card p{font-size:11px}
+            .cat-main-link{font-size:13px}
+            .cat-sub-link{font-size:11px}
             .features-inner{padding:16px 20px;gap:16px}
             .feature-icon{width:44px;height:44px;font-size:18px;border-radius:12px}
             .feature-item h4{font-size:13px}
@@ -326,6 +440,29 @@
         /* RESPONSIVE — MOBILE (≤600px) */
         @media(max-width:600px){
             .header-inner{padding:0 16px}
+            .header-actions{gap:4px}
+            .header-mini-btn,.mobile-menu,.phone-btn{width:34px;height:34px}
+            .mobile-menu{font-size:18px}
+            .mid-slider{padding:18px 0 2px}
+            .mid-slider-inner{padding:0 16px}
+            .mid-slider-frame{height:230px;border-radius:14px}
+            .mid-slide-caption{left:14px;bottom:14px;max-width:86%}
+            .mid-slide-caption h3{font-size:20px;margin-bottom:6px}
+            .mid-slide-caption p{font-size:12px;line-height:1.45}
+            .mid-slider-nav{width:34px;height:34px;font-size:14px}
+            .mid-slider-nav.prev{left:10px}
+            .mid-slider-nav.next{right:10px}
+            .mid-slider-dots{bottom:10px}
+            .mid-strip{padding:8px 0 20px}
+            .mid-strip-inner{padding:0 16px}
+            .mid-strip-title{top:8px;width:calc(100% - 28px);font-size:clamp(18px,8vw,30px);letter-spacing:.8px}
+            .mid-strip-track{gap:12px}
+            .mid-strip-card{flex:0 0 100%;height:210px;border-radius:14px}
+            .mid-strip-content h3{font-size:13px}
+            .mid-strip-content p{font-size:10px}
+            .mid-strip-nav{width:34px;height:34px;font-size:14px}
+            .mid-strip-nav.prev{left:8px}
+            .mid-strip-nav.next{right:8px}
             .logo-icon{width:40px;height:40px;font-size:17px;border-radius:10px}
             .logo-text{font-size:20px;letter-spacing:2px}
             .logo-sub{font-size:8px;letter-spacing:3px}
@@ -352,8 +489,8 @@
             .categories-grid{grid-template-columns:repeat(3,1fr);gap:10px}
             .cat-card{padding:16px 8px;border-radius:12px}
             .cat-icon{font-size:28px;margin-bottom:8px}
-            .cat-card h3{font-size:12px}
-            .cat-card p{font-size:10px}
+            .cat-main-link{font-size:12px}
+            .cat-sub-link{font-size:10px}
             .products-grid{grid-template-columns:1fr;gap:16px}
             .product-img{height:220px}
             .product-info{padding:14px 16px 18px}
@@ -412,13 +549,35 @@
             <div><div class="logo-text">HYDRINITY</div><div class="logo-sub">ACCELERATED SKIN SCIENCE</div></div>
         </a>
         <nav>
-            <a href="#home">Giới thiệu</a>
-            <a href="#products">Sản phẩm</a>
-            <a href="#about">Blog</a>
-            <a href="#testimonials">Danh sách đối tác</a>
-            <a href="#contact">Nghiên cứu lâm sàn</a>
+            <div class="nav-item has-dropdown">
+                <a href="/about-us" class="nav-link">Giới thiệu</a>
+                <div class="nav-dropdown">
+                    <a href="/about-us"><span class="nav-sub-label">Về chúng tôi</span></a>
+                    <a href="/vision-mission"><span class="nav-sub-label">Tầm nhìn và sứ mệnh</span></a>
+                    <a href="/news-awards"><span class="nav-sub-label">Tin tức và giải thưởng</span></a>
+                    <a href="/contact"><span class="nav-sub-label">Liên hệ</span></a>
+                </div>
+            </div>
+            <a href="#products" class="nav-link">Sản phẩm</a>
+            <a href="/blog" class="nav-link">Blog</a>
+            <div class="nav-item has-dropdown">
+                <a href="/north-partner" class="nav-link">Danh sách đối tác</a>
+                <div class="nav-dropdown">
+                    <a href="/north-partner"><span class="nav-sub-label">Đối tác miền Bắc</span></a>
+                    <a href="/southern-partner"><span class="nav-sub-label">Đối tác miền Nam</span></a>
+                </div>
+            </div>
+            <a href="/mineral-research" class="nav-link">Nghiên cứu lâm sàn</a>
         </nav>
         <div class="header-actions">
+            <a href="#products" class="header-mini-btn" title="Tìm kiếm"><i class="fas fa-magnifying-glass"></i></a>
+            <a href="#" class="header-mini-btn" title="Shopee">
+                <span class="shopee-mark" aria-hidden="true">
+                    <svg viewBox="0 0 109.59 122.88" role="img" focusable="false">
+                        <path fill="currentColor" d="M74.98,91.98C76.15,82.36,69.96,76.22,53.6,71c-7.92-2.7-11.66-6.24-11.57-11.12 c0.33-5.4,5.36-9.34,12.04-9.47c4.63,0.09,9.77,1.22,14.76,4.56c0.59,0.37,1.01,0.32,1.35-0.2c0.46-0.74,1.61-2.53,2-3.17 c0.26-0.42,0.31-0.96-0.35-1.44c-0.95-0.7-3.6-2.13-5.03-2.72c-3.88-1.62-8.23-2.64-12.86-2.63c-9.77,0.04-17.47,6.22-18.12,14.47 c-0.42,5.95,2.53,10.79,8.86,14.47c1.34,0.78,8.6,3.67,11.49,4.57c9.08,2.83,13.8,7.9,12.69,13.81c-1.01,5.36-6.65,8.83-14.43,8.93 c-6.17-0.24-11.71-2.75-16.02-6.1c-0.11-0.08-0.65-0.5-0.72-0.56c-0.53-0.42-1.11-0.39-1.47,0.15c-0.26,0.4-1.92,2.8-2.34,3.43 c-0.39,0.55-0.18,0.86,0.23,1.2c1.8,1.5,4.18,3.14,5.81,3.97c4.47,2.28,9.32,3.53,14.48,3.72c3.32,0.22,7.5-0.49,10.63-1.81 C70.63,102.67,74.25,97.92,74.98,91.98L74.98,91.98z M54.79,7.18c-10.59,0-19.22,9.98-19.62,22.47h39.25 C74.01,17.16,65.38,7.18,54.79,7.18L54.79,7.18z M94.99,122.88l-0.41,0l-80.82-0.01h0c-5.5-0.21-9.54-4.66-10.09-10.19l-0.05-1 l-3.61-79.5v0C0,32.12,0,32.06,0,32c0-1.28,1.03-2.33,2.3-2.35l0,0h25.48C28.41,13.15,40.26,0,54.79,0s26.39,13.15,27.01,29.65 h25.4h0.04c1.3,0,2.35,1.05,2.35,2.35c0,0.04,0,0.08,0,0.12v0l-3.96,79.81l-0.04,0.68C105.12,118.21,100.59,122.73,94.99,122.88 L94.99,122.88z"/>
+                    </svg>
+                </span>
+            </a>
             <a href="tel:0901234567" class="phone-btn"><i class="fas fa-phone"></i> <span>0901 234 567</span></a>
             <button class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></button>
         </div>
@@ -430,15 +589,43 @@
     <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
     <div class="mobile-nav-panel">
         <div class="mobile-nav-top">
-            <a href="index.html" class="logo"><div class="logo-icon">B</div><div><div class="logo-text" style="font-size:22px">HYDRINITY</div></div></a>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <img src="photo/logo.png" alt="HYDRINITY Logo" style="width:24px;height:auto;">
+                </div>
+                <div>
+                    <div class="logo-text">HYDRINITY</div>
+                    <div class="logo-sub">ACCELERATED SKIN SCIENCE</div>
+                </div>
+            </a>
             <button class="mobile-nav-close" id="mobileNavClose"><i class="fas fa-times"></i></button>
         </div>
         <ul class="mobile-nav-links">
-            <li><a href="#home" class="mobile-link"><i class="fas fa-home"></i> Trang chủ</a></li>
-            <li><a href="#products" class="mobile-link"><i class="fas fa-box"></i> Sản phẩm</a></li>
-            <li><a href="#about" class="mobile-link"><i class="fas fa-info-circle"></i> Về chúng tôi</a></li>
-            <li><a href="#testimonials" class="mobile-link"><i class="fas fa-star"></i> Đánh giá</a></li>
-            <li><a href="#contact" class="mobile-link"><i class="fas fa-envelope"></i> Liên hệ</a></li>
+            <li class="mobile-acc-item">
+                <button type="button" class="mobile-accordion-trigger" aria-expanded="false">
+                    <span class="mobile-accordion-title"><i class="fas fa-info-circle"></i> Giới thiệu</span>
+                    <i class="fas fa-chevron-down chevron" aria-hidden="true"></i>
+                </button>
+                <div class="mobile-submenu">
+                    <a href="/about-us" class="mobile-link"><i class="fas fa-circle-info"></i> Về chúng tôi</a>
+                    <a href="/vision-mission" class="mobile-link"><i class="fas fa-bullseye"></i> Tầm nhìn và sứ mệnh</a>
+                    <a href="/news-awards" class="mobile-link"><i class="fas fa-newspaper"></i> Tin tức và giải thưởng</a>
+                    <a href="/contact" class="mobile-link"><i class="fas fa-envelope"></i> Liên hệ</a>
+                </div>
+            </li>
+            <li><a href="/products-home" class="mobile-link"><i class="fas fa-box"></i> Sản phẩm</a></li>
+            <li><a href="/blog" class="mobile-link"><i class="fas fa-blog"></i> Blog</a></li>
+            <li class="mobile-acc-item">
+                <button type="button" class="mobile-accordion-trigger" aria-expanded="false">
+                    <span class="mobile-accordion-title"><i class="fas fa-handshake"></i> Danh sách đối tác</span>
+                    <i class="fas fa-chevron-down chevron" aria-hidden="true"></i>
+                </button>
+                <div class="mobile-submenu">
+                    <a href="/north-partner" class="mobile-link"><i class="fas fa-location-dot"></i> Đối tác miền Bắc</a>
+                    <a href="/southern-partner" class="mobile-link"><i class="fas fa-location-dot"></i> Đối tác miền Nam</a>
+                </div>
+            </li>
+            <li><a href="/mineral-research" class="mobile-link"><i class="fas fa-flask"></i> Nghiên cứu lâm sàn</a></li>
         </ul>
         <a href="tel:0901234567" class="mobile-nav-phone"><i class="fas fa-phone"></i> 0901 234 567</a>
     </div>
@@ -470,27 +657,161 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
 <!-- FEATURES BAR -->
 <div class="features-bar">
     <div class="features-inner">
-        <div class="feature-item"><div class="feature-icon"><i class="fas fa-truck"></i></div><div><h4>Miễn Phí Vận Chuyển</h4><p>Đơn hàng trên 500K</p></div></div>
-        <div class="feature-item"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><div><h4>Đảm Bảo Chất Lượng</h4><p>100% sản phẩm sạch</p></div></div>
-        <div class="feature-item"><div class="feature-icon"><i class="fas fa-sync-alt"></i></div><div><h4>Đổi Trả Dễ Dàng</h4><p>Trong vòng 7 ngày</p></div></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-truck"></i></div><div><h4>Vận Chuyển Nhanh Chóng</h4><p>Tất cả các đơn hàng</p></div></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-shield-alt"></i></div><div><h4>Chất Lượng Uy Tín</h4><p>100% đến từ Hoa Kỳ</p></div></div>
+        <div class="feature-item"><div class="feature-icon"><i class="fas fa-user-doctor"></i></div><div><h4>Tư Vấn Cá Nhân Hóa</h4><p>Chuyên gia hỗ trợ</p></div></div>
         <div class="feature-item"><div class="feature-icon"><i class="fas fa-headset"></i></div><div><h4>Hỗ Trợ 24/7</h4><p>Tư vấn miễn phí</p></div></div>
     </div>
 </div>
+
+<!-- MID SLIDER -->
+<section class="mid-slider" id="midSlider">
+    <div class="mid-slider-inner">
+        <div class="mid-slider-frame">
+            <a href="/products-home" class="mid-slide active">
+                <img src="photo/hero_banner.png" alt="Hydrinity chăm sóc da chuyên sâu">
+                <div class="mid-slide-caption">
+                    <h3>Giải Pháp Chăm Sóc Da Chuyên Sâu</h3>
+                    <p>Công nghệ skin science tiên tiến giúp cấp ẩm, phục hồi và bảo vệ làn da mỗi ngày.</p>
+                </div>
+            </a>
+            <a href="/products-home" class="mid-slide">
+                <img src="photo/about_farm.png" alt="Hành trình nghiên cứu sản phẩm Hydrinity">
+                <div class="mid-slide-caption">
+                    <h3>Routine Chuẩn Phòng Khám Tại Nhà</h3>
+                    <p>Xây dựng liệu trình đơn giản, hiệu quả và phù hợp với làn da châu Á.</p>
+                </div>
+            </a>
+            <a href="/mineral-research" class="mid-slide">
+                <img src="photo/nam_linh_chi.png" alt="Nghiên cứu lâm sàng Hydrinity">
+                <div class="mid-slide-caption">
+                    <h3>Nghiên Cứu Lâm Sàng Minh Bạch</h3>
+                    <p>Dữ liệu rõ ràng, thành phần tối ưu để bạn an tâm trong từng bước chăm sóc.</p>
+                </div>
+            </a>
+            <a href="/products-home" class="mid-slide">
+                <img src="photo/mat_ong_rung.png" alt="Bộ sản phẩm dưỡng ẩm Hydrinity">
+                <div class="mid-slide-caption">
+                    <h3>Ưu Đãi Hấp Dẫn Theo Từng Tuần</h3>
+                    <p>Cập nhật khuyến mãi và bộ sản phẩm nổi bật để tối ưu hiệu quả chăm da.</p>
+                </div>
+            </a>
+            <button class="mid-slider-nav prev" type="button" id="midPrev" aria-label="Ảnh trước"><i class="fas fa-chevron-left"></i></button>
+            <button class="mid-slider-nav next" type="button" id="midNext" aria-label="Ảnh tiếp theo"><i class="fas fa-chevron-right"></i></button>
+            <div class="mid-slider-dots" id="midDots">
+                <button class="mid-dot active" type="button" aria-label="Slide 1"></button>
+                <button class="mid-dot" type="button" aria-label="Slide 2"></button>
+                <button class="mid-dot" type="button" aria-label="Slide 3"></button>
+                <button class="mid-dot" type="button" aria-label="Slide 4"></button>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- CATEGORIES -->
 <section class="section">
     <div class="section-inner">
         <div class="section-header fade-up">
             <span class="section-tag">Danh mục</span>
-            <h2>Khám Phá Đặc Sản Gia Lai</h2>
-            <p>Những sản phẩm nông sản tiêu biểu từ vùng đất bazan màu mỡ</p>
+            <h2>Khám Phá Nội Dung Nổi Bật Của HYDRINITY</h2>
         </div>
         <div class="categories-grid fade-up">
-            <a class="cat-card" href="#products" data-cat="cafe"><img src="photo/cafe_robusta.png" alt="Cà phê"><h3>Giới thiệu</h3><p>Về chúng tôi</p><p>Tầm nhìn và sứ mệnh</p><p>Tin tức và giải thưởng</p><p>Liên hệ</p></a>
-            <a class="cat-card" href="#products" data-cat="macca"><img src="photo/mac_ca.png" alt="Mắc ca"><h3>Sản phẩm</h3></a>
-            <a class="cat-card" href="#products" data-cat="tieu"><img src="photo/ho_tieu.png" alt="Hồ tiêu"><h3>Blog</h3></a>
-            <a class="cat-card" href="#products" data-cat="nam"><img src="photo/nam_linh_chi.png" alt="Nấm linh chi"><h3>Danh sách đối tác</h3><p>Đối tác miền Bắc</p><p>Đối tác miền Nam</p></a>
-            <a class="cat-card" href="#products" data-cat="mat-ong"><img src="photo/mat_ong_rung.png" alt="Mật ong rừng"><h3>Nghiên cứu lâm sàn</h3><p>Nghiên cứu khoa học</p><p>Kết quả lâm sàn</p></a>
+            <article class="cat-card" data-link="/about-us">
+                <img src="photo/cafe_robusta.png" alt="Giới thiệu HYDRINITY">
+                <div class="cat-content">
+                    <a class="cat-main-link" href="/about-us">Giới thiệu</a>
+                    <div class="cat-sub-links">
+                        <a class="cat-sub-link" href="/about-us">Về chúng tôi</a>
+                        <a class="cat-sub-link" href="/vision-mission">Tầm nhìn và sứ mệnh</a>
+                        <a class="cat-sub-link" href="/news-awards">Tin tức và giải thưởng</a>
+                        <a class="cat-sub-link" href="/contact">Liên hệ</a>
+                    </div>
+                </div>
+            </article>
+            <article class="cat-card" data-link="/products-home">
+                <img src="photo/mac_ca.png" alt="Sản phẩm HYDRINITY">
+                <div class="cat-content">
+                    <a class="cat-main-link" href="/products-home">Sản phẩm</a>
+                </div>
+            </article>
+            <article class="cat-card" data-link="/blog">
+                <img src="photo/ho_tieu.png" alt="Blog HYDRINITY">
+                <div class="cat-content">
+                    <a class="cat-main-link" href="/blog">Blog</a>
+                </div>
+            </article>
+            <article class="cat-card" data-link="/north-partner">
+                <img src="photo/nam_linh_chi.png" alt="Danh sách đối tác">
+                <div class="cat-content">
+                    <a class="cat-main-link" href="/north-partner">Danh sách đối tác</a>
+                    <div class="cat-sub-links">
+                        <a class="cat-sub-link" href="/north-partner">Đối tác miền Bắc</a>
+                        <a class="cat-sub-link" href="/southern-partner">Đối tác miền Nam</a>
+                    </div>
+                </div>
+            </article>
+            <article class="cat-card" data-link="/mineral-research">
+                <img src="photo/mat_ong_rung.png" alt="Nghiên cứu lâm sàng">
+                <div class="cat-content">
+                    <a class="cat-main-link" href="/mineral-research">Nghiên cứu lâm sàng</a>
+                    <div class="cat-sub-links">
+                        <a class="cat-sub-link" href="/scientific-research">Nghiên cứu khoa học</a>
+                        <a class="cat-sub-link" href="/clinical-results">Kết quả lâm sàng</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- MID STRIP SLIDER -->
+<section class="mid-strip" id="midStripSlider">
+    <div class="mid-strip-inner">
+        <h2 class="mid-strip-title">C&#212;NG NGH&#7878; &#272;&#7896;T PH&#193;</h2>
+        <div class="mid-strip-wrap">
+            <button class="mid-strip-nav prev" type="button" id="midStripPrev" aria-label="Ảnh trước"><i class="fas fa-chevron-left"></i></button>
+            <div class="mid-strip-viewport">
+                <div class="mid-strip-track" id="midStripTrack">
+                    <a class="mid-strip-card" href="/about-us">
+                        <img src="photo/cafe_robusta.png" alt="Giới thiệu HYDRINITY">
+                        <div class="mid-strip-content">
+                            <h3>Giới thiệu</h3>
+                            <p>Về chúng tôi</p>
+                            <p>Tầm nhìn và sứ mệnh</p>
+                        </div>
+                    </a>
+                    <a class="mid-strip-card" href="/products-home">
+                        <img src="photo/mac_ca.png" alt="Sản phẩm HYDRINITY">
+                        <div class="mid-strip-content">
+                            <h3>Sản phẩm</h3>
+                        </div>
+                    </a>
+                    <a class="mid-strip-card" href="/blog">
+                        <img src="photo/ho_tieu.png" alt="Blog HYDRINITY">
+                        <div class="mid-strip-content">
+                            <h3>Blog</h3>
+                        </div>
+                    </a>
+                    <a class="mid-strip-card" href="/north-partner">
+                        <img src="photo/nam_linh_chi.png" alt="Danh sách đối tác">
+                        <div class="mid-strip-content">
+                            <h3>Danh sách đối tác</h3>
+                            <p>Đối tác miền Bắc</p>
+                            <p>Đối tác miền Nam</p>
+                        </div>
+                    </a>
+                    <a class="mid-strip-card" href="/mineral-research">
+                        <img src="photo/mat_ong_rung.png" alt="Nghiên cứu lâm sàng">
+                        <div class="mid-strip-content">
+                            <h3>Nghiên cứu lâm sàng</h3>
+                            <p>Nghiên cứu khoa học</p>
+                            <p>Kết quả lâm sàng</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <button class="mid-strip-nav next" type="button" id="midStripNext" aria-label="Ảnh tiếp theo"><i class="fas fa-chevron-right"></i></button>
+            <div class="mid-strip-dots" id="midStripDots"></div>
         </div>
     </div>
 </section>
@@ -500,91 +821,89 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
     <div class="section-inner">
         <div class="section-header fade-up">
             <span class="section-tag">Sản phẩm</span>
-            <h2>Sản Phẩm Nổi Bật</h2>
-            <p>Được khách hàng yêu thích và đánh giá cao nhất</p>
+            <h2>Sản Phẩm Chăm Sóc Da Nổi Bật</h2>
+            <p>Công thức tinh khiết, ứng dụng skin science hiện đại cho routine hiệu quả mỗi ngày</p>
         </div>
         <div class="products-tabs fade-up">
             <button class="tab-btn active" data-cat="all">Tất cả</button>
-            <button class="tab-btn" data-cat="cafe">Cà phê</button>
-            <button class="tab-btn" data-cat="macca">Mắc ca</button>
-            <button class="tab-btn" data-cat="tieu">Hồ tiêu</button>
-            <button class="tab-btn" data-cat="nam">Nấm linh chi</button>
-            <button class="tab-btn" data-cat="mat-ong">Mật ong</button>
+            <button class="tab-btn" data-cat="cafe">Best Sellers</button>
+            <button class="tab-btn" data-cat="macca">Products</button>
+            <button class="tab-btn" data-cat="tieu">Regimens</button>
         </div>
         <div class="products-grid fade-up">
             <div class="product-card" data-cat="cafe">
                 <span class="product-badge hot">HOT</span>
-                <div class="product-img"><img src="photo/cafe_robusta.png" alt="Cà phê Robusta Gia Lai"></div>
+                <div class="product-img"><img src="photo/cafe_robusta.png" alt="Serum cấp ẩm HYDRINITY"></div>
                 <div class="product-info">
-                    <div class="product-category">Cà Phê</div>
-                    <div class="product-name"><a href="product_detail.html">Cà Phê Robusta Nguyên Chất Gia Lai</a></div>
+                    <div class="product-category">Cấp Ẩm Chuyên Sâu</div>
+                    <div class="product-name"><a href="product_detail.html">Hydri-C Serum Cấp Ẩm Đa Tầng</a></div>
                     <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(128 đánh giá)</span></div>
                     <div class="product-bottom">
-                        <div class="price-wrap"><div class="product-price">185.000₫ <span class="old-price">220.000₫</span></div><span class="price-unit">Giá cho 1 kg</span></div>
+                        <div class="price-wrap"><div class="product-price">1.850.000₫ <span class="old-price">2.200.000₫</span></div><span class="price-unit">Giá cho 30 ml</span></div>
                         <a href="product_detail.html" class="add-cart-btn" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i> Mua ngay</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-cat="macca">
                 <span class="product-badge new">MỚI</span>
-                <div class="product-img"><img src="photo/mac_ca.png" alt="Mắc ca Gia Lai"></div>
+                <div class="product-img"><img src="photo/mac_ca.png" alt="Serum làm sáng HYDRINITY"></div>
                 <div class="product-info">
-                    <div class="product-category">Mắc Ca</div>
-                    <div class="product-name"><a href="product_detail.html">Hạt Mắc Ca Nứt Vỏ Đắk Lắk</a></div>
+                    <div class="product-category">Làm Sáng Da</div>
+                    <div class="product-name"><a href="product_detail.html">Vita-Bright Serum Giảm Thâm Nám</a></div>
                     <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(96 đánh giá)</span></div>
                     <div class="product-bottom">
-                        <div class="price-wrap"><div class="product-price">280.000₫</div><span class="price-unit">Giá cho 1 kg</span></div>
+                        <div class="price-wrap"><div class="product-price">1.690.000₫</div><span class="price-unit">Giá cho 30 ml</span></div>
                         <a href="product_detail.html" class="add-cart-btn" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i> Mua ngay</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-cat="tieu">
-                <div class="product-img"><img src="photo/ho_tieu.png" alt="Hồ tiêu Gia Lai"></div>
+                <div class="product-img"><img src="photo/ho_tieu.png" alt="Tinh chất phục hồi HYDRINITY"></div>
                 <div class="product-info">
-                    <div class="product-category">Hồ Tiêu</div>
-                    <div class="product-name"><a href="product_detail.html">Hồ Tiêu Đen Chư Sê Hữu Cơ</a></div>
+                    <div class="product-category">Phục Hồi Hàng Rào Da</div>
+                    <div class="product-name"><a href="product_detail.html">Barrier Restore Essence Cho Da Nhạy Cảm</a></div>
                     <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(112 đánh giá)</span></div>
                     <div class="product-bottom">
-                        <div class="price-wrap"><div class="product-price">165.000₫ <span class="old-price">200.000₫</span></div><span class="price-unit">Giá cho 1 kg</span></div>
+                        <div class="price-wrap"><div class="product-price">1.520.000₫ <span class="old-price">1.820.000₫</span></div><span class="price-unit">Giá cho 30 ml</span></div>
                         <a href="product_detail.html" class="add-cart-btn" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i> Mua ngay</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-cat="nam">
                 <span class="product-badge sale">-15%</span>
-                <div class="product-img"><img src="photo/nam_linh_chi.png" alt="Nấm linh chi Gia Lai"></div>
+                <div class="product-img"><img src="photo/nam_linh_chi.png" alt="Tinh chất chống lão hóa HYDRINITY"></div>
                 <div class="product-info">
-                    <div class="product-category">Nấm Linh Chi</div>
-                    <div class="product-name"><a href="product_detail.html">Nấm Linh Chi Đỏ Tây Nguyên</a></div>
+                    <div class="product-category">Chống Lão Hóa</div>
+                    <div class="product-name"><a href="product_detail.html">Age-Defy Peptide Concentrate</a></div>
                     <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-count">(74 đánh giá)</span></div>
                     <div class="product-bottom">
-                        <div class="price-wrap"><div class="product-price">350.000₫ <span class="old-price">410.000₫</span></div><span class="price-unit">Giá cho 1 kg</span></div>
+                        <div class="price-wrap"><div class="product-price">2.150.000₫ <span class="old-price">2.530.000₫</span></div><span class="price-unit">Giá cho 30 ml</span></div>
                         <a href="product_detail.html" class="add-cart-btn" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i> Mua ngay</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-cat="mat-ong">
                 <span class="product-badge hot">HOT</span>
-                <div class="product-img"><img src="photo/mat_ong_rung.png" alt="Mật ong rừng Gia Lai"></div>
+                <div class="product-img"><img src="photo/mat_ong_rung.png" alt="Gel phục hồi sau liệu trình HYDRINITY"></div>
                 <div class="product-info">
-                    <div class="product-category">Mật Ong</div>
-                    <div class="product-name"><a href="product_detail.html">Mật Ong Rừng Nguyên Chất Gia Lai</a></div>
+                    <div class="product-category">Sau Liệu Trình</div>
+                    <div class="product-name"><a href="product_detail.html">Calm Recovery Gel Sau Peel/Laser</a></div>
                     <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(152 đánh giá)</span></div>
                     <div class="product-bottom">
-                        <div class="price-wrap"><div class="product-price">320.000₫</div><span class="price-unit">Giá cho 1 lít</span></div>
+                        <div class="price-wrap"><div class="product-price">1.320.000₫</div><span class="price-unit">Giá cho 50 ml</span></div>
                         <a href="product_detail.html" class="add-cart-btn" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i> Mua ngay</a>
                     </div>
                 </div>
             </div>
             <div class="product-card" data-cat="cafe">
                 <span class="product-badge new">MỚI</span>
-                <div class="product-img"><img src="photo/cafe_arabica.png" alt="Cà phê Arabica Gia Lai"></div>
+                <div class="product-img"><img src="photo/cafe_arabica.png" alt="Xịt khoáng khóa ẩm HYDRINITY"></div>
                 <div class="product-info">
-                    <div class="product-category">Cà Phê</div>
-                    <div class="product-name"><a href="product_detail.html">Cà Phê Arabica Hảo Hạng Gia Lai</a></div>
+                    <div class="product-category">Cấp Ẩm Chuyên Sâu</div>
+                    <div class="product-name"><a href="product_detail.html">Hydra+ Mist Khóa Ẩm Tức Thì</a></div>
                     <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(87 đánh giá)</span></div>
                     <div class="product-bottom">
-                        <div class="price-wrap"><div class="product-price">245.000₫</div><span class="price-unit">Giá cho 1 kg</span></div>
+                        <div class="price-wrap"><div class="product-price">920.000₫</div><span class="price-unit">Giá cho 100 ml</span></div>
                         <a href="product_detail.html" class="add-cart-btn" onclick="event.stopPropagation()"><i class="fas fa-shopping-bag"></i> Mua ngay</a>
                     </div>
                 </div>
@@ -598,19 +917,19 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
     <div class="section-inner">
         <div class="about-grid fade-up">
             <div class="about-img">
-                <img src="photo/about_farm.png" alt="Vùng đất bazan Gia Lai">
+                <img src="photo/about_farm.png" alt="Đội ngũ nghiên cứu HYDRINITY">
                 <div class="about-floating"><div class="num">15+</div><div class="label">Năm kinh nghiệm</div></div>
             </div>
             <div class="about-content">
                 <span class="section-tag">Về chúng tôi</span>
                 <h2>Câu Chuyện <span>HYDRINITY</span></h2>
-                <p>HYDRINITY ra đời từ tình yêu với mảnh đất Gia Lai — nơi đất đỏ bazan màu mỡ nuôi dưỡng những sản phẩm nông sản thuần khiết nhất.</p>
-                <p>Chúng tôi kết nối trực tiếp với bà con nông dân, đảm bảo cho sản phẩm đều được canh tác tự nhiên, thu hoạch đúng thời điểm và chế biến theo quy trình nghiêm ngặt.</p>
+                <p>HYDRINITY được xây dựng từ triết lý chăm sóc da khoa học, kết hợp công nghệ tiên tiến từ Hoa Kỳ với nhu cầu thực tế của làn da châu Á.</p>
+                <p>Chúng tôi phát triển sản phẩm theo hướng tối giản nhưng hiệu quả, tập trung cấp ẩm sâu, phục hồi hàng rào da và duy trì vẻ khỏe mạnh bền vững.</p>
                 <ul class="about-list">
-                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Nguồn gốc rõ ràng, truy xuất được</li>
-                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Không thuốc trừ sâu, không hóa chất</li>
-                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Hỗ trợ nông dân địa phương phát triển bền vững</li>
-                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Đóng gói chuyên nghiệp, bảo quản tối ưu</li>
+                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Công thức tinh khiết, ưu tiên làn da nhạy cảm</li>
+                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Thành phần minh bạch, nồng độ hoạt chất tối ưu</li>
+                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Phù hợp cả chăm sóc tại nhà và liệu trình chuyên nghiệp</li>
+                    <li><span class="check-icon"><i class="fas fa-check"></i></span>Hỗ trợ tư vấn routine cá nhân hóa theo tình trạng da</li>
                 </ul>
                 <a href="#products" class="btn-primary">Xem Sản Phẩm</a>
             </div>
@@ -623,23 +942,23 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
     <div class="section-inner">
         <div class="section-header fade-up">
             <span class="section-tag">Đánh giá</span>
-            <h2>Khách Hàng Nói Gì?</h2>
-            <p>Hàng ngàn khách hàng tin tưởng và yêu thích sản phẩm HYDRINITY</p>
+            <h2>Khách Hàng Nói Gì Về HYDRINITY?</h2>
+            <p>Phản hồi thực tế từ khách hàng sau khi trải nghiệm liệu trình chăm sóc da</p>
         </div>
         <div class="testimonials-grid fade-up">
             <div class="test-card">
                 <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="test-text">"Cà phê HYDRINITY thơm ngon tuyệt vời, đúng vị Robusta Gia Lai. Uống một lần là nghiện luôn! Đóng gói rất đẹp, làm quà tặng rất sang."</p>
-                <div class="test-author"><div class="test-avatar">M</div><div><div class="test-name">Minh Tuấn</div><div class="test-loc">TP. Hồ Chí Minh</div></div></div>
+                <p class="test-text">"Serum cấp ẩm thấm nhanh, da mình mềm mịn thấy rõ chỉ sau vài ngày. Trang điểm cũng ăn nền hơn hẳn."</p>
+                <div class="test-author"><div class="test-avatar">M</div><div><div class="test-name">Mai Anh</div><div class="test-loc">TP. Hồ Chí Minh</div></div></div>
             </div>
             <div class="test-card">
                 <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="test-text">"Mật ong rừng chất lượng cao, ngọt thanh tự nhiên. Giao hàng nhanh và đóng gói rất cẩn thận. Sẽ mua lại nhiều lần nữa!"</p>
+                <p class="test-text">"Da nhạy cảm của mình rất dễ kích ứng nhưng dùng bộ phục hồi của HYDRINITY lại dịu hẳn, không còn đỏ rát."</p>
                 <div class="test-author"><div class="test-avatar">L</div><div><div class="test-name">Lan Phương</div><div class="test-loc">Hà Nội</div></div></div>
             </div>
             <div class="test-card">
                 <div class="test-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="test-text">"Nấm linh chi HYDRINITY chất lượng thật sự tốt, mình dùng hãm trà cho ngày, sức khỏe cải thiện rõ rệt. Rất đáng tiền!"</p>
+                <p class="test-text">"Sau liệu trình peel, mình dùng gel phục hồi theo tư vấn và da ổn định nhanh. Cảm giác yên tâm vì thành phần rõ ràng."</p>
                 <div class="test-author"><div class="test-avatar">H</div><div><div class="test-name">Hoàng Anh</div><div class="test-loc">Đà Nẵng</div></div></div>
             </div>
         </div>
@@ -649,11 +968,11 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
 <!-- CTA -->
 <section class="cta-section" id="contact">
     <div class="section-inner">
-        <h2>Nhận Ưu Đãi Đặc Biệt</h2>
-        <p>Đăng ký nhận tin để không bỏ lỡ các chương trình khuyến mãi hấp dẫn</p>
+        <h2>TIN TỨC MỚI NHẤT CỦA HYDRINITY SKINCARE</h2>
+        <p>Đăng ký tham gia bản tin của chúng tôi để cập nhật tin tức chăm sóc da mới nhất.</p>
         <div class="cta-form">
             <input type="email" placeholder="Nhập email của bạn...">
-            <button type="button">Đăng Ký Ngay</button>
+            <button type="button">Đăng ký</button>
         </div>
     </div>
 </section>
@@ -668,37 +987,39 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
                 </div>
                 <div><div class="logo-text">HYDRINITY</div><div class="logo-sub">ACCELERATED SKIN SCIENCE</div></div>
             </a>
-            <p>Thương hiệu nông sản sạch hàng đầu từ vùng đất đỏ bazan Gia Lai, Tây Nguyên. Mang tinh hoa đất trời đến cho gia đình Việt.</p>
+            <p>Thương hiệu chăm sóc da cao cấp của Hoa Kỳ với công nghệ PPM6 và thành phần Hyaluronic Acid siêu tinh khiết độc quyền.</p>
+            <div class="flex flex-col mt-6">
+                <img alt="Bộ công thương" src="photo/bo-cong-thuong.png" class="w-[200px]" />
+            </div>
         </div>
         <div>
-            <h3>Sản Phẩm</h3>
+            <h3>Danh mục</h3>
             <ul class="footer-links">
-                <li><a href="#">Cà phê</a></li>
-                <li><a href="#">Mắc ca</a></li>
-                <li><a href="#">Hồ tiêu</a></li>
-                <li><a href="#">Nấm linh chi</a></li>
-                <li><a href="#">Mật ong rừng</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3>Hỗ Trợ</h3>
-            <ul class="footer-links">
-                <li><a href="#">Chính sách đổi trả</a></li>
-                <li><a href="#">Vận chuyển</a></li>
-                <li><a href="#">Hướng dẫn mua hàng</a></li>
-                <li><a href="#">Câu hỏi thường gặp</a></li>
+                <li><a href="#">Sản phẩm</a></li>
+                <li><a href="#">Nghiên cứu khoa học</a></li>
+                <li><a href="#">Kết quả lâm sàn</a></li>
+                <li><a href="#">Infinity Blog</a></li>
+                <li><a href="#">Tầm nhìn và sứ mệnh</a></li>
+                <li><a href="#">Tin tức & Giải thưởng</a></li>
             </ul>
         </div>
         <div class="footer-contact">
-            <h3>Liên Hệ</h3>
-            <p><i class="fas fa-map-marker-alt"></i> 123 Trần Phú, TP. Pleiku, Gia Lai</p>
+            <h3>Liên Hệ Hydrinity</h3>
+            <p><i class="fas fa-map-marker-alt"></i> C1.04 Senic Valley 2 (MD4-4), phường Tân Phú, Quận 7, TPHCM</p>
             <p><i class="fas fa-phone"></i> 0901 234 567</p>
-            <p><i class="fas fa-envelope"></i> info@bazan.vn</p>
+            <p><i class="fas fa-envelope"></i> support@hydrinity.vn</p>
             <p><i class="fas fa-clock"></i> 8:00 - 21:00 (T2 - CN)</p>
+        </div>
+        <div class="footer-contact">
+            <h3>CÔNG TY TNHH COSBEAUTY</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Số 9 đường Nội khu Mỹ Phước, Phường Tân Hưng, Thành phố Hồ Chí Minh, Việt Nam</p>
+            <p><i class="fas fa-phone"></i> 0982762783</p>
+            <p><i class="fas fa-envelope"></i> cosbeautyvietnam@gmail.com</p>
+            <p><i class="fas fa-receipt"></i> 0317577011</p>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>© 2026 HYDRINITY. Tất cả quyền được bảo lưu.</span>
+        <span>© 2025Copyright Hydrinity Skin Science</span>
         <div class="social-links">
             <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -712,10 +1033,33 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
 
 <script>
     const mobileNav=document.getElementById('mobileNav');
+    function closeMobileNav(){
+        mobileNav.classList.remove('open');
+        document.querySelectorAll('.mobile-acc-item.open').forEach(item=>{
+            item.classList.remove('open');
+            const trigger=item.querySelector('.mobile-accordion-trigger');
+            if(trigger) trigger.setAttribute('aria-expanded','false');
+        });
+    }
     document.getElementById('mobileMenu').addEventListener('click',()=>mobileNav.classList.add('open'));
-    document.getElementById('mobileNavClose').addEventListener('click',()=>mobileNav.classList.remove('open'));
-    document.getElementById('mobileNavBackdrop').addEventListener('click',()=>mobileNav.classList.remove('open'));
-    document.querySelectorAll('.mobile-link').forEach(a=>a.addEventListener('click',()=>mobileNav.classList.remove('open')));
+    document.getElementById('mobileNavClose').addEventListener('click',closeMobileNav);
+    document.getElementById('mobileNavBackdrop').addEventListener('click',closeMobileNav);
+    document.querySelectorAll('.mobile-link').forEach(a=>a.addEventListener('click',closeMobileNav));
+    document.querySelectorAll('.mobile-accordion-trigger').forEach(trigger=>{
+        trigger.addEventListener('click',()=>{
+            const item=trigger.closest('.mobile-acc-item');
+            const isOpen=item.classList.contains('open');
+            document.querySelectorAll('.mobile-acc-item.open').forEach(other=>{
+                if(other!==item){
+                    other.classList.remove('open');
+                    const otherTrigger=other.querySelector('.mobile-accordion-trigger');
+                    if(otherTrigger) otherTrigger.setAttribute('aria-expanded','false');
+                }
+            });
+            item.classList.toggle('open',!isOpen);
+            trigger.setAttribute('aria-expanded',String(!isOpen));
+        });
+    });
     window.addEventListener('scroll',()=>{
         document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);
         document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>500);
@@ -753,10 +1097,15 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
     document.querySelectorAll('.tab-btn').forEach(btn=>{
         btn.addEventListener('click',()=>filterByCat(btn.dataset.cat));
     });
-    document.querySelectorAll('.cat-card[data-cat]').forEach(card=>{
-        card.addEventListener('click',()=>{
-            filterByCat(card.dataset.cat);
-            setTimeout(checkFadeUps,400);setTimeout(checkFadeUps,800);
+    document.querySelectorAll('.cat-card').forEach(card=>{
+        card.addEventListener('click',(e)=>{
+            if(e.target.closest('a'))return;
+            const link=card.dataset.link;
+            if(link){window.location.href=link;return;}
+            if(card.dataset.cat){
+                filterByCat(card.dataset.cat);
+                setTimeout(checkFadeUps,400);setTimeout(checkFadeUps,800);
+            }
         });
     });
     let cartCount=0;
@@ -777,6 +1126,123 @@ Vẻ đẹp không chỉ nhìn thấy, mà còn được cảm nhận từ bên 
             if(link)window.location.href=link.href;
         });
     });
+    (function(){
+        const slider=document.getElementById('midSlider');
+        if(!slider)return;
+        const slides=[...slider.querySelectorAll('.mid-slide')];
+        const dots=[...slider.querySelectorAll('.mid-dot')];
+        const prevBtn=slider.querySelector('#midPrev');
+        const nextBtn=slider.querySelector('#midNext');
+        let idx=0;
+        let autoTimer=null;
+
+        function render(nextIdx){
+            idx=(nextIdx+slides.length)%slides.length;
+            slides.forEach((slide,i)=>slide.classList.toggle('active',i===idx));
+            dots.forEach((dot,i)=>dot.classList.toggle('active',i===idx));
+        }
+        function stopAuto(){
+            if(autoTimer){clearInterval(autoTimer);autoTimer=null;}
+        }
+        function startAuto(){
+            stopAuto();
+            autoTimer=setInterval(()=>render(idx+1),4500);
+        }
+
+        prevBtn.addEventListener('click',()=>{render(idx-1);startAuto();});
+        nextBtn.addEventListener('click',()=>{render(idx+1);startAuto();});
+        dots.forEach((dot,i)=>dot.addEventListener('click',()=>{render(i);startAuto();}));
+        slider.addEventListener('mouseenter',stopAuto);
+        slider.addEventListener('mouseleave',startAuto);
+        document.addEventListener('visibilitychange',()=>{
+            if(document.hidden)stopAuto();
+            else startAuto();
+        });
+
+        startAuto();
+    })();
+    (function(){
+        const root=document.getElementById('midStripSlider');
+        if(!root)return;
+        const track=root.querySelector('#midStripTrack');
+        const cards=[...root.querySelectorAll('.mid-strip-card')];
+        const prevBtn=root.querySelector('#midStripPrev');
+        const nextBtn=root.querySelector('#midStripNext');
+        const dotsWrap=root.querySelector('#midStripDots');
+        let idx=0;
+        let dots=[];
+        let autoTimer=null;
+
+        function visibleCount(){
+            if(window.innerWidth<=600)return 1;
+            if(window.innerWidth<=968)return 2;
+            return 3;
+        }
+        function pageCount(){
+            return Math.max(1,cards.length-visibleCount()+1);
+        }
+        function gapSize(){
+            const styles=window.getComputedStyle(track);
+            return parseFloat(styles.columnGap||styles.gap||'0')||0;
+        }
+        function buildDots(){
+            const count=pageCount();
+            if(dots.length===count)return;
+            dotsWrap.innerHTML='';
+            dots=[];
+            for(let i=0;i<count;i++){
+                const dot=document.createElement('button');
+                dot.type='button';
+                dot.className='mid-strip-dot';
+                dot.setAttribute('aria-label',`Trang ${i+1}`);
+                dot.addEventListener('click',()=>{idx=i;update();startAuto();});
+                dotsWrap.appendChild(dot);
+                dots.push(dot);
+            }
+        }
+        function stopAuto(){
+            if(autoTimer){clearInterval(autoTimer);autoTimer=null;}
+        }
+        function startAuto(){
+            stopAuto();
+            if(pageCount()<=1)return;
+            autoTimer=setInterval(()=>{
+                idx=(idx+1)%pageCount();
+                update();
+            },4200);
+        }
+        function update(){
+            if(!cards.length)return;
+            buildDots();
+            const step=cards[0].getBoundingClientRect().width+gapSize();
+            const max=pageCount()-1;
+            idx=Math.max(0,Math.min(idx,max));
+            track.style.transform=`translateX(${-idx*step}px)`;
+            dots.forEach((dot,i)=>dot.classList.toggle('active',i===idx));
+            prevBtn.classList.toggle('disabled',max<=0);
+            nextBtn.classList.toggle('disabled',max<=0);
+        }
+
+        prevBtn.addEventListener('click',()=>{
+            idx=(idx-1+pageCount())%pageCount();
+            update();
+            startAuto();
+        });
+        nextBtn.addEventListener('click',()=>{
+            idx=(idx+1)%pageCount();
+            update();
+            startAuto();
+        });
+        window.addEventListener('resize',()=>{idx=Math.min(idx,pageCount()-1);update();});
+        root.addEventListener('mouseenter',stopAuto);
+        root.addEventListener('mouseleave',startAuto);
+        document.addEventListener('visibilitychange',()=>{
+            if(document.hidden)stopAuto();
+            else startAuto();
+        });
+        update();
+        startAuto();
+    })();
     (function(){
         const c=document.getElementById('heroParticles');
         if(!c)return;const ctx=c.getContext('2d');
