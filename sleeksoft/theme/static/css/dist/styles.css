@@ -1112,6 +1112,10 @@ select {
   height: 20px;
 }
 
+.h-\[250px\] {
+  height: 250px;
+}
+
 .h-\[25px\] {
   height: 25px;
 }
@@ -1246,26 +1250,6 @@ select {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[1px\] {
-  height: 1px;
-}
-
-.h-\[180px\] {
-  height: 180px;
-}
-
-.h-\[200px\] {
-  height: 200px;
-}
-
-.h-\[230px\] {
-  height: 230px;
-}
-
-.h-\[250px\] {
-  height: 250px;
 }
 
 .max-h-\[40px\] {
@@ -1552,6 +1536,10 @@ select {
   min-width: 150px;
 }
 
+.min-w-\[220px\] {
+  min-width: 220px;
+}
+
 .min-w-\[25px\] {
   min-width: 25px;
 }
@@ -1562,14 +1550,6 @@ select {
 
 .min-w-\[50px\] {
   min-width: 50px;
-}
-
-.min-w-\[200px\] {
-  min-width: 200px;
-}
-
-.min-w-\[220px\] {
-  min-width: 220px;
 }
 
 .max-w-\[100px\] {
@@ -1623,6 +1603,10 @@ select {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.resize {
+  resize: both;
 }
 
 .grid-cols-1 {
@@ -1705,16 +1689,16 @@ select {
   gap: 1.5rem;
 }
 
-.gap-\[100px\] {
-  gap: 100px;
-}
-
 .gap-\[10px\] {
   gap: 10px;
 }
 
 .gap-\[15px\] {
   gap: 15px;
+}
+
+.gap-\[165px\] {
+  gap: 165px;
 }
 
 .gap-\[17px\] {
@@ -1747,30 +1731,6 @@ select {
 
 .gap-\[70px\] {
   gap: 70px;
-}
-
-.gap-\[150px\] {
-  gap: 150px;
-}
-
-.gap-\[160px\] {
-  gap: 160px;
-}
-
-.gap-\[60px\] {
-  gap: 60px;
-}
-
-.gap-\[180px\] {
-  gap: 180px;
-}
-
-.gap-\[170px\] {
-  gap: 170px;
-}
-
-.gap-\[165px\] {
-  gap: 165px;
 }
 
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -1995,16 +1955,6 @@ select {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#2a3951\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(42 57 81 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#2b3341\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(43 51 65 / var(--tw-bg-opacity, 1));
 }
 
 .bg-opacity-90 {
@@ -2468,6 +2418,11 @@ select {
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
 }
 
+.text-stone-100 {
+  --tw-text-opacity: 1;
+  color: rgb(245 245 244 / var(--tw-text-opacity, 1));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
@@ -2476,11 +2431,6 @@ select {
 .text-yellow-500 {
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity, 1));
-}
-
-.text-stone-100 {
-  --tw-text-opacity: 1;
-  color: rgb(245 245 244 / var(--tw-text-opacity, 1));
 }
 
 .underline {
@@ -2504,6 +2454,11 @@ select {
 
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.backdrop-filter {
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
 .transition {

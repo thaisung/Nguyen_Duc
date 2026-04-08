@@ -1,0 +1,111 @@
+{% extends './base_client.html' %}
+{% block title %}
+    <title>{{obj_Seo_Page.Seo_Title}}</title>
+{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="keywords" content="Đối tác miền Nam,Hydrinity" />
+{% endblock %}
+{% block canonical %}
+    <link rel="canonical" href="{{domain}}{% url 'select_kvmn_client' %}">
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hydrinity">
+    <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta property="og:url" content="{{domain}}{% url 'select_kvmn_client' %}">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
+{% endblock %}
+{% block breadcrumb %}
+    <a href="{% url 'select_kvmn_client' %}" class="hover:cursor-pointer hover:underline">Danh sách đối tác Miền Nam</a>
+{% endblock %}
+{% block breadcrumb_mb %}
+    <a href="{% url 'select_kvmn_client' %}" class="hover:cursor-pointer hover:underline">Danh sách đối tác Miền Nam</a>
+{% endblock %}
+{% block content %}
+<main class=" flex flex-col items-center w-full mb-6">
+    <div class="hidden lg:flex flex-col items-center">
+        <h1 class="uppercase font-medium text-[25px] lg:text-[64px] text-[#11284A]">
+            Danh sách đối tác
+        </h1>
+        <div class="w-[366px] h-[3px] bg-[#11284A] mt-[15px]"></div>
+        <span class="uppercase font-medium text-[15] lg:text-[40px] text-[#11284A] mt-[30px]">Khu vực miền Nam</span>
+    </div>
+    <div class="flex lg:hidden flex-col items-center justify-center bg-[#11284A] w-full h-[34px]">
+        <span class="uppercase font-normal text-[16px] lg:text-[40px] text-white">Khu vực miền Nam</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 w-full  mt-[20px] lg:mt-[50px] gap-6 px-[20px]">
+        {% for i in list_Edit_dsdt_mn %}
+        <div class="flex gap-2 ">
+            <div class="pt-2">
+                <img alt="img" class="min-w-[50px] max-w-[50px] h-auto " src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" >
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="uppercase font-medium text-[18px] lg:text-[25px] text-[#11284A] ff-bb ">{{i.Name}}</span>
+                <span class="uppercase font-medium text-[13px] text-[#11284A] ">{{i.Address}}</span>
+                {% if i.Link %}
+                <a href="{{i.Link}}" rel="nofollow noopener noreferrer" class=" uppercase flex justify-center items-center w-[110px] font-medium text-[12px] lg:text-[16px] text-white bg-[#11284A] rounded-full py-1">
+                    Xem thêm
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="  flex lg:hidden items-center justify-center text-white  w-full h-[100px] lg:h-[450px] bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[20px] lg:mt-[58px]">
+        <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}"  class="w-full h-full object-cover" />
+    </div>
+    <div class="flex lg:hidden flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
+        <span class="font-bold text-[#11284A] text-[21px] lg:text-[55px]">
+            THE RESULTS ARE IN
+        </span>
+        <div class="w-full flex justify-center">
+            <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
+                <div class="swiper-wrapper">
+                    {% for i in list_image_slider_3 %}
+                    <div class="swiper-slide">
+                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Chỉ có dấu chấm -->
+                <div class="swiper-pagination hidden lg:block"></div>
+            </div>
+            <script>
+                var swiper = new Swiper(".mySwiper2", {
+                  loop: true, 
+                  autoplay: { delay: 3000 }, // Tự động chạy
+                  pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                  },
+                });
+              </script>
+              <style>
+                /* Màu xám cho chấm tròn */
+                .swiper-pagination-bullet {
+                    background: #9ca3af !important; /* Tailwind gray-400 */
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    opacity: 1;
+                }
+            
+                /* Màu trắng và kích thước lớn hơn khi active */
+                .swiper-pagination-bullet-active {
+                    background: #ffffff !important; /* Tailwind white */
+                    width: 22px;
+                    height: 22px;
+                }
+            </style>
+        </div>
+    </div>
+</main>
+{% endblock %}

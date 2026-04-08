@@ -1,0 +1,207 @@
+{% extends './base_client.html' %}
+{% block title %}
+    <title>{{obj_Seo_Page.Seo_Title}}</title>
+{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="keywords" content="Tin tức,giải thưởng,Hydrinity" />
+{% endblock %}
+{% block canonical %}
+    <link rel="canonical" href="{{domain}}{% url 'about_tin_tuc_giai_thuong_client' %}">
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hydrinity">
+    <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta property="og:url" content="{{domain}}{% url 'about_tin_tuc_giai_thuong_client' %}">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
+{% endblock %}
+{% block breadcrumb %}
+    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
+{% endblock %}
+{% block breadcrumb_mb %}
+    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
+{% endblock %}
+{% block content %}
+<main class=" flex flex-col items-center w-full mb-6">
+    <div class="flex flex-col w-full justify-start">
+        <div class="relative flex justify-center items-center w-full h-[186px] lg:h-[500px] overflow-hidden">
+            <img alt="img" class="w-full h-full object-cover" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" />
+            <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
+                <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[25px] lg:p-none">
+                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">
+                        {{obj1.Title1|safe}}
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full flex flex-col justify-center items-center p-[25px] lg:p-[50px]">
+        <div class="tabs mb-6 lg:mb-8 font-normal text-[20px] lg:text-[25px] flex items-center w-full justify-between lg:justify-center text-[#11284A]">
+            <button class="tab-btn active px-4 py-2 whitespace-nowrap" data-filter="all">All</button>
+            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="press">Press Releases</button>
+            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="media">Media</button>
+            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="awards">Awards</button>
+        </div>                  
+        <div class="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-[1200px] gap-[25px] lg:gap-[50px]">
+            {% for i in list_Edit_ttgt1 %}
+            <div class="item all awards flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
+                <img alt="img" class="w-[320px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
+                <div class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
+                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold  text-[#11284A] ">{{ i.Creation_time|date:"d/m/Y" }}</div>
+                    <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lgtext-[#101828]">{{i.Title}}</p>
+                    <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" class="font-normal text-[20px] lg:font-semibold  text-white lg:text-white mt-2 lg:mt-none">
+                        <span class="bg-[#11284A] text-center rounded px-2 py-1">
+                            Read More
+                        </span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <style>
+        .item { display: none; }
+        .item.show { display: block; }
+      
+        .tab-btn.active {
+          background-color: #11284A;
+          color: white;
+          border-radius: 6px;
+        }
+      </style>      
+    <script>
+        $(document).ready(function () {
+          $('.item').addClass('show'); // Hiện tất cả khi load
+      
+          $('.tab-btn').click(function () {
+            var filter = $(this).data('filter');
+      
+            // Đổi nút active
+            $('.tab-btn').removeClass('active');
+            $(this).addClass('active');
+      
+            // Ẩn tất cả
+            $('.item').removeClass('show');
+      
+            // Hiện theo lọc
+            if (filter === 'all') {
+              $('.item').addClass('show');
+            } else {
+              $('.item.' + filter).addClass('show');
+            }
+          });
+        });
+      </script>
+    <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px]">
+        <span class="font-bold text-black text-[21px] lg:text-[55px]">
+            THE RESULTS ARE IN
+        </span>
+        <div class="w-full flex justify-center">
+            <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
+                <div class="swiper-wrapper">
+                    {% for i in list_image_slider_3 %}
+                    <div class="swiper-slide">
+                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Chỉ có dấu chấm -->
+                <div class="swiper-pagination hidden lg:block"></div>
+            </div>
+            <script>
+                var swiper = new Swiper(".mySwiper2", {
+                  loop: true, 
+                  autoplay: { delay: 3000 }, // Tự động chạy
+                  pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                  },
+                });
+              </script>
+              <style>
+                /* Màu xám cho chấm tròn */
+                .swiper-pagination-bullet {
+                    background: #9ca3af !important; /* Tailwind gray-400 */
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    opacity: 1;
+                }
+            
+                /* Màu trắng và kích thước lớn hơn khi active */
+                .swiper-pagination-bullet-active {
+                    background: #ffffff !important; /* Tailwind white */
+                    width: 22px;
+                    height: 22px;
+                }
+            </style>
+        </div>
+    </div>
+</main>
+<style>
+    .ckeditor-content {
+        font-family: 'UTM Aptima', sans-serif;
+        font-size: 16px;
+        line-height: 1.8;
+        color: #222;
+    }
+
+    .ckeditor-content p {
+        margin: 0 0 1.2em;
+    }
+
+    .ckeditor-content h1,
+    .ckeditor-content h2,
+    .ckeditor-content h3,
+    .ckeditor-content h4 {
+        font-weight: bold;
+        margin: 1.4em 0 0.8em;
+        line-height: 1.4;
+    }
+
+    .ckeditor-content ul,
+    .ckeditor-content ol {
+        margin-left: 2em;
+        margin-bottom: 1.2em;
+    }
+
+    .ckeditor-content li {
+        margin-bottom: 0.5em;
+    }
+
+    .ckeditor-content blockquote {
+        padding: 0.5em 1em;
+        margin: 1em 0;
+        border-left: 4px solid #ccc;
+        background-color: #f9f9f9;
+    }
+
+    .ckeditor-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1em 0;
+    }
+
+    .ckeditor-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1em;
+    }
+
+    .ckeditor-content table, 
+    .ckeditor-content th, 
+    .ckeditor-content td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+</style>
+{% endblock %}

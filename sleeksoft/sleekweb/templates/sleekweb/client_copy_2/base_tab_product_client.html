@@ -1,0 +1,2066 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="vi">
+    {% load static %}
+<head>
+    {% tailwind_css %}
+    <!-- 1. Thẻ charset, viewport, title -->
+    <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    
+    {% block title %}{% endblock %}
+
+    <!-- 2. Thẻ SEO cơ bản -->
+    {% block seo_tag %}{% endblock %}
+    <meta name='revisit-after' content='1 days' />
+    <meta name="robots" content="index,follow" />
+
+    <!-- 3. Favicon -->
+    <link rel="shortcut icon" href="{{domain}}/upload/website/logo.png" type="image/x-icon" />
+
+    <!-- 3.1. Canonical -->
+    {% block canonical %}{% endblock %}
+
+    <!-- 3.2. Schema -->
+    {% if obj_Product or obj_Blog or obj_Kqls_post %}
+        {% block Schema %}{% endblock %}
+    {% else %}
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+            "@type": "WebSite",
+            "@id": "https://hydrinity.com.vn/#website",
+            "url": "https://hydrinity.com.vn/",
+            "name": "Hydrinity Việt Nam",
+            "publisher": {
+                "@id": "https://hydrinity.com.vn/#organization"
+            },
+            "inLanguage": "vi-VN"
+            },
+            {
+            "@type": "Organization",
+            "@id": "https://hydrinity.com.vn/#organization",
+            "name": "Hydrinity Việt Nam",
+            "alternateName": [
+                "Hydrinity Skin Science",
+                "Hydrinity Vietnam"
+            ],
+            "legalName": "CÔNG TY TNHH COSBEAUTY",
+            "url": "https://hydrinity.com.vn/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png"
+            },
+            "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+            "email": "cosbeautyvietnam@gmail.com",
+            "telephone": "+84982762783",
+            "taxID": "0317577011",
+            "sameAs": [
+                "https://www.facebook.com/hydrinityvietnam",
+                "https://www.instagram.com/hydrinityvietnam/",
+                "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
+            ],
+            "contactPoint": [
+                {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "telephone": "+84982762783",
+                "email": "cosbeautyvietnam@gmail.com",
+                "areaServed": "VN"
+                }
+            ]
+            },
+            {
+            "@type": "HealthAndBeautyBusiness",
+            "@id": "https://hydrinity.com.vn/#localbusiness",
+            "name": "Hydrinity Việt Nam",
+            "url": "https://hydrinity.com.vn/",
+            "mainEntityOfPage": "https://hydrinity.com.vn/",
+            "logo": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+            "image": "https://hydrinity.com.vn/upload/Change_Website/LOGO_-_HYDRINITY_-_B.png",
+            "telephone": "+84982762783",
+            "email": "cosbeautyvietnam@gmail.com",
+            "priceRange": "$$",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "04 Senic Valley 2, MD4-4, Tân Mỹ",
+                "addressLocality": "Hồ Chí Minh",
+                "addressRegion": "Hồ Chí Minh",
+                "postalCode": "700000",
+                "addressCountry": "VN"
+            },
+            "openingHoursSpecification": [
+                {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"
+                ],
+                "opens": "09:00",
+                "closes": "18:00"
+                },
+                {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "00:00",
+                "closes": "00:00"
+                }
+            ],
+            "areaServed": "VN",
+            "currenciesAccepted": "VND",
+            "paymentAccepted": "Cash, Bank Transfer, Credit Card",
+            "sameAs": [
+                "https://www.facebook.com/hydrinityvietnam",
+                "https://www.instagram.com/hydrinityvietnam/",
+                "https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty+vietnam"
+            ],
+            "parentOrganization": {
+                "@id": "https://hydrinity.com.vn/#organization"
+            }
+            }
+        ]
+        }
+        </script>
+    {% endif %}
+
+    <!-- 4. Open Graph tags (Facebook, Zalo...) -->
+    {% block meta_tag %}{% endblock %}
+
+    <!-- 5. Phần còn lại -->
+    <!--
+    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
+    <link rel="stylesheet" href="/static/styles.css">
+    -->
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '307459425079583');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=307459425079583&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4191J1Z373');
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        $(document).ready(function() {
+            function formatNumberWithDot(num) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+        
+            $('.format_number').each(function() {
+                var originalNumber = $(this).text().trim();
+                var formattedNumber = formatNumberWithDot(originalNumber);
+                $(this).text(formattedNumber);
+            });
+        });
+      </script>
+
+<style>
+        
+    @font-face {
+        font-family: 'UTM Aptima';
+        src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'UTM Aptima';
+        src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'UTM Aptima';
+        src: url("{% static 'fonts/UTM-AptimaItalic.ttf' %}") format('truetype');
+        font-weight: 400;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'UTM Aptima';
+        src: url("{% static 'fonts/00024-UTM-AptimaBoldItalic.ttf' %}") format('truetype');
+        font-weight: 700;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'UTM Bebas';
+        src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    body {
+        font-family: 'UTM Aptima', sans-serif !important;
+    }
+
+    .ff-bb{
+        font-family: 'UTM Bebas', sans-serif !important;
+    }
+
+    .ckeditor-content {
+    font-family: 'UTM Aptima', sans-serif !important;
+    }
+
+    .ckeditor-content * {
+        font-family: 'UTM Aptima', sans-serif !important;
+    }
+
+</style>
+    <script>
+        $(document).ready(function(){
+            $('.product-item .size-option').on('click', function() {
+          var name = $(this).data('name');
+          var price = $(this).data('price');
+    
+          var parent = $(this).closest('.product-item');
+    
+          // Cập nhật tên size
+          parent.find('.name-display').text(name);
+    
+          // Cập nhật giá có format số
+          parent.find('.price-display').text(formatNumber(price));
+        });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+
+</head>
+
+<body class="w-screen min-h-screen flex flex-col items-center bg-red-500" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+    <div class="w-full max-w-[1920px] flex flex-col items-center">
+        <header class=" w-full hidden lg:flex flex-col">
+            <div class="w-full h-[50px] bg-[#11284A] flex items-center justify-between px-[74px]">
+                <div class="flex flex-col text-[10px] text-white">
+                    <span class="whitespace-nowrap">
+                        Chào mừng đến với <span class="font-bold">Hydirinity VietNam</span>
+                    </span>
+                    <span class=" whitespace-nowrap">
+                        Hotline: <span 
+                        {% if request.user.is_superuser %}ondblclick="window.location.href='{% url 'login_admin' %}'"{% endif %}
+                        class="dblclick-link font-bold cursor-pointer">{{obj.Phone_number}}</span>
+                    </span>
+                </div>
+                <!-- <div class="overflow-hidden whitespace-nowrap">
+                    <div class="animate-marquee flex gap-6 text-[15px] h-[33px] items-center text-white tracking-widest uppercase">
+                      <span class="inline-block px-4">Accelerated Skin Science</span>
+                      <span class="inline-block px-4">Accelerated Skin Science</span>
+                      <span class="inline-block px-4">Accelerated Skin Science</span>
+                      <span class="inline-block px-4">Accelerated</span>
+                    </div>
+                </div>
+                  
+                  <style>
+                  @keyframes marquee {
+                    0%   { transform: translateX(100%); }
+                    100% { transform: translateX(-100%); }
+                  }
+                  .animate-marquee {
+                    animation: marquee 15s linear infinite;
+                  }
+                </style> -->
+                <div class="relative mx-[100px] w-full  overflow-hidden  h-[33px] ">
+                    <div class="absolute whitespace-nowrap flex animate-marquee gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                    </div>
+                    <!-- Nhân đôi để nối đuôi -->
+                    <div class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                      <span class="px-4">{{obj.Text_run}}</span>
+                    </div>
+                    <div class="absolute whitespace-nowrap flex animate-marquee2 gap-6 text-white text-[15px] uppercase tracking-widest items-center h-full">
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                        <span class="px-4">{{obj.Text_run}}</span>
+                    </div>
+                </div>
+                <style>
+                  @keyframes marquee {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-100%); }
+                  }
+                  
+                  @keyframes marquee2 {
+                    0% { transform: translateX(100%); }
+                    100% { transform: translateX(0); }
+                  }
+                  
+                  .animate-marquee {
+                    animation: marquee 15s linear infinite;
+                  }
+                  
+                  .animate-marquee2 {
+                    animation: marquee2 15s linear infinite;
+                  }
+                </style>
+                <div class="flex justify-between items-center gap-3">
+                    <a href="https://www.facebook.com/hydrinityvietnam" target="_blank" rel="noopener noreferrer" class="">
+                        <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.82545 3.90541C5.82545 3.74177 5.85818 3.62177 5.95636 3.52359C6.05455 3.42541 6.16364 3.39268 6.33818 3.39268C6.81818 3.39268 7.28727 3.39268 7.76727 3.37086C8.16 3.35996 8.38909 3.14177 8.4 2.78177C8.41091 2.03996 8.41091 1.29814 8.4 0.556319C8.4 0.229046 8.16 0.0108643 7.81091 0.0108643H6.48C6.19636 0.0108643 5.90182 0.0108643 5.61818 0.0108643C4.61455 0.0435915 3.77455 0.414501 3.12 1.14541C2.55273 1.77814 2.25818 2.55268 2.21455 3.51268C2.19273 3.83996 2.20364 4.17814 2.21455 4.52723V5.17086H0.730909C0.207273 5.17086 0.0109091 5.37814 0.0109091 5.90177C0 6.50177 0 7.11268 0 7.72359V7.93086C0 8.53086 0.185455 8.71632 0.774545 8.71632H2.18182V14.2909C2.18182 14.8036 2.38909 15.0109 2.90182 15.0109H5.01818C5.61818 15.0109 5.81455 14.8036 5.81455 14.1927V8.70541H7.65818C8.05091 8.70541 8.28 8.49814 8.28 8.13814C8.30182 7.34177 8.30182 6.54541 8.28 5.75996C8.28 5.38905 8.07273 5.18177 7.69091 5.17086C7.50546 5.17086 7.30909 5.17086 7.12364 5.17086H5.81455V4.66905C5.81455 4.40723 5.81455 4.15632 5.81455 3.90541H5.82545ZM5.22545 5.31268C5.22545 5.66177 5.33455 5.77086 5.69455 5.78177H7.68V8.11632H5.76C5.31273 8.11632 5.23636 8.2145 5.22545 8.67268V14.389H2.78182V9.22905C2.78182 8.67268 2.78182 8.3345 2.67273 8.22541C2.58545 8.13814 2.36727 8.11632 1.99636 8.11632H0.632727L0.610909 7.89814C0.610909 7.83268 0.6 7.77814 0.6 7.71268V5.77086H2.18182C2.70545 5.77086 2.78182 5.68359 2.78182 5.15996C2.78182 4.9745 2.78182 4.79995 2.78182 4.62541C2.78182 4.12359 2.78182 3.59996 2.84727 3.09814C3.04364 1.63632 4.14545 0.654501 5.65091 0.599955C5.89091 0.589046 6.13091 0.589046 6.37091 0.589046H7.75636V2.79268H6.73091C6.55636 2.79268 6.38182 2.79268 6.21818 2.79268C5.56364 2.83632 5.23636 3.18541 5.21455 3.83996C5.20364 4.2545 5.20364 4.65814 5.20364 5.07268V5.29086L5.22545 5.31268Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M5.82545 3.90541C5.82545 3.74177 5.85818 3.62177 5.95636 3.52359C6.05455 3.42541 6.16364 3.39268 6.33818 3.39268C6.81818 3.39268 7.28727 3.39268 7.76727 3.37086C8.16 3.35996 8.38909 3.14177 8.4 2.78177C8.41091 2.03996 8.41091 1.29814 8.4 0.556319C8.4 0.229046 8.16 0.0108643 7.81091 0.0108643H6.48C6.19636 0.0108643 5.90182 0.0108643 5.61818 0.0108643C4.61455 0.0435915 3.77455 0.414501 3.12 1.14541C2.55273 1.77814 2.25818 2.55268 2.21455 3.51268C2.19273 3.83996 2.20364 4.17814 2.21455 4.52723V5.17086H0.730909C0.207273 5.17086 0.0109091 5.37814 0.0109091 5.90177C0 6.50177 0 7.11268 0 7.72359V7.93086C0 8.53086 0.185455 8.71632 0.774545 8.71632H2.18182V14.2909C2.18182 14.8036 2.38909 15.0109 2.90182 15.0109H5.01818C5.61818 15.0109 5.81455 14.8036 5.81455 14.1927V8.70541H7.65818C8.05091 8.70541 8.28 8.49814 8.28 8.13814C8.30182 7.34177 8.30182 6.54541 8.28 5.75996C8.28 5.38905 8.07273 5.18177 7.69091 5.17086C7.50546 5.17086 7.30909 5.17086 7.12364 5.17086H5.81455V4.66905C5.81455 4.40723 5.81455 4.15632 5.81455 3.90541H5.82545ZM5.22545 5.31268C5.22545 5.66177 5.33455 5.77086 5.69455 5.78177H7.68V8.11632H5.76C5.31273 8.11632 5.23636 8.2145 5.22545 8.67268V14.389H2.78182V9.22905C2.78182 8.67268 2.78182 8.3345 2.67273 8.22541C2.58545 8.13814 2.36727 8.11632 1.99636 8.11632H0.632727L0.610909 7.89814C0.610909 7.83268 0.6 7.77814 0.6 7.71268V5.77086H2.18182C2.70545 5.77086 2.78182 5.68359 2.78182 5.15996C2.78182 4.9745 2.78182 4.79995 2.78182 4.62541C2.78182 4.12359 2.78182 3.59996 2.84727 3.09814C3.04364 1.63632 4.14545 0.654501 5.65091 0.599955C5.89091 0.589046 6.13091 0.589046 6.37091 0.589046H7.75636V2.79268H6.73091C6.55636 2.79268 6.38182 2.79268 6.21818 2.79268C5.56364 2.83632 5.23636 3.18541 5.21455 3.83996C5.20364 4.2545 5.20364 4.65814 5.20364 5.07268V5.29086L5.22545 5.31268Z"
+                                fill="#FBFBFB" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/hydrinityvietnam/" target="_blank" rel="noopener noreferrer" class="">
+                        <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.0473 5.09459V4.2655C15.0473 3.26186 14.7745 2.38914 14.2509 1.68004C13.4763 0.632772 12.3745 0.0873176 10.9454 0.0436812C9.2218 -0.0108643 7.46543 -0.0108643 5.77452 -0.0108643H5.08725C4.6618 -0.0108643 4.19271 0.021863 3.62543 0.0982267C1.95634 0.305499 0.701798 1.39641 0.276343 3.02186C0.156344 3.50186 0.0908886 3.97095 0.0799795 4.39641C0.0690705 6.40368 0.0581614 8.52005 0.0799795 10.6691C0.0799795 11.4982 0.254524 12.2291 0.592706 12.8619C1.3018 14.1819 2.49089 14.891 4.13816 14.9673C4.57452 14.9891 5.01089 15 5.44725 15C5.79634 15 6.14543 15 6.48362 15C6.83271 15 7.1818 15 7.5418 15C7.9018 15 9.31998 15.011 9.67998 15.011C10.1054 15.011 10.5309 15.011 10.9563 14.9891C13.3018 14.9019 14.8945 13.3746 14.9818 11.0837C15.0691 9.09823 15.0473 7.05823 15.0363 5.1055L15.0473 5.09459ZM13.9127 11.1055C13.8691 12.7419 12.68 13.8437 10.9018 13.8982C10.4654 13.9091 10.0509 13.92 9.61452 13.92C9.26543 13.92 7.97816 13.9091 7.68361 13.9091H5.73089C5.25089 13.9091 4.77089 13.9091 4.27998 13.9091C3.96362 13.9091 3.62543 13.8437 3.27634 13.7455C1.99998 13.3964 1.22543 12.3928 1.19271 11.0946C1.13816 8.41095 1.13816 6.07641 1.19271 3.94914C1.23634 2.25823 2.41453 1.17823 4.26907 1.13459C5.16362 1.11277 6.04725 1.10186 6.9418 1.10186C7.75998 1.10186 8.57816 1.10186 9.40725 1.10186H10.8145C11.0763 1.11277 11.3709 1.15641 11.7418 1.24368C13.0618 1.58186 13.8691 2.56368 13.9018 3.89459C13.9673 6.55641 13.9673 8.91277 13.9018 11.0946L13.9127 11.1055Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M15.0473 5.09459V4.2655C15.0473 3.26186 14.7745 2.38914 14.2509 1.68004C13.4763 0.632772 12.3745 0.0873176 10.9454 0.0436812C9.2218 -0.0108643 7.46543 -0.0108643 5.77452 -0.0108643H5.08725C4.6618 -0.0108643 4.19271 0.021863 3.62543 0.0982267C1.95634 0.305499 0.701798 1.39641 0.276343 3.02186C0.156344 3.50186 0.0908886 3.97095 0.0799795 4.39641C0.0690705 6.40368 0.0581614 8.52005 0.0799795 10.6691C0.0799795 11.4982 0.254524 12.2291 0.592706 12.8619C1.3018 14.1819 2.49089 14.891 4.13816 14.9673C4.57452 14.9891 5.01089 15 5.44725 15C5.79634 15 6.14543 15 6.48362 15C6.83271 15 7.1818 15 7.5418 15C7.9018 15 9.31998 15.011 9.67998 15.011C10.1054 15.011 10.5309 15.011 10.9563 14.9891C13.3018 14.9019 14.8945 13.3746 14.9818 11.0837C15.0691 9.09823 15.0473 7.05823 15.0363 5.1055L15.0473 5.09459ZM13.9127 11.1055C13.8691 12.7419 12.68 13.8437 10.9018 13.8982C10.4654 13.9091 10.0509 13.92 9.61452 13.92C9.26543 13.92 7.97816 13.9091 7.68361 13.9091H5.73089C5.25089 13.9091 4.77089 13.9091 4.27998 13.9091C3.96362 13.9091 3.62543 13.8437 3.27634 13.7455C1.99998 13.3964 1.22543 12.3928 1.19271 11.0946C1.13816 8.41095 1.13816 6.07641 1.19271 3.94914C1.23634 2.25823 2.41453 1.17823 4.26907 1.13459C5.16362 1.11277 6.04725 1.10186 6.9418 1.10186C7.75998 1.10186 8.57816 1.10186 9.40725 1.10186H10.8145C11.0763 1.11277 11.3709 1.15641 11.7418 1.24368C13.0618 1.58186 13.8691 2.56368 13.9018 3.89459C13.9673 6.55641 13.9673 8.91277 13.9018 11.0946L13.9127 11.1055Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M7.56378 3.70911C5.48014 3.70911 3.77832 5.41092 3.77832 7.50547C3.77832 9.60002 5.46923 11.3127 7.56378 11.3127C9.64741 11.3127 11.3492 9.61092 11.3492 7.52729C11.3492 5.43274 9.65832 3.72002 7.56378 3.72002V3.70911ZM7.56378 10.2327C6.08014 10.2327 4.85832 9.01092 4.85832 7.51638C4.85832 6.02183 6.06923 4.80002 7.56378 4.80002H7.57469C8.29469 4.80002 8.97105 5.08365 9.48378 5.59638C9.9965 6.12002 10.2801 6.80729 10.2801 7.5382C10.2801 9.02183 9.05832 10.2437 7.56378 10.2437V10.2327Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M7.56378 3.70911C5.48014 3.70911 3.77832 5.41092 3.77832 7.50547C3.77832 9.60002 5.46923 11.3127 7.56378 11.3127C9.64741 11.3127 11.3492 9.61092 11.3492 7.52729C11.3492 5.43274 9.65832 3.72002 7.56378 3.72002V3.70911ZM7.56378 10.2327C6.08014 10.2327 4.85832 9.01092 4.85832 7.51638C4.85832 6.02183 6.06923 4.80002 7.56378 4.80002H7.57469C8.29469 4.80002 8.97105 5.08365 9.48378 5.59638C9.9965 6.12002 10.2801 6.80729 10.2801 7.5382C10.2801 9.02183 9.05832 10.2437 7.56378 10.2437V10.2327Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M12.429 3.41464C12.429 3.84009 12.1017 4.17827 11.6762 4.17827C11.469 4.17827 11.2726 4.10191 11.1308 3.96009C10.989 3.81827 10.9126 3.611 10.9126 3.40373C10.9126 2.98918 11.2617 2.651 11.6762 2.651C12.0908 2.651 12.4399 3.00009 12.4399 3.42555L12.429 3.41464Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M12.429 3.41464C12.429 3.84009 12.1017 4.17827 11.6762 4.17827C11.469 4.17827 11.2726 4.10191 11.1308 3.96009C10.989 3.81827 10.9126 3.611 10.9126 3.40373C10.9126 2.98918 11.2617 2.651 11.6762 2.651C12.0908 2.651 12.4399 3.00009 12.4399 3.42555L12.429 3.41464Z"
+                                fill="#FBFBFB" />
+                        </svg>
+
+                    </a>
+                    <a href="https://shopee.vn/cosbeautyvietnam_official?entryPoint=ShopBySearch&searchKeyword=cosbeauty%20vietnam" target="_blank" class="">
+                        <!-- <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.5782 -3.24044e-05H9.17097C6.86915 -3.24044e-05 4.55642 -3.24044e-05 2.24369 -3.24044e-05C2.06915 -3.24044e-05 1.90551 0.0217858 1.74187 0.0545131C0.94551 0.261786 0.432784 0.938149 0.421875 1.78906C0.421875 3.21815 0.421875 4.63633 0.421875 6.06542V9.1636C0.421875 10.4945 0.421875 11.8254 0.421875 13.1563C0.421875 14.2363 1.18551 14.9891 2.26551 14.9891C4.20733 14.9891 6.14915 14.9891 8.09096 14.9891C9.92369 14.9891 11.7455 14.9891 13.5782 14.9891C14.6801 14.9891 15.4219 14.2472 15.4219 13.1345C15.4219 9.37088 15.4219 5.60724 15.4219 1.8436C15.4219 0.730877 14.6801 -0.0218506 13.5673 -0.0218506L13.5782 -3.24044e-05ZM14.7891 13.4072C14.7564 13.9091 14.3528 14.3018 13.8182 14.3782C13.7201 14.3891 13.6328 14.3891 13.5346 14.3891H2.32005C1.49096 14.3891 1.03278 13.9309 1.03278 13.1127V1.87633C1.03278 1.07997 1.49096 0.621786 2.28733 0.610877H4.55642L4.50187 0.698149C4.39278 0.850877 4.28369 1.0036 4.1746 1.14542C3.9346 1.47269 3.70551 1.76724 3.52006 2.10542C1.97097 4.77815 2.3746 8.07269 4.5346 10.2982C4.70915 10.4836 4.76369 10.6691 4.73096 10.9091C4.63278 11.5854 4.34915 12 3.82551 12.1963C3.65096 12.2618 3.65097 12.4254 3.67278 12.5236C3.6946 12.6654 3.78187 12.7418 3.9346 12.7745C4.13096 12.8182 4.33824 12.8291 4.5346 12.8291C4.93824 12.8291 5.33097 12.7527 5.72369 12.5891C5.90915 12.5127 6.10551 12.4254 6.29096 12.3382L6.46551 12.2618C6.64005 12.1854 6.80369 12.1527 6.97824 12.1527C7.13096 12.1527 7.2946 12.1854 7.44733 12.2509C8.45096 12.6436 9.52005 12.84 10.6001 12.84C10.7746 12.84 10.9491 12.84 11.1237 12.8291C12.3237 12.7636 13.4691 12.4582 14.5273 11.9236C14.571 11.9018 14.6037 11.8909 14.6473 11.8691L14.7891 11.8145V11.8909C14.7891 12.0545 14.7891 12.2072 14.7891 12.36C14.7891 12.72 14.8001 13.0582 14.7782 13.4072H14.7891ZM14.5928 11.1927C13.371 11.88 12.0401 12.2291 10.6546 12.2291C10.3601 12.2291 10.0437 12.2182 9.73824 12.1854C9.00733 12.1091 8.3746 11.9563 7.81824 11.7272C7.54551 11.6182 7.28369 11.5636 7.02187 11.5636C6.70551 11.5636 6.38915 11.64 6.05097 11.7818C5.82188 11.88 5.58187 11.9782 5.36369 12.0654C5.2546 12.1091 5.15642 12.1418 5.04733 12.1854H5.00369L4.92733 12.0763L4.94915 12.0436C5.22187 11.6618 5.36369 11.2363 5.3746 10.7345C5.3746 10.4181 5.27642 10.1672 5.05824 9.93815C3.6946 8.51997 3.08369 6.85088 3.24733 4.98542C3.36733 3.53451 3.96733 2.25815 5.08006 1.07997C5.39642 0.752695 5.72369 0.610877 6.20369 0.610877C6.71642 0.610877 7.25096 0.610877 7.82914 0.621786C8.40733 0.621786 9.04006 0.621786 9.74915 0.621786H13.5237C14.3746 0.621786 14.8219 1.06906 14.8219 1.91997V3.5127C14.8219 5.94542 14.8219 8.37815 14.8219 10.8C14.8219 10.9854 14.7564 11.0945 14.5928 11.1818V11.1927Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M7.5236 7.5054C7.5236 7.67995 7.39269 7.79995 7.21815 7.79995C6.90178 7.79995 6.57451 7.79995 6.25815 7.79995C5.98542 7.79995 5.71269 7.79995 5.42906 7.79995C5.29815 7.79995 5.19996 7.7454 5.14542 7.65813C5.09087 7.55995 5.10178 7.42904 5.17815 7.30904C5.41815 6.91631 5.66906 6.52358 5.90906 6.13086L6.29087 5.51995C6.35633 5.41086 6.60724 5.01813 6.60724 5.01813L6.65087 4.94176H5.50542C5.3636 4.94176 5.11269 4.89813 5.11269 4.6254C5.11269 4.36358 5.35269 4.33086 5.49451 4.31995H7.14178C7.32724 4.31995 7.42542 4.36358 7.49087 4.47267C7.55633 4.58176 7.53451 4.69086 7.44724 4.84358C7.11996 5.36722 6.79269 5.90176 6.45451 6.4254L6.15996 6.89449L5.98542 7.17813H6.97815C7.06542 7.17813 7.14178 7.17813 7.21815 7.17813C7.4036 7.17813 7.53451 7.30904 7.53451 7.49449L7.5236 7.5054Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M10.0217 5.66177C10.0217 5.48722 9.87984 5.38904 9.73802 5.38904C9.68347 5.38904 9.62893 5.41086 9.57439 5.44358C9.49802 5.48722 9.44348 5.50904 9.37802 5.50904C9.33439 5.50904 9.29075 5.50904 9.22529 5.47631C9.09439 5.42177 8.95257 5.39995 8.81075 5.39995C8.45075 5.39995 8.11257 5.56358 7.88348 5.84722C7.56711 6.23995 7.52348 6.80722 7.7962 7.23267C8.02529 7.60358 8.36348 7.78904 8.77802 7.78904C8.97439 7.78904 9.17075 7.7454 9.38893 7.65813H9.41075L9.4762 7.70177C9.49802 7.72358 9.53075 7.7454 9.55257 7.75631C9.60711 7.78904 9.66166 7.79995 9.72711 7.79995C9.86893 7.79995 10.0107 7.70177 10.0217 7.51631C10.0326 6.87267 10.0217 6.25086 10.0217 5.65086V5.66177ZM9.24711 7.01449C9.13802 7.12358 8.98529 7.18904 8.82166 7.18904C8.65802 7.18904 8.5162 7.12358 8.40711 7.01449C8.29802 6.9054 8.23257 6.76358 8.23257 6.61086C8.23257 6.45813 8.28711 6.3054 8.3962 6.1854C8.50529 6.07631 8.65802 6.01086 8.82166 6.01086C8.98529 6.01086 9.12711 6.0654 9.2362 6.17449C9.34529 6.28358 9.39984 6.43631 9.39984 6.59995C9.39984 6.76358 9.33439 6.9054 9.22529 7.01449H9.24711Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M12.7929 5.40002C12.4657 5.40002 12.1602 5.53093 11.9311 5.76002C11.702 5.98912 11.582 6.28366 11.582 6.61093C11.582 7.26548 12.1166 7.81093 12.782 7.81093C13.1093 7.81093 13.4148 7.68002 13.6438 7.45093C13.8729 7.22184 13.9929 6.9273 13.9929 6.60002C13.9929 5.94548 13.4584 5.40002 12.7929 5.40002ZM12.7929 7.18912C12.6402 7.18912 12.4875 7.12366 12.3784 7.01457C12.2693 6.90548 12.2038 6.75275 12.2148 6.58912C12.2148 6.26184 12.4657 6.01093 12.7929 6.01093H12.8038C12.9675 6.01093 13.1093 6.07639 13.2184 6.19639C13.3275 6.30548 13.382 6.45821 13.382 6.62184C13.382 6.93821 13.1093 7.18912 12.7929 7.18912Z"
+                                fill="#FBFBFB" />
+                            <path
+                                d="M11.1127 4.36364V6.3491C11.1127 6.7091 11.1127 7.05819 11.1127 7.41819C11.1127 7.59273 11.0581 7.80001 10.8181 7.80001C10.6218 7.80001 10.5127 7.65819 10.5127 7.40728C10.5127 6.37091 10.5127 5.34546 10.5127 4.3091C10.5127 4.10182 10.6 3.98182 10.7636 3.9491C10.7854 3.9491 10.8072 3.9491 10.84 3.9491C10.96 3.9491 11.0472 4.00364 11.1018 4.12364C11.1236 4.1891 11.1345 4.26546 11.1345 4.35273L11.1127 4.36364Z"
+                                fill="#FBFBFB" />
+                        </svg> -->
+                            <?xml version="1.0" encoding="utf-8"?>
+                                <!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                <svg width="17" height="17" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 448 448" style="enable-background:new 0 0 448 448;" xml:space="preserve">
+                                <style type="text/css">
+                                    .st0{fill:#FFFFFF;}
+                                </style>
+                                <g>
+                                    <path class="st0" d="M137.8,124.3c2-28.9,7.3-55.8,20.6-80.8c17.9-33.8,50.3-49,86.5-38.6c19.2,5.4,32.5,19.2,42.2,35.9
+                                        c13.8,23.5,21.3,49.1,22.3,76.5c0,2.2,0.5,4.3,0.9,7.1c29.6,0,58.7,0,87.7,0c20.1,0,25.7,6.6,23.8,26.9
+                                        c-1.9,18.9-2.6,37.7-3.9,56.6c-3.2,43.7-6.5,87.2-9.9,130.9c-1.7,21.9-2.6,44-5.6,65.8c-3.9,26.9-22.4,41.5-49.5,41.5
+                                        c-85.5,0-171-0.3-256.5,0.2c-34.2,0.2-49.1-20.4-51.5-49.5c-4.1-50.2-7.1-100.3-10.7-150.3c-2.4-33.5-5.3-67-7.8-100.5
+                                        c-1-13.9,7.3-21.6,22.8-21.6C78.1,124.5,107.5,124.3,137.8,124.3z M288.2,124.3c-1.2-26-6.1-50.5-19-72.6
+                                        c-22.8-38.6-67.8-39.4-89.8-1c-8,13.9-11.9,30.3-16.3,45.9c-2.6,8.7-2.4,18-3.6,27.5C203.2,124.3,245.4,124.3,288.2,124.3z
+                                        M227,175.9c-9.5,2.2-19.4,3.4-28.6,6.8c-26,9.4-39.3,38.1-29.1,63.4c6.3,15.6,19.6,24.5,34.3,30.9c17.2,7.3,34.9,13.1,51.7,20.9
+                                        c15.6,7.3,27,23,23,41c-3.4,15-14.3,22.8-27.7,27.2c-27.7,9-52.9,1.5-76.3-13.8c-4.8-3.2-9.4-5.1-13.4,0c-4.8,5.8,0.2,9.5,4.4,12.4
+                                        c25.2,17.5,52.9,25.2,83.5,19.2c30.8-6,48.8-27.7,46.9-55.9c-1.7-26.4-19-40.5-41.5-49.6c-12.6-5.1-25.5-9-38.1-13.9
+                                        c-6.3-2.6-12.2-5.8-17.9-9.5c-10.4-7-18-16.5-15.8-29.8c2.2-14.1,10.7-24,24.3-29.1c21.8-8.2,41.7-1.2,61,8.3
+                                        c5.1,2.4,10,5.8,13.8-1c3.6-6.6-2-9.7-6.6-12.6C260.3,181.5,244.5,177.2,227,175.9z"/>
+                                </g>
+                                </svg>
+                    </a>
+                    <button id="openClientSearchBtn" type="button" class="client-search-trigger" aria-label="Mo tim kiem">
+                        <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_263_4587)">
+                                <path
+                                    d="M13.6667 12.0646L11.0493 9.4525C11.7173 8.4815 12.1081 7.30675 12.1081 6.04004C12.1081 2.70408 9.39772 0 6.05403 0C2.71034 0 0 2.70408 0 6.04004C0 9.376 2.71034 12.0801 6.05403 12.0801C7.30672 12.0801 8.47093 11.7005 9.4368 11.0502L12.0601 13.6675C12.504 14.1103 13.2236 14.1103 13.6667 13.6675C14.1106 13.2247 14.1106 12.5075 13.6667 12.0646ZM2.03128 6.04004C2.03128 3.82367 3.83253 2.02659 6.05403 2.02659C8.27554 2.02659 10.076 3.82367 10.076 6.04004C10.076 8.25641 8.27554 10.0528 6.05403 10.0528C3.83253 10.0528 2.03128 8.25641 2.03128 6.04004Z"
+                                    fill="#FFFFFD" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_263_4587">
+                                    <rect width="14" height="14" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                    <div id="clientSearchModal" class="client-search-modal" aria-hidden="true">
+                        <div class="client-search-overlay" data-search-close></div>
+                        <div class="client-search-panel" role="dialog" aria-modal="true" aria-labelledby="clientSearchTitle">
+                            <button type="button" class="client-search-close" data-search-close aria-label="Dong tim kiem">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 3L11 11M11 3L3 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                                </svg>
+                            </button>
+                            <a href="{{domain}}" class="client-search-logo">
+                                <img alt="Hydrinity logo" src="{{domain}}{{obj.Logo.url}}" />
+                            </a>
+                            <form method="get" action="{% url 'nav_products_client' %}" class="client-search-form">
+                                <label id="clientSearchTitle" for="clientSearchInput">Tìm kiếm sản phẩm</label>
+                                <div class="client-search-input-wrap">
+                                    <input id="clientSearchInput" placeholder="Tìm kiếm...." name="s" value="{{s}}" class="client-search-input" />
+                                    <button type="submit" class="client-search-submit" aria-label="Tim kiem">
+                                        <svg width="15" height="15" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M13.6667 12.0646L11.0493 9.4525C11.7173 8.4815 12.1081 7.30675 12.1081 6.04004C12.1081 2.70408 9.39772 0 6.05403 0C2.71034 0 0 2.70408 0 6.04004C0 9.376 2.71034 12.0801 6.05403 12.0801C7.30672 12.0801 8.47093 11.7005 9.4368 11.0502L12.0601 13.6675C12.504 14.1103 13.2236 14.1103 13.6667 13.6675C14.1106 13.2247 14.1106 12.5075 13.6667 12.0646ZM2.03128 6.04004C2.03128 3.82367 3.83253 2.02659 6.05403 2.02659C8.27554 2.02659 10.076 3.82367 10.076 6.04004C10.076 8.25641 8.27554 10.0528 6.05403 10.0528C3.83253 10.0528 2.03128 8.25641 2.03128 6.04004Z"
+                                                fill="currentColor" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class=" relative h-[163px]  flex items-center justify-between px-[210px] text-[#11284A]"
+                style="font-family: 'UTM Bebas';">
+                <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
+                    <div class="click_tab_about relative flex items-center gap-2 hover:cursor-pointer" href="">
+                        About us
+                        <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                fill="#11284A" />
+                        </svg>
+
+                        <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                fill="#11284A" />
+                        </svg>
+                        <div class=" tab_about absolute   left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
+                                Về chúng tôi
+                            </a>
+                            <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="h-[38px] flex items-center">
+                                Tầm nhìn và sứ mệnh
+                            </a>
+                            <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="h-[38px] flex items-center">
+                                Tin tức & Giải thưởng
+                            </a>
+                            <a href="{% url 'about_lien_he_client' %}" class="h-[38px] flex items-center">
+                                Liên hệ
+                            </a>
+                        </div>
+                    </div>
+                    <a class="" href="{% url 'nav_products_client' %}">Sản phẩm</a>
+                    <a class="" href="{% url 'nav_blog_client' %}">Blog</a>
+                </div>
+                <a class="tab" href="/">
+                    <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[135px]" />
+                </a>
+                <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
+                    <div class="click_tab_doitac relative flex items-center gap-2 hover:cursor-pointer" href="">
+                        Danh sách đối tác
+                        <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                fill="#11284A" />
+                        </svg>
+
+                        <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                fill="#11284A" />
+                        </svg>
+                        <div class=" tab_doitac absolute z-50  left-0 top-[50px] p-[10px] rounded-b-2xl divide-y-[1px] divide-[#11284A] flex flex-col w-[214px] bg-white uppercase text-[16px] font-medium" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Bắc
+                            </a>
+                            <a href="{% url 'select_kvmn_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Nam
+                            </a>
+                        </div>
+                    </div>
+                    <a class="" href="{% url 'nav_nghien_cuu_lam_san' %}">Nghiên cứu lâm sàng</a>
+                </div>
+            </nav>
+            <!-- <script>
+                $(document).ready(function () {
+                    $(".open_tab_about").click(function () {
+                        $(this).hide();
+                        $(".close_tab_about").show();
+                        $(".tab_about").fadeIn(); // Hiện tab với hiệu ứng mượt
+                    });
+            
+                    $(".close_tab_about").click(function () {
+                        $(this).hide();
+                        $(".open_tab_about").show();
+                        $(".tab_about").fadeOut(); // Ẩn tab với hiệu ứng mượt
+                    });
+                });
+            </script> -->
+            <script>
+                $(document).ready(function () {
+                    $(".click_tab_about").click(function () {
+                        $(".tab_about").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                        $(".open_tab_about, .close_tab_about").toggle(); // Đổi icon
+                    });
+                    // Ẩn khi click ra ngoài
+                    $(document).click(function (event) {
+                        if (!$(event.target).closest(".tab_about, .click_tab_about").length) {
+                            $(".tab_about").fadeOut();
+                            $(".close_tab_about").hide();
+                            $(".open_tab_about").show();
+                        }
+                    });
+
+                    $(".click_tab_doitac").click(function () {
+                        $(".tab_doitac").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                        $(".open_tab_doitac, .close_tab_doitac").toggle(); // Đổi icon
+                    });
+                    // Ẩn khi click ra ngoài
+                    $(document).click(function (event) {
+                        if (!$(event.target).closest(".tab_doitac, .click_tab_doitac").length) {
+                            $(".tab_doitac").fadeOut();
+                            $(".close_tab_doitac").hide();
+                            $(".open_tab_doitac").show();
+                        }
+                    });
+                });
+            </script>
+        </header>
+        <header class="relative flex lg:hidden items-center justify-center w-full">
+            <a class="tab w-full flex justify-center items-center p-[10px]" href="/">
+                <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[46px]" />
+            </a>
+            <div   class=" click_menu absolute left-3 bg-[#11284A] flex items-center justify-center rounded w-[27px] h-[27px]">
+                <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 5C0 2.23858 2.23858 0 5 0H22C24.7614 0 27 2.23858 27 5V21C27 23.7614 24.7614 26 22 26H5C2.23858 26 0 23.7614 0 21V5Z" fill="#11284A"/>
+                    <path d="M7 7H21V9H7V7Z" fill="white"/>
+                    <path d="M7 12H20V14H7V12Z" fill="white"/>
+                    <path d="M7 17H19V19H7V17Z" fill="white"/>
+                    </svg>
+            </div>
+            <div id="menu" class="fixed top-0 left-0 min-w-[220px] h-screen bg-[#11284A] text-white z-[999] transform -translate-x-full" style="background: url('/upload/website/background.png') no-repeat center center; background-size: cover; display: none;">
+                <div class="w-full h-[31px] flex justify-center items-center text-center bg-[#11284A]">
+                    <span class="font-normal text-[6px] text-white">
+                        Chào mừng đến với <span class="font-bold">Hydirinity VietNam</span>
+                        <br>
+                        Hotline: <span class="font-bold">098 705 0122 </span>
+                    </span>
+                </div>
+                <a class="tab w-full flex justify-center items-center p-[20px]" href="/">
+                    <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[56px]" />
+                </a>
+                <nav class=" w-full flex flex-col  text-[#11284A] text-[20px] divide-y-[2px]  divide-[#11284A]"
+                    style="font-family: 'UTM Bebas';">
+                    <div class="click_tab_about relative flex flex-col  justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]" href="">
+                        <div class="flex items-center justify-between w-full">
+                            <span class="uppercase whitespace-nowrap">About us</span>
+                            <svg class="open_tab_about" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+        
+                            <svg class="close_tab_about" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
+                        </div>
+                        <div class=" tab_about   divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'about_ve_chung_toi_client' %}" class="h-[38px] flex items-center">
+                                Về chúng tôi
+                            </a>
+                            <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="h-[38px] flex items-center">
+                                Tầm nhìn và sứ mệnh
+                            </a>
+                            <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="h-[38px] flex items-center">
+                                Tin tức & Giải thưởng
+                            </a>
+                            <a href="{% url 'about_lien_he_client' %}" class="h-[38px] flex items-center">
+                                Liên hệ
+                            </a>
+                        </div>
+                    </div>
+                    <a class="px-[20px] py-[10px]" href="{% url 'nav_products_client' %}">
+                        <span class="uppercase whitespace-nowrap">Sản phẩm</span>
+                    </a>
+                    <a class="px-[20px] py-[10px]" href="{% url 'nav_blog_client' %}">
+                        <span class="uppercase whitespace-nowrap">Blog</span>
+                    </a>
+                    <div class="click_tab_doitac relative flex flex-col items-center justify-center gap-2 hover:cursor-pointer px-[20px] py-[10px]" href="">
+                        <div class="flex items-center justify-between w-full">
+                            <span class="uppercase whitespace-nowrap">Danh sách đối tác</span>
+                            <svg class="open_tab_doitac" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                    fill="#11284A" />
+                            </svg>
+        
+                            <svg class="close_tab_doitac" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                    fill="#11284A" />
+                            </svg>
+                        </div>
+                        <div class=" tab_doitac divide-y-[1px] divide-[#11284A] flex flex-col   uppercase text-[14px] font-medium w-full" style="font-family: 'UTM Aptima', sans-serif !important; display: none; z-index: 999;">
+                            <a href="{% url 'select_kvmb_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Bắc
+                            </a>
+                            <a href="{% url 'select_kvmn_client' %}" class="h-[38px] flex items-center">
+                                Khu vực miền Nam
+                            </a>
+                        </div>
+                    </div>
+                    <a class="px-[20px] py-[10px]" href="{% url 'link_nghien_cuu_khoa_hoc_client' %}">
+                        <span class="uppercase whitespace-nowrap">Nghiên cứu khoa học</span>
+                    </a>
+                    <a class="px-[20px] py-[10px]" href="{% url 'link_ket_qua_lam_san_client' %}">
+                        <span class="uppercase whitespace-nowrap">Kết quả lâm sàn</span>
+                    </a>
+                </nav>
+            </div>
+            <script>
+                let isOpen = false;
+            
+                $(".click_menu").click(function () {
+                    const $menu = $("#menu");
+            
+                    if (!isOpen) {
+                        $menu.show(); // hiện ra trước khi chạy hiệu ứng
+                        gsap.to($menu, {
+                            duration: 0.4,
+                            x: "0%",
+                            ease: "power2.out"
+                        });
+                    } else {
+                        gsap.to($menu, {
+                            duration: 0.4,
+                            x: "-100%",
+                            ease: "power2.in",
+                            onComplete: function () {
+                                $menu.hide(); // ẩn sau khi animation xong
+                            }
+                        });
+                    }
+            
+                    isOpen = !isOpen;
+                });
+            
+                // Đóng khi click ra ngoài
+                $(document).click(function (e) {
+                    const $menu = $("#menu");
+                    if (isOpen && !$(e.target).closest("#menu, .click_menu").length) {
+                        gsap.to($menu, {
+                            duration: 0.4,
+                            x: "-100%",
+                            ease: "power2.in",
+                            onComplete: function () {
+                                $menu.hide();
+                            }
+                        });
+                        isOpen = false;
+                    }
+                });
+            </script>
+        </header>
+        <main class=" flex flex-col items-center w-full">
+            <div class="w-full">
+                <div class="swiper mySwiper w-full ">
+                    <div class="swiper-wrapper">
+                        {% for i in list_image_slider_1 %}
+                        <div class="swiper-slide">
+                            <img alt="img" class="h-auto  w-full" alt="banner" src="{{i.Photo.url}}" />
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Chỉ có dấu chấm -->
+                    <div class="swiper-pagination hidden lg:block"></div>
+                </div>
+                <script>
+                    var swiper = new Swiper(".mySwiper", {
+                      loop: true, 
+                      autoplay: { delay: 3000 }, // Tự động chạy
+                      pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                      },
+                    });
+                  </script>
+                  <style>
+                    /* Màu xám cho chấm tròn */
+                    .swiper-pagination-bullet {
+                        background: #9ca3af !important; /* Tailwind gray-400 */
+                        width: 17px;
+                        height: 17px;
+                        border-radius: 50%;
+                        transition: all 0.3s ease;
+                        opacity: 1;
+                    }
+                
+                    /* Màu trắng và kích thước lớn hơn khi active */
+                    .swiper-pagination-bullet-active {
+                        background: #ffffff !important; /* Tailwind white */
+                        width: 22px;
+                        height: 22px;
+                    }
+                </style>
+            </div>
+            <div class="flex flex-col items-center w-full ">
+                <div class="flex w-full lg:w-[934px] lg:h-[121px] items-center justify-center ">
+                    <div class="hidden lg:flex w-[646px] h-[57px] items-center justify-between font-bold text-[25px]">
+                        <a href="{% url 'tab_best_sellers_client' %}" 
+                        class="uppercase py-1 px-2 rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_best_sellers_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">BEST SELLERS</a>
+                        <a href="{% url 'tab_products_client' %}" 
+                        class="uppercase py-1 px-2   rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_products_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">PRODUCTS</a>
+                        <a href="{% url 'tab_regimens_client' %}" 
+                        class="uppercase py-1 px-2  rounded-md  text-[#11284A] {% if request.resolver_match.url_name == 'tab_regimens_client' %}bg-[#11284A] text-[#FBFBFB] font-bold{% else %} font-medium {% endif %}">REGIMENS</a>
+                    </div>
+                    <div class=" flex lg:hidden flex-col w-full h-full items-center justify-center font-normal text-[20px] divide-y-[2px]  divide-white text-white mt-[10px]">
+                        <div class="flex flex-col w-full">
+                            <div  class="click_tab_product_mobile uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
+                                <span>
+                                    <svg class="open_tab_product_mobile" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                                BEST SELLERS
+                                <span>
+                                    <svg class="open_tab_product_mobile" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="tab_product_mobile  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
+                                {% for i in list_Product %}
+                                <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
+                                    <a href="{% url 'slug_router' slug=i.Slug %}">
+                                        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
+                                    </a>
+                                    <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
+                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                            {{i.Name}}
+                                        </a>
+                                        <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
+                                            <div class="relative w-full">
+                                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
+                                                        <div class="relative flex items-center justify-center">
+                                                            <img alt="img" class="w-[65px] h-[16px]" src="/upload/website/background.png" />
+                                                            <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                                        <span class="name-display font-medium text-[8px]  text-[#11284A]">
+                                                            {{i.list_size.all.last.Name}}
+                                                        </span>
+                                                        <span>
+                                                            <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                                                    fill="#11284A" />
+                                                            </svg>
+                                                            <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                                                    fill="#11284A" />
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                                    {% for j in i.list_size.all %}
+                                                    <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
+                                                GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <div  class="click_tab_product_mobile1 uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
+                                <span>
+                                    <svg class="open_tab_product_mobile1" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile1" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                                PRODUCTS
+                                <span>
+                                    <svg class="open_tab_product_mobile1" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile1" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="tab_product_mobile1  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
+                                {% for i in list_Product1 %}
+                                <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
+                                    <a href="{% url 'slug_router' slug=i.Slug %}">
+                                        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
+                                    </a>
+                                    <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
+                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                            {{i.Name}}
+                                        </a>
+                                        <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
+                                            <div class="relative w-full">
+                                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
+                                                        <div class="relative flex items-center justify-center">
+                                                            <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                                            <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                                        <span class="name-display font-medium text-[8px]  text-[#11284A]">
+                                                            {{i.list_size.all.last.Name}}
+                                                        </span>
+                                                        <span>
+                                                            <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                                                    fill="#11284A" />
+                                                            </svg>
+                                                            <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                                                    fill="#11284A" />
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                                    {% for j in i.list_size.all %}
+                                                    <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
+                                                GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <div  class="click_tab_product_mobile2 uppercase grow flex items-center justify-between w-full p-2 bg-[#11284A]">
+                                <span>
+                                    <svg class="open_tab_product_mobile2" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile2" style="display: none;" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                                REGIMENS
+                                <span>
+                                    <svg class="open_tab_product_mobile2" width="15" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="white" />
+                                    </svg>
+                                    <svg class="close_tab_product_mobile2" style="display: none;" width="15" height="15" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="tab_product_mobile2  grid grid-cols-2 gap-[20px] w-full p-[20px]" style="display: none;">
+                                {% for i in list_Product2 %}
+                                <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
+                                    <a href="{% url 'slug_router' slug=i.Slug %}">
+                                        <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
+                                    </a>
+                                    <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
+                                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                                            {{i.Name}}
+                                        </a>
+                                        <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
+                                            <div class="relative w-full">
+                                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
+                                                        <div class="relative flex items-center justify-center">
+                                                            <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                                            <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                                        <span class="name-display font-medium text-[8px]  text-[#11284A]">
+                                                            {{i.list_size.all.last.Name}}
+                                                        </span>
+                                                        <span>
+                                                            <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                                                    fill="#11284A" />
+                                                            </svg>
+                                                            <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                                                    fill="#11284A" />
+                                                            </svg>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                                    {% for j in i.list_size.all %}
+                                                    <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
+                                                GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function () {
+                                $(".click_tab_product_mobile").click(function () {
+                                    $(".tab_product_mobile").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                                    $(".open_tab_product_mobile, .close_tab_product_mobile").toggle(); // Đổi icon
+                                });
+
+                                $(".click_tab_product_mobile1").click(function () {
+                                    $(".tab_product_mobile1").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                                    $(".open_tab_product_mobile1, .close_tab_product_mobile1").toggle(); // Đổi icon
+                                });
+
+                                $(".click_tab_product_mobile2").click(function () {
+                                    $(".tab_product_mobile2").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                                    $(".open_tab_product_mobile2, .close_tab_product_mobile2").toggle(); // Đổi icon
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="hidden lg:grid grid-cols-1 lg:grid-cols-3 place-items-center my-[20px] gap-[50px]">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <div class="flex flex-col items-center w-full mt-[20px] lg:mt-none">
+                <div class="flex items-center justify-center w-full h-[33px] lg:h-[95px] bg-[#11284A]">
+                    <span class=" font-normal text-[20px] lg:font-bold lg:text-[48px] text-white uppercase">{{obj1.Title}}</span>
+                </div>
+                <div class="flex flex-col items-center w-full">
+                    <div class="w-full lg:w-[1597px] py-[20px] lg:py-[58px] p-[20px]">
+                        <div class="swiper mySwiper1 w-full">
+                            <div class="swiper-wrapper w-full">
+                                {% for i in list_image_slider_2 %}
+                                <div class="swiper-slide w-full flex justify-center rounded">
+                                    <img alt="img" class="w-full h-auto rounded" alt="banner" src="{{i.Photo.url}}" />
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- Chỉ có dấu chấm -->
+                            <div class="swiper-pagination hidden lg:block"></div>
+                        </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                            var swiper = new Swiper(".mySwiper1", {
+                                slidesPerView: 2,      // Hiển thị 4 ảnh cùng lúc trên hàng
+                                spaceBetween: 10,      // Khoảng cách giữa ảnh
+                                loop: true,            // Lặp vô hạn
+                                pagination: {
+                                    el: ".swiper-pagination",
+                                    clickable: true,
+                                },
+                                autoplay: {
+                                    delay: 2000,       // Tự động chạy sau 2 giây
+                                    disableOnInteraction: false,
+                                },
+                                speed: 1000,           // Tốc độ trượt
+                                slidesPerGroup: 1,     // Trượt từng ảnh một,
+                                breakpoints: {
+                                    768: {
+                                        slidesPerView: 3, // >= 1024px (lg trở lên): hiển thị 3
+                                    },
+                                },
+                            });
+                        });
+                        </script>
+                    </div>
+                    <div class="hidden lg:flex justify-between w-[1597px]">
+                        {% if list_BlogPost|length > 0 %}
+                        <a href="{% url 'slug_router' slug=list_BlogPost.0.Slug %}" class="flex flex-col items-center w-[626px] text-white">
+                            <div class="flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
+                                <img alt="Hình ảnh 1" src="{% if list_BlogPost.0.Avatar  %}{{list_BlogPost.0.Avatar.url}}{% endif %}"  class="w-full h-full object-cover" />
+                            </div>
+                            <div class="flex items-center justify-center w-full  text-[#11284A]   uppercase font-bold text-[30px] mt-6">
+                                {% if list_BlogPost.0.Title %}
+                                <div class="readmore-box-1 font-bold text-center  text-[14px] lg:text-[23px] normal-case w-full">
+                                    {{list_BlogPost.0.Title}}
+                                </div>
+                                {% else %}
+                                <div class="uppercase">
+                                    Nội dung 1
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div data-url="{% url 'slug_router' slug=list_BlogPost.0.Slug %}"
+                                 onclick="window.location.href=this.dataset.url" 
+                                 class=" flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
+                                Read More
+                            </div>
+                        </a>
+                        {% endif %}
+                        {% if list_BlogPost|length > 1 %}
+                        <a href="{% url 'slug_router' slug=list_BlogPost.1.Slug %}" class="flex flex-col items-center w-[787px] text-white">
+                            <div class=" flex items-center justify-center w-full h-[626px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
+                                <img alt="Hình ảnh 2" src="{% if list_BlogPost.1.Avatar  %}{{list_BlogPost.1.Avatar.url}}{% endif %}"  class="w-full h-full object-cover" />
+                            </div>
+                            <div class="flex items-center justify-center w-full  text-[#11284A]  uppercase font-bold text-[30px] mt-6">
+                                {% if list_BlogPost.1.Title %}
+                                <div class="readmore-box-1 font-bold text-center  text-[14px] lg:text-[23px] normal-case w-full ">
+                                    {{list_BlogPost.1.Title}}
+                                </div>
+                                {% else %}
+                                <div class="uppercase">
+                                    Nội dung 2
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div data-url="{% url 'slug_router' slug=list_BlogPost.1.Slug %}"
+                                 onclick="window.location.href=this.dataset.url"
+                                 class="flex justify-center items-center readmore-toggle-1 cursor-pointer w-[201px] h-[59px] bg-[#11284A] text-center rounded-md font-bold text-[30px] mt-8">
+                                Read More
+                            </div>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="flex lg:hidden flex-col justify-center items-center gap-3 w-full px-[15px]">
+                        {% if list_BlogPost|length > 0 %}
+                        <a href="{% url 'slug_router' slug=list_BlogPost.0.Slug %}" class="flex flex-col w-full justify-between gap-3">
+                            <div class="h-auto w-full flex items-center justify-center rounded-md overflow-hidden bg-[#11284A] text-white">
+                                <img alt="Hình ảnh 1" src="{% if list_BlogPost.0.Avatar  %}{{list_BlogPost.0.Avatar.url}}{% endif %}"  class="w-full h-full object-fill" />
+                            </div>
+                            <div class="flex flex-col w-full h-full gap-3 items-center">
+                                {% if list_BlogPost.0.Content %}
+                                <div class="readmore-box font-medium text-[14px] lg:text-[20px] max-h-[60px] normal-case w-full  text-justify bg-[#D9D9D9] p-2 grow overflow-hidden">
+                                    {{list_BlogPost.0.Content|safe}}
+                                </div>
+                                {% else %}
+                                <p class="uppercase font-medium text-[16px]  w-full  text-justify bg-[#D9D9D9] grow">
+                                    Nội dung 1
+                                </p>
+                                {% endif %}
+                                <div data-url="{% url 'slug_router' slug=list_BlogPost.0.Slug %}"
+                                     onclick="window.location.href=this.dataset.url"
+                                     class="readmore-toggle flex items-center justify-center text-white w-[96px] h-[27px] bg-[#11284A] text-center rounded font-bold text-[12px]">
+                                    Read More
+                                </div>
+                            </div>  
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="flex items-center justify-center text-white  w-full h-auto bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[20px] lg:mt-[58px]">
+                    <img alt="Hình ảnh 1" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}"  class="w-full h-auto object-cover" />
+                </div>
+                <div class="flex flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
+                    <span class="font-bold text-black text-[21px] lg:text-[55px]">
+                        THE RESULTS ARE IN
+                    </span>
+                    <div class="w-full flex justify-center">
+                        <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
+                            <div class="swiper-wrapper">
+                                {% for i in list_image_slider_3 %}
+                                <div class="swiper-slide">
+                                    <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- Chỉ có dấu chấm -->
+                            <div class="swiper-pagination hidden lg:block"></div>
+                        </div>
+                        <script>
+                            var swiper = new Swiper(".mySwiper2", {
+                              loop: true, 
+                              autoplay: { delay: 3000 }, // Tự động chạy
+                              pagination: {
+                                el: ".swiper-pagination",
+                                clickable: true,
+                              },
+                            });
+                          </script>
+                          <style>
+                            /* Màu xám cho chấm tròn */
+                            .swiper-pagination-bullet {
+                                background: #9ca3af !important; /* Tailwind gray-400 */
+                                width: 17px;
+                                height: 17px;
+                                border-radius: 50%;
+                                transition: all 0.3s ease;
+                                opacity: 1;
+                            }
+                        
+                            /* Màu trắng và kích thước lớn hơn khi active */
+                            .swiper-pagination-bullet-active {
+                                background: #ffffff !important; /* Tailwind white */
+                                width: 22px;
+                                height: 22px;
+                            }
+                        </style>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class=" flex justify-center items-center w-full lg:h-[499px] bg-[#11284A] p-[20px]">
+            <div class=" flex flex-col items-center w-full lg:w-[1594px]  lg:h-[384px]">
+                <div class="w-full lg:h-full flex flex-col lg:flex-row">
+                    <div class="flex flex-col lg:justify-between w-full lg:h-full gap-[10px] lg:gap-none">
+                        <div class="w-ful flex items-center">
+                            <img class="w-[78px] lg:w-[236px] h-[52px] lg:h-[158px]" src="/upload/website/Body.png" alt="logo" />
+                        </div>
+                        <span class="font-normal lg:font-medium text-[8px] lg:text-[12px] text-[#FBFBFB] italic">
+                            Thương hiệu chăm sóc da cao cấp của Hoa Kỳ với công nghệ PPM6 và thành phần Hyaluronic Acid siêu tinh khiết độc quyền.
+                        </span>
+                        <div class="flex flex-col mt-2">
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
+                                CÔNG TY TNHH COSBEAUTY
+                            </span>
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
+                                <span class="font-bold">Địa chỉ:</span> Số 9 đường Nội khu Mỹ Phước, Phường Tân Hưng, Thành phố Hồ Chí Minh, Việt Nam.
+                            </span>
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
+                                <span class="font-bold">Điện thoại:</span> 0982762783
+                            </span>
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
+                                <span class="font-bold">Email:</span> cosbeautyvietnam@gmail.com
+                            </span>
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB]">
+                                <span class="font-bold">MST:</span> 0317577011
+                            </span>
+                            <!-- <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB] italic">
+                                <span class="font-bold">Hotline:</span> {{obj.Phone_number}}
+                            </span>
+                            <span class="font-medium text-[8px] lg:text-[16px] text-[#FBFBFB] italic">
+                                <span class="font-bold">Email:</span> {{obj.Email}}
+                            </span> -->
+                        </div>
+                        <!-- <div class="border-b-[1px] border-[#FBFBFB] w-[162px]">
+                        </div>
+                        <span class="hidden lg:block font-medium text-[12px] text-[#FBFBFB] italic">
+                            *Các tùy chọn thanh toán thông qua Affirm phải được kiểm tra đủ điều kiện và được cung cấp bởi các đối tác cho vay sau: affirm.com/lenders.
+                        </span> -->
+                    </div>
+                    <div class="flex flex-col lg:flex-row  lg:items-center justify-between w-full lg:h-full mt-[20px] lg:mt-none">
+                        <div class="flex flex-col gap-0 lg:gap-2 text-[7px] lg:text-[14px] font-normal lg:font-medium text-[#FBFBFB]">
+                            <a href="{% url 'nav_products_client' %}" class="">Sản phẩm</a>
+                            <a href="{% url 'link_nghien_cuu_khoa_hoc_client' %}" class="">Nghiên Cứu Khoa Học</a>
+                            <a href="{% url 'link_ket_qua_lam_san_client' %}" class="">Kết Quả Lâm Sàng</a>
+                            <a href="{% url 'nav_blog_client' %}" class="">Infinity Blog</a>
+                            <a href="{% url 'about_tam_nhin_va_su_menh_client' %}" class="">Tầm Nhìn & Sứ Mệnh</a>
+                            <a href="{% url 'about_lien_he_client' %}" class="">Liên Hệ</a>
+                            <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="">Tin Tức & Giải Thưởng</a>
+                        </div>
+                        <div class="flex flex-col gap-3 mt-[20px] lg:mt-none">
+                            <span class="font-bold text-[15px] lg:text-[20px] text-[#FBFBFB] italic">
+                                TIN TỨC MỚI NHẤT CỦA HYDRINITY SKINCARE
+                            </span>
+                            <span class="font-normal lg:font-medium italic text-[7px] lg:text-[11px] text-[#FBFBFB] ">
+                                Đăng ký tham gia bản tin của chúng tôi để cập nhật tin tức chăm sóc da mới nhất.
+                            </span>
+                            <div class="flex gap-3 h-[29px] mt-2 w-[353px] lg:w-auto">
+                                <div class="flex gap-3 h-[29px] rounded border-[1px] border-[#D9D9D9] font-medium italic text-[11px] text-[#FBFBFB]">
+                                    <input placeholder="Your email (required)" class="bg-transparent" style="border: none; outline: none;" /> 
+                                </div>
+                                <button class="font-medium italic text-[11px] bg-[#D9D9D9] text-[#11284A] w-[60px] h-[29px] rounded-md">
+                                    Sign Up
+                                </button>
+                            </div>
+                            <a href="http://online.gov.vn/Home/WebDetails/138503" target="_blank">
+                                <?xml version="1.0" encoding="utf-8"?>
+                                <!-- Generator: Adobe Illustrator 27.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                                <svg class="w-[200px]" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 204.67 74.92" style="enable-background:new 0 0 204.67 74.92;"
+                                    xml:space="preserve">
+                                    <style type="text/css">
+                                        .st0 {
+                                            clip-path: url(#SVGID_00000119086971222245783970000014686400370317879444_);
+                                            fill: #FFFFFF;
+                                        }
+                                    </style>
+                                    <g>
+                                        <defs>
+                                            <rect id="SVGID_1_" width="204.67" height="74.92" />
+                                        </defs>
+                                        <clipPath id="SVGID_00000049930432256136895830000012842284006639408517_">
+                                            <use xlink:href="#SVGID_1_" style="overflow:visible;" />
+                                        </clipPath>
+
+                                        <circle
+                                            style="clip-path:url(#SVGID_00000049930432256136895830000012842284006639408517_);fill:#FFFFFF;"
+                                            cx="37.46" cy="37.46" r="37.46" />
+                                        <g
+                                            style="clip-path:url(#SVGID_00000049930432256136895830000012842284006639408517_);">
+
+                                            <image style="overflow:visible;" width="625" height="625" xlink:href="data:image/png;base64,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"
+                                                transform="matrix(0.327 0 0 0.327 1.5357 -64.2434)">
+                                            </image>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <span class="font-normal lg:font-medium text-[8px] lg:text-[12px] text-[#FBFBFB] italic mt-[20px] lg:mt-[50px] w-full lg:w-auto">
+                    © 2025Copyright
+                    <br class="lg:hidden">
+                    Hydrinity Skin Science
+                </span>
+            </div>
+        </footer>
+    </div>
+    <button id="backToTopBtn" type="button" class="back-to-top-btn" aria-label="Ve dau trang" title="Về đầu trang">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 14L12 8L18 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <style>
+        body.search-modal-open {
+            overflow: hidden;
+        }
+
+        #openClientSearchBtn {
+            border: 0;
+            padding: 0;
+            width: 18px;
+            height: 18px;
+            background: transparent;
+            color: #FBFBFB;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            line-height: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        #openClientSearchBtn:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        #openClientSearchBtn:focus-visible {
+            outline: 2px solid #FBFBFB;
+            outline-offset: 4px;
+            border-radius: 9999px;
+        }
+
+        .client-search-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 120;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 12px;
+        }
+
+        .client-search-modal.is-open {
+            display: flex;
+        }
+
+        .client-search-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(8, 19, 38, 0.58);
+            backdrop-filter: blur(2px);
+        }
+
+        .client-search-panel {
+            position: relative;
+            z-index: 1;
+            width: min(94vw, 420px);
+            border-radius: 16px;
+            border: 1px solid rgba(17, 40, 74, 0.28);
+            background: linear-gradient(180deg, rgba(241, 246, 252, 0.97) 0%, rgba(224, 234, 246, 0.98) 100%);
+            box-shadow: 0 20px 45px rgba(8, 20, 37, 0.35);
+            padding: 18px;
+            animation: client-search-panel-in 0.22s ease;
+        }
+
+        .client-search-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 9999px;
+            border: 1px solid rgba(17, 40, 74, 0.26);
+            background: rgba(255, 255, 255, 0.82);
+            color: #11284A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            line-height: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .client-search-close svg {
+            display: block;
+        }
+
+        .client-search-close:hover {
+            transform: scale(1.06);
+            background: #ffffff;
+        }
+
+        .client-search-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 6px;
+        }
+
+        .client-search-logo img {
+            width: 110px;
+            max-width: 45%;
+            height: auto;
+        }
+
+        .client-search-form label {
+            display: block;
+            text-align: center;
+            color: #11284A;
+            font-size: 26px;
+            font-family: 'UTM Bebas', sans-serif !important;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .client-search-input-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(17, 40, 74, 0.45);
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.74);
+            padding: 5px 7px 5px 12px;
+        }
+
+        .client-search-input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            background: transparent;
+            outline: none;
+            color: #11284A;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        .client-search-input::placeholder {
+            color: rgba(17, 40, 74, 0.5);
+        }
+
+        .client-search-submit {
+            width: 34px;
+            height: 34px;
+            border-radius: 9999px;
+            border: none;
+            background: #11284A;
+            color: #FBFBFB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .client-search-submit:hover {
+            transform: scale(1.05);
+            background: #0b1e3a;
+        }
+
+        @media (max-width: 767px) {
+            .client-search-panel {
+                padding: 16px 14px;
+            }
+
+            .client-search-form label {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+        }
+
+        @keyframes client-search-panel-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.985);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .back-to-top-btn {
+            position: fixed;
+            right: 16px;
+            bottom: 20px;
+            z-index: 70;
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            border: 2px solid rgba(251, 251, 251, 0.9);
+            outline: 1px solid #11284A;
+            outline-offset: 1px;
+            background: rgba(17, 40, 74, 0.92);
+            color: #FBFBFB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(17, 40, 74, 0.25);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background-color 0.2s ease;
+        }
+
+        .back-to-top-btn.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            animation: back-to-top-pulse 1.8s ease-in-out infinite;
+        }
+
+        .back-to-top-btn svg {
+            transition: transform 0.2s ease;
+        }
+
+        .back-to-top-btn:hover {
+            background: #0b1e3a;
+        }
+
+        .back-to-top-btn:hover svg {
+            transform: translateY(-1px) scale(1.08);
+        }
+
+        .back-to-top-btn:focus-visible {
+            outline: 2px solid #FBFBFB;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(17, 40, 74, 0.45);
+        }
+
+        @media (min-width: 1024px) {
+            .back-to-top-btn {
+                right: 24px;
+                bottom: 28px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .back-to-top-btn {
+                transition: none;
+            }
+
+            .back-to-top-btn.is-visible {
+                animation: none;
+            }
+        }
+
+        @keyframes back-to-top-pulse {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(0) scale(1.09);
+            }
+        }
+    </style>
+    <script>
+        (function () {
+            var searchModal = document.getElementById("clientSearchModal");
+            var openSearchBtn = document.getElementById("openClientSearchBtn");
+            var searchInput = document.getElementById("clientSearchInput");
+            if (!searchModal || !openSearchBtn) {
+                return;
+            }
+
+            function openSearchModal() {
+                searchModal.classList.add("is-open");
+                searchModal.setAttribute("aria-hidden", "false");
+                document.body.classList.add("search-modal-open");
+                if (searchInput) {
+                    window.setTimeout(function () {
+                        searchInput.focus();
+                    }, 70);
+                }
+            }
+
+            function closeSearchModal() {
+                searchModal.classList.remove("is-open");
+                searchModal.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("search-modal-open");
+            }
+
+            openSearchBtn.addEventListener("click", function (event) {
+                event.preventDefault();
+                openSearchModal();
+            });
+
+            searchModal.querySelectorAll("[data-search-close]").forEach(function (element) {
+                element.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    closeSearchModal();
+                });
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape" && searchModal.classList.contains("is-open")) {
+                    closeSearchModal();
+                }
+            });
+        })();
+    </script>
+    <script>
+        (function () {
+            var backToTopBtn = document.getElementById("backToTopBtn");
+            if (!backToTopBtn) {
+                return;
+            }
+
+            function toggleBackToTop() {
+                if (window.scrollY > 260) {
+                    backToTopBtn.classList.add("is-visible");
+                } else {
+                    backToTopBtn.classList.remove("is-visible");
+                }
+            }
+
+            backToTopBtn.addEventListener("click", function () {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            window.addEventListener("scroll", toggleBackToTop, { passive: true });
+            toggleBackToTop();
+        })();
+    </script>
+</body>
+
+</html>
