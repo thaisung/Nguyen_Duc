@@ -19,7 +19,7 @@
     "name": "{{obj_Product.Name}}",
     "image": [
         {% for i in obj_Product.list_photo.all %}
-            "https://hydrinity.com.vn/{{ i.Avatar.url }}",
+            "https://hydrinity.com.vn/{{ i.Avatar.url }}"{% if not forloop.last %},{% endif %}
         {% endfor %}
     ],
     "description": "{{obj_Product.Introduce}}",
