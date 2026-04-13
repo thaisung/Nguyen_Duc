@@ -48,12 +48,15 @@ class BlogPostForm(forms.ModelForm):
 class ttgt1Form(forms.ModelForm):
     class Meta:
         model = Edit_ttgt1
-        fields = ['Title','Category', 'Content','Photo']
+        fields = ['Slug','Seo_Title','Seo_Description','Title','Category', 'Content','Photo']
         labels = {
+            'Slug': 'Đường dẫn',
+            'Seo_Title': 'Tiêu đề SEO',
+            'Seo_Description': 'Mô tả SEO',
             'Title': 'Tiêu đề',
             'Category':'Danh mục',
             'Content': 'Nội dung bài viết',
-            'Photo': 'Ảnh'
+            'Photo': 'Ảnh đại diện'
         }
 
 class Edit_kqls1_Form(forms.ModelForm):

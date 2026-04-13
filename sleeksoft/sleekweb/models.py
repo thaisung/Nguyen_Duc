@@ -257,7 +257,8 @@ class Edit_ttgt1(models.Model):
     class Meta:
         ordering = ["id"]
         verbose_name_plural = "Thông tin tin tức, giải thưởng"
-    
+    Seo_Title = models.CharField(max_length=500, blank=True, null=True)
+    Seo_Description = models.CharField(max_length=1000, blank=True, null=True)
     Title = models.CharField('Tiêu đề', max_length=200,blank=True, null=True)
     Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)
     Category = models.CharField('Danh mục', max_length=200,blank=True, null=True)

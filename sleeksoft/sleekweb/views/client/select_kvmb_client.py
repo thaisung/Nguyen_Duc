@@ -84,7 +84,7 @@ def select_kvmb_client(request):
         except:
             context['obj_Count_1'] = {}
 
-        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='DSDT').first()
+        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='DSDT-MB').first()
 
         # print('context:',context)
         return render(request, 'sleekweb/client/select_kvmb_client.html', context, status=200)

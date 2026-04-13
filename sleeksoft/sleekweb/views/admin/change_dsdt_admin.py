@@ -72,7 +72,8 @@ def change_dsdt_admin(request):
         if not context['Category']:
             context['Category'] = '0'
         
-        context['obj_Seo_Page'] = Seo_Page.objects.filter(Name_Page='DSDT').first()
+        context['obj_Seo_Page_MB'] = Seo_Page.objects.filter(Name_Page='DSDT-MB').first()
+        context['obj_Seo_Page_MN'] = Seo_Page.objects.filter(Name_Page='DSDT-MN').first()
 
         # print('context:',context)
         if request.user.is_authenticated and request.user.is_superuser:
