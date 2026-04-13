@@ -116,11 +116,15 @@ def nav_blog_client(request):
 def nav_blog_detail_client(request,slug):
     if request.method == 'GET':
         context = {}
+
+        context['domain'] = settings.DOMAIN
         
         try:
             context['obj'] = Website.objects.get(Count=1)
         except:
             context['obj'] = {}
+
+        
 
         context['list_BlogPost'] =  BlogPost.objects.all().order_by('-id')
 
