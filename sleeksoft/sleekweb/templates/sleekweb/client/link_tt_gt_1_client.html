@@ -1,10 +1,10 @@
 {% extends './base_client.html' %}
 {% block title %}
-    <title>{{obj_Seo_Page.Seo_Title}}</title>
+    <title>{{obj1.Seo_Title}}</title>
 {% endblock %}
 {% block seo_tag %}
-    <meta name="description" content="{{obj1.Title}}">
-    <meta name="keywords" content="{{obj1.Title}},Hydrinity" />
+    <meta name="description" content="{{obj1.Seo_Description}}">
+    <meta name="keywords" content="{{obj1.Seo_Title}},Hydrinity" />
 {% endblock %}
 {% block canonical %}
     <link rel="canonical" href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}">
@@ -38,9 +38,9 @@
         <div class="relative flex justify-center items-center w-full h-[80px] lg:h-[116px] overflow-hidden">
             <img alt="img" class="w-full h-full object-cover" src="{% if obj1.Photo %}{{obj1.Photo.url}}{% endif %}" />
             <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 p-[10px] text-center">
-                <h2 class="font-normal text-[16px] lg:text-[36px] uppercase text-white">
+                <h1 class="font-normal text-[16px] lg:text-[36px] uppercase text-white">
                     {{obj1.Title}}
-                </h2>
+                </h1>
             </div>
         </div>
     </div>
