@@ -19,7 +19,7 @@
     "name": "{{obj_Product.Name}}",
     "image": [
         {% for i in obj_Product.list_photo.all %}
-            "https://hydrinity.com.vn/{{ i.Avatar.url }}"{% if not forloop.last %},{% endif %}
+            "https://hydrinity.com.vn/{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}"{% if not forloop.last %},{% endif %}
         {% endfor %}
     ],
     "description": "{{obj_Product.Introduce}}",
@@ -68,12 +68,12 @@
     <meta property="og:title" content="{{obj_Product.Seo_Title}}">
     <meta property="og:description" content="{{obj_Product.Seo_Description}}">
     <meta property="og:url" content="{{domain}}{% url 'slug_router' slug=obj_Product.Slug %}">
-    <meta property="og:image" content="{{domain}}{{obj_Product.Avatar.url}}">
+    <meta property="og:image" content="{% if obj_Product.Avatar %}{{domain}}{{obj_Product.Avatar.url}}{% endif %}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{obj_Product.Seo_Title}}">
     <meta name="twitter:description" content="{{obj_Product.Seo_Description}}">
-    <meta name="twitter:image" content="{{domain}}{{obj_Product.Avatar.url}}">
+    <meta name="twitter:image" content="{% if obj_Product.Avatar %}{{domain}}{{obj_Product.Avatar.url}}{% endif %}">
 {% endblock %}
 {% block breadcrumb %}
     <a href="{% url 'nav_products_client' %}" class="hover:cursor-pointer hover:underline">Sản phẩm</a>
@@ -90,8 +90,8 @@
     <div class="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-[20px] ">
         <div class="grid grid-cols-2 w-full lg:w-[50%] gap-2 px-2 lg:px-none">
             {% for i in obj_Product.list_photo.all %}
-                <a data-fancybox="gallery" href="{{ i.Avatar.url }}" class=" overflow-hidden">
-                    <img alt="img" class="w-full h-full transition object-fill" src="{{i.Avatar.url}}" />
+                <a data-fancybox="gallery" href="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}" class=" overflow-hidden">
+                    <img alt="img" class="w-full h-full transition object-fill" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" />
                 </a>
             {% endfor %}
         </div>
@@ -227,8 +227,8 @@
         </span>
         <div class="flex flex-col lg:flex-row items-center justify-center w-full gap-[10px] lg:gap-[25px] p-[15px] lg:p-none">
             {% for i in obj_Product.list_photo_ncls.all %}
-                <a data-fancybox="gallery-ncls" href="{{ i.Avatar.url }}" class="">
-                    <img alt="Hình ảnh" class="w-full lg:w-[788px] lg:h-[788px] rounded-md" src="{{i.Avatar.url}}" />
+                <a data-fancybox="gallery-ncls" href="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}" class="">
+                    <img alt="Hình ảnh" class="w-full lg:w-[788px] lg:h-[788px] rounded-md" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" />
                 </a>
             {% endfor %}
         </div>
@@ -242,7 +242,7 @@
                 {% for i in list_Product %}
                 <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
                     <a href="{% url 'slug_router' slug=i.Slug %}">
-                        <img alt="Hình ảnh" class="w-full" src="{{i.Avatar.url}}"/>
+                        <img alt="Hình ảnh" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
                     </a>
                     <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
                         <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
@@ -316,7 +316,7 @@
         {% for i in list_Product %}
         <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
             <a href="{% url 'slug_router' slug=i.Slug %}">
-                <img alt="Hình ảnh" class="w-full" src="{{i.Avatar.url}}"/>
+                <img alt="Hình ảnh" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
             </a>
             <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
                 <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">

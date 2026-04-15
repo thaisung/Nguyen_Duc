@@ -15,12 +15,12 @@
     <meta property="og:title" content="{{obj1.Seo_Title}}">
     <meta property="og:description" content="{{obj1.Seo_Description}}">
     <meta property="og:url" content="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}">
-    <meta property="og:image" content="{{domain}}{{obj1.Photo.url}}">
+    <meta property="og:image" content="{% if obj1.Photo %}{{domain}}{{obj1.Photo.url}}{% endif %}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{obj1.Seo_Title}}">
     <meta name="twitter:description" content="{{obj1.Seo_Description}}">
-    <meta name="twitter:image" content="{{domain}}{{obj1.Photo.url}}">
+    <meta name="twitter:image" content="{% if obj1.Photo %}{{domain}}{{obj1.Photo.url}}{% endif %}">
 {% endblock %}
 {% block breadcrumb %}
     <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="whitespace-nowrap  hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>

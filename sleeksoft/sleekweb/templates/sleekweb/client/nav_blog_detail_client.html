@@ -82,12 +82,12 @@
     <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
     <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
     <meta property="og:url" content="{{domain}}{% url 'slug_router' slug=obj_Blog.Slug %}">
-    <meta property="og:image" content="{{domain}}{{ obj_Blog.Avatar.url }}">
+    <meta property="og:image" content="{% if obj_Blog.Avatar %}{{domain}}{{ obj_Blog.Avatar.url }}{% endif %}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{obj_Seo_Page.Seo_Title}}">
     <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
-    <meta name="twitter:image" content="{{domain}}{{ obj_Blog.Avatar.url }}">
+    <meta name="twitter:image" content="{% if obj_Blog.Avatar %}{{domain}}{{ obj_Blog.Avatar.url }}{% endif %}">
 {% endblock %}
 {% block breadcrumb %}
     <a href="{% url 'nav_blog_client' %}" class="hover:cursor-pointer hover:underline">Blog</a>

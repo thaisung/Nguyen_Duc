@@ -82,7 +82,7 @@
                                         </svg>
                                 </button>
                             </form>
-                            <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                            <img alt="Hình ảnh " src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}" class="w-full h-auto" />
                         </div>
                         {% endfor %}
                     </div>
@@ -151,7 +151,7 @@
                                         </svg>
                                 </button>
                             </form>
-                            <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                            <img alt="Hình ảnh " src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}" class="w-full h-auto" />
                         </div>
                         {% endfor %}
                     </div>
@@ -228,7 +228,7 @@
                                         </svg>
                                 </button>
                             </form>
-                            <img alt="Hình ảnh " src="{{i.Photo.url}}" class="w-full h-auto" />
+                            <img alt="Hình ảnh " src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}" class="w-full h-auto" />
                         </div>
                         {% endfor %}
                     </div>

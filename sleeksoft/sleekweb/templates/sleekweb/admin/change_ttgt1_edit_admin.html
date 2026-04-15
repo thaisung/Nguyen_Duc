@@ -93,7 +93,7 @@
             <div class="mt-4">
                 <label class="font-semibold">Ảnh đại diện:</label>
                 <div class="mb-2">
-                    <img src="{{ obj_ttgt1.Photo.url }}" 
+                    <img src="{% if obj_ttgt1.Photo %}{{ obj_ttgt1.Photo.url }}{% endif %}" 
                             class="w-40 h-auto rounded-lg border shadow">
                 </div>
                 <input type="file" class="rounded-md w-full" accept="image/*" name="Photo"  />

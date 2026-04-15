@@ -481,7 +481,7 @@
                             <a class="" href="{% url 'nav_blog_client' %}">Blog</a>
                         </div>
                         <a class="tab" href="/">
-                            <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[135px]" />
+                            <img alt="logo" src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% endif %}" class="w-[135px]" />
                         </a>
                         <div class="flex justify-between items-center font-medium text-[30px] uppercase gap-[50px]">
                             <div class="click_tab_doitac relative flex items-center gap-2 hover:cursor-pointer" href="">
@@ -589,7 +589,7 @@
         </header>
         <header class="relative flex flex-col lg:hidden  w-full">
             <a class="tab w-full flex justify-center items-center p-[10px]" href="/">
-                <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[46px]" />
+                <img alt="logo" src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% endif %}" class="w-[46px]" />
             </a>
             <div class="flex gap-1 p-3">
                 <a href="{{domain}}" class="text-[#11284A] whitespace-nowrap">Trang chủ</a>
@@ -618,7 +618,7 @@
                     </span>
                 </div>
                 <a class="tab w-full flex justify-center items-center p-[20px]" href="/">
-                    <img alt="logo" src="{{domain}}{{obj.Logo.url}}" class="w-[56px]" />
+                    <img alt="logo" src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% endif %}" class="w-[56px]" />
                 </a>
                 <nav class=" w-full flex flex-col  text-[#11284A] text-[20px] divide-y-[2px]  divide-[#11284A]"
                     style="font-family: 'UTM Bebas';">

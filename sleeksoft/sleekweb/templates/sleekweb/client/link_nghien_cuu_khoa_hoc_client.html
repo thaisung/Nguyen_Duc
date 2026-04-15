@@ -132,7 +132,7 @@
                     {% for i in list_Product %}
                     <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
                         <a href="{% url 'slug_router' slug=i.Slug %}">
-                            <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
+                            <img alt="img" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
                         </a>
                         <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
                             <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
@@ -208,7 +208,7 @@
                     <div class="swiper-wrapper">
                         {% for i in list_image_slider_3 %}
                         <div class="swiper-slide">
-                            <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{{i.Photo.url}}" />
+                            <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
                         </div>
                         {% endfor %}
                     </div>
@@ -254,7 +254,7 @@
         {% for i in list_Product %}
         <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
             <a href="{% url 'slug_router' slug=i.Slug %}">
-                <img alt="img" class="w-full" src="{{i.Avatar.url}}"/>
+                <img alt="img" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
             </a>
             <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
                 <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">

@@ -101,27 +101,29 @@ def clean_content(content):
 def change_blog_add_admin(request):
     if not request.user.is_authenticated:
         return redirect('login_admin')
+
     if request.method == 'GET':
         form = BlogPostForm()
-        context = {
-        'form': form,
-        # 'list_BlogPost': BlogPost.objects.all()
-        }
-        return render(request, 'sleekweb/admin/change_blog_add_admin.html',context, status=200)
+        return render(request, 'sleekweb/admin/change_blog_add_admin.html', {
+            'form': form
+        })
+
     if request.method == 'POST':
-        form = BlogPostForm(request.POST, request.FILES)  # BẮT BUỘC phải có request.FILES
+        form = BlogPostForm(request.POST, request.FILES)
+
         if form.is_valid():
-            # Lấy nội dung từ form
             content = form.cleaned_data['Content']
-            
-            # Làm sạch nội dung trước khi lưu
             cleaned_content = clean_content(content)
-            # cleaned_content = content
-            
-            # Lưu vào model (hoặc xử lý thêm nếu cần)
+
             form.instance.Content = cleaned_content
             form.save()
-            return redirect('change_blog_admin')  # hoặc chuyển đến trang khác
+
+            return redirect('change_blog_admin')
+
+        # ❗ BẮT BUỘC phải có đoạn này
+        return render(request, 'sleekweb/admin/change_blog_add_admin.html', {
+            'form': form
+        })
 
 
 def change_blog_edit_admin(request, pk):

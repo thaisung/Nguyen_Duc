@@ -101,7 +101,7 @@
             <div class="mt-4">
                 <label class="font-semibold">Ảnh đại diện:</label>
                 <div class="mb-2">
-                    <img src="{{ obj_Product.Avatar.url }}" 
+                    <img src="{% if obj_Product.Avatar %}{{ obj_Product.Avatar.url }}{% endif %}" 
                             class="w-40 h-auto rounded-lg border shadow">
                 </div>
                 <input type="file" class="rounded-md w-full" accept="image/*" name="Avatar"  />
@@ -110,7 +110,7 @@
                 <label class="font-semibold">Ảnh Sản phẩm:</label>
                 <div class="mb-2 flex gap-3 items-start">
                     {% for i in obj_Product.list_photo.all %}
-                    <img src="{{ i.Avatar.url }}" 
+                    <img src="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}" 
                             class="w-40 h-auto rounded-lg border shadow">
                     {% endfor %}
                 </div>
@@ -120,7 +120,7 @@
                 <label class="font-semibold">Ảnh NCLS:</label>
                 <div class="mb-2 flex gap-3 items-start">
                     {% for i in obj_Product.list_photo_ncls.all %}
-                    <img src="{{ i.Avatar.url }}" 
+                    <img src="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}" 
                             class="w-40 h-auto rounded-lg border shadow">
                     {% endfor %}
                 </div>
@@ -131,7 +131,7 @@
             </div>
         </form>
         {% comment %} <div class="flex flex-col">
-            <img class="w-[100px]" src="{{obj_Product.Avatar.url}}"  />
+            <img class="w-[100px]" src="{% if obj_Product.Avatar %}{{ obj_Product.Avatar.url }}{% endif %}"  />
         </div>
         <form method="post" action="{% url 'product_edit_admin' pk=obj_Product.id %}" enctype="multipart/form-data" class="flex flex-col  items-center w-[500px] gap-3 ">
             {% csrf_token %}
@@ -235,11 +235,11 @@
         </form>
         <div class="flex flex-col items-center gap-1">
             {% for i in obj_Product.list_photo.all %}
-            <img class="w-[100px]" src="{{i.Avatar.url}}"  />
+            <img class="w-[100px]" src="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}"  />
             {% endfor %}
             <div class="w-full h-[5px] bg-[#0e203c] my-3"></div>
             {% for i in obj_Product.list_photo_ncls.all %}
-            <img class="w-[100px]" src="{{i.Avatar.url}}"  />
+            <img class="w-[100px]" src="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}"  />
             {% endfor %}
         </div> {% endcomment %}
     </div>

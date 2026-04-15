@@ -15,12 +15,12 @@
     <meta property="og:title" content="{{obj_Kqls_post.Title}}">
     <meta property="og:description" content="{{obj_Kqls_post.Seo_Description}}">
     <meta property="og:url" content="{{domain}}{% url 'slug_router' slug=obj_Kqls_post.Slug %}">
-    <meta property="og:image" content="{{domain}}{{obj_Kqls_post.Avatar.url}}">
+    <meta property="og:image" content="{% if obj_Kqls_post.Avatar %}{{domain}}{{obj_Kqls_post.Avatar.url}}{% endif %}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{obj_Kqls_post.Title}}">
     <meta name="twitter:description" content="{{obj_Kqls_post.Seo_Description}}">
-    <meta name="twitter:image" content="{{domain}}{{obj_Kqls_post.Avatar.url}}">
+    <meta name="twitter:image" content="{% if obj_Kqls_post.Avatar %}{{domain}}{{obj_Kqls_post.Avatar.url}}{% endif %}">
 {% endblock %}
 {% block breadcrumb %}
     <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="hover:cursor-pointer hover:underline">Nghiên cứu lâm sàn</a>
