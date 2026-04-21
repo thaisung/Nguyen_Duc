@@ -63,8 +63,16 @@
                     <div class="flex flex-col gap-2 w-full">
                         <!-- <span class="font-semibold">- Hình ảnh 1</span> -->
                         <div class="flex flex-col gap-1 w-full">
-                            <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}" class="w-full h-auto" />
-                            <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo3"  />
+                            {% if obj_Count_1.Photo3 %}
+                                {% if obj_Count_1.Photo3.name|lower|slice:"-4:" == ".mp4" %}
+                                    <video src="{{ obj_Count_1.Photo3.url }}" class="w-full h-auto" controls muted playsinline></video>
+                                {% else %}
+                                    <img alt="Hình ảnh 3" src="{{ obj_Count_1.Photo3.url }}" class="w-full h-auto" />
+                                {% endif %}
+                            {% else %}
+                                <img alt="Hình ảnh 3" src="" class="w-full h-auto" />
+                            {% endif %}
+                            <input type="file" class="rounded-md w-full"  accept="image/*,video/mp4,.mp4" name="Photo3"  />
                         </div>
                         <!-- <textarea name="Content3" class="autoresize rounded-md" placeholder="Nội dung 3">{{obj_Count_1.Content3|default:''}}</textarea> -->
                     </div>

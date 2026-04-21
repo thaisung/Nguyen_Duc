@@ -362,10 +362,18 @@
 <!-- ████ HERO ████ -->
 <section class="hero hero-image" id="home">
   <div class="hero-bg">
-    <!-- <video class="hero-bg-media hero-bg-video" src="video/1.mp4" muted playsinline loop autoplay preload="metadata" aria-hidden="true"></video> -->
-    <img class="hero-bg-media hero-bg-image"
-         src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}"
-         alt="HYDRINITY Skin Science">
+    {% if obj_Count_1.Photo3 %}
+        {% if obj_Count_1.Photo3.name|lower|slice:"-4:" == ".mp4" %}
+            <video class="hero-bg-media hero-bg-video"
+                   src="{{ obj_Count_1.Photo3.url }}"
+                   muted playsinline loop autoplay preload="metadata"
+                   aria-hidden="true"></video>
+        {% else %}
+            <img class="hero-bg-media hero-bg-image"
+                 src="{{ obj_Count_1.Photo3.url }}"
+                 alt="HYDRINITY Skin Science">
+        {% endif %}
+    {% endif %}
   </div>
   <div class="hero-overlay"></div>
   <canvas id="heroParticles"></canvas>

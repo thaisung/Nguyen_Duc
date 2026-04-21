@@ -133,7 +133,7 @@ class Photo_Content(models.Model):
     Content1 = models.TextField('Nội dung 1',blank=True, null=True)
     Photo2 = models.ImageField(upload_to='PHOTO_CONTENT',null=True,blank=True)
     Content2 = models.TextField('Nội dung 2',blank=True, null=True)
-    Photo3 = models.ImageField(upload_to='PHOTO_CONTENT',null=True,blank=True)
+    Photo3 = models.FileField(upload_to='PHOTO_CONTENT',null=True,blank=True)
     Content3 = models.TextField('Nội dung 3',blank=True, null=True)
     Count = models.IntegerField('Số bản ghi',blank=True, null=True)
     Creation_time = models.DateTimeField('Thời gian tạo',auto_now_add=True)
