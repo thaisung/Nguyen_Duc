@@ -6,56 +6,80 @@
   const typeSelect = document.getElementById('productSearchType');
   const titleEl = document.getElementById('productSearchTitle');
   const input = document.getElementById('productSearchInput');
-  const colName = document.getElementById('searchColName');
-  const colMeta = document.getElementById('searchColMeta');
+  const submitBtn = document.getElementById('productSearchSubmit');
   const table = modal.querySelector('.search-table');
   const tbody = document.getElementById('productSearchBody');
   const empty = document.getElementById('productSearchEmpty');
-  if (!toggleBtn||!modal||!closeBtn||!typeSelect||!titleEl||!input||!colName||!colMeta||!table||!tbody||!empty) return;
+  if (!toggleBtn||!modal||!closeBtn||!typeSelect||!titleEl||!input||!table||!tbody||!empty) return;
+
+  if (location.pathname.startsWith('/blog')) typeSelect.value='blog';
+  try { input.value=new URLSearchParams(location.search).get('s')||''; } catch(e){}
 
   const norm = (s='') => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
-  let products=[], blogs=[];
-
-  function collectProducts(){
-    products=[...document.querySelectorAll('.products-grid .product-card')].map((card,i)=>({
-      idx:i+1,
-      name:card.querySelector('.product-name')?.textContent?.trim()||'',
-      meta:card.querySelector('.product-price')?.textContent?.trim()||'',
-      link:'#products'
-    }));
-  }
-  function collectBlogs(){
-    blogs=[...document.querySelectorAll('.blog-grid .blog-card')].map((card,i)=>{
-      const linkEl=card.querySelector('.blog-title a');
-      return {idx:i+1,name:linkEl?.textContent?.trim()||'',meta:'',link:linkEl?.getAttribute('href')||'/blog'};
-    });
-  }
   function isBlogMode(){ return typeSelect.value==='blog'; }
   function updateSearchUI(){
     const b=isBlogMode();
     titleEl.textContent=b?'Tìm kiếm Blog':'Tìm kiếm Sản phẩm';
     input.placeholder=b?'Nhập tiêu đề blog...':'Nhập tên sản phẩm...';
-    colName.textContent=b?'Tiêu đề Blog':'Tên sản phẩm';
-    colMeta.textContent='Giá';
     table.classList.toggle('blog-mode',b);
     empty.textContent=b?'Không tìm thấy bài blog phù hợp.':'Không tìm thấy sản phẩm phù hợp.';
   }
-  function renderRows(keyword=''){
-    const kw=norm(keyword);
+  function formatPrice(v){
+    if (v===null||v===undefined||v==='') return '';
+    const s=String(v);
+    if(!/^\d+$/.test(s)) return s;
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g,'.')+'đ';
+  }
+  function renderItems(items){
     const blogMode=isBlogMode();
-    const source=blogMode?blogs:products;
-    const filtered=source.filter(item=>norm(item.name).includes(kw));
     tbody.innerHTML='';
-    filtered.forEach((p,i)=>{
+    items.forEach((p,i)=>{
       const tr=document.createElement('tr');
-      tr.innerHTML=`<td>${i+1}</td><td><div class="search-name-scroll">${p.name}</div></td><td class="${blogMode?'meta':'price'}">${p.meta}</td><td><a class="search-go" href="${p.link}">Xem</a></td>`;
+      const td1=document.createElement('td');
+      if (p.avatar){
+        const img=document.createElement('img');
+        img.className='search-thumb';
+        img.src=p.avatar;
+        img.alt=p.name||'';
+        img.loading='lazy';
+        td1.appendChild(img);
+      }
+      const td2=document.createElement('td');
+      const nameDiv=document.createElement('div');
+      nameDiv.className='search-name-scroll';
+      nameDiv.textContent=p.name||'';
+      td2.appendChild(nameDiv);
+      const td3=document.createElement('td');
+      td3.className=blogMode?'meta':'price';
+      td3.textContent=blogMode?(p.meta||''):formatPrice(p.meta);
+      const td4=document.createElement('td');
+      const a=document.createElement('a');
+      a.className='search-go';
+      a.href=p.link||'#';
+      a.textContent='Xem';
+      td4.appendChild(a);
+      tr.append(td1,td2,td3,td4);
       tbody.appendChild(tr);
     });
-    empty.style.display=filtered.length?'none':'block';
+    empty.style.display=items.length?'none':'block';
+  }
+  let reqId=0;
+  function fetchLatest(){
+    const kind=isBlogMode()?'blog':'product';
+    const myReq=++reqId;
+    const url='/api/search?type='+encodeURIComponent(kind);
+    fetch(url,{headers:{'X-Requested-With':'XMLHttpRequest'}})
+      .then(r=>r.json())
+      .then(data=>{ if(myReq===reqId) renderItems(Array.isArray(data.items)?data.items:[]); })
+      .catch(()=>{ if(myReq===reqId) renderItems([]); });
+  }
+  function submitSearch(){
+    const q=(input.value||'').trim();
+    const base=isBlogMode()?'/blog':'/products';
+    window.location.href=base+(q?'?s='+encodeURIComponent(q):'');
   }
   function openModal(){
-    collectProducts(); collectBlogs();
-    updateSearchUI(); renderRows(input.value);
+    updateSearchUI(); fetchLatest();
     modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
     setTimeout(()=>input.focus(),20);
@@ -71,9 +95,58 @@
     if(e.target.hasAttribute('data-close-search')) closeModal();
     if(e.target.closest('.search-go')) closeModal();
   });
-  input.addEventListener('input',()=>renderRows(input.value));
-  typeSelect.addEventListener('change',()=>{ updateSearchUI(); renderRows(input.value); input.focus(); });
+  input.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); submitSearch(); } });
+  submitBtn?.addEventListener('click',submitSearch);
+  typeSelect.addEventListener('change',()=>{ updateSearchUI(); fetchLatest(); input.focus(); });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('open')) closeModal(); });
+})();
+
+/* ── SIGNUP EMAIL (CTA) ── */
+(function(){
+  const form = document.getElementById('signupEmailForm');
+  if (!form) return;
+  const input = document.getElementById('signupEmailInput');
+  const btn = document.getElementById('signupEmailBtn');
+  const msg = document.getElementById('signupEmailMsg');
+  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+  function setMsg(text, kind){
+    if (!msg) return;
+    msg.textContent = text || '';
+    msg.className = 'cta-msg' + (kind ? ' cta-msg-' + kind : '');
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = (input.value || '').trim();
+    if (!email) { setMsg('Vui lòng nhập email', 'error'); input.focus(); return; }
+    if (!EMAIL_RE.test(email)) { setMsg('Email không hợp lệ', 'error'); input.focus(); return; }
+
+    btn.disabled = true;
+    setMsg('Đang xử lý...', 'info');
+
+    const fd = new FormData(form);
+    const csrf = form.querySelector('input[name=csrfmiddlewaretoken]')?.value || '';
+
+    try {
+      const res = await fetch('/signup-email', {
+        method: 'POST',
+        headers: { 'X-CSRFToken': csrf, 'X-Requested-With': 'XMLHttpRequest' },
+        body: fd,
+      });
+      const data = await res.json().catch(() => ({success:false, message:'Lỗi máy chủ'}));
+      if (data.success) {
+        setMsg(data.message || 'Đăng ký thành công', 'success');
+        form.reset();
+      } else {
+        setMsg(data.message || 'Đăng ký thất bại', 'error');
+      }
+    } catch(err) {
+      setMsg('Không kết nối được máy chủ', 'error');
+    } finally {
+      btn.disabled = false;
+    }
+  });
 })();
 
 /* ── MOBILE NAV ── */

@@ -3,8 +3,8 @@
 <html lang="vi">
 <head>
 
-    <link rel="stylesheet" href="{% static 'index.css' %}?v=27">
-    <script defer src="{% static 'index.js' %}?v=11"></script>
+    <link rel="stylesheet" href="{% static 'index.css' %}?v=29">
+    <script defer src="{% static 'index.js' %}?v=13"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -332,8 +332,10 @@
     <div class="search-modal-controls">
       <div class="search-controls-row">
         <div class="search-input-wrap">
-          <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
           <input id="productSearchInput" type="text" placeholder="Nhập tên sản phẩm...">
+          <button type="button" id="productSearchSubmit" class="search-submit-btn" aria-label="Tìm kiếm">
+            <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+          </button>
         </div>
         <select id="productSearchType" class="search-type-select" aria-label="Loại nội dung">
           <option value="product" selected>Sản phẩm</option>
@@ -343,14 +345,6 @@
     </div>
     <div class="search-table-wrap">
       <table class="search-table" aria-label="Bảng sản phẩm">
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th id="searchColName">Tên sản phẩm</th>
-            <th id="searchColMeta">Giá</th>
-            <th></th>
-          </tr>
-        </thead>
         <tbody id="productSearchBody"></tbody>
       </table>
       <p class="search-empty" id="productSearchEmpty">Không tìm thấy sản phẩm phù hợp.</p>
@@ -673,10 +667,12 @@
   <div class="container fade-up">
     <h2>Tin Tức Mới Nhất Của HYDRINITY</h2>
     <p>Đăng ký nhận bản tin để cập nhật kiến thức chăm sóc da và ưu đãi độc quyền từ HYDRINITY.</p>
-    <div class="cta-form">
-      <input type="email" placeholder="Nhập email của bạn...">
-      <button type="button">Đăng ký</button>
-    </div>
+    <form class="cta-form" id="signupEmailForm" novalidate>
+      {% csrf_token %}
+      <input type="email" id="signupEmailInput" name="email" placeholder="Nhập email của bạn..." required autocomplete="email">
+      <button type="submit" id="signupEmailBtn">Đăng ký</button>
+    </form>
+    <p class="cta-msg" id="signupEmailMsg" aria-live="polite"></p>
   </div>
 </section>
 

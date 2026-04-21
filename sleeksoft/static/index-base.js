@@ -71,17 +71,13 @@ document.addEventListener('change', function(e){
   }
 
   function openModal(){
+    const path = window.location.pathname;
+    if (path.startsWith('/blog')) typeSelect.value = 'blog';
+    else if (path.startsWith('/products')) typeSelect.value = 'product';
     updateSearchUI();
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const currentS = urlParams.get('s');
-      const path = window.location.pathname;
-      if (currentS && !input.value) {
-        if (path.startsWith('/blog')) typeSelect.value = 'blog';
-        else if (path.startsWith('/products')) typeSelect.value = 'product';
-        input.value = currentS;
-        updateSearchUI();
-      }
+      const currentS = new URLSearchParams(window.location.search).get('s');
+      if (currentS && !input.value) input.value = currentS;
     } catch(e) {}
     tbody.innerHTML=''; empty.style.display='none';
     fetchResults();
