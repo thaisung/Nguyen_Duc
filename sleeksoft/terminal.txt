@@ -55,7 +55,7 @@ du -sh upload
 
 cd /home/sleekproject
 source sleekenv/bin/activate
-cd /sleeksoft
+cd sleeksoft
 
 cd /home/sleekproject && source sleekenv/bin/activate && cd sleeksoft
 
