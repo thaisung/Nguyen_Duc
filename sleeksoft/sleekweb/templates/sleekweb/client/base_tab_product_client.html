@@ -303,19 +303,19 @@
           <a href="{% url 'about_lien_he_client' %}">Liên hệ</a>
         </div>
       </li>
-      <li><a href="{% url 'tab_best_sellers_client' %}"><i class="fas fa-bag-shopping"></i> Sản phẩm</a></li>
-      <li><a href="{% url 'nav_blog_client' %}"><i class="fas fa-book-open"></i> Blog</a></li>
+      <li><a href="{{domain}}{% url 'nav_products_client' %}"><i class="fas fa-bag-shopping"></i> Sản phẩm</a></li>
+      <li><a href="{{domain}}{% url 'nav_blog_client' %}"><i class="fas fa-book-open"></i> Blog</a></li>
       <li class="mobile-acc-item">
         <button type="button" class="mobile-accordion-trigger" aria-expanded="false">
           <span class="mobile-accordion-title"><i class="fas fa-handshake"></i> Danh sách đối tác</span>
           <i class="fas fa-chevron-down chevron"></i>
         </button>
         <div class="mobile-submenu">
-          <a href="{% url 'select_kvmb_client' %}">Đối tác miền Bắc</a>
-          <a href="{% url 'select_kvmn_client' %}">Đối tác miền Nam</a>
+          <a href="{{domain}}{% url 'select_kvmb_client' %}">Đối tác miền Bắc</a>
+          <a href="{{domain}}{% url 'select_kvmn_client' %}">Đối tác miền Nam</a>
         </div>
       </li>
-      <li><a href="{% url 'nav_nghien_cuu_lam_san' %}"><i class="fas fa-flask"></i> Nghiên cứu lâm sàng</a></li>
+      <li><a href="{{domain}}{% url 'nav_nghien_cuu_lam_san' %}"><i class="fas fa-flask"></i> Nghiên cứu lâm sàng</a></li>
     </ul>
     <a href="tel:{{obj.Phone_number}}" class="mobile-nav-phone"><i class="fas fa-phone"></i> {{obj.Phone_number}}</a>
   </div>
@@ -496,18 +496,18 @@
     </div>
     <div class="products-tabs fade-up">
       <a class="tab-btn{% if request.resolver_match.url_name == 'tab_best_sellers_client' %} active{% endif %}"
-         href="{% url 'tab_best_sellers_client' %}">Best Sellers</a>
+         href="{{domain}}{% url 'tab_best_sellers_client' %}">Best Sellers</a>
       <a class="tab-btn{% if request.resolver_match.url_name == 'tab_products_client' %} active{% endif %}"
-         href="{% url 'tab_products_client' %}">Products</a>
+         href="{{domain}}{% url 'tab_products_client' %}">Products</a>
       <a class="tab-btn{% if request.resolver_match.url_name == 'tab_regimens_client' %} active{% endif %}"
-         href="{% url 'tab_regimens_client' %}">Regimens</a>
+         href="{{domain}}{% url 'tab_regimens_client' %}">Regimens</a>
     </div>
     <div class="products-grid fade-up">
       {% block content %}
       {% for i in list_Product %}
       <div class="product-card" data-cat="all">
         <div class="product-img">
-          <a href="{% url 'slug_router' slug=i.Slug %}">
+          <a href="{{domain}}{% url 'slug_router' slug=i.Slug %}">
             <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{ i.Name }}">
           </a>
         </div>

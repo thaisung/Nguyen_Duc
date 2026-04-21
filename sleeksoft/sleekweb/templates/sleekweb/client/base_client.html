@@ -367,19 +367,19 @@
           <a href="{% url 'about_lien_he_client' %}">Liên hệ</a>
         </div>
       </li>
-      <li><a href="/products-home"><i class="fas fa-bag-shopping"></i> Sản phẩm</a></li>
-      <li><a href="{% url 'nav_blog_client' %}"><i class="fas fa-book-open"></i> Blog</a></li>
+      <li><a href="{{domain}}{% url 'nav_products_client' %}"><i class="fas fa-bag-shopping"></i> Sản phẩm</a></li>
+      <li><a href="{{domain}}{% url 'nav_blog_client' %}"><i class="fas fa-book-open"></i> Blog</a></li>
       <li class="mobile-acc-item">
         <button type="button" class="mobile-accordion-trigger" aria-expanded="false">
           <span class="mobile-accordion-title"><i class="fas fa-handshake"></i> Danh sách đối tác</span>
           <i class="fas fa-chevron-down chevron"></i>
         </button>
         <div class="mobile-submenu">
-          <a href="{% url 'select_kvmb_client' %}">Khu vực miền Bắc</a>
-          <a href="{% url 'select_kvmn_client' %}">Khu vực miền Nam</a>
+          <a href="{{domain}}{% url 'select_kvmb_client' %}">Khu vực miền Bắc</a>
+          <a href="{{domain}}{% url 'select_kvmn_client' %}">Khu vực miền Nam</a>
         </div>
       </li>
-      <li><a href="{% url 'nav_nghien_cuu_lam_san' %}"><i class="fas fa-flask"></i> Nghiên cứu lâm sàng</a></li>
+      <li><a href="{{domain}}{% url 'nav_nghien_cuu_lam_san' %}"><i class="fas fa-flask"></i> Nghiên cứu lâm sàng</a></li>
     </ul>
     <a href="tel:{{obj.Phone_number}}" class="mobile-nav-phone"><i class="fas fa-phone"></i>{{obj.Phone_number}}</a>
   </div>
