@@ -101,22 +101,22 @@ def about_tin_tuc_giai_thuong_detail_client(request,slug):
         context['list_Product'] = Product.objects.all()
         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
         # print('context:',context)
-        return render(request, 'sleekweb/client/link_tt_gt_1_client.html', context, status=200)
+        return render(request, 'sleekweb/client/tt_gt_detail_client.html', context, status=200)
 
-def link_tt_gt_1_client(request):
-    if request.method == 'GET':
-        context = {}
-        context['domain'] = settings.DOMAIN
-        context['list_Product'] = Product.objects.all()
-        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        # print('context:',context)
-        return render(request, 'sleekweb/client/link_tt_gt_1_client.html', context, status=200)
+# def link_tt_gt_1_client(request):
+#     if request.method == 'GET':
+#         context = {}
+#         context['domain'] = settings.DOMAIN
+#         context['list_Product'] = Product.objects.all()
+#         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+#         # print('context:',context)
+#         return render(request, 'sleekweb/client/link_tt_gt_1_client.html', context, status=200)
     
-def link_tt_gt_2_client(request):
-    if request.method == 'GET':
-        context = {}
-        context['domain'] = settings.DOMAIN
-        context['list_Product'] = Product.objects.all()
-        context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
-        # print('context:',context)
-        return render(request, 'sleekweb/client/link_tt_gt_2_client.html', context, status=200)
+# def link_tt_gt_2_client(request):
+#     if request.method == 'GET':
+#         context = {}
+#         context['domain'] = settings.DOMAIN
+#         context['list_Product'] = Product.objects.all()
+#         context['list_image_slider_3'] = Photo_Slider.objects.filter(Count=3)
+#         # print('context:',context)
+#         return render(request, 'sleekweb/client/link_tt_gt_2_client.html', context, status=200)

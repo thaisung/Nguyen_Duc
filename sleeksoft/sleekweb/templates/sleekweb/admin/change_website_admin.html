@@ -38,7 +38,7 @@
                     <label class="font-semibold">
                         Logo
                     </label>
-                    <div class="flex justify-center items-center">
+                    <div class="flex justify-center items-center bg-[#0F2340]" style="background-color: #0F2340; padding: 10px; border: #0F2340; border-radius: 10px; margin: 10px;">
                         <img src="{% if obj.Logo %}{{ obj.Logo.url }}{% endif %}" class="w-[80px] h-auto rounded-md my-3" />
                     </div>
                     <input type="file" class="rounded-md w-full" accept="image/*" name="Logo" />

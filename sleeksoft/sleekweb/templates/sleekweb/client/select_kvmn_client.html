@@ -23,89 +23,196 @@
     <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
 {% endblock %}
 {% block breadcrumb %}
-    <a href="{% url 'select_kvmn_client' %}" class="hover:cursor-pointer hover:underline">Danh sách đối tác Miền Nam</a>
-{% endblock %}
-{% block breadcrumb_mb %}
-    <a href="{% url 'select_kvmn_client' %}" class="hover:cursor-pointer hover:underline">Danh sách đối tác Miền Nam</a>
+    <a href="{{domain}}" class="breadcrumb-item">Trang chủ</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="{{domain}}{% url 'select_kvmn_client' %}" class="breadcrumb-item">Đối tác miền Nam</a>
 {% endblock %}
 {% block content %}
-<main class=" flex flex-col items-center w-full mb-6">
-    <div class="hidden lg:flex flex-col items-center">
-        <h1 class="uppercase font-medium text-[25px] lg:text-[64px] text-[#11284A]">
-            Danh sách đối tác
-        </h1>
-        <div class="w-[366px] h-[3px] bg-[#11284A] mt-[15px]"></div>
-        <span class="uppercase font-medium text-[15] lg:text-[40px] text-[#11284A] mt-[30px]">Khu vực miền Nam</span>
+
+<!-- ████ PARTNERS ████ -->
+<section class="section partners">
+  <div class="container">
+
+    <div class="partners-header fade-up">
+      <span class="section-tag">Đối tác</span>
+      <h1 class="newyork-title partners-title">Danh Sách Đối Tác</h1>
+      <div class="partners-region">
+        <span class="partners-region__line"></span>
+        <span class="partners-region__text">Khu vực miền Nam</span>
+        <span class="partners-region__line"></span>
+      </div>
     </div>
-    <div class="flex lg:hidden flex-col items-center justify-center bg-[#11284A] w-full h-[34px]">
-        <span class="uppercase font-normal text-[16px] lg:text-[40px] text-white">Khu vực miền Nam</span>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 w-full  mt-[20px] lg:mt-[50px] gap-6 px-[20px]">
-        {% for i in list_Edit_dsdt_mn %}
-        <div class="flex gap-2 ">
-            <div class="pt-2">
-                <img alt="img" class="min-w-[50px] max-w-[50px] h-auto " src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" >
-            </div>
-            <div class="flex flex-col gap-1">
-                <span class="uppercase font-medium text-[18px] lg:text-[25px] text-[#11284A] ff-bb ">{{i.Name}}</span>
-                <span class="uppercase font-medium text-[13px] text-[#11284A] ">{{i.Address}}</span>
-                {% if i.Link %}
-                <a href="{{i.Link}}" rel="nofollow noopener noreferrer" class=" uppercase flex justify-center items-center w-[110px] font-medium text-[12px] lg:text-[16px] text-white bg-[#11284A] rounded-full py-1">
-                    Xem thêm
-                </a>
-                {% endif %}
-            </div>
+
+    <div class="partners-grid fade-up">
+      {% for i in list_Edit_dsdt_mn %}
+      <article class="partner-card">
+        {% if i.Photo %}
+        <div class="partner-media">
+          <img src="{{i.Photo.url}}" alt="{{i.Name}}" loading="lazy">
         </div>
-        {% endfor %}
-    </div>
-    <div class="  flex lg:hidden items-center justify-center text-white  w-full h-[100px] lg:h-[450px] bg-[#11284A] text-center uppercase font-bold text-[30px]  overflow-hidden mt-[20px] lg:mt-[58px]">
-        <img alt="Hình ảnh 3" src="{% if obj_Count_1.Photo3  %}{{obj_Count_1.Photo3.url}}{% endif %}"  class="w-full h-full object-cover" />
-    </div>
-    <div class="flex lg:hidden flex-col items-center py-[20px] gap-[20px] lg:py-[58px] lg:gap-[58px]">
-        <span class="font-bold text-[#11284A] text-[21px] lg:text-[55px]">
-            THE RESULTS ARE IN
-        </span>
-        <div class="w-full flex justify-center">
-            <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
-                <div class="swiper-wrapper">
-                    {% for i in list_image_slider_3 %}
-                    <div class="swiper-slide">
-                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
-                    </div>
-                    {% endfor %}
-                </div>
-                <!-- Chỉ có dấu chấm -->
-                <div class="swiper-pagination hidden lg:block"></div>
-            </div>
-            <script>
-                var swiper = new Swiper(".mySwiper2", {
-                  loop: true, 
-                  autoplay: { delay: 3000 }, // Tự động chạy
-                  pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                  },
-                });
-              </script>
-              <style>
-                /* Màu xám cho chấm tròn */
-                .swiper-pagination-bullet {
-                    background: #9ca3af !important; /* Tailwind gray-400 */
-                    width: 17px;
-                    height: 17px;
-                    border-radius: 50%;
-                    transition: all 0.3s ease;
-                    opacity: 1;
-                }
-            
-                /* Màu trắng và kích thước lớn hơn khi active */
-                .swiper-pagination-bullet-active {
-                    background: #ffffff !important; /* Tailwind white */
-                    width: 22px;
-                    height: 22px;
-                }
-            </style>
+        {% endif %}
+        <div class="partner-body">
+          <h3 class="partner-name">{{i.Name}}</h3>
+          {% if i.Address %}
+          <p class="partner-addr"><i class="fas fa-location-dot"></i>{{i.Address}}</p>
+          {% endif %}
+          {% if i.Link %}
+          <a href="{{i.Link}}" target="_blank" rel="nofollow noopener noreferrer" class="partner-action">
+            Xem thêm <i class="fas fa-arrow-right"></i>
+          </a>
+          {% endif %}
         </div>
+      </article>
+      {% endfor %}
     </div>
-</main>
+
+  </div>
+</section>
+
+<style>
+/* ── PARTNERS PAGE ── */
+.partners { padding:clamp(40px, 6vw, 72px) 0; }
+
+.partners-header {
+  text-align:center;
+  margin-bottom:clamp(32px, 4vw, 48px);
+}
+.partners-title {
+  font-size:clamp(26px, 3.8vw, 44px) !important;
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.15;
+  color:var(--navy);
+  text-transform:uppercase;
+  margin:10px 0 0;
+}
+.partners-region {
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  margin-top:18px;
+}
+.partners-region__line {
+  width:48px; height:1px;
+  background:var(--gold);
+  opacity:.7;
+}
+.partners-region__text {
+  font-family:var(--font-body);
+  font-size:12.5px; font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* Grid + card */
+.partners-grid {
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:18px 24px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.partner-card {
+  position:relative;
+  display:flex; align-items:center; gap:20px;
+  padding:20px 22px;
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  transition:var(--ease);
+}
+.partner-card::before {
+  content:"";
+  position:absolute; inset:0 auto 0 0;
+  width:3px;
+  background:linear-gradient(to bottom, var(--gold), var(--gold-mid));
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .35s var(--ease);
+}
+.partner-card:hover {
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-md);
+  border-color:transparent;
+}
+.partner-card:hover::before { transform:scaleY(1); }
+
+.partner-media {
+  flex:0 0 auto;
+  width:100px;
+  aspect-ratio:1/1;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg-alt);
+  border-radius:12px;
+  overflow:hidden;
+}
+.partner-media img {
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+}
+.partner-body {
+  display:flex; flex-direction:column;
+  gap:8px; flex:1; min-width:0;
+}
+.partner-name {
+  font-family:var(--font-heading);
+  font-size:clamp(14px, 1.3vw, 16px);
+  font-weight:700;
+  color:var(--navy);
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  line-height:1.3;
+  margin:0;
+}
+.partner-addr {
+  display:flex; align-items:flex-start; gap:7px;
+  font-size:14px;
+  color:var(--text-mid);
+  line-height:1.55;
+  letter-spacing:.2px;
+  margin:0;
+}
+.partner-addr i {
+  font-size:11px;
+  color:var(--gold);
+  margin-top:5px;
+  flex-shrink:0;
+}
+.partner-action {
+  align-self:flex-start;
+  display:inline-flex; align-items:center; gap:7px;
+  margin-top:6px;
+  padding:7px 16px;
+  font-family:var(--font-body);
+  font-size:10.5px; font-weight:700;
+  letter-spacing:1.3px; text-transform:uppercase;
+  color:#fff; text-decoration:none;
+  background:var(--navy);
+  border:1px solid var(--navy);
+  border-radius:999px;
+  transition:transform .25s var(--ease), gap .25s, border-color .25s, color .25s, background .25s;
+}
+.partner-action i { font-size:9px; transition:transform .25s; }
+.partner-action:hover {
+  gap:10px;
+  background:transparent;
+  border-color:var(--gold);
+  color:var(--gold);
+}
+.partner-action:hover i { transform:translateX(3px); }
+
+@media (max-width:960px) {
+  .partners-grid { grid-template-columns:1fr; gap:14px; max-width:640px; }
+}
+@media (max-width:480px) {
+  .partner-card { padding:14px 16px; gap:14px; }
+  .partner-media { width:80px; border-radius:10px; }
+  .partners-region__line { width:32px; }
+  .partners-region__text { font-size:11.5px; letter-spacing:2.2px; }
+}
+</style>
+
 {% endblock %}

@@ -1,0 +1,228 @@
+{% extends './base_client.html' %}
+{% block title %}
+    <title>{{obj_Seo_Page.Seo_Title}}</title>
+{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="keywords" content="Sản phẩm,Hydrinity" />
+{% endblock %}
+{% block canonical %}
+    <link rel="canonical" href="{{domain}}{% url 'nav_products_client' %}">
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hydrinity">
+    <meta property="og:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta property="og:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta property="og:url" content="{{domain}}{% url 'nav_products_client' %}">
+    <meta property="og:image" content="{{domain}}/upload/website/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{obj_Seo_Page.Seo_Title}}">
+    <meta name="twitter:description" content="{{obj_Seo_Page.Seo_Description}}">
+    <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
+{% endblock %}
+{% block breadcrumb %}
+    <a href="{% url 'nav_products_client' %}" class="hover:cursor-pointer hover:underline">Sản phẩm</a>
+{% endblock %}
+{% block breadcrumb_mb %}
+    <a href="{% url 'nav_products_client' %}" class="hover:cursor-pointer hover:underline">Sản phẩm</a>
+{% endblock %}
+{% block content %}
+<main class=" flex flex-col items-center w-full mb-6">
+    <div class="hidden lg:flex flex-col items-center">
+        <h1 class="uppercase font-medium text-[64px] text-black">
+            Sản phẩm
+        </h1>
+        <div class="w-full h-[2px] bg-[#11284A]"></div>
+    </div>
+    <div class="hidden lg:grid grid-cols-3 items-center w-[1274px] mt-[50px] gap-[50px] place-items-center">
+        {% for i in list_Product %}
+        <div class="product-item flex flex-col items-center w-[306px] h-full gap-3">
+            <a href="{% url 'slug_router' slug=i.Slug %}">
+                <img alt="img" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
+            </a>
+            <div class="flex flex-col items-center justify-between h-full  gap-6 mt-2 grow">
+                <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[20px] text-[#11284A] text-center">
+                    {{i.Name}}
+                </a>
+                <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 grow">
+                    <div class="relative">
+                        <div class="click_tab_size_product hover:cursor-pointer z-20 relative flex items-center w-[264px] h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                            <div class="absolute bottom-6 left-8">
+                                <div class="relative flex items-center justify-center">
+                                    <img alt="img" class="w-[100px] h-[18px]" src="/upload/website/background.png" />
+                                    <span class=" absolute inset-0 font-medium text-[12px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                <span class="name-display font-medium text-[12px]  text-[#11284A]">
+                                    {{i.list_size.all.last.Name}}
+                                </span>
+                                <span>
+                                    <svg class="open_tab_size_product" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                            fill="#11284A" />
+                                    </svg>
+                                    <svg class="close_tab_size_product" style="display: none;" width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                            fill="#11284A" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div style="display: none;"  class="tab_size_product z-10 absolute top-[15px] pt-[15px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                            {% for j in i.list_size.all %}
+                            <a class="size-option font-medium text-[12px] text-[#11284A] py-1 cursor-pointer" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <span class="uppercase z-[-2] font-bold text-[25px] text-black text-center">
+                        GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <script>
+            $(document).ready(function(){
+                $('.product-item .size-option').on('click', function() {
+            var name = $(this).data('name');
+            var price = $(this).data('price');
+
+            var parent = $(this).closest('.product-item');
+
+            // Cập nhật tên size
+            parent.find('.name-display').text(name);
+
+            // Cập nhật giá có format số
+            parent.find('.price-display').text(formatNumber(price));
+            });
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $(".click_tab_size_product").click(function (event) {
+                    event.stopPropagation(); // Ngăn chặn sự kiện click lan ra ngoài
+        
+                    let $tab = $(this).next(".tab_size_product");
+                    let $openIcon = $(this).find(".open_tab_size_product");
+                    let $closeIcon = $(this).find(".close_tab_size_product");
+        
+                    // Ẩn tất cả dropdown khác
+                    $(".tab_size_product").not($tab).slideUp(200).removeClass("open");
+                    $(".open_tab_size_product").not($openIcon).show();
+                    $(".close_tab_size_product").not($closeIcon).hide();
+        
+                    // Toggle dropdown hiện tại
+                    $tab.slideToggle(200).toggleClass("open");
+                    $openIcon.toggle();
+                    $closeIcon.toggle();
+                });
+        
+                // Click ra ngoài sẽ ẩn dropdown
+                $(document).click(function () {
+                    $(".tab_size_product").slideUp(200).removeClass("open");
+                    $(".close_tab_size_product").hide();
+                    $(".open_tab_size_product").show();
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Lấy vị trí cuộn từ LocalStorage
+                const scrollPosition = localStorage.getItem("scrollPosition");
+                if (scrollPosition) {
+                    window.scrollTo(0, scrollPosition);
+                    localStorage.removeItem("scrollPosition"); // Xóa sau khi cuộn
+                }
+        
+                // Lưu vị trí trước khi chuyển trang
+                document.querySelectorAll("a").forEach(link => {
+                    link.addEventListener("click", function () {
+                        localStorage.setItem("scrollPosition", window.scrollY);
+                    });
+                });
+            });
+        </script>
+    </div>
+    <div class=" flex lg:hidden flex-col w-full h-full items-center justify-center font-normal text-[20px] divide-y-[2px]  divide-white text-white">
+        <div class="flex flex-col w-full">
+            <div  class="click_tab_product_mobile1 uppercase grow flex items-center justify-center w-full p-2 font-bold text-[] text-[#11284A]">
+                Sản phẩm
+            </div>
+            <div class="tab_product_mobile1  grid grid-cols-2 gap-[20px] w-full p-[20px]" >
+                {% for i in list_Product %}
+                <div class="product-item flex flex-col items-center justify-between gap-3 w-full h-full">
+                    <a href="{% url 'slug_router' slug=i.Slug %}">
+                        <img alt="img" class="w-full" src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}"/>
+                    </a>
+                    <div class="flex flex-col items-center justify-between h-full  gap-4 mt-2 w-full">
+                        <a href="{% url 'slug_router' slug=i.Slug %}" class="uppercase font-medium text-[10px] text-[#11284A] text-center">
+                            {{i.Name}}
+                        </a>
+                        <div class="flex flex-col items-center justify-end h-full  gap-4 mt-2 w-full">
+                            <div class="relative w-full">
+                                <div class="click_tab_size_product z-20 hover:cursor-pointer relative flex items-center w-full h-[20px] md:h-[30px]  border-[1px] border-[#11284A] rounded-full" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
+                                    <div class="absolute bottom-3 md:bottom-[1.35rem] left-8">
+                                        <div class="relative flex items-center justify-center">
+                                            <img alt="img" class="w-[65px] h-[16px]" src="/upload/website/background.png" />
+                                            <span class=" absolute inset-0 font-medium text-[8px] italic text-[#11284A]  whitespace-nowrap text-center">Chọn kích thước</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between w-full pl-[40px] pr-[15px]">
+                                        <span class="name-display font-medium text-[8px]  text-[#11284A]">
+                                            {{i.list_size.all.last.Name}}
+                                        </span>
+                                        <span>
+                                            <svg class="open_tab_size_product" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M0 0.195007C2.7 2.49501 5 5.15501 7.22 7.89501H5.89C6.99 6.53501 8.12001 5.18501 9.32001 3.89501C10.51 2.60501 11.75 1.34501 13.12 0.195007C11.48 3.34501 9.4 6.17501 7.23 8.95501L6.56 9.80501C4.16 6.75501 1.81 3.66501 0 0.195007Z"
+                                                    fill="#11284A" />
+                                            </svg>
+                                            <svg class="close_tab_size_product" style="display: none;" width="10" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M13.1201 9.80493C10.4201 7.50493 8.12012 4.84493 5.90012 2.10493H7.23012C6.13012 3.46493 5.00011 4.81493 3.80011 6.10493C2.61011 7.39493 1.37012 8.65493 0.00012207 9.80493C1.64012 6.65493 3.72012 3.82493 5.89012 1.04493L6.56012 0.194931C8.96012 3.24493 11.3101 6.33493 13.1201 9.80493Z"
+                                                    fill="#11284A" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div style="display: none;"  class="tab_size_product z-10 absolute top-[10px] md:top-[18px] pt-[12px] pl-[40px] pr-[15px] flex flex-col px-3  w-full bg-[#FBFBFB] bg-opacity-90 rounded-b-md border-b-[1px] border-r-[1px] border-l-[1px] border-[#11284A]">
+                                    {% for j in i.list_size.all %}
+                                    <a class="size-option font-medium text-[8px] text-[#11284A] py-[2px]" data-name="{{ j.Name }}" data-price="{{ j.Price }}">{{j.Name}}</a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <span class="uppercase z-[-2] font-bold text-[12px] text-black text-center">
+                                GIÁ: <span class="format_number price-display">{{i.list_size.all.last.Price}}</span> VNĐ 
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $(".click_tab_product_mobile").click(function () {
+                    $(".tab_product_mobile").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                    $(".open_tab_product_mobile, .close_tab_product_mobile").toggle(); // Đổi icon
+                });
+
+                $(".click_tab_product_mobile1").click(function () {
+                    $(".tab_product_mobile1").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                    $(".open_tab_product_mobile1, .close_tab_product_mobile1").toggle(); // Đổi icon
+                });
+
+                $(".click_tab_product_mobile2").click(function () {
+                    $(".tab_product_mobile2").slideToggle(200).toggleClass("open");; // Ẩn/Hiện tab_about
+                    $(".open_tab_product_mobile2, .close_tab_product_mobile2").toggle(); // Đổi icon
+                });
+            });
+        </script>
+    </div>
+</main>
+{% endblock %}

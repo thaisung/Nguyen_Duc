@@ -1,0 +1,373 @@
+{% extends './base_client.html' %}
+{% block title %}
+    <title>{{obj1.Seo_Title}}</title>
+{% endblock %}
+{% block seo_tag %}
+    <meta name="description" content="{{obj1.Seo_Description}}">
+    <meta name="keywords" content="{{obj1.Seo_Title}},Hydrinity" />
+{% endblock %}
+{% block canonical %}
+    <link rel="canonical" href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}">
+{% endblock %}
+{% block meta_tag %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Hydrinity">
+    <meta property="og:title" content="{{obj1.Seo_Title}}">
+    <meta property="og:description" content="{{obj1.Seo_Description}}">
+    <meta property="og:url" content="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}">
+    <meta property="og:image" content="{% if obj1.Photo %}{{domain}}{{obj1.Photo.url}}{% endif %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{obj1.Seo_Title}}">
+    <meta name="twitter:description" content="{{obj1.Seo_Description}}">
+    <meta name="twitter:image" content="{% if obj1.Photo %}{{domain}}{{obj1.Photo.url}}{% endif %}">
+{% endblock %}
+{% block breadcrumb %}
+    <a href="{{domain}}" class="breadcrumb-item">Trang chủ</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_client' %}" class="breadcrumb-item">Tin tức &amp; Giải thưởng</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug %}" class="breadcrumb-item breadcrumb-current-item">{{obj1.Title}}</a>
+{% endblock %}
+{% block content %}
+
+<!-- ████ TTGT HERO ████ -->
+<section class="ttgt-hero">
+  <div class="ttgt-hero__bg">
+    {% if obj1.Photo %}<img src="{{obj1.Photo.url}}" alt="{{obj1.Title}}" loading="eager">{% endif %}
+  </div>
+  <div class="container ttgt-hero__content fade-up">
+    <!-- <span class="section-tag ttgt-hero__tag">Tin tức &amp; Giải thưởng</span> -->
+    <h1 class="ttgt-hero__title newyork-title">{{obj1.Title}}</h1>
+  </div>
+</section>
+
+<!-- ████ TTGT DETAIL ████ -->
+<section class="section blog-detail">
+  <div class="container">
+    <div class="blog-detail-grid fade-up">
+
+      <article class="blog-detail-main">
+        <div class="ckeditor-content">
+          {{ obj1.Content|safe }}
+        </div>
+
+        {% url 'about_tin_tuc_giai_thuong_detail_client' slug=obj1.Slug as detail_path %}
+        <div class="share-row">
+          <span class="share-label">Chia sẻ</span>
+          <a class="share-btn share-fb"
+             href="https://www.facebook.com/sharer.php?u={{domain}}{{detail_path}}"
+             target="_blank" rel="noopener noreferrer" aria-label="Chia sẻ Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="share-btn share-tw"
+             href="https://twitter.com/share?url={{domain}}{{detail_path}}&text={{obj1.Title|urlencode}}"
+             target="_blank" rel="noopener noreferrer" aria-label="Chia sẻ Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a class="share-btn share-in"
+             href="https://www.linkedin.com/shareArticle?mini=true&url={{domain}}{{detail_path}}&title={{obj1.Title|urlencode}}"
+             target="_blank" rel="noopener noreferrer" aria-label="Chia sẻ LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a class="share-btn share-pin"
+             href="https://pinterest.com/pin/create/button?url={{domain}}{{detail_path}}{% if obj1.Photo %}&media={{domain}}{{obj1.Photo.url}}{% endif %}&description={{obj1.Title|urlencode}}"
+             target="_blank" rel="noopener noreferrer" aria-label="Chia sẻ Pinterest">
+            <i class="fab fa-pinterest-p"></i>
+          </a>
+          <a class="share-btn share-mail"
+             href="mailto:?subject={{obj1.Title|urlencode}}&body={{domain}}{{detail_path}}"
+             aria-label="Gửi email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </article>
+
+      {% if list_ttgt1 %}
+      <aside class="blog-sidebar">
+        <div class="sidebar-box">
+          <div class="sidebar-head">Bài viết mới</div>
+          <ul class="sidebar-list">
+            {% for i in list_ttgt1|slice:":5" %}
+            <li>
+              <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" class="sidebar-item">
+                <div class="sidebar-item__thumb">
+                  {% if i.Photo %}<img src="{{i.Photo.url}}" alt="{{i.Title}}" loading="lazy">{% endif %}
+                </div>
+                <span class="sidebar-item__title">{{i.Title}}</span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </aside>
+      {% endif %}
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── TTGT HERO ── */
+.ttgt-hero {
+  position:relative;
+  width:100%;
+  min-height:clamp(220px, 32vw, 360px);
+  display:flex; align-items:center;
+  overflow:hidden;
+  background:var(--navy);
+}
+.ttgt-hero__bg { position:absolute; inset:0; z-index:0; }
+.ttgt-hero__bg img {
+  width:100%; height:100%;
+  object-fit:cover;
+}
+.ttgt-hero::after {
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,
+    rgba(15,35,64,.35) 0%,
+    rgba(15,35,64,.75) 100%);
+  z-index:1;
+}
+.ttgt-hero__content {
+  position:relative; z-index:2;
+  padding:clamp(32px, 5vw, 56px) var(--pad-x);
+  text-align:center;
+  max-width:960px;
+  margin:0 auto;
+}
+.ttgt-hero__tag {
+  color:var(--gold-pale) !important;
+  border-color:rgba(245,200,96,.35) !important;
+  margin-bottom:16px;
+}
+.ttgt-hero__title {
+  font-size:clamp(22px, 3.6vw, 40px) !important;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:.3px;
+  color:#fff;
+  text-transform:uppercase;
+  margin:0;
+}
+
+/* ── DETAIL LAYOUT ── */
+.blog-detail { padding:clamp(32px, 5vw, 64px) 0; }
+.blog-detail-grid {
+  display:grid;
+  grid-template-columns:minmax(0, 1fr) 320px;
+  gap:48px;
+  max-width:1280px;
+  margin:0 auto;
+  align-items:start;
+}
+.blog-detail-main {
+  min-width:0;
+  padding-right:32px;
+  border-right:1px solid var(--border);
+}
+
+/* Sidebar */
+.blog-sidebar {
+  display:flex; flex-direction:column;
+  gap:24px;
+  position:sticky;
+  top:100px;
+}
+.sidebar-box {
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  overflow:hidden;
+}
+.sidebar-head {
+  padding:12px 16px;
+  font-family:var(--font-body);
+  font-size:12px; font-weight:700;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:#fff;
+  background:var(--navy);
+}
+.sidebar-list {
+  list-style:none;
+  margin:0; padding:8px;
+  display:flex; flex-direction:column;
+}
+.sidebar-list li + li { border-top:1px solid var(--border-light); }
+.sidebar-item {
+  display:flex; gap:12px; align-items:center;
+  padding:10px;
+  text-decoration:none;
+  color:inherit;
+  border-radius:8px;
+  transition:var(--ease);
+}
+.sidebar-item:hover { background:var(--bg-alt); }
+.sidebar-item__thumb {
+  flex:0 0 auto;
+  width:56px; height:56px;
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--bg-alt);
+}
+.sidebar-item__thumb img {
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+}
+.sidebar-item__title {
+  font-family:var(--font-main);
+  font-size:13.5px;
+  font-weight:600;
+  line-height:1.4;
+  color:var(--navy);
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  transition:color .25s;
+}
+.sidebar-item:hover .sidebar-item__title { color:var(--gold); }
+
+/* Share row */
+.share-row {
+  display:flex; align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:40px;
+  padding-top:28px;
+  border-top:1px solid var(--border);
+}
+.share-label {
+  font-family:var(--font-body);
+  font-size:11.5px; font-weight:700;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-right:6px;
+}
+.share-btn {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px;
+  border-radius:50%;
+  background:var(--bg);
+  border:1px solid var(--border);
+  color:var(--navy);
+  text-decoration:none;
+  transition:var(--ease);
+}
+.share-btn i { font-size:14px; }
+.share-btn:hover {
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+  border-color:transparent;
+  color:#fff;
+}
+.share-fb:hover   { background:#1877F2; }
+.share-tw:hover   { background:#1DA1F2; }
+.share-in:hover   { background:#0A66C2; }
+.share-pin:hover  { background:#E60023; }
+.share-mail:hover { background:var(--navy); }
+
+@media (max-width:960px) {
+  .blog-detail-grid { grid-template-columns:1fr; gap:32px; }
+  .blog-detail-main { padding-right:0; border-right:0; }
+  .blog-sidebar { position:static; }
+}
+
+/* breadcrumb current truncate */
+.breadcrumb-current-item {
+  max-width:420px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+@media (max-width:640px) {
+  .breadcrumb-current-item { max-width:180px; }
+}
+
+/* ── CKEDITOR CONTENT ── */
+.ckeditor-content {
+  font-family:var(--font-main);
+  font-size:15.5px;
+  line-height:1.8;
+  color:var(--text);
+  white-space:normal;
+  word-break:break-word;
+  overflow-wrap:break-word;
+  max-width:100%;
+  box-sizing:border-box;
+}
+.ckeditor-content p { margin:0 0 1.2em; }
+.ckeditor-content h1,
+.ckeditor-content h2,
+.ckeditor-content h3,
+.ckeditor-content h4 {
+  font-family:var(--font-heading);
+  font-weight:700;
+  color:var(--navy);
+  margin:1.6em 0 .7em;
+  line-height:1.3;
+  letter-spacing:.2px;
+}
+.ckeditor-content h2 { font-size:clamp(20px, 2.2vw, 26px); }
+.ckeditor-content h3 { font-size:clamp(17px, 1.8vw, 21px); }
+.ckeditor-content h4 { font-size:16px; }
+.ckeditor-content a { color:var(--gold); text-decoration:none; }
+.ckeditor-content a:hover { text-decoration:underline; }
+.ckeditor-content ul,
+.ckeditor-content ol { margin:0 0 1.2em 1.6em; padding:0; }
+.ckeditor-content li { margin-bottom:.5em; }
+.ckeditor-content blockquote {
+  margin:1.4em 0;
+  padding:14px 20px;
+  border-left:3px solid var(--gold);
+  background:var(--bg-alt);
+  color:var(--text-mid);
+  font-style:italic;
+  border-radius:0 var(--r-sm) var(--r-sm) 0;
+}
+.ckeditor-content img {
+  max-width:100% !important;
+  height:auto !important;
+  display:block;
+  margin:1.4em auto;
+  border-radius:var(--r-md);
+  object-fit:contain;
+}
+.ckeditor-content table {
+  display:block;
+  width:100%;
+  overflow-x:auto;
+  border-collapse:collapse;
+  margin-bottom:1.2em;
+}
+.ckeditor-content th,
+.ckeditor-content td {
+  border:1px solid var(--border);
+  padding:10px 12px;
+}
+.ckeditor-content th {
+  background:var(--bg-alt);
+  color:var(--navy);
+  font-weight:700;
+  text-align:left;
+}
+.ckeditor-content iframe {
+  max-width:100%;
+  border-radius:var(--r-md);
+}
+.ckeditor-content pre {
+  white-space:pre-wrap;
+  word-break:break-word;
+  background:var(--bg-alt);
+  padding:14px 16px;
+  border-radius:var(--r-sm);
+  font-size:13.5px;
+}
+</style>
+
+{% endblock %}

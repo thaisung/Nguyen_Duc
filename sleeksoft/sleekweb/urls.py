@@ -119,6 +119,7 @@ urlpatterns = [
     #api
     path('add-mb', add_dsdt_mb,name='add_dsdt_mb'),
     path('add-mn', add_dsdt_mn,name='add_dsdt_mn'),
+    path('api/search', search_client, name='search_client'),
     #endapi
 
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict}, name='sitemap'),
@@ -146,8 +147,8 @@ urlpatterns = [
     path('about-us', about_ve_chung_toi_client,name='about_ve_chung_toi_client'),
     path('news-awards', about_tin_tuc_giai_thuong_client,name='about_tin_tuc_giai_thuong_client'),
     path('news-awards/<str:slug>/',about_tin_tuc_giai_thuong_detail_client,name='about_tin_tuc_giai_thuong_detail_client'),
-    path('news-awards/cultivating-confidence-the-hydrinity-way-to-a-luxurious-skin-journey', link_tt_gt_1_client,name='link_tt_gt_1_client'),
-    path('news-awards/hydrinity-accelerated-skin-science-expands-into-the-united-kingdom-and-ireland', link_tt_gt_2_client,name='link_tt_gt_2_client'),
+    # path('news-awards/cultivating-confidence-the-hydrinity-way-to-a-luxurious-skin-journey', link_tt_gt_1_client,name='link_tt_gt_1_client'),
+    # path('news-awards/hydrinity-accelerated-skin-science-expands-into-the-united-kingdom-and-ireland', link_tt_gt_2_client,name='link_tt_gt_2_client'),
     path('vision-mission', about_tam_nhin_va_su_menh_client,name='about_tam_nhin_va_su_menh_client'),
     path('contact', about_lien_he_client,name='about_lien_he_client'),
 

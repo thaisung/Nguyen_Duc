@@ -68,15 +68,21 @@ from django.core.mail import send_mail,EmailMessage
 
 
     
+EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+
 def signup_email_client(request):
-    if request.method == 'POST':
-        context = {}
-        context['domain'] = settings.DOMAIN
-        email  = request.POST.get('email')
-        if email:
-            # Kiểm tra xem email đã tồn tại chưa
-            if Email.objects.filter(Name=email).exists():
-                return JsonResponse({'success': False, 'message': 'Email đã tồn tại'})
-            Email.objects.create(Name=email)
-        return JsonResponse({'success': False, 'message': 'Đăng ký Email thành công'})
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': 'Phương thức không hợp lệ'}, status=405)
+
+    email = (request.POST.get('email') or '').strip()
+    if not email:
+        return JsonResponse({'success': False, 'message': 'Vui lòng nhập email'}, status=400)
+    if not EMAIL_RE.match(email):
+        return JsonResponse({'success': False, 'message': 'Email không hợp lệ'}, status=400)
+
+    if Email.objects.filter(Name__iexact=email).exists():
+        return JsonResponse({'success': False, 'message': 'Email đã được đăng ký'}, status=409)
+
+    Email.objects.create(Name=email)
+    return JsonResponse({'success': True, 'message': 'Đăng ký email thành công'})
     

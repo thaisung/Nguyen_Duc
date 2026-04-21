@@ -23,30 +23,159 @@
     <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
 {% endblock %}
 {% block breadcrumb %}
-    <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="hover:cursor-pointer hover:underline">Nghiên cứu lâm sàn</a>
-{% endblock %}
-{% block breadcrumb_mb %}
-    <a href="{% url 'nav_nghien_cuu_lam_san' %}" class="hover:cursor-pointer hover:underline">Nghiên cứu lâm sàn</a>
+    <a href="{{domain}}" class="breadcrumb-item">Trang chủ</a>
+    <span class="breadcrumb-sep">/</span>
+    <a href="{{domain}}{% url 'nav_nghien_cuu_lam_san' %}" class="breadcrumb-item">Nghiên cứu lâm sàng</a>
 {% endblock %}
 {% block content %}
-<main class=" flex flex-col items-center w-full mb-6">
-    <div class="flex flex-col items-center w-[1597px] mt-[50px] gap-[70px]">
-        <div class="flex flex-col items-center w-full text-white gap-[30px]">
-            <h1 class="uppercase font-bold text-[40px] text-black">
-                Nghiên cứu khoa học
-            </h1>
-            <a href="{% url 'link_nghien_cuu_khoa_hoc_client' %}" class="flex items-center justify-center w-full h-[443px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                <img alt="Hình ảnh 1" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
-            </a>
-        </div>
-        <div class="flex flex-col items-center w-full text-white gap-[30px]">
-            <h2 class="uppercase font-bold text-[40px] text-black">
-                Kết quả lâm sàn
-            </h2>
-            <a href="{% url 'link_ket_qua_lam_san_client' %}" class="flex items-center justify-center w-full h-[443px] bg-[#11284A] text-center uppercase font-bold text-[30px] rounded-md overflow-hidden">
-                <img alt="Hình ảnh 2" src="{% if obj2.Photo1 %}{{obj2.Photo1.url}}{% endif %}"  class="w-full h-full object-cover" />
-            </a>
-        </div>
+
+<!-- ████ RESEARCH HUB ████ -->
+<section class="section research-hub">
+  <div class="container">
+
+    <div class="section-header fade-up">
+      <!-- <span class="section-tag">Hydrinity</span> -->
+      <h1 class="newyork-title research-title">Nghiên Cứu Lâm Sàng</h1>
+      <p>Khám phá nền tảng khoa học và các kết quả lâm sàng minh chứng cho hiệu quả từng sản phẩm Hydrinity.</p>
     </div>
-</main>
+
+    <div class="research-grid fade-up">
+      <a href="{% url 'link_nghien_cuu_khoa_hoc_client' %}" class="research-card">
+        <div class="research-card__media">
+          {% if obj1.Photo1 %}<img src="{{obj1.Photo1.url}}" alt="Nghiên cứu khoa học" loading="lazy">{% endif %}
+        </div>
+        <div class="research-card__body">
+          <span class="research-card__kicker">Khoa học</span>
+          <h2 class="research-card__title">Nghiên Cứu Khoa Học</h2>
+          <span class="research-card__cta">
+            Tìm hiểu thêm <i class="fas fa-arrow-right"></i>
+          </span>
+        </div>
+      </a>
+
+      <a href="{% url 'link_ket_qua_lam_san_client' %}" class="research-card">
+        <div class="research-card__media">
+          {% if obj2.Photo1 %}<img src="{{obj2.Photo1.url}}" alt="Kết quả lâm sàng" loading="lazy">{% endif %}
+        </div>
+        <div class="research-card__body">
+          <span class="research-card__kicker">Kết quả</span>
+          <h2 class="research-card__title">Kết Quả Lâm Sàng</h2>
+          <span class="research-card__cta">
+            Xem chi tiết <i class="fas fa-arrow-right"></i>
+          </span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ── RESEARCH HUB ── */
+.research-hub { padding:clamp(40px, 6vw, 72px) 0; }
+.research-title {
+  font-size:clamp(30px, 4.4vw, 52px) !important;
+  font-weight:700;
+  letter-spacing:.5px;
+  line-height:1.1;
+  color:var(--navy);
+  text-transform:uppercase;
+  margin:10px 0 0;
+}
+.research-hub .section-header p {
+  max-width:640px;
+  margin-top:18px;
+}
+
+.research-grid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+  max-width:1280px;
+  margin:0 auto;
+}
+.research-card {
+  position:relative;
+  display:block;
+  aspect-ratio:21/9;
+  max-height:520px;
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  background:var(--navy);
+  text-decoration:none;
+  color:#fff;
+  box-shadow:var(--shadow-sm);
+  transition:var(--ease);
+}
+.research-card:hover {
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-xl);
+}
+.research-card__media {
+  position:absolute; inset:0;
+}
+.research-card__media img {
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform .7s var(--ease);
+}
+.research-card:hover .research-card__media img { transform:scale(1.06); }
+
+.research-card::after {
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,
+    rgba(15,35,64,0) 40%,
+    rgba(15,35,64,.55) 72%,
+    rgba(15,35,64,.88) 100%);
+  pointer-events:none;
+  transition:opacity .4s;
+}
+
+.research-card__body {
+  position:absolute;
+  left:0; right:0; bottom:0;
+  padding:32px 32px 28px;
+  display:flex; flex-direction:column;
+  gap:10px;
+  z-index:2;
+}
+.research-card__kicker {
+  font-family:var(--font-body);
+  font-size:11.5px; font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--gold-pale);
+}
+.research-card__title {
+  font-family:var(--font-heading);
+  font-size:clamp(22px, 2.8vw, 32px);
+  font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  line-height:1.2;
+  margin:0;
+  color:#fff;
+}
+.research-card__cta {
+  margin-top:4px;
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-body);
+  font-size:12px; font-weight:700;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  color:var(--gold-pale);
+  transition:gap .25s, color .25s;
+}
+.research-card__cta i { font-size:11px; transition:transform .25s; }
+.research-card:hover .research-card__cta { gap:12px; color:#fff; }
+.research-card:hover .research-card__cta i { transform:translateX(4px); }
+
+@media (max-width:900px) {
+  .research-grid { grid-template-columns:1fr; gap:20px; }
+  .research-card { aspect-ratio:16/10; }
+  .research-card__body { padding:24px 22px 22px; }
+}
+</style>
+
 {% endblock %}

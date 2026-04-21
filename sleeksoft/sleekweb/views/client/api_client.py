@@ -95,6 +95,46 @@ def add_dsdt_mb(request):
 
     return JsonResponse({'success': False, 'message': 'Phương thức không được hỗ trợ'})
 
+SEARCH_LIMIT = 5
+
+def search_client(request):
+    if request.method != 'GET':
+        return JsonResponse({'success': False, 'items': []}, status=405)
+
+    q = (request.GET.get('q') or '').strip()
+    kind = (request.GET.get('type') or 'product').lower()
+
+    items = []
+    if kind == 'blog':
+        qs = BlogPost.objects.all()
+        if q:
+            qs = qs.filter(Q(Title__icontains=q))
+        qs = qs.order_by('-id')[:SEARCH_LIMIT]
+        for b in qs:
+            items.append({
+                'name': b.Title or '',
+                'meta': b.Creation_time.strftime('%d/%m/%Y') if b.Creation_time else '',
+                'link': f'/{b.Slug}.html' if b.Slug else '#',
+                'avatar': b.Avatar.url if b.Avatar else '',
+            })
+    else:
+        qs = Product.objects.all()
+        if q:
+            qs = qs.filter(Q(Name__icontains=q))
+        qs = qs.order_by('-id')[:SEARCH_LIMIT]
+        for p in qs:
+            last_size = p.list_size.all().last()
+            price = last_size.Price if last_size and last_size.Price else (p.Price or '')
+            items.append({
+                'name': p.Name or '',
+                'meta': price,
+                'link': f'/{p.Slug}.html' if p.Slug else '#',
+                'avatar': p.Avatar.url if p.Avatar else '',
+            })
+
+    return JsonResponse({'success': True, 'items': items})
+
+
 def add_dsdt_mn(request):
     Edit_dsdt.objects.filter(Category='1').delete()
     # Lấy đường dẫn tuyệt đối đến thư mục chứa script api.py

@@ -23,185 +23,240 @@
     <meta name="twitter:image" content="{{domain}}/upload/website/logo.png">
 {% endblock %}
 {% block breadcrumb %}
-    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
-{% endblock %}
-{% block breadcrumb_mb %}
-    <a href="{% url 'about_tin_tuc_giai_thuong_client' %}" class="hover:cursor-pointer hover:underline">Tin tức & Giải thưởng</a>
+  <a href="{{domain}}" class="breadcrumb-item">Trang chủ</a>
+  <span class="breadcrumb-sep">/</span>
+  <a href="{{domain}}{% url 'about_tin_tuc_giai_thuong_client' %}" class="breadcrumb-item">Tin tức &amp; giải thưởng</a>
 {% endblock %}
 {% block content %}
-<main class=" flex flex-col items-center w-full mb-6">
-    <div class="flex flex-col w-full justify-start">
-        <div class="relative flex justify-center items-center w-full h-[186px] lg:h-[500px] overflow-hidden">
-            <img alt="img" class="w-full h-full object-cover" src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" />
-            <div class="absolute flex justify-center items-center gap-3 inset-0  z-50 ">
-                <div class="flex flex-col gap-3 w-full lg:w-[1250px] p-[25px] lg:p-none">
-                    <h2 class="font-normal text-[20px] lg:text-[60px] uppercase text-[#25394f]">
-                        {{obj1.Title1|safe}}
-                    </h2>
-                </div>
-            </div>
-        </div>
+
+<!-- ████ NEWS HERO ████ -->
+<section class="news-hero fade-up">
+  <div class="container">
+    <div class="news-hero-frame">
+      <img src="{% if obj1.Photo1 %}{{obj1.Photo1.url}}{% endif %}" alt="Tin tức và giải thưởng">
+      <div class="news-hero-overlay">
+        <span class="section-tag news-hero-tag">Tin tức</span>
+        <h1 class="news-hero-title newyork-title">{{obj1.Title1|safe}}</h1>
+      </div>
     </div>
-    <div class="w-full flex flex-col justify-center items-center p-[25px] lg:p-[50px]">
-        <div class="tabs mb-6 lg:mb-8 font-normal text-[20px] lg:text-[25px] flex items-center w-full justify-between lg:justify-center text-[#11284A]">
-            <button class="tab-btn active px-4 py-2 whitespace-nowrap" data-filter="all">All</button>
-            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="press">Press Releases</button>
-            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="media">Media</button>
-            <button class="tab-btn px-4 py-2 whitespace-nowrap" data-filter="awards">Awards</button>
-        </div>                  
-        <div class="grid grid-cols-1 lg:grid-cols-2 w-full lg:w-[1200px] gap-[25px] lg:gap-[50px]">
-            {% for i in list_Edit_ttgt1 %}
-            <div class="item all awards flex flex-col lg:flex-row gap-[5px] lg:gap-[30px]">
-                <img alt="img" class="w-[320px]" src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" />
-                <div class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
-                    <div class="font-bold text-[20px] italic lg:not-italic lg:font-semibold  text-[#11284A] ">{{ i.Creation_time|date:"d/m/Y" }}</div>
-                    <p class="font-normal text-[20px] lg:text-[22px] text-[#11284A] lgtext-[#101828]">{{i.Title}}</p>
-                    <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" class="font-normal text-[20px] lg:font-semibold  text-white lg:text-white mt-2 lg:mt-none">
-                        <span class="bg-[#11284A] text-center rounded px-2 py-1">
-                            Read More
-                        </span>
-                    </a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+  </div>
+</section>
+
+<!-- ████ NEWS LIST ████ -->
+<section class="section news-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">Bài viết</span>
+      <h2 class="newyork-title">Tin Tức &amp; Giải Thưởng</h2>
+      <p>Cập nhật những cột mốc, giải thưởng và câu chuyện mới nhất của Hydrinity trên hành trình khoa học chăm sóc da.</p>
     </div>
-    <style>
-        .item { display: none; }
-        .item.show { display: block; }
-      
-        .tab-btn.active {
-          background-color: #11284A;
-          color: white;
-          border-radius: 6px;
-        }
-      </style>      
-    <script>
-        $(document).ready(function () {
-          $('.item').addClass('show'); // Hiện tất cả khi load
-      
-          $('.tab-btn').click(function () {
-            var filter = $(this).data('filter');
-      
-            // Đổi nút active
-            $('.tab-btn').removeClass('active');
-            $(this).addClass('active');
-      
-            // Ẩn tất cả
-            $('.item').removeClass('show');
-      
-            // Hiện theo lọc
-            if (filter === 'all') {
-              $('.item').addClass('show');
-            } else {
-              $('.item.' + filter).addClass('show');
-            }
-          });
-        });
-      </script>
-    <div class="flex lg:hidden flex-col items-center  gap-[20px] lg:py-[58px] lg:gap-[58px]">
-        <span class="font-bold text-black text-[21px] lg:text-[55px]">
-            THE RESULTS ARE IN
-        </span>
-        <div class="w-full flex justify-center">
-            <div class="swiper mySwiper2 w-[362px] md:w-[600px] lg:w-[1280px] h-auto ">
-                <div class="swiper-wrapper">
-                    {% for i in list_image_slider_3 %}
-                    <div class="swiper-slide">
-                        <img class="w-[362px]  md:w-[600px]  lg:w-[1280px] h-auto" src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}" />
-                    </div>
-                    {% endfor %}
-                </div>
-                <!-- Chỉ có dấu chấm -->
-                <div class="swiper-pagination hidden lg:block"></div>
-            </div>
-            <script>
-                var swiper = new Swiper(".mySwiper2", {
-                  loop: true, 
-                  autoplay: { delay: 3000 }, // Tự động chạy
-                  pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                  },
-                });
-              </script>
-              <style>
-                /* Màu xám cho chấm tròn */
-                .swiper-pagination-bullet {
-                    background: #9ca3af !important; /* Tailwind gray-400 */
-                    width: 17px;
-                    height: 17px;
-                    border-radius: 50%;
-                    transition: all 0.3s ease;
-                    opacity: 1;
-                }
-            
-                /* Màu trắng và kích thước lớn hơn khi active */
-                .swiper-pagination-bullet-active {
-                    background: #ffffff !important; /* Tailwind white */
-                    width: 22px;
-                    height: 22px;
-                }
-            </style>
-        </div>
+
+    <div class="news-filter fade-up" role="tablist">
+      <button class="tab-btn active" type="button" data-filter="all">Tất cả</button>
+      <button class="tab-btn" type="button" data-filter="press">Press Releases</button>
+      <button class="tab-btn" type="button" data-filter="media">Media</button>
+      <button class="tab-btn" type="button" data-filter="awards">Awards</button>
     </div>
-</main>
+
+    {% if list_Edit_ttgt1 %}
+    <div class="news-grid fade-up">
+      {% for i in list_Edit_ttgt1 %}
+      <article class="news-card item all awards">
+        <a class="news-thumb" href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}">
+          <img src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" alt="{{i.Title}}">
+        </a>
+        <div class="news-body">
+          <time class="news-date" datetime="{{ i.Creation_time|date:'Y-m-d' }}">{{ i.Creation_time|date:'d/m/Y' }}</time>
+          <h3 class="news-title">
+            <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}">{{i.Title}}</a>
+          </h3>
+          <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" class="news-readmore">
+            Đọc thêm <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="news-empty" id="newsEmpty" hidden>Không có bài viết trong mục này.</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ████ RESULTS SLIDER ████ -->
+{% if list_image_slider_3 %}
+<section class="results-section" id="resultsSlider">
+  <div class="container">
+    <div class="results-head fade-up">
+      <span class="section-tag">Kết quả</span>
+      <h2 class="results-title newyork-title">THE RESULTS ARE IN</h2>
+    </div>
+    <div class="results-frame fade-up" id="resultsFrame">
+      {% for i in list_image_slider_3 %}
+      <div class="results-slide {% if forloop.first %}active{% endif %}"><img src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" alt="Slider-{{forloop.counter}}"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 <style>
-    .ckeditor-content {
-        font-family: 'UTM Aptima', sans-serif;
-        font-size: 16px;
-        line-height: 1.8;
-        color: #222;
-    }
+/* ── NEWS PAGE ── */
+.news-hero { padding-top:32px; }
+.news-hero-frame {
+  position:relative; width:100%;
+  aspect-ratio:21/9; max-height:500px;
+  border-radius:var(--r-lg); overflow:hidden;
+  box-shadow:var(--shadow-md);
+  background:var(--navy);
+}
+.news-hero-frame > img { width:100%; height:100%; object-fit:cover; display:block; }
+.news-hero-overlay {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:40px clamp(24px, 5vw, 80px);
+  background:linear-gradient(90deg, rgba(15,35,64,.6) 0%, rgba(15,35,64,.2) 65%, transparent 100%);
+  color:#fff;
+}
+.news-hero-tag {
+  color:var(--gold-light) !important;
+  border-color:rgba(233,163,32,.4) !important;
+  margin-bottom:14px;
+  align-self:flex-start;
+}
+.news-hero-title {
+  font-family:var(--font-heading) !important;
+  color:#fff !important;
+  text-transform:uppercase;
+  margin:0;
+  max-width:720px;
+  font-size:clamp(24px, 3vw, 40px) !important;
+  line-height:1.25;
+  letter-spacing:.8px;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+@media(max-width:768px){
+  .news-hero-frame { aspect-ratio:4/3; border-radius:var(--r-md); }
+  .news-hero-overlay { padding:20px 18px; }
+  .news-hero-title { font-size:18px !important; }
+}
 
-    .ckeditor-content p {
-        margin: 0 0 1.2em;
-    }
+.news-section .section-header h2 {
+  max-width:900px; margin-left:auto; margin-right:auto;
+  font-size:clamp(26px, 3.2vw, 40px) !important;
+  line-height:1.25; letter-spacing:.8px;
+}
 
-    .ckeditor-content h1,
-    .ckeditor-content h2,
-    .ckeditor-content h3,
-    .ckeditor-content h4 {
-        font-weight: bold;
-        margin: 1.4em 0 0.8em;
-        line-height: 1.4;
-    }
+.news-filter {
+  display:flex; justify-content:center; gap:8px;
+  margin-bottom:var(--s-header); flex-wrap:wrap;
+}
+.news-filter .tab-btn {
+  background:transparent; border:1.5px solid var(--border);
+  padding:9px 24px; border-radius:50px;
+  font-family:var(--font-body);
+  font-size:12px; font-weight:600;
+  letter-spacing:.8px; cursor:pointer;
+  text-decoration:none; display:inline-block; line-height:1.2;
+  transition:var(--ease); color:var(--text-mid);
+}
+.news-filter .tab-btn:hover { border-color:var(--navy-mid); color:var(--navy); }
+.news-filter .tab-btn.active {
+  background:var(--navy); color:#fff; border-color:var(--navy);
+  box-shadow:0 4px 16px rgba(15,35,64,.2);
+}
 
-    .ckeditor-content ul,
-    .ckeditor-content ol {
-        margin-left: 2em;
-        margin-bottom: 1.2em;
-    }
-
-    .ckeditor-content li {
-        margin-bottom: 0.5em;
-    }
-
-    .ckeditor-content blockquote {
-        padding: 0.5em 1em;
-        margin: 1em 0;
-        border-left: 4px solid #ccc;
-        background-color: #f9f9f9;
-    }
-
-    .ckeditor-content img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 1em 0;
-    }
-
-    .ckeditor-content table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 1em;
-    }
-
-    .ckeditor-content table, 
-    .ckeditor-content th, 
-    .ckeditor-content td {
-        border: 1px solid #ccc;
-        padding: 8px;
-    }
+.news-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:32px;
+  max-width:1200px; margin:0 auto;
+}
+.news-card.item { display:none; }
+.news-card.item.show { display:flex; }
+.news-card {
+  gap:20px; align-items:flex-start;
+  background:var(--bg);
+  padding:16px; border-radius:var(--r-lg);
+  border:1px solid var(--border);
+  transition:var(--ease);
+}
+.news-card:hover {
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-md);
+  border-color:rgba(184,116,10,.3);
+}
+.news-thumb {
+  flex:0 0 200px; width:200px; aspect-ratio:4/3;
+  border-radius:var(--r-md); overflow:hidden;
+  background:var(--bg-alt); display:block;
+}
+.news-thumb img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .5s ease;
+}
+.news-card:hover .news-thumb img { transform:scale(1.05); }
+.news-body {
+  flex:1; min-width:0;
+  display:flex; flex-direction:column; gap:10px;
+}
+.news-date {
+  font-family:var(--font-body);
+  font-size:12px; font-weight:700;
+  color:var(--gold);
+  letter-spacing:1.5px; text-transform:uppercase;
+}
+.news-title {
+  font-family:var(--font-main) !important;
+  font-size:16px; font-weight:700;
+  color:var(--navy) !important;
+  line-height:1.4; margin:0;
+  display:-webkit-box; -webkit-line-clamp:3; line-clamp:3; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.news-title a { color:inherit; text-decoration:none; transition:color .2s; }
+.news-title a:hover { color:var(--gold); }
+.news-readmore {
+  margin-top:auto;
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--font-body);
+  font-size:11px; font-weight:700;
+  letter-spacing:1.4px; text-transform:uppercase;
+  color:var(--navy); text-decoration:none;
+  transition:color .2s, gap .2s;
+}
+.news-readmore i { font-size:10px; transition:transform .25s; }
+.news-readmore:hover { color:var(--gold); gap:10px; }
+.news-readmore:hover i { transform:translateX(3px); }
+.news-empty {
+  grid-column:1/-1;
+  text-align:center; padding:40px 0;
+  color:var(--text-light); font-style:italic;
+}
+@media(max-width:900px){
+  .news-grid { grid-template-columns:1fr; gap:20px; }
+}
+@media(max-width:560px){
+  .news-card { flex-direction:column; }
+  .news-thumb { flex:0 0 auto; width:100%; aspect-ratio:16/9; }
+}
 </style>
+
+<script>
+$(document).ready(function () {
+  $('.news-card.item').addClass('show');
+  $('.news-filter .tab-btn').on('click', function () {
+    var filter = $(this).data('filter');
+    $('.news-filter .tab-btn').removeClass('active');
+    $(this).addClass('active');
+    $('.news-card.item').removeClass('show');
+    if (filter === 'all') {
+      $('.news-card.item').addClass('show');
+    } else {
+      $('.news-card.item.' + filter).addClass('show');
+    }
+    var visible = $('.news-card.item.show').length;
+    $('#newsEmpty').prop('hidden', visible > 0);
+  });
+});
+</script>
+
 {% endblock %}
