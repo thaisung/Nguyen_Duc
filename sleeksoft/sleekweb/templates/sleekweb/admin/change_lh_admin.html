@@ -1,65 +1,51 @@
 {% extends './base.html' %}
-{% block title %}Trang thay dổi trang Liên hệ{% endblock %}
+{% block title %}Trang thay đổi Liên hệ{% endblock %}
 {% block content %}
-<div class="w-full flex-col ">
-    <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
-        <span class="uppercase w-full flex justify-center lg:justify-start">
-            Trang thay dổi trang Liên hệ
-        </span>
-        <style>
-            input:focus {
-                outline: none !important;
-            }
-        </style>
-
-    </div>
-    <div class="flex flex-col gap-3 p-3">
-        <div class="flex flex-col gap-1">
-            <div class="flex flex-col gap-1 bg-stone-300 p-2 rounded-md">
-                <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="Name_Page" value="LH"/>
-                    <div class="flex gap-1 items-center">
-                        <span class="font-bold">Seo_Title</span>
-                        <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
-                    </div>
-                    <div class="flex gap-1 items-center">
-                        <span class="font-bold">Seo_Description</span>
-                        <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
-                    </div>
-                </form>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-4">
-                <form method="post" action="{% url 'change_lh_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
-                    {% csrf_token %}
-                    <input type="text" value="{{obj.Address}}" placeholder="Đại chỉ" class="rounded-md w-full" name="Address" />
-                    <input type="text" value="{{obj.Link_map}}" placeholder="Link Google map" class="rounded-md w-full" name="Link_map" />
-                    <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                        Cập nhật
-                    </button>
-                </form>
+<div class="ap-page">
+    <div class="ap-head">
+        <div class="ap-head-main">
+            <div class="ap-head-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+                <h1 class="ap-title">Liên hệ</h1>
+                <div class="ap-title-sub">Cập nhật thông tin liên hệ của website</div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    $(document).ready(function() {
-        $('.open_input_Size').on('click', function() {
-            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
-        });
-    });
-</script>
-<script>
-    function autoResize(el) {
-        el.style.height = 'auto';
-        el.style.height = el.scrollHeight + 'px';
-    }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('textarea.autoresize').forEach(function (el) {
-            autoResize(el);
-            el.addEventListener('input', () => autoResize(el));
-        });
-    });
-</script>
+    <div class="ap-seo">
+        <div class="ap-seo-head"><i class="fas fa-magnifying-glass"></i>Cấu hình SEO</div>
+        <form method="post" action="{% url 'change_seo_page_admin' %}">
+            {% csrf_token %}
+            <input type="hidden" name="Name_Page" value="LH"/>
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Title</span>
+                <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()">
+            </div>
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Description</span>
+                <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()">
+            </div>
+        </form>
+    </div>
+
+    <div class="ap-card">
+        <div class="ap-section-title"><i class="fas fa-location-dot"></i>Thông tin địa chỉ</div>
+        <form method="post" action="{% url 'change_lh_admin' %}" enctype="multipart/form-data" class="ap-form-single">
+            {% csrf_token %}
+            <div class="ap-field">
+                <label>Địa chỉ</label>
+                <input type="text" value="{{obj.Address}}" placeholder="Nhập địa chỉ" name="Address" />
+            </div>
+            <div class="ap-field">
+                <label>Link Google Map</label>
+                <input type="text" value="{{obj.Link_map}}" placeholder="Dán link nhúng Google Map" name="Link_map" />
+            </div>
+            <div class="ap-form-actions">
+                <button type="submit" class="ap-btn ap-btn-success">
+                    <i class="fas fa-floppy-disk"></i>Cập nhật
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

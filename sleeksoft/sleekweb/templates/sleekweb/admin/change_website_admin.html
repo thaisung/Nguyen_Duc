@@ -1,51 +1,44 @@
 {% extends './base.html' %}
-{% block title %}Trang thay đổi thông tin Website{% endblock %}
+{% block title %}Thông tin Website{% endblock %}
 {% block content %}
-<div class="w-full flex-col min-h-screen">
-    <div class="flex flex-col lg:flex-row items-center  lg:justify-between border-b-[1px] border-[#0e203c] lg:max-h-[50px] px-3 py-2 font-bold">
-        <span class="uppercase w-full flex justify-center lg:justify-start">
-            Trang thay đổi thông tin Website
-        </span>
-        <style>
-            input:focus {
-                outline: none !important;
-            }
-        </style>
+<div class="ap-page">
+    <div class="ap-head">
+        <div class="ap-head-main">
+            <div class="ap-head-icon"><i class="fas fa-globe"></i></div>
+            <div>
+                <h1 class="ap-title">Thông tin Website</h1>
+                <div class="ap-title-sub">Cấu hình thông tin chung của website</div>
+            </div>
+        </div>
     </div>
-    <div class="flex justify-center  h-full">
-        <form method="post" action="{% url 'change_website_admin' %}" enctype="multipart/form-data" class="flex flex-col  items-center w-[500px] gap-3 pt-[20px]">
+
+    <div class="ap-card">
+        <form method="post" action="{% url 'change_website_admin' %}" enctype="multipart/form-data" class="ap-form-single">
             {% csrf_token %}
-            <div class="flex flex-col justify-center items-center w-full">
-                <label class="font-semibold">
-                    Email
-                </label>
-                <input type="text" value="{{obj.Email}}" name="Email" class="rounded-md w-full" required />
+            <div class="ap-field">
+                <label>Email</label>
+                <input type="text" value="{{obj.Email}}" name="Email" required />
             </div>
-            <div class="flex flex-col justify-center items-center w-full">
-                <label class="font-semibold">
-                    Số điện thoại
-                </label>
-                <input type="text" value="{{obj.Phone_number}}" name="Phone_number" class="rounded-md w-full" required />
+            <div class="ap-field">
+                <label>Số điện thoại</label>
+                <input type="text" value="{{obj.Phone_number}}" name="Phone_number" required />
             </div>
-            <div class="flex flex-col justify-center items-center w-full">
-                <label class="font-semibold">
-                    Chữ chạy
-                </label>
-                <input type="text" value="{{obj.Text_run}}" name="Text_run" class="rounded-md w-full" required />
+            <div class="ap-field">
+                <label>Chữ chạy</label>
+                <input type="text" value="{{obj.Text_run}}" name="Text_run" required />
             </div>
-            <div class="flex justify-center items-center gap-1 bg-white p-2 rounded-md border-[1px] border-[#6b7280] w-full">
-                <div class="flex flex-col justify-center items-center w-[200px]">
-                    <label class="font-semibold">
-                        Logo
-                    </label>
-                    <div class="flex justify-center items-center bg-[#0F2340]" style="background-color: #0F2340; padding: 10px; border: #0F2340; border-radius: 10px; margin: 10px;">
-                        <img src="{% if obj.Logo %}{{ obj.Logo.url }}{% endif %}" class="w-[80px] h-auto rounded-md my-3" />
-                    </div>
-                    <input type="file" class="rounded-md w-full" accept="image/*" name="Logo" />
+            <div class="ap-field">
+                <label>Logo</label>
+                <div class="ap-image-preview" style="background:linear-gradient(135deg,#11284A 0%,#0e203c 100%); border-color:rgba(201,168,106,.35);">
+                    <img src="{% if obj.Logo %}{{ obj.Logo.url }}{% endif %}" style="max-height:140px; background:transparent;" />
+                    <input type="file" accept="image/*" name="Logo" style="background:#fff;" />
                 </div>
             </div>
-            <button type="submit"
-                class="p-2 rounded-md bg-green-500 font-semibold text-sm hover:cursor-pointer w-[120px]">Cập nhật</button>
+            <div class="ap-form-actions">
+                <button type="submit" class="ap-btn ap-btn-success">
+                    <i class="fas fa-floppy-disk"></i>Cập nhật
+                </button>
+            </div>
         </form>
     </div>
 </div>

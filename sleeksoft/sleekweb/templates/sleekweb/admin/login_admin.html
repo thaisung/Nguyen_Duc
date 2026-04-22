@@ -1,127 +1,241 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="vi">
-    {% load static %}
+{% load static %}
 <head>
     {% tailwind_css %}
-    <!-- 1. Thẻ charset, viewport, title -->
     <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <title>Đăng nhập ADMIN</title>
 
-    <!-- 2. Thẻ SEO cơ bản -->
     <meta name="description" content="">
     <meta name="keywords" content="Đăng nhập tài khoản" />
     <link rel="canonical" href="{{domain}}/admin/login" />
-
     <meta name='revisit-after' content='1 days' />
     <meta name="robots" content="noodp,index,follow" />
 
-    <!-- 3. Favicon -->
     <link rel="shortcut icon" href="{{domain}}/upload/website/logo.png" type="image/x-icon" />
 
-    <!-- 4. Open Graph tags (Facebook, Zalo...) -->
     <meta property="og:type" content="website">
-
     <meta property="og:title" content="Đăng nhập tài khoản">
     <meta property="og:description" content="">
     <meta property="og:image" content="{{domain}}/upload/website/logo.png">
     <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
     <meta property="og:url" content="{{domain}}/admin/login">
-
     <meta property="og:site_name" content="Hydrinity">
-
-    <!-- 5. Phần còn lại -->
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
 
     <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <style>
         @font-face {
             font-family: 'UTM Aptima';
-            src: url('static/fonts/00022-UTM-Aptima.ttf') format('truetype');
-            font-weight: 400;
-            font-style: normal;
+            src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
+            font-weight: 400; font-style: normal;
         }
-
         @font-face {
             font-family: 'UTM Aptima';
-            src: url('static/fonts/00024-UTM-AptimaBoldItalic.ttf') format('truetype');
-            font-weight: 700;
-            font-style: italic;
+            src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
+            font-weight: 700; font-style: normal;
         }
-
         @font-face {
             font-family: 'UTM Bebas';
-            src: url('static/fonts/00041-UTM-Bebas.ttf') format('truetype');
-            font-weight: 700;
-            font-style: italic;
+            src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
+            font-weight: 700; font-style: normal;
         }
 
+        :root {
+            --admin-navy: #0e203c;
+            --admin-navy-2: #11284A;
+            --admin-gold: #c9a86a;
+            --admin-border: #dfe3ea;
+            --admin-text: #1a2238;
+            --admin-muted: #6b7280;
+        }
+
+        html, body { margin: 0; padding: 0; }
         body {
             font-family: 'UTM Aptima', sans-serif !important;
+            min-height: 100vh;
+            color: var(--admin-text);
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed; inset: 0;
+            background: url('/upload/website/background.png') no-repeat center center / cover,
+                        linear-gradient(135deg, #11284A 0%, #0e203c 100%);
+            z-index: -2;
+        }
+        body::after {
+            content: "";
+            position: fixed; inset: 0;
+            background: linear-gradient(135deg, rgba(14,32,60,.55) 0%, rgba(14,32,60,.78) 100%);
+            z-index: -1;
+        }
+
+        .login-wrap {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px 16px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            background: #fff;
+            border-radius: 18px;
+            padding: 32px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .25), 0 2px 8px rgba(0, 0, 0, .06);
+            position: relative;
+            overflow: hidden;
+        }
+        .login-card::before {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; top: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--admin-gold) 0%, #e4c896 50%, var(--admin-gold) 100%);
+        }
+
+        .login-logo {
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 18px;
+        }
+        .login-logo img {
+            width: 84px; height: auto;
+            filter: drop-shadow(0 4px 10px rgba(14, 32, 60, .15));
+        }
+
+        .login-title {
+            font-family: 'UTM Bebas', sans-serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            text-align: center;
+            color: var(--admin-navy);
+            margin-bottom: 4px;
+        }
+        .login-subtitle {
+            font-size: 13px;
+            text-align: center;
+            color: var(--admin-muted);
+            margin-bottom: 22px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .login-field {
+            position: relative;
+            margin-bottom: 14px;
+        }
+        .login-field i {
+            position: absolute; left: 14px; top: 50%;
+            transform: translateY(-50%);
+            color: var(--admin-muted);
+            font-size: 14px;
+        }
+        .login-field input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            border: 1px solid var(--admin-border);
+            border-radius: 10px;
+            font-size: 14px;
+            color: var(--admin-text);
+            background: #fafbfc;
+            transition: border-color .15s, box-shadow .15s, background .15s;
+            font-family: inherit;
+        }
+        .login-field input:focus {
+            outline: none;
+            border-color: var(--admin-navy-2);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(17, 40, 74, .12);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px 14px;
+            background: linear-gradient(135deg, #11284A 0%, #0e203c 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform .12s, box-shadow .15s, filter .15s;
+            margin-top: 8px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .login-btn:hover { filter: brightness(1.08); box-shadow: 0 6px 18px rgba(14, 32, 60, .25); }
+        .login-btn:active { transform: translateY(1px); }
+
+        .login-hint {
+            font-size: 12px;
+            text-align: center;
+            color: var(--admin-muted);
+            margin-top: 18px;
         }
     </style>
-
 </head>
 
-<body class="w-full min-h-screen flex  items-center justify-center bg-red-500 p-3" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
-    <div class="flex flex-col bg-white w-[500px] p-6 rounded-md gap-3">
-        <div class="flex justify-center items-center mb-3">
-            <img src="/upload/website/logo.png" />
-        </div>
-        <div class="uppercase text-center bg-[#11284A] text-white p-3 font-bold rounded-md">
-            Đăng nhập trang quản trị
-        </div>
-        <form id="Login_Form" action="" class="flex flex-col gap-2">
-            {% csrf_token %}
-            <input name="username" placeholder="Tên tài khoản" class="rounded-md border-[1px] border-[#11284A]" />
-            <input name="password" type="password" placeholder="Mật khẩu" class="rounded-md border-[1px] border-[#11284A]" />
-            <button type="submit" class=" text-[#11284A] rounded-md py-2 font-bold border-[1px] border-[#11284A] ">Đăng nhập</button>
-        </form>
-        <script>
-            $(document).ready(function() {
-                $('#Login_Form').on('submit', function(event) {
-                    event.preventDefault();
-                    // $('#loader_login').show()
-                    // $('#Login_Form').hide()
-                
-                    var formData = new FormData(this);  // Tạo FormData từ form hiện tại
-                
-                    $.ajax({
-                        url: '{% url 'login_admin' %}',
-                        method: 'POST',
-                        // headers: {
-                        //     'X-CSRFToken': '{{ csrf_token }}'
-                        // },
-                        processData: false,  // Không xử lý dữ liệu (cần thiết khi sử dụng FormData)
-                        contentType: false,  // Không đặt kiểu content (cần thiết khi sử dụng FormData)
-                        data: formData,
-                        success: function(response) {
-                            if (response.success) {
-                                window.location.href = response.redirect_url;
-                            } else {
-                                // $('#loader_login').hide()
-                                // $('#Login_Form').show()
-                                alert(response.message);
+<body>
+    <div class="login-wrap">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="/upload/website/logo.png" alt="Hydrinity">
+            </div>
+            <div class="login-title">HYDRINITY</div>
+            <div class="login-subtitle">Đăng nhập trang quản trị</div>
+
+            <form id="Login_Form" action="" novalidate>
+                {% csrf_token %}
+                <div class="login-field">
+                    <i class="fas fa-user"></i>
+                    <input name="username" placeholder="Tên tài khoản" autocomplete="username" />
+                </div>
+                <div class="login-field">
+                    <i class="fas fa-lock"></i>
+                    <input name="password" type="password" placeholder="Mật khẩu" autocomplete="current-password" />
+                </div>
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-right-to-bracket"></i>Đăng nhập
+                </button>
+            </form>
+
+            <div class="login-hint">© Hydrinity Skin Science · Admin Portal</div>
+
+            <script>
+                $(document).ready(function() {
+                    $('#Login_Form').on('submit', function(event) {
+                        event.preventDefault();
+                        var formData = new FormData(this);
+
+                        $.ajax({
+                            url: '{% url 'login_admin' %}',
+                            method: 'POST',
+                            processData: false,
+                            contentType: false,
+                            data: formData,
+                            success: function(response) {
+                                if (response.success) {
+                                    window.location.href = response.redirect_url;
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(response) {
+                                console.log('Đăng nhập thất bại', response);
                             }
-                        },
-                        error: function(response) {
-                            console.log('Đăng nhập thất bại', response);
-                        }
+                        });
                     });
                 });
-                
-            });
-        </script>
+            </script>
+        </div>
     </div>
 </body>
 

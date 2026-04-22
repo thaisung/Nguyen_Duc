@@ -159,12 +159,13 @@ def change_blog_edit_admin(request, pk):
 def change_blog_remove_admin(request, pk):
     if not request.user.is_authenticated:
         return redirect('login_admin')
-    obj_Blog = BlogPost.objects.get(pk=pk)  # Lấy bài viết theo pk
-
-    if request.method == 'GET':
-        form = BlogPostForm(instance=obj_Blog)  # Gán instance
-        obj_Blog.delete()
+    if request.method != 'POST':
         return redirect('change_blog_admin')
+    try:
+        BlogPost.objects.get(pk=pk).delete()
+    except BlogPost.DoesNotExist:
+        pass
+    return redirect('change_blog_admin')
 
 
 

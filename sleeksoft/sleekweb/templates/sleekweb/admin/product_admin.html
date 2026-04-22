@@ -1,160 +1,104 @@
 {% extends './base.html' %}
 {% block title %}Quản lý Sản phẩm{% endblock %}
 {% block content %}
-<div class="w-full flex-col ">
-    <div class="flex flex-col lg:flex-row items-center  lg:justify-between border-b-[1px] border-[#0e203c] lg:max-h-[50px] px-3 py-2 font-bold">
-        <span class="uppercase w-full flex justify-center lg:justify-start">
-            Trang sản phẩm
-        </span>
-        <div class="flex items-center gap-3 max-h-[60px] lg:max-h-none">
-            <form  class=" relative flex items-center justify-center">
-                <input value="{{s}}" name="s" class="font-medium text-sm rounded-full border-[1px] border-[#0e203c] px-4" placeholder="Tìm kiếm"
-                    style="background: transparent;" />
-                <button type="submit" class="absolute right-2">
-                    <svg class="w-[25px]" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 129 129">
-                    <g>
-                        <path
-                            d="M51.6,96.7c11,0,21-3.9,28.8-10.5l35,35c0.8,0.8,1.8,1.2,2.9,1.2s2.1-0.4,2.9-1.2c1.6-1.6,1.6-4.2,0-5.8l-35-35   c6.5-7.8,10.5-17.9,10.5-28.8c0-24.9-20.2-45.1-45.1-45.1C26.8,6.5,6.5,26.8,6.5,51.6C6.5,76.5,26.8,96.7,51.6,96.7z M51.6,14.7   c20.4,0,36.9,16.6,36.9,36.9C88.5,72,72,88.5,51.6,88.5c-20.4,0-36.9-16.6-36.9-36.9C14.7,31.3,31.3,14.7,51.6,14.7z">
-                        </path>
-                    </g>
-                </svg>
-                </button>
+<div class="ap-page">
+    <div class="ap-head">
+        <div class="ap-head-main">
+            <div class="ap-head-icon"><i class="fas fa-bag-shopping"></i></div>
+            <div>
+                <h1 class="ap-title">Sản phẩm</h1>
+                <div class="ap-title-sub">Danh sách & quản lý sản phẩm</div>
+            </div>
+        </div>
+        <div class="ap-head-actions">
+            <form class="ap-search">
+                <input value="{{s}}" name="s" placeholder="Tìm kiếm..." />
+                <button type="submit"><i class="fas fa-magnifying-glass"></i></button>
             </form>
-            <a href="{% url 'product_add_admin' %}">
-                <svg class="w-[35px] fill-[#0e203c]" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="438.533px" height="438.533px"
-                    viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;"
-                    xml:space="preserve">
-                    <g>
-                        <path d="M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0
-                            c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267
-                            c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407
-                            s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062
-                            C438.533,179.485,428.732,142.795,409.133,109.203z M347.179,237.539c0,4.948-1.811,9.236-5.428,12.847
-                            c-3.62,3.614-7.901,5.428-12.847,5.428h-73.091v73.084c0,4.948-1.813,9.232-5.428,12.854c-3.613,3.613-7.897,5.421-12.847,5.421
-                            h-36.543c-4.948,0-9.231-1.808-12.847-5.421c-3.617-3.621-5.426-7.905-5.426-12.854v-73.084h-73.089
-                            c-4.948,0-9.229-1.813-12.847-5.428c-3.616-3.61-5.424-7.898-5.424-12.847v-36.547c0-4.948,1.809-9.231,5.424-12.847
-                            c3.617-3.617,7.898-5.426,12.847-5.426h73.092v-73.089c0-4.949,1.809-9.229,5.426-12.847c3.616-3.616,7.898-5.424,12.847-5.424
-                            h36.547c4.948,0,9.233,1.809,12.847,5.424c3.614,3.617,5.428,7.898,5.428,12.847v73.089h73.084c4.948,0,9.232,1.809,12.847,5.426
-                            c3.617,3.615,5.428,7.898,5.428,12.847V237.539z"></path>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                    <g>
-                    </g>
-                </svg>
+            <a href="{% url 'product_add_admin' %}" class="ap-btn ap-btn-primary">
+                <i class="fas fa-plus"></i>Thêm mới
             </a>
         </div>
-        <style>
-            input:focus {
-                outline: none !important;
-            }
-        </style>
     </div>
-    <div class="flex flex-col gap-1 bg-stone-300 p-2 rounded-md mt-2 mx-2">
-        <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
+
+    <div class="ap-seo">
+        <div class="ap-seo-head"><i class="fas fa-magnifying-glass"></i>Cấu hình SEO</div>
+        <form method="post" action="{% url 'change_seo_page_admin' %}">
             {% csrf_token %}
             <input type="hidden" name="Name_Page" value="SP"/>
-            <div class="flex gap-1 items-center">
-                <span class="font-bold">Seo_Title</span>
-                <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Title</span>
+                <input type="text" name="Seo_Title" value="{{ obj_Seo_Page.Seo_Title }}" onchange="this.form.submit()">
             </div>
-            <div class="flex gap-1 items-center">
-                <span class="font-bold">Seo_Description</span>
-                <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Description</span>
+                <input type="text" name="Seo_Description" value="{{ obj_Seo_Page.Seo_Description }}" onchange="this.form.submit()">
             </div>
         </form>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2  gap-4 p-3">
+
+    <div class="ap-grid-2" style="display:grid; gap:16px;">
         {% for i in list_Product %}
-        <div class="flex flex-col lg:flex-row  items-start  w-full gap-3">
-            <a class="hover:cursor-pointer pt-3">
-                <img class="w-full lg:w-[300px]" src="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}" />
-            </a>
-            <div class="flex flex-col  h-full  gap-3 mt-2 w-full">
-                <a class="uppercase font-medium text-[15px] text-[#11284A]  hover:cursor-pointer">
-                    {{i.Name}}
-                </a>
-                <a class="uppercase font-medium text-[15px] text-[#11284A]  hover:cursor-pointer">
-                    chi tiết : {{i.Title}}
-                </a>
-                <a class="uppercase z-[-2] font-bold text-[15px] text-black  product_add_admin">
-                    DANH MỤC: <span class="format_number">{{i.Category|default:''}}</span>
-                </a>
-                <!-- <a class="uppercase z-[-2] font-bold text-[15px] text-black  product_add_admin">
-                    GIÁ: <span class="format_number">{{i.Price}}</span> VNĐ
-                </a> -->
-                <div class="flex flex-col">
-                    <span class="font-bold">Các Size:</span>
-                    <div class="flex flex-col pl-2">
+        <div class="ap-card" style="display:flex; gap:16px; flex-direction:column;">
+            <div style="display:flex; flex-direction:column; gap:14px;">
+                <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start;">
+                    <div style="flex:0 0 auto; width:200px; max-width:100%;">
+                        <img src="{% if i.Avatar %}{{ i.Avatar.url }}{% endif %}" alt="{{i.Name}}" style="width:100%; height:auto; border-radius:10px; border:1px solid var(--admin-border);" />
+                    </div>
+                    <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:6px;">
+                        <div style="font-size:16px; font-weight:700; color:var(--admin-navy); text-transform:uppercase; line-height:1.3;">{{i.Name}}</div>
+                        <div style="font-size:13px; color:var(--admin-muted);">{{i.Title}}</div>
+                        <div style="font-size:13px;"><strong style="color:var(--admin-navy);">Danh mục:</strong> <span class="format_number">{{i.Category|default:''}}</span></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="ap-label" style="margin-bottom:6px;"><i class="fas fa-ruler" style="color:var(--admin-gold); margin-right:6px;"></i>Các Size</div>
+                    <div style="display:flex; flex-direction:column; gap:6px;">
                         {% for j in i.list_size.all %}
-                        <div class="flex items-center">
-                            <span>- {{j.Name}} (<span class="format_number">{{j.Price}} VNĐ</span>)</span>
+                        <div style="display:flex; align-items:center; gap:8px; padding:6px 10px; background:#f7f8fa; border-radius:8px; border:1px solid var(--admin-border); font-size:13px;">
+                            <span style="flex:1;"><strong>{{j.Name}}</strong> <span style="color:var(--admin-muted);">— <span class="format_number">{{j.Price}}</span> VNĐ</span></span>
                             <form method="post" action="{% url 'size_product_remove_admin' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="id" value="{{j.id}}"/>
-                                <button type="submit"
-                                    class="p-2 rounded-md  font-semibold text-sm hover:cursor-pointer">
-                                    <svg class="w-[15px] fill-red-500" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
-                                        <path  d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
-                                            s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
-                                            l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
-                                        </svg>
+                                <button type="submit" class="ap-btn ap-btn-sm ap-btn-danger" title="Xoá size" style="padding:4px 8px;">
+                                    <i class="fas fa-xmark"></i>
                                 </button>
                             </form>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
-                <form method="post" action="{% url 'size_product_add_admin' %}" style="display: none;" class="input_Size  flex items-center h-auto gap-1">
+
+                <form method="post" action="{% url 'size_product_add_admin' %}" style="display:none; gap:8px; flex-wrap:wrap; align-items:flex-end;" class="input_Size">
                     {% csrf_token %}
-                    <input type="hidden" name="id" value="{{i.id}}" class="rounded-md  bg-transparent h-[30px]"/>
-                    <div class="flex flex-col gap-2">
-                        <input type="text" name="Name" required value="" placeholder="Tên Size" class="rounded-md  bg-transparent h-[30px]"/>
-                        <input type="number" name="Price" required value="" placeholder="Giá theo Size" class="rounded-md  bg-transparent h-[30px]"/>
+                    <input type="hidden" name="id" value="{{i.id}}"/>
+                    <div class="ap-field" style="flex:1; min-width:140px;">
+                        <label>Tên size</label>
+                        <input type="text" name="Name" required placeholder="VD: 50ml"/>
                     </div>
-                    <button type="submit"
-                        class="flex items-center justify-center p-2 rounded-md bg-sky-500 font-semibold text-sm hover:cursor-pointer h-full">
-                        <svg class="w-[20px]" enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 " stroke="#000000" stroke-miterlimit="10" stroke-width="2"></polyline></svg>
+                    <div class="ap-field" style="flex:1; min-width:140px;">
+                        <label>Giá</label>
+                        <input type="number" name="Price" required placeholder="VD: 500000"/>
+                    </div>
+                    <button type="submit" class="ap-btn ap-btn-info">
+                        <i class="fas fa-check"></i>Lưu
                     </button>
                 </form>
-                <div class="flex items-center gap-2">
-                    <a href="{% url 'product_edit_admin' pk=i.id %}"
-                        class="p-2 rounded-md bg-green-500 font-semibold text-sm hover:cursor-pointer">Chỉnh sửa</a>
-                    <button type="submit"
-                        class="open_input_Size p-2 rounded-md bg-blue-500 font-semibold text-sm hover:cursor-pointer">Thêm Size</button>
-                    <form method="post" action="{% url 'product_remove_admin' %}">
+
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <a href="{% url 'product_edit_admin' pk=i.id %}" class="ap-btn ap-btn-sm ap-btn-success">
+                        <i class="fas fa-pen"></i>Chỉnh sửa
+                    </a>
+                    <button type="button" class="ap-btn ap-btn-sm ap-btn-info open_input_Size">
+                        <i class="fas fa-plus"></i>Thêm size
+                    </button>
+                    <form method="post" action="{% url 'product_remove_admin' %}" onsubmit="return confirm('Bạn có chắc muốn xoá sản phẩm này?');">
                         {% csrf_token %}
                         <input type="hidden" name="id" value="{{i.id}}"/>
-                        <button type="submit"
-                            class="p-2 rounded-md bg-red-500 font-semibold text-sm hover:cursor-pointer">Xoá</button>
+                        <button type="submit" class="ap-btn ap-btn-sm ap-btn-danger">
+                            <i class="fas fa-trash"></i>Xoá
+                        </button>
                     </form>
                 </div>
             </div>
@@ -162,10 +106,20 @@
         {% endfor %}
     </div>
 </div>
+
+<style>
+    @media (min-width: 768px) { .ap-grid-2 { grid-template-columns: repeat(2, 1fr); } }
+</style>
 <script>
     $(document).ready(function() {
         $('.open_input_Size').on('click', function() {
-            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
+            $(this).closest('.ap-card').find('.input_Size').each(function() {
+                if ($(this).css('display') === 'none') {
+                    $(this).css('display', 'flex');
+                } else {
+                    $(this).css('display', 'none');
+                }
+            });
         });
     });
 </script>

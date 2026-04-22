@@ -1,180 +1,161 @@
 {% extends './base.html' %}
-{% block title %}Trang thay dổi DSDT{% endblock %}
+{% block title %}Danh sách đối tác{% endblock %}
 {% block content %}
-<div class="w-full flex-col ">
-    <div class="flex items-center justify-between border-b-[1px] border-[#0e203c] max-h-[50px] px-3 py-2 font-bold">
-        <span class="uppercase w-full flex justify-center lg:justify-start">
-            Trang thay dổi DSDT
-        </span>
-        <style>
-            input:focus {
-                outline: none !important;
-            }
-        </style>
-
-    </div>
-    <div class="flex flex-col gap-3 p-3">
-        <div class="flex flex-col gap-1 bg-stone-300 p-2 rounded-md">
-            <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
-                {% csrf_token %}
-                <input type="hidden" name="Name_Page" value="DSDT-MB"/>
-                <div class="flex gap-1 items-center">
-                    <span class="font-bold">Seo_Title_MB</span>
-                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page_MB.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
-                </div>
-                <div class="flex gap-1 items-center">
-                    <span class="font-bold">Seo_Description_MB</span>
-                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page_MB.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
-                </div>
-            </form>
-            <form class="flex flex-col gap-1" method="post" action="{% url 'change_seo_page_admin' %}">
-                {% csrf_token %}
-                <input type="hidden" name="Name_Page" value="DSDT-MN"/>
-                <div class="flex gap-1 items-center">
-                    <span class="font-bold">Seo_Title_MN</span>
-                    <input type="text" name="Seo_Title" value="{{ obj_Seo_Page_MN.Seo_Title }}" onchange="this.form.submit()" class="rounded-md w-full">
-                </div>
-                <div class="flex gap-1 items-center">
-                    <span class="font-bold">Seo_Description_MN</span>
-                    <input type="text" name="Seo_Description" value="{{ obj_Seo_Page_MN.Seo_Description }}" onchange="this.form.submit()" class="rounded-md w-full">
-                </div>
-            </form>
-        </div>
-        <div class="flex flex-col gap-1">
-            <div class="flex items-center gap-2">
-                <a href="{% url 'change_dsdt_admin' %}?Category=0" 
-                class=" flex justify-center items-center rounded-full py-1 px-3 font-bold {% if Category == '0' %}text-white bg-[#0e203c]{% endif %}" >DSDT miền Bắc</a>
-                <a href="{% url 'change_dsdt_admin' %}?Category=1" 
-                class=" flex justify-center items-center rounded-full py-1 px-3 font-bold {% if Category == '1' %}text-white bg-[#0e203c]{% endif %}"
-                >DSDT miền Nam</a>
+<div class="ap-page">
+    <div class="ap-head">
+        <div class="ap-head-main">
+            <div class="ap-head-icon"><i class="fas fa-handshake"></i></div>
+            <div>
+                <h1 class="ap-title">Danh sách đối tác</h1>
+                <div class="ap-title-sub">Quản lý đối tác miền Bắc & miền Nam</div>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-4">
-                <form method="post" action="{% url 'change_dsdt_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px] lg:mt-3">
+        </div>
+    </div>
+
+    <div class="ap-seo">
+        <div class="ap-seo-head"><i class="fas fa-magnifying-glass"></i>Cấu hình SEO — Miền Bắc</div>
+        <form method="post" action="{% url 'change_seo_page_admin' %}">
+            {% csrf_token %}
+            <input type="hidden" name="Name_Page" value="DSDT-MB"/>
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Title MB</span>
+                <input type="text" name="Seo_Title" value="{{ obj_Seo_Page_MB.Seo_Title }}" onchange="this.form.submit()">
+            </div>
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Description MB</span>
+                <input type="text" name="Seo_Description" value="{{ obj_Seo_Page_MB.Seo_Description }}" onchange="this.form.submit()">
+            </div>
+        </form>
+    </div>
+
+    <div class="ap-seo">
+        <div class="ap-seo-head"><i class="fas fa-magnifying-glass"></i>Cấu hình SEO — Miền Nam</div>
+        <form method="post" action="{% url 'change_seo_page_admin' %}">
+            {% csrf_token %}
+            <input type="hidden" name="Name_Page" value="DSDT-MN"/>
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Title MN</span>
+                <input type="text" name="Seo_Title" value="{{ obj_Seo_Page_MN.Seo_Title }}" onchange="this.form.submit()">
+            </div>
+            <div class="ap-seo-row">
+                <span class="ap-seo-label">Seo Description MN</span>
+                <input type="text" name="Seo_Description" value="{{ obj_Seo_Page_MN.Seo_Description }}" onchange="this.form.submit()">
+            </div>
+        </form>
+    </div>
+
+    <div class="ap-card ap-card-tight">
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <a href="{% url 'change_dsdt_admin' %}?Category=0" class="ap-btn {% if Category == '0' %}ap-btn-primary{% else %}ap-btn-ghost{% endif %}">
+                <i class="fas fa-compass"></i>Miền Bắc
+            </a>
+            <a href="{% url 'change_dsdt_admin' %}?Category=1" class="ap-btn {% if Category == '1' %}ap-btn-primary{% else %}ap-btn-ghost{% endif %}">
+                <i class="fas fa-compass"></i>Miền Nam
+            </a>
+        </div>
+    </div>
+
+    <div class="ap-card">
+        <div class="ap-section-title"><i class="fas fa-plus"></i>Thêm đối tác mới</div>
+        <form method="post" action="{% url 'change_dsdt_admin' %}" enctype="multipart/form-data" class="ap-form-wide">
+            {% csrf_token %}
+            <div class="ap-field-row">
+                <div class="ap-field">
+                    <label>Tên</label>
+                    <input type="text" placeholder="Tên đối tác" name="Name" />
+                </div>
+                <div class="ap-field">
+                    <label>Địa chỉ</label>
+                    <input type="text" placeholder="Địa chỉ" name="Address" />
+                </div>
+                <div class="ap-field">
+                    <label>Link</label>
+                    <input type="text" placeholder="Link" name="Link" />
+                </div>
+            </div>
+            {% if Category == '0' %}<input type="hidden" value="0" name="Category" />{% endif %}
+            {% if Category == '1' %}<input type="hidden" value="1" name="Category" />{% endif %}
+            <div class="ap-field">
+                <label>Ảnh</label>
+                <input type="file" accept="image/*" name="Photo" />
+            </div>
+            <div class="ap-form-actions">
+                <button type="submit" class="ap-btn ap-btn-success">
+                    <i class="fas fa-plus"></i>Thêm
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="ap-section-title" style="margin-top:6px;"><i class="fas fa-list"></i>Danh sách</div>
+    <div class="ap-grid">
+        {% if Category == '0' %}{% for i in list_Edit_dsdt_mb %}
+        <div class="ap-item">
+            <div class="ap-item-img">
+                <img alt="{{i.Name}}" src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}">
+                <form method="post" action="{% url 'change_dsdt_order_admin' %}" class="ap-overlay-order">
                     {% csrf_token %}
-                    <input type="text" value="" placeholder="Tên" class="rounded-md w-full" name="Name" />
-                    <input type="text" value="" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
-                    <input type="text" value="" placeholder="Link" class="rounded-md w-full" name="Link" />
-                    {% if Category == '0' %}
-                    <input type="hidden" value="0" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
-                    {% endif %}
-                    {% if Category == '1' %}
-                    <input type="hidden" value="1" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
-                    {% endif %}
-                    <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />
-                    <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                        Thêm
+                    <input type="hidden" name="id" value="{{i.id}}"/>
+                    <input type="number" name="Order" value="{{i.Order}}" />
+                    <button type="submit" title="Lưu thứ tự"><i class="fas fa-check"></i></button>
+                </form>
+                <form method="post" action="{% url 'change_dsdt_remove_admin' %}" onsubmit="return confirm('Xoá đối tác này?');">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{i.id}}"/>
+                    <input type="hidden" name="Category" value="0"/>
+                    <button type="submit" class="ap-overlay-delete" title="Xoá"><i class="fas fa-xmark"></i></button>
+                </form>
+            </div>
+            <div class="ap-item-body">
+                <form method="post" action="{% url 'change_dsdt_admin' %}" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:6px;">
+                    {% csrf_token %}
+                    <input type="text" value="{{i.Name}}" placeholder="Tên" name="Name" />
+                    <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" name="Address" />
+                    <input type="text" value="{{i.Link}}" placeholder="Link" name="Link" />
+                    <input type="hidden" value="0" name="Category" />
+                    <input type="hidden" value="{{i.id}}" name="id" />
+                    <input type="file" accept="image/*" name="Photo" />
+                    <button type="submit" class="ap-btn ap-btn-sm ap-btn-success" style="margin-top:4px;">
+                        <i class="fas fa-floppy-disk"></i>Cập nhật
                     </button>
                 </form>
             </div>
-            <span href="#" class="font-semibold text-[18px] hover:underline">
-                Danh sách:
-            </span>
-            <div class="w-full grid grid-cols-2 lg:grid-cols-6 gap-[15px]">
-                {% if Category == '0' %}
-                {% for i in list_Edit_dsdt_mb %}
-                <div class="relative flex flex-col justify-between gap-[10px]  show">
-                    <img class="w-full" alt="IMG" src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}">
-                    <form method="post" action="{% url 'change_dsdt_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px]">
-                        {% csrf_token %}
-                        <input type="text" value="{{i.Name}}" placeholder="Tên" class="rounded-md w-full" name="Name" />
-                        <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
-                        <input type="text" value="{{i.Link}}" placeholder="Link" class="rounded-md w-full" name="Link" />
-                        <input type="hidden" value="0" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
-                        <input type="hidden" value="{{i.id}}" placeholder="Danh mục" class="rounded-md w-full" name="id" />
-                        <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />    
-                        <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                            Cập nhật
-                        </button>
-                    </form>
-                    <form method="post"  action="{% url 'change_dsdt_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
-                        {% csrf_token %}
-                        <input type="hidden" name="id" value="{{i.id}}" class="" />
-                        <input type="hidden" name="Category" value="0" class="" />
-                        <button type="submit" class="fill-red-500 w-[30px]">
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
-                                <path style="" d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
-                                    s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
-                                    l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
-                                </svg>
-                        </button>
-                    </form>
-                    <form method="post"  action="{% url 'change_dsdt_order_admin' %}" class="absolute top-3 left-3 flex gap-1 items-center fill-red-500">
-                        {% csrf_token %}
-                        <input type="hidden" name="id" value="{{i.id}}"  />
-                        <div class=" relative flex gap-1 items-center">
-                            <input type="number" name="Order" value="{{i.Order}}" class="bg-[#0e203c] font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"   />
-                            <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
-                                <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                {% endfor %}
-                {% endif %}
-                {% if Category == '1' %}
-                {% for i in list_Edit_dsdt_mn %}
-                <div class="relative flex flex-col justify-between gap-[10px]  show">
-                    <img class="w-full" alt="IMG" src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}">
-                    <form method="post" action="{% url 'change_dsdt_admin' %}" enctype="multipart/form-data" class="flex flex-col gap-[5px] lg:gap-[10px]">
-                        {% csrf_token %}
-                        <input type="text" value="{{i.Name}}" placeholder="Tên" class="rounded-md w-full" name="Name" />
-                        <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" class="rounded-md w-full" name="Address" />
-                        <input type="text" value="{{i.Link}}" placeholder="Link" class="rounded-md w-full" name="Link" />
-                        <input type="hidden" value="1" placeholder="Danh mục" class="rounded-md w-full" name="Category" />
-                        <input type="hidden" value="{{i.id}}" placeholder="Danh mục" class="rounded-md w-full" name="id" />
-                        <input type="file" class="rounded-md w-full"  accept="image/*" name="Photo"  />    
-                        <button type="submit" class=" flex justify-center items-center w-full p-2 rounded-md bg-green-500 font-semibold text-md hover:cursor-pointer">
-                            Cập nhật
-                        </button>
-                    </form>
-                    <form method="post"  action="{% url 'change_dsdt_remove_admin' %}" class="absolute top-3 right-3 w-[30px] fill-red-500">
-                        {% csrf_token %}
-                        <input type="hidden" name="id" value="{{i.id}}" class="" />
-                        <input type="hidden" name="Category" value="1" class="" />
-                        <button type="submit" class="fill-red-500 w-[30px]">
-                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.434 72.437" style="enable-background:new 0 0 72.434 72.437;" xml:space="preserve">
-                                <path style="" d="M36.22,0C16.212,0,0,16.215,0,36.223c0,19.999,16.212,36.214,36.22,36.214
-                                    s36.214-16.215,36.214-36.214C72.434,16.215,56.228,0,36.22,0z M51.812,48.083l-4.565,4.565l-11.02-11.021L24.86,52.995
-                                    l-4.565-4.565l11.367-11.367L20.639,26.04l4.568-4.565l11.02,11.02l11.349-11.343l4.565,4.565L40.792,37.063L51.812,48.083z"></path>
-                                </svg>
-                        </button>
-                    </form>
-                    <form method="post"  action="{% url 'change_dsdt_order_admin' %}" class="absolute top-3 left-3 flex gap-1 items-center fill-red-500">
-                        {% csrf_token %}
-                        <input type="hidden" name="id" value="{{i.id}}"  />
-                        <div class=" relative flex gap-1 items-center">
-                            <input type="number" name="Order" value="{{i.Order}}" class="bg-[#0e203c] font-bold flex text-[18px] items-center text-white py-1 rounded-full border-[1px] border-sky-500 w-[80px] h-[30px]"   />
-                            <button type="submit" class="absolute right-0 bg-sky-500 stroke-[#0e203c] w-[30px]  rounded-r-full">
-                                <svg enable-background="new 0 0 24 24" id="Layer_1" version="1.0" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polyline fill="none" points="8.5,3 17.5,12 8.5,21 "  stroke-miterlimit="10" stroke-width="2"></polyline></svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                {% endfor %}
-                {% endif %}
+        </div>
+        {% endfor %}{% endif %}
+
+        {% if Category == '1' %}{% for i in list_Edit_dsdt_mn %}
+        <div class="ap-item">
+            <div class="ap-item-img">
+                <img alt="{{i.Name}}" src="{% if i.Photo %}{{ i.Photo.url }}{% endif %}">
+                <form method="post" action="{% url 'change_dsdt_order_admin' %}" class="ap-overlay-order">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{i.id}}"/>
+                    <input type="number" name="Order" value="{{i.Order}}" />
+                    <button type="submit" title="Lưu thứ tự"><i class="fas fa-check"></i></button>
+                </form>
+                <form method="post" action="{% url 'change_dsdt_remove_admin' %}" onsubmit="return confirm('Xoá đối tác này?');">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{i.id}}"/>
+                    <input type="hidden" name="Category" value="1"/>
+                    <button type="submit" class="ap-overlay-delete" title="Xoá"><i class="fas fa-xmark"></i></button>
+                </form>
+            </div>
+            <div class="ap-item-body">
+                <form method="post" action="{% url 'change_dsdt_admin' %}" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:6px;">
+                    {% csrf_token %}
+                    <input type="text" value="{{i.Name}}" placeholder="Tên" name="Name" />
+                    <input type="text" value="{{i.Address}}" placeholder="Địa chỉ" name="Address" />
+                    <input type="text" value="{{i.Link}}" placeholder="Link" name="Link" />
+                    <input type="hidden" value="1" name="Category" />
+                    <input type="hidden" value="{{i.id}}" name="id" />
+                    <input type="file" accept="image/*" name="Photo" />
+                    <button type="submit" class="ap-btn ap-btn-sm ap-btn-success" style="margin-top:4px;">
+                        <i class="fas fa-floppy-disk"></i>Cập nhật
+                    </button>
+                </form>
             </div>
         </div>
-        
+        {% endfor %}{% endif %}
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('.open_input_Size').on('click', function() {
-            $('.input_Size').toggle(); // Bật nếu ẩn, ẩn nếu bật
-        });
-    });
-</script>
-<script>
-    function autoResize(el) {
-        el.style.height = 'auto';
-        el.style.height = el.scrollHeight + 'px';
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('textarea.autoresize').forEach(function (el) {
-            autoResize(el);
-            el.addEventListener('input', () => autoResize(el));
-        });
-    });
-</script>
 {% endblock %}

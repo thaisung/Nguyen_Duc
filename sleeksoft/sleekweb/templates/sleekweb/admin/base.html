@@ -1,67 +1,50 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="vi">
-    {% load static %}
+{% load static %}
 <head>
     {% tailwind_css %}
     {{ form.media }}
-    <!-- 1. Thẻ charset, viewport, title -->
     <meta http-equiv="content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <title>{% block title %}{% endblock %}</title>
 
-    <!-- 2. Thẻ SEO cơ bản -->
     <meta name="description" content="">
     <meta name="keywords" content="Đăng nhập tài khoản" />
     <link rel="canonical" href="{{domain}}/admin/login" />
-
     <meta name='revisit-after' content='1 days' />
     <meta name="robots" content="noodp,index,follow" />
 
-    <!-- 3. Favicon -->
     <link rel="shortcut icon" href="{{domain}}/upload/website/logo.png" type="image/x-icon" />
 
-    <!-- 4. Open Graph tags (Facebook, Zalo...) -->
     <meta property="og:type" content="website">
-
     <meta property="og:title" content="Đăng nhập tài khoản">
     <meta property="og:description" content="">
     <meta property="og:image" content="{{domain}}/upload/website/logo.png">
     <meta property="og:image:secure_url" content="{{domain}}/upload/website/logo.png">
     <meta property="og:url" content="{{domain}}/admin/login">
-
     <meta property="og:site_name" content="Hydrinity">
-
-    <!-- 5. Phần còn lại -->
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
 
     <link rel="stylesheet" href="/static/css/dist/styles.css?v=1743858420">
     <link rel="stylesheet" href="/static/styles.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-        // Trước khi unload, lưu vị trí scroll
         window.addEventListener('beforeunload', function () {
             localStorage.setItem('scrollPos', window.scrollY);
         });
-    
-        // Khi load lại, cuộn đến vị trí cũ
         window.addEventListener('DOMContentLoaded', function () {
             const scrollPos = localStorage.getItem('scrollPos');
             if (scrollPos) {
                 window.scrollTo(0, parseInt(scrollPos));
-                localStorage.removeItem('scrollPos');  // chỉ giữ cho 1 lần load lại
+                localStorage.removeItem('scrollPos');
             }
         });
     </script>
-    
 
     <script>
         function formatNumber(num) {
@@ -71,214 +54,853 @@
             function formatNumberWithDot(num) {
                 return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             }
-        
             $('.format_number').each(function() {
                 var originalNumber = $(this).text().trim();
                 var formattedNumber = formatNumberWithDot(originalNumber);
                 $(this).text(formattedNumber);
             });
         });
-      </script>
-      
+    </script>
 
-      <style>
-        
+    <style>
         @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/00022-UTM-Aptima.ttf' %}") format('truetype');
-            font-weight: 400;
-            font-style: normal;
+            font-weight: 400; font-style: normal;
         }
-
         @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/UTM-APTIMABOLD.ttf' %}") format('truetype');
-            font-weight: 700;
-            font-style: normal;
+            font-weight: 700; font-style: normal;
         }
-
         @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/UTM-AptimaItalic.ttf' %}") format('truetype');
-            font-weight: 400;
-            font-style: italic;
+            font-weight: 400; font-style: italic;
         }
-
         @font-face {
             font-family: 'UTM Aptima';
             src: url("{% static 'fonts/00024-UTM-AptimaBoldItalic.ttf' %}") format('truetype');
-            font-weight: 700;
-            font-style: italic;
+            font-weight: 700; font-style: italic;
         }
-
         @font-face {
             font-family: 'UTM Bebas';
             src: url("{% static 'fonts/00041-UTM-Bebas.ttf' %}") format('truetype');
-            font-weight: 700;
-            font-style: normal;
+            font-weight: 700; font-style: normal;
+        }
+
+        :root {
+            --admin-navy: #0e203c;
+            --admin-navy-2: #11284A;
+            --admin-gold: #c9a86a;
+            --admin-surface: #f4f5f7;
+            --admin-surface-2: #ffffff;
+            --admin-border: #dfe3ea;
+            --admin-text: #1a2238;
+            --admin-muted: #6b7280;
+            --admin-danger: #dc2626;
         }
 
         body {
             font-family: 'UTM Aptima', sans-serif !important;
+            background: var(--admin-surface);
+            color: var(--admin-text);
+            margin: 0;
+        }
+        .ff-bb { font-family: 'UTM Bebas', sans-serif !important; }
+
+        /* ── Shell ── */
+        .admin-shell {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
         }
 
-        .ff-bb{
-            font-family: 'UTM Bebas', sans-serif !important;
+        /* ── Sidebar ── */
+        .admin-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            background: linear-gradient(180deg, #11284A 0%, #0e203c 100%);
+            color: #f4f5f7;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 24px rgba(14, 32, 60, 0.08);
+        }
+        @media (min-width: 1024px) {
+            .admin-sidebar {
+                position: sticky; top: 0;
+                height: 100vh;
+            }
+        }
+        @media (max-width: 1023.98px) {
+            .admin-sidebar {
+                position: fixed;
+                inset: 0 auto 0 0;
+                z-index: 9999;
+                transform: translateX(-100%);
+                transition: transform .28s ease;
+            }
+            .admin-sidebar.open { transform: translateX(0); }
         }
 
+        .admin-brand {
+            position: relative;
+            padding: 22px 20px 20px;
+            display: flex; align-items: center; gap: 14px;
+        }
+        .admin-brand::after {
+            content: "";
+            position: absolute;
+            left: 20px; right: 20px; bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(201, 168, 106, .5) 50%,
+                transparent 100%);
+        }
+        .admin-brand-logo {
+            width: 46px; height: 46px;
+            border-radius: 12px;
+            background:
+                linear-gradient(135deg, #1a3258 0%, #0e203c 100%);
+            padding: 5px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            box-shadow:
+                inset 0 0 0 1px rgba(201, 168, 106, .55),
+                0 0 0 3px rgba(201, 168, 106, .1),
+                0 6px 14px rgba(0, 0, 0, .28);
+            position: relative;
+        }
+        .admin-brand-logo::before {
+            content: "";
+            position: absolute;
+            inset: 2px;
+            border-radius: 9px;
+            background: linear-gradient(160deg, rgba(255,255,255,.05), transparent 55%);
+            pointer-events: none;
+        }
+        .admin-brand-logo img {
+            width: 100%; height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .35));
+            position: relative;
+            z-index: 1;
+        }
+        .admin-brand-text {
+            display: flex; flex-direction: column; gap: 4px;
+            min-width: 0;
+        }
+        .admin-brand-name {
+            font-family: 'UTM Bebas', sans-serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+            line-height: 1;
+            background: linear-gradient(180deg, #ffffff 0%, #e8d9b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #fff;
+        }
+        .admin-brand-sub {
+            font-size: 10px;
+            color: var(--admin-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            opacity: .9;
+        }
+
+        .admin-user-chip {
+            margin: 14px 14px 6px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 10px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .admin-user-chip > i {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: rgba(201, 168, 106, .18);
+            color: var(--admin-gold);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .admin-user-name { font-weight: 700; color: #fff; font-size: 14px; line-height: 1.2; }
+        .admin-user-role { font-size: 11px; color: rgba(255,255,255,.6); }
+
+        .admin-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 10px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .admin-nav::-webkit-scrollbar { width: 6px; }
+        .admin-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 3px; }
+
+        .admin-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            color: rgba(255,255,255,.78);
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background .15s, color .15s;
+            position: relative;
+            text-decoration: none;
+        }
+        .admin-nav a > i {
+            width: 20px; text-align: center;
+            font-size: 14px;
+            color: rgba(255,255,255,.55);
+            transition: color .15s;
+        }
+        .admin-nav a:hover {
+            background: rgba(255,255,255,.07);
+            color: #fff;
+        }
+        .admin-nav a:hover > i { color: var(--admin-gold); }
+        .admin-nav a.active {
+            background: rgba(255,255,255,.12);
+            color: #fff;
+            box-shadow: inset 3px 0 0 var(--admin-gold);
+        }
+        .admin-nav a.active > i { color: var(--admin-gold); }
+
+        .admin-sidebar-foot {
+            padding: 12px 14px 16px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex; gap: 8px;
+        }
+        .admin-sidebar-foot a {
+            flex: 1;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 9px 10px;
+            background: rgba(255,255,255,.08);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background .15s;
+            text-decoration: none;
+        }
+        .admin-sidebar-foot a:hover { background: rgba(255,255,255,.16); }
+        .admin-sidebar-foot a.danger { background: rgba(220, 38, 38, .22); }
+        .admin-sidebar-foot a.danger:hover { background: rgba(220, 38, 38, .4); }
+
+        /* ── Main area ── */
+        .admin-main {
+            flex: 1;
+            min-width: 0;
+            padding: 20px 24px 40px;
+        }
+        @media (max-width: 1023.98px) {
+            .admin-main { padding: 68px 14px 32px; }
+        }
+
+        .admin-card {
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid var(--admin-border);
+            box-shadow: 0 1px 3px rgba(14, 32, 60, .05), 0 1px 2px rgba(14, 32, 60, .03);
+        }
+
+        /* ── Mobile trigger ── */
+        .admin-menu-trigger {
+            position: fixed; top: 12px; left: 12px;
+            z-index: 10000;
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: 10px;
+            padding: 9px 12px;
+            display: none; align-items: center;
+            box-shadow: 0 4px 12px rgba(14, 32, 60, .08);
+            cursor: pointer;
+            color: var(--admin-navy);
+        }
+        @media (max-width: 1023.98px) { .admin-menu-trigger { display: flex; } }
+        .admin-menu-trigger:hover { background: #f4f5f7; }
+
+        .admin-backdrop {
+            position: fixed; inset: 0;
+            background: rgba(14, 32, 60, .5);
+            z-index: 9998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s;
+        }
+        .admin-backdrop.show { opacity: 1; pointer-events: auto; }
+
+        /* ── Form polish ── */
+        input[type="text"], input[type="number"], input[type="email"],
+        input[type="password"], input[type="search"], input[type="tel"],
+        input[type="url"], input[type="date"], input[type="datetime-local"],
+        textarea, select {
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: var(--admin-text);
+            transition: border-color .15s, box-shadow .15s;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none !important;
+            border-color: var(--admin-navy-2);
+            box-shadow: 0 0 0 3px rgba(17, 40, 74, .12);
+        }
+        input[type="file"] {
+            padding: 6px 8px;
+            font-size: 13px;
+        }
+
+        /* ══════════════════════════════════════════════════════════
+           ADMIN PAGE UTILITIES (ap-*) — dùng trong các page con
+           ══════════════════════════════════════════════════════════ */
+
+        /* Container page */
+        .ap-page {
+            display: flex; flex-direction: column; gap: 16px;
+        }
+
+        /* Page head (title + actions) */
+        .ap-head {
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex; align-items: center; gap: 14px;
+            flex-wrap: wrap;
+            box-shadow: 0 1px 3px rgba(14,32,60,.04);
+        }
+        .ap-head-main { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+        .ap-head-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: linear-gradient(135deg, #11284A 0%, #0e203c 100%);
+            color: var(--admin-gold);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .ap-title {
+            font-family: 'UTM Bebas', sans-serif;
+            font-size: 22px;
+            letter-spacing: 2px;
+            color: var(--admin-navy);
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.1;
+        }
+        .ap-title-sub {
+            font-size: 12px;
+            color: var(--admin-muted);
+            margin-top: 2px;
+            letter-spacing: .5px;
+        }
+        .ap-head-actions {
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        }
+
+        /* Search field in head */
+        .ap-search { position: relative; display: flex; align-items: center; }
+        .ap-search input {
+            padding: 8px 38px 8px 14px !important;
+            border-radius: 999px !important;
+            border: 1px solid var(--admin-border) !important;
+            font-size: 13px;
+            min-width: 220px;
+            background: #f7f8fa !important;
+        }
+        .ap-search input:focus { background: #fff !important; }
+        .ap-search button {
+            position: absolute; right: 4px;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: var(--admin-navy);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border: none; cursor: pointer;
+            transition: background .15s;
+        }
+        .ap-search button:hover { background: var(--admin-navy-2); }
+
+        /* Card / section panel */
+        .ap-card {
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(14,32,60,.04);
+        }
+        .ap-card-tight { padding: 14px 16px; }
+
+        .ap-section-title {
+            font-family: 'UTM Bebas', sans-serif;
+            font-size: 16px;
+            letter-spacing: 1.5px;
+            color: var(--admin-navy);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex; align-items: center; gap: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--admin-border);
+        }
+        .ap-section-title i { color: var(--admin-gold); }
+
+        /* SEO panel (replaces bg-stone-300 panel) */
+        .ap-seo {
+            background: #fff8ef;
+            border: 1px solid #efe1c6;
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+        .ap-seo-head {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--admin-navy);
+        }
+        .ap-seo-head i { color: var(--admin-gold); }
+        .ap-seo .ap-seo-row {
+            display: flex; gap: 10px; align-items: center;
+            margin-bottom: 8px;
+        }
+        .ap-seo .ap-seo-row:last-child { margin-bottom: 0; }
+        .ap-seo .ap-seo-label {
+            font-weight: 700; font-size: 13px;
+            color: var(--admin-navy);
+            min-width: 130px;
+        }
+        .ap-seo input { flex: 1; }
+
+        /* Label + input pair */
+        .ap-field { display: flex; flex-direction: column; gap: 6px; }
+        .ap-field label, .ap-label {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--admin-navy);
+            letter-spacing: .3px;
+        }
+        .ap-field-row { display: flex; gap: 14px; flex-wrap: wrap; }
+        .ap-field-row > .ap-field { flex: 1; min-width: 240px; }
+
+        /* Form column (single-record forms) */
+        .ap-form-single {
+            max-width: 640px;
+            margin: 0 auto;
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .ap-form-wide {
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .ap-form-actions {
+            display: flex; gap: 10px; flex-wrap: wrap;
+            padding-top: 6px;
+        }
+
+        /* Buttons */
+        .ap-btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px;
+            padding: 9px 16px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: .5px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform .1s, box-shadow .15s, filter .15s, background .15s;
+            text-decoration: none;
+            line-height: 1;
+        }
+        .ap-btn:hover { filter: brightness(1.06); box-shadow: 0 4px 12px rgba(14,32,60,.12); }
+        .ap-btn:active { transform: translateY(1px); }
+        .ap-btn i { font-size: 12px; }
+
+        .ap-btn-primary { background: linear-gradient(135deg, #11284A 0%, #0e203c 100%); color: #fff; }
+        .ap-btn-success { background: #10b981; color: #fff; }
+        .ap-btn-danger  { background: #dc2626; color: #fff; }
+        .ap-btn-info    { background: #0ea5e9; color: #fff; }
+        .ap-btn-warn    { background: #f59e0b; color: #fff; }
+        .ap-btn-ghost   { background: #f1f3f7; color: var(--admin-navy); border-color: var(--admin-border); }
+        .ap-btn-ghost:hover { background: #e9ecf2; }
+
+        .ap-btn-icon {
+            width: 36px; height: 36px;
+            padding: 0;
+            border-radius: 10px;
+        }
+        .ap-btn-sm { padding: 6px 12px; font-size: 12px; }
+
+        /* Grid of items */
+        .ap-grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        }
+        .ap-grid-2 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .ap-grid-2 { grid-template-columns: repeat(2, 1fr); } }
+        .ap-grid-3 { grid-template-columns: 1fr; }
+        @media (min-width: 768px) { .ap-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1280px) { .ap-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+        /* Item card in a grid */
+        .ap-item {
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex; flex-direction: column;
+            transition: box-shadow .15s, transform .15s, border-color .15s;
+            position: relative;
+        }
+        .ap-item:hover {
+            box-shadow: 0 8px 24px rgba(14,32,60,.08);
+            border-color: #c6ccd8;
+        }
+        .ap-item-img {
+            aspect-ratio: 4 / 3;
+            background: #f1f3f7;
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .ap-item-img img { width: 100%; height: 100%; object-fit: cover; }
+        .ap-item-body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+        .ap-item-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--admin-navy);
+            line-height: 1.35;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .ap-item-meta { font-size: 12px; color: var(--admin-muted); }
+        .ap-item-actions {
+            display: flex; gap: 6px; padding: 0 12px 12px;
+            flex-wrap: wrap;
+        }
+
+        /* Overlay order input (top-left) and delete button (top-right) */
+        .ap-overlay-order {
+            position: absolute; top: 8px; left: 8px;
+            display: flex; gap: 4px;
+            background: rgba(255,255,255,.92);
+            border: 1px solid var(--admin-border);
+            border-radius: 8px;
+            padding: 3px;
+            box-shadow: 0 2px 6px rgba(14,32,60,.12);
+            z-index: 2;
+        }
+        .ap-overlay-order input {
+            width: 50px;
+            padding: 4px 6px !important;
+            font-size: 12px !important;
+            border: 1px solid var(--admin-border) !important;
+            border-radius: 6px !important;
+            text-align: center;
+        }
+        .ap-overlay-order button {
+            width: 26px; height: 26px;
+            border-radius: 6px;
+            background: var(--admin-navy);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border: none; cursor: pointer;
+        }
+        .ap-overlay-order button:hover { background: var(--admin-navy-2); }
+
+        .ap-overlay-delete {
+            position: absolute; top: 8px; right: 8px;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: rgba(220,38,38,.92);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border: none; cursor: pointer;
+            box-shadow: 0 2px 6px rgba(14,32,60,.12);
+            z-index: 2;
+            font-size: 12px;
+        }
+        .ap-overlay-delete:hover { background: #b91c1c; }
+
+        /* Image preview block */
+        .ap-image-preview {
+            background: #f1f3f7;
+            border: 1px dashed #c6ccd8;
+            border-radius: 12px;
+            padding: 14px;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+        }
+        .ap-image-preview img, .ap-image-preview video {
+            max-width: 100%;
+            max-height: 260px;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        /* Pagination */
+        .pagination ul, ul.pagination {
+            display: flex; justify-content: center; gap: 4px;
+            padding: 0; margin: 20px 0 0;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .pagination li, ul.pagination li, .pagination .numb, .pagination .dots, .pagination .btn {
+            min-width: 36px; height: 36px;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0 10px;
+            border-radius: 8px;
+            border: 1px solid var(--admin-border);
+            background: #fff;
+            color: var(--admin-navy);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pagination .numb:hover, .pagination .btn:hover { background: #f1f3f7; }
+        .pagination .active, .pagination .numb.active {
+            background: var(--admin-navy) !important;
+            color: #fff !important;
+            border-color: var(--admin-navy) !important;
+        }
+        .pagination .dots { border: none; background: transparent; }
+
+        /* Blog-form class (used by form-rich pages) */
+        .blog-form, form.blog-form {
+            background: #fff;
+            border: 1px solid var(--admin-border);
+            border-radius: 14px;
+            padding: 22px 24px;
+            box-shadow: 0 1px 3px rgba(14,32,60,.04);
+        }
+        .blog-form p, form.blog-form p { margin: 0 0 14px; }
+        .blog-form p:last-child, form.blog-form p:last-child { margin-bottom: 0; }
+        .blog-form label, form.blog-form label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--admin-navy);
+            margin-bottom: 6px;
+        }
+        .blog-form input[type="text"],
+        .blog-form input[type="number"],
+        .blog-form input[type="email"],
+        .blog-form input[type="url"],
+        .blog-form input[type="password"],
+        .blog-form textarea,
+        .blog-form select,
+        form.blog-form input[type="text"],
+        form.blog-form input[type="number"],
+        form.blog-form input[type="email"],
+        form.blog-form input[type="url"],
+        form.blog-form input[type="password"],
+        form.blog-form textarea,
+        form.blog-form select {
+            width: 100%;
+        }
+        .blog-form input[type="file"], form.blog-form input[type="file"] {
+            width: 100%;
+            background: #f7f8fa;
+            border: 1px dashed var(--admin-border);
+            padding: 8px 10px;
+            border-radius: 8px;
+        }
+        .blog-form textarea, form.blog-form textarea { min-height: 140px; }
+        .blog-form ul.errorlist, form.blog-form ul.errorlist {
+            margin: 4px 0 10px; padding: 0; list-style: none;
+            color: #dc2626; font-size: 12px;
+        }
+
+        /* "a#remove_blog" pattern — red delete link */
+        a#remove_blog, a.ap-remove {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 16px;
+            background: #dc2626; color: #fff !important;
+            border-radius: 10px;
+            font-weight: 700; font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        a#remove_blog:hover, a.ap-remove:hover { background: #b91c1c; }
+
+        /* Legacy Tailwind button colors → auto-polish (keep existing pages working) */
+        .admin-main button[class*="bg-green-500"],
+        .admin-main a[class*="bg-green-500"],
+        .admin-main button[class*="bg-red-500"],
+        .admin-main a[class*="bg-red-500"],
+        .admin-main button[class*="bg-blue-500"],
+        .admin-main a[class*="bg-blue-500"],
+        .admin-main button[class*="bg-sky-500"],
+        .admin-main a[class*="bg-sky-500"],
+        .admin-main button[class*="bg-amber-500"],
+        .admin-main a[class*="bg-amber-500"] {
+            border-radius: 10px !important;
+            font-weight: 700;
+            letter-spacing: .3px;
+            transition: filter .15s, box-shadow .15s, transform .1s;
+        }
+        .admin-main button[class*="bg-green-500"]:hover,
+        .admin-main a[class*="bg-green-500"]:hover,
+        .admin-main button[class*="bg-red-500"]:hover,
+        .admin-main a[class*="bg-red-500"]:hover,
+        .admin-main button[class*="bg-blue-500"]:hover,
+        .admin-main a[class*="bg-blue-500"]:hover,
+        .admin-main button[class*="bg-sky-500"]:hover,
+        .admin-main a[class*="bg-sky-500"]:hover,
+        .admin-main button[class*="bg-amber-500"]:hover,
+        .admin-main a[class*="bg-amber-500"]:hover {
+            filter: brightness(1.06);
+            box-shadow: 0 4px 12px rgba(14,32,60,.12);
+        }
+
+        /* Tables */
+        .ap-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .ap-table th {
+            background: #f4f5f7;
+            text-align: left;
+            padding: 12px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--admin-navy);
+            border-bottom: 1px solid var(--admin-border);
+        }
+        .ap-table td {
+            padding: 12px 14px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--admin-border);
+            color: var(--admin-text);
+        }
+        .ap-table tr:last-child td { border-bottom: none; }
     </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
 </head>
 
-<body class=" flex  items-center justify-center bg-red-500" style="background: url('/upload/website/background.png') no-repeat center center/cover;">
-    <div class="flex  w-full min-h-screen h-full">
-        <div class="click_menu lg:hidden flex justify-center items-center fixed top-2 left-2 cursor-pointer bg-[#eaebe7] p-1 border-[1px] border-[#0e203c] rounded-md ">
-            <svg class="w-[25px] fill-[#0e203c]" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <title>menu</title>
-                <desc>Created with Sketch.</desc>
-                <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                    <g id="Outlined" transform="translate(-919.000000, -3438.000000)">
-                        <g id="Navigation" transform="translate(100.000000, 3378.000000)">
-                            <g id="Outlined-/-Navigation-/-menu" transform="translate(816.000000, 54.000000)">
-                                <g>
-                                    <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
-                                    <path d="M3,18 L21,18 L21,16 L3,16 L3,18 Z M3,13 L21,13 L21,11 L3,11 L3,13 Z M3,6 L3,8 L21,8 L21,6 L3,6 Z" id="🔹-Icon-Color" fill="#0e203c"></path>
-                                </g>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-            </svg>
-        </div> 
-        <div id="menu" class="menu fixed lg:static  grow bg-[#eaebe7] lg:bg-transparent hidden lg:flex flex-col  text-white w-[350px] min-h-screen border-r-[1px] border-[#0e203c]" style="z-index: 9999;">
-            <div class="uppercase flex flex-col justify-center items-center py-[20px] bg-[#11284A] border-b-[1px] border-[#0e203c] text-[30px]">
-                hydrinity
-                <span class="text-[16px]">Quản trị trang web</span>
-                <span class="text-[14px] text-yellow-500">{{request.user.username}}</span>
-            </div>
-            <nav class="flex flex-col p-3 font-bold   text-[#11284A] grow h-full">
-                <a href="{% url 'change_website_admin' %}"  class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Thông tin Website
-                    {% if request.resolver_match.url_name == 'change_website_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'image_slider_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Trang chủ
-                    {% if request.resolver_match.url_name == 'image_slider_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_vct_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Về chúng tôi
-                    {% if request.resolver_match.url_name == 'change_vct_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_tnsm_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Tầm nhìn và sứ mệnh
-                    {% if request.resolver_match.url_name == 'change_tnsm_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_ttgt_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Tin tức & Giải thưởng
-                    {% if request.resolver_match.url_name == 'change_ttgt_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_lh_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Liên hệ
-                    {% if request.resolver_match.url_name == 'change_lh_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_dsdt_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Danh sách đối tác
-                    {% if request.resolver_match.url_name == 'change_dsdt_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_nckh_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Ngiên cứu khoa học
-                    {% if request.resolver_match.url_name == 'change_nckh_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_kqls_post_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Kết quả lâm sàn
-                    {% if request.resolver_match.url_name == 'change_kqls_admin' %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'change_blog_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Blog
-                    {% if request.resolver_match.url_name == 'change_blog_admin' or 'admin/blog/edit' in request.path %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <a href="{% url 'product_admin' %}" class="flex items-center justify-between border-b-[1px] border-[#0e203c] py-3 cursor-pointer">
-                     Sản phẩm
-                    {% if request.resolver_match.url_name == 'product_admin' or 'admin/product/edit' in request.path or 'admin/product/add' in request.path %}
-                    <svg class="w-[20px] fill-[#0e203c]" version="1.1" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><title></title><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#0e203c" id="Icons-AV" transform="translate(-88.000000, -88.000000)"><g id="play-arrow" transform="translate(88.500000, 88.000000)"><path d="M0,0 L0,14 L11,7 L0,0 Z" id="Shape"></path></g></g></g></svg>
-                    {% endif %}
-                </a>
-                <div class="flex gap-2 justify-center items-center p-3">
-                    <a href="{% url 'logout_admin' %}" class="px-2 py-1 bg-[#0e203c] text-white rounded-md">
-                        <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path d="M5 22a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v3h-2V4H6v16h12v-2h2v3a1 1 0 0 1-1 1H5zm13-6v-3h-7v-2h7V8l5 4-5 4z" fill="#ffffff"></path></svg>
-                    </a>
-                    <a href="{% url 'user_edit_admin' pk=request.user.id %}" class="px-2 py-1 bg-[#0e203c] text-white rounded-md">
-                        <svg class="fill-white w-[24px]" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title></title><g id="about"><path d="M16,16A7,7,0,1,0,9,9,7,7,0,0,0,16,16ZM16,4a5,5,0,1,1-5,5A5,5,0,0,1,16,4Z"></path><path d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z"></path></g></svg>
-                    </a>
+<body>
+    <div class="admin-shell">
+        <button type="button" class="admin-menu-trigger click_menu" aria-label="Mở menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="admin-backdrop" id="adminBackdrop"></div>
+
+        <aside id="menu" class="admin-sidebar menu">
+            <div class="admin-brand">
+                <div class="admin-brand-logo">
+                    <img src="{% if obj.Logo %}{{obj.Logo.url}}{% else %}/upload/website/logo.png{% endif %}" alt="Hydrinity">
                 </div>
+                <div class="admin-brand-text">
+                    <div class="admin-brand-name">HYDRINITY</div>
+                    <div class="admin-brand-sub">Quản trị website</div>
+                </div>
+            </div>
+
+            <div class="admin-user-chip">
+                <i class="fas fa-user-shield"></i>
+                <div>
+                    <div class="admin-user-name">{{request.user.username}}</div>
+                    <div class="admin-user-role">Quản trị viên</div>
+                </div>
+            </div>
+
+            <nav class="admin-nav">
+                <a href="{% url 'change_website_admin' %}" class="{% if request.resolver_match.url_name == 'change_website_admin' %}active{% endif %}">
+                    <i class="fas fa-globe"></i>Thông tin Website
+                </a>
+                <a href="{% url 'image_slider_admin' %}" class="{% if request.resolver_match.url_name == 'image_slider_admin' %}active{% endif %}">
+                    <i class="fas fa-house"></i>Trang chủ
+                </a>
+                <a href="{% url 'change_vct_admin' %}" class="{% if request.resolver_match.url_name == 'change_vct_admin' %}active{% endif %}">
+                    <i class="fas fa-building"></i>Về chúng tôi
+                </a>
+                <a href="{% url 'change_tnsm_admin' %}" class="{% if request.resolver_match.url_name == 'change_tnsm_admin' %}active{% endif %}">
+                    <i class="fas fa-compass"></i>Tầm nhìn & sứ mệnh
+                </a>
+                <a href="{% url 'change_ttgt_admin' %}" class="{% if request.resolver_match.url_name == 'change_ttgt_admin' %}active{% endif %}">
+                    <i class="fas fa-trophy"></i>Tin tức & giải thưởng
+                </a>
+                <a href="{% url 'change_lh_admin' %}" class="{% if request.resolver_match.url_name == 'change_lh_admin' %}active{% endif %}">
+                    <i class="fas fa-envelope"></i>Liên hệ
+                </a>
+                <a href="{% url 'change_dsdt_admin' %}" class="{% if request.resolver_match.url_name == 'change_dsdt_admin' %}active{% endif %}">
+                    <i class="fas fa-handshake"></i>Danh sách đối tác
+                </a>
+                <a href="{% url 'change_nckh_admin' %}" class="{% if request.resolver_match.url_name == 'change_nckh_admin' %}active{% endif %}">
+                    <i class="fas fa-flask"></i>Nghiên cứu khoa học
+                </a>
+                <a href="{% url 'change_kqls_post_admin' %}" class="{% if request.resolver_match.url_name == 'change_kqls_admin' or request.resolver_match.url_name == 'change_kqls_post_admin' or 'admin/kqls' in request.path %}active{% endif %}">
+                    <i class="fas fa-notes-medical"></i>Kết quả lâm sàng
+                </a>
+                <a href="{% url 'change_blog_admin' %}" class="{% if request.resolver_match.url_name == 'change_blog_admin' or 'admin/blog/edit' in request.path or 'admin/blog/add' in request.path %}active{% endif %}">
+                    <i class="fas fa-pen-to-square"></i>Blog
+                </a>
+                <a href="{% url 'product_admin' %}" class="{% if request.resolver_match.url_name == 'product_admin' or 'admin/product/edit' in request.path or 'admin/product/add' in request.path %}active{% endif %}">
+                    <i class="fas fa-bag-shopping"></i>Sản phẩm
+                </a>
             </nav>
-        </div>
+
+            <div class="admin-sidebar-foot">
+                <a href="{% url 'user_edit_admin' pk=request.user.id %}" title="Tài khoản">
+                    <i class="fas fa-user-gear"></i>Tài khoản
+                </a>
+                <a href="{% url 'logout_admin' %}" class="danger" title="Đăng xuất">
+                    <i class="fas fa-right-from-bracket"></i>Đăng xuất
+                </a>
+            </div>
+        </aside>
+
         <script>
             let isOpen = false;
-        
-            $(".click_menu").click(function () {
+            $(".click_menu").click(function (e) {
+                e.stopPropagation();
                 const $menu = $("#menu");
-        
+                const $bd = $("#adminBackdrop");
                 if (!isOpen) {
-                    $menu.show(); // hiện ra trước khi chạy hiệu ứng
-                    gsap.to($menu, {
-                        duration: 0.4,
-                        x: "0%",
-                        ease: "power2.out"
-                    });
+                    $menu.addClass("open");
+                    $bd.addClass("show");
                 } else {
-                    gsap.to($menu, {
-                        duration: 0.4,
-                        x: "-100%",
-                        ease: "power2.in",
-                        onComplete: function () {
-                            $menu.hide(); // ẩn sau khi animation xong
-                        }
-                    });
+                    $menu.removeClass("open");
+                    $bd.removeClass("show");
                 }
-        
                 isOpen = !isOpen;
             });
-        
-            // Đóng khi click ra ngoài
+            $(document).on("click", "#adminBackdrop", function () {
+                $("#menu").removeClass("open");
+                $("#adminBackdrop").removeClass("show");
+                isOpen = false;
+            });
             $(document).click(function (e) {
-                const $menu = $("#menu");
                 if (isOpen && !$(e.target).closest("#menu, .click_menu").length) {
-                    gsap.to($menu, {
-                        duration: 0.4,
-                        x: "-100%",
-                        ease: "power2.in",
-                        onComplete: function () {
-                            $menu.hide();
-                        }
-                    });
+                    $("#menu").removeClass("open");
+                    $("#adminBackdrop").removeClass("show");
                     isOpen = false;
                 }
             });
         </script>
-        {% block content %}{% endblock %}
+
+        <main class="admin-main">
+            {% block content %}{% endblock %}
+        </main>
     </div>
 </body>
 

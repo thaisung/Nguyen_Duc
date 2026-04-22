@@ -157,12 +157,13 @@ def change_kqls_post_edit_admin(request, pk):
 def change_kqls_post_remove_admin(request, pk):
     if not request.user.is_authenticated:
         return redirect('login_admin')
-    obj_Blog = KqlsPost.objects.get(pk=pk)  # Lấy bài viết theo pk
-
-    if request.method == 'GET':
-        form = KqlsPostForm(instance=obj_Blog)  # Gán instance
-        obj_Blog.delete()
+    if request.method != 'POST':
         return redirect('change_kqls_post_admin')
+    try:
+        KqlsPost.objects.get(pk=pk).delete()
+    except KqlsPost.DoesNotExist:
+        pass
+    return redirect('change_kqls_post_admin')
 
 
 

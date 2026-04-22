@@ -187,11 +187,15 @@ def change_ttgt1_edit_admin(request, pk):
             return redirect('change_ttgt_admin')  # hoặc chuyển đến nơi khác
         
 def change_ttgt1_remove_admin(request, pk):
-    obj_ttgt1 = Edit_ttgt1.objects.get(pk=pk)  # Lấy bài viết theo pk
-
-    if request.method == 'GET':
-        obj_ttgt1.delete()
+    if not request.user.is_authenticated:
+        return redirect('login_admin')
+    if request.method != 'POST':
         return redirect('change_ttgt_admin')
+    try:
+        Edit_ttgt1.objects.get(pk=pk).delete()
+    except Edit_ttgt1.DoesNotExist:
+        pass
+    return redirect('change_ttgt_admin')
 
 def change_ttgt1_order_admin(request):    
     if request.method == 'POST':
