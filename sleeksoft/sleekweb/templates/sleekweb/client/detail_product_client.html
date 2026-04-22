@@ -158,6 +158,12 @@
           </div>
           {% endif %}
         </div>
+
+        <a href="https://cosbeauty.com.vn" target="_blank" rel="noopener noreferrer" class="btn-buy-now">
+          <i class="fas fa-bag-shopping"></i>
+          <span>Mua hàng</span>
+          <i class="fas fa-arrow-right btn-buy-now__arrow"></i>
+        </a>
       </div>
 
     </div>
@@ -340,6 +346,46 @@
   box-shadow:0 4px 14px rgba(15,35,64,.25);
 }
 
+/* Buy Now */
+.btn-buy-now {
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:12px;
+  width:100%;
+  max-width:340px;
+  padding:16px 28px;
+  margin:24px 0 4px;
+  background:linear-gradient(135deg, #11284A 0%, #0f2340 100%);
+  color:#fff;
+  border:1px solid rgba(184,116,10,.35);
+  border-radius:999px;
+  text-decoration:none;
+  font-family:var(--font-body);
+  font-size:13px; font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  box-shadow:0 8px 24px rgba(15,35,64,.22);
+  transition:transform .2s var(--ease), box-shadow .2s var(--ease), background .25s var(--ease);
+  position:relative; overflow:hidden;
+}
+.btn-buy-now::before {
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(184,116,10,.0), rgba(184,116,10,.18) 50%, rgba(184,116,10,.0));
+  opacity:0; transition:opacity .3s;
+}
+.btn-buy-now:hover {
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(15,35,64,.32);
+  background:linear-gradient(135deg, #0f2340 0%, #11284A 100%);
+  color:#fff;
+}
+.btn-buy-now:hover::before { opacity:1; }
+.btn-buy-now:active { transform:translateY(0); }
+.btn-buy-now i { font-size:14px; color:var(--gold); position:relative; z-index:1; }
+.btn-buy-now span { position:relative; z-index:1; }
+.btn-buy-now__arrow { transition:transform .25s var(--ease); }
+.btn-buy-now:hover .btn-buy-now__arrow { transform:translateX(4px); }
+
 /* Accordion */
 .product-accordion {
   display:flex; flex-direction:column;
@@ -460,8 +506,30 @@
     if (!trigger) return;
     const item = trigger.parentElement;
     const wasOpen = item.classList.contains('open');
+
+    // Giữ nguyên trigger ở vị trí hiện tại trong viewport khi đóng/mở các panel khác
+    const triggerTopBefore = trigger.getBoundingClientRect().top;
+
     item.parentElement.querySelectorAll('.acc-item.open').forEach(el => el.classList.remove('open'));
     if (!wasOpen) item.classList.add('open');
+
+    // Bù scroll do các panel khác đóng/mở làm layout dịch chuyển
+    const triggerTopAfter = trigger.getBoundingClientRect().top;
+    const delta = triggerTopAfter - triggerTopBefore;
+    if (Math.abs(delta) > 1) {
+      window.scrollBy({ top: delta, behavior: 'instant' in window ? 'instant' : 'auto' });
+    }
+
+    // Nếu trigger quá gần mép trên (bị khuất sau header ~100px), cuộn mượt xuống chỗ dễ thấy
+    if (!wasOpen) {
+      requestAnimationFrame(() => {
+        const rect = trigger.getBoundingClientRect();
+        const headerOffset = 100;
+        if (rect.top < headerOffset) {
+          window.scrollBy({ top: rect.top - headerOffset - 8, behavior: 'smooth' });
+        }
+      });
+    }
   });
 
   // Size selection: update main price
