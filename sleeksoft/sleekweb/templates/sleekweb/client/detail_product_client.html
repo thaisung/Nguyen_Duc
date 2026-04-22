@@ -193,7 +193,7 @@
     </div>
     <div class="products-grid fade-up">
       {% for i in list_Product %}
-      <div class="product-card">
+      <div class="product-card" data-href="{% url 'slug_router' slug=i.Slug %}" style="cursor:pointer">
         <div class="product-img">
           <a href="{% url 'slug_router' slug=i.Slug %}">
             <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{i.Name}}" loading="lazy">
@@ -217,7 +217,6 @@
               </span>
             </div>
           </div>
-          <a href="{% url 'slug_router' slug=i.Slug %}" class="btn-product-detail">Xem Chi Tiết <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       {% endfor %}
@@ -487,6 +486,14 @@
     const card = select.closest('.product-card');
     const display = card && card.querySelector('.price-display');
     if (display) display.textContent = (price || '').toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  });
+
+  // Related products: click card to open detail
+  document.addEventListener('click', function(e){
+    const card = e.target.closest('.product-card[data-href]');
+    if (!card) return;
+    if (e.target.closest('a, select, option, button, .product-select-wrap')) return;
+    window.location.href = card.dataset.href;
   });
 
   // Trang chi tiết luôn bắt đầu từ đầu trang
