@@ -24,7 +24,7 @@
 {% endblock %}
 {% block content %}
 {% for i in list_Product %}
-<div class="product-card">
+<div class="product-card" data-href="{% url 'slug_router' slug=i.Slug %}" style="cursor:pointer">
   <div class="product-img">
     <a href="{% url 'slug_router' slug=i.Slug %}">
       <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{i.Name}}">
@@ -50,7 +50,6 @@
         </span>
       </div>
     </div>
-    <a href="{% url 'slug_router' slug=i.Slug %}" class="btn-product-detail">Xem Chi Tiết <i class="fas fa-arrow-right"></i></a>
   </div>
 </div>
 {% endfor %}

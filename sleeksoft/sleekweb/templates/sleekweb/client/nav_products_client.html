@@ -44,7 +44,7 @@
     {% endif %}
     <div class="products-grid fade-up">
       {% for i in list_Product %}
-      <div class="product-card">
+      <div class="product-card" data-href="{% url 'slug_router' slug=i.Slug %}" style="cursor:pointer">
         <div class="product-img">
           <a href="{% url 'slug_router' slug=i.Slug %}">
             <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{i.Name}}">
@@ -70,11 +70,16 @@
               </span>
             </div>
           </div>
-          <a href="{% url 'slug_router' slug=i.Slug %}" class="btn-product-detail">Xem Chi Tiết <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       {% endfor %}
     </div>
   </div>
 </section>
+<script>
+  $(document).on('click', '.product-card[data-href]', function(e){
+    if ($(e.target).closest('a, select, option, button, .product-select-wrap').length) return;
+    window.location.href = $(this).data('href');
+  });
+</script>
 {% endblock %}

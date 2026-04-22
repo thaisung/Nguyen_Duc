@@ -44,16 +44,13 @@
     {% if list_KqlsPost %}
     <div class="blog-grid fade-up">
       {% for i in list_KqlsPost %}
-      <article class="blog-card">
+      <article class="blog-card" data-href="{% url 'slug_router' slug=i.Slug %}" style="cursor:pointer">
         <div class="blog-img">
           <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{i.Title}}" loading="lazy">
         </div>
         <div class="blog-body">
           <time class="blog-date" datetime="{{ i.Update_time|date:'Y-m-d' }}">{{ i.Update_time|date:'d M, Y' }}</time>
           <h3 class="blog-title"><a href="{% url 'slug_router' slug=i.Slug %}">{{i.Title}}</a></h3>
-          <div class="blog-meta">
-            <a href="{% url 'slug_router' slug=i.Slug %}" class="blog-read">Xem chi tiết <i class="fas fa-arrow-right"></i></a>
-          </div>
         </div>
       </article>
       {% endfor %}
@@ -89,7 +86,7 @@
     </div>
     <div class="products-grid fade-up">
       {% for i in list_Product %}
-      <div class="product-card">
+      <div class="product-card" data-href="{% url 'slug_router' slug=i.Slug %}" style="cursor:pointer">
         <div class="product-img">
           <a href="{% url 'slug_router' slug=i.Slug %}">
             <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{i.Name}}" loading="lazy">
@@ -113,7 +110,6 @@
               </span>
             </div>
           </div>
-          <a href="{% url 'slug_router' slug=i.Slug %}" class="btn-product-detail">Xem Chi Tiết <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       {% endfor %}
@@ -218,6 +214,13 @@
     const card = select.closest('.product-card');
     const display = card && card.querySelector('.price-display');
     if (display) display.textContent = (price || '').toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  });
+
+  document.addEventListener('click', function(e){
+    const card = e.target.closest('.product-card[data-href], .blog-card[data-href]');
+    if (!card) return;
+    if (e.target.closest('a, select, option, button, .product-select-wrap')) return;
+    window.location.href = card.dataset.href;
   });
 </script>
 

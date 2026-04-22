@@ -61,7 +61,7 @@
     {% if list_Edit_ttgt1 %}
     <div class="news-grid fade-up">
       {% for i in list_Edit_ttgt1 %}
-      <article class="news-card item all awards">
+      <article class="news-card item all awards" data-href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" style="cursor:pointer">
         <a class="news-thumb" href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}">
           <img src="{% if i.Photo %}{{i.Photo.url}}{% endif %}" alt="{{i.Title}}">
         </a>
@@ -70,9 +70,6 @@
           <h3 class="news-title">
             <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}">{{i.Title}}</a>
           </h3>
-          <a href="{% url 'about_tin_tuc_giai_thuong_detail_client' slug=i.Slug %}" class="news-readmore">
-            Đọc thêm <i class="fas fa-arrow-right"></i>
-          </a>
         </div>
       </article>
       {% endfor %}
@@ -255,6 +252,11 @@ $(document).ready(function () {
     }
     var visible = $('.news-card.item.show').length;
     $('#newsEmpty').prop('hidden', visible > 0);
+  });
+
+  $(document).on('click', '.news-card[data-href]', function(e){
+    if ($(e.target).closest('a, button').length) return;
+    window.location.href = $(this).data('href');
   });
 });
 </script>

@@ -216,6 +216,12 @@
                     $card.find('.price-display').text(formatNumber(price));
                 }
             });
+
+            // Bấm vào thẻ sản phẩm sẽ sang trang chi tiết (trừ select/link/button bên trong)
+            $(document).on('click', '.product-card[data-href]', function(e){
+                if ($(e.target).closest('a, select, option, button, .product-select-wrap').length) return;
+                window.location.href = $(this).data('href');
+            });
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -505,7 +511,7 @@
     <div class="products-grid fade-up">
       {% block content %}
       {% for i in list_Product %}
-      <div class="product-card" data-cat="all">
+      <div class="product-card" data-cat="all" data-href="{% url 'slug_router' slug=i.Slug %}" style="cursor:pointer">
         <div class="product-img">
           <a href="{{domain}}{% url 'slug_router' slug=i.Slug %}">
             <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{ i.Name }}">
@@ -534,7 +540,6 @@
               </span>
             </div>
           </div>
-          <a href="{% url 'slug_router' slug=i.Slug %}" class="btn-product-detail">Xem Chi Tiết <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       {% endfor %}

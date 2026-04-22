@@ -48,7 +48,7 @@
 
     <div class="blog-grid fade-up">
       {% for i in list_BlogPost %}
-      <article class="blog-card">
+      <article class="blog-card" data-href="{% url 'slug_router' slug=i.Slug %}" style="cursor:pointer">
         <div class="blog-img">
           <img src="{% if i.Avatar %}{{i.Avatar.url}}{% endif %}" alt="{{i.Title}}" loading="lazy">
         </div>
@@ -58,9 +58,6 @@
           {% if i.Seo_Description %}
           <p class="blog-excerpt">{{i.Seo_Description}}</p>
           {% endif %}
-          <div class="blog-meta">
-            <a href="{% url 'slug_router' slug=i.Slug %}" class="blog-read">Đọc thêm <i class="fas fa-arrow-right"></i></a>
-          </div>
         </div>
       </article>
       {% endfor %}
@@ -210,6 +207,11 @@
 
     element.innerHTML = html;
   })();
+
+  $(document).on('click', '.blog-card[data-href]', function(e){
+    if ($(e.target).closest('a, button').length) return;
+    window.location.href = $(this).data('href');
+  });
 </script>
 
 {% endblock %}
