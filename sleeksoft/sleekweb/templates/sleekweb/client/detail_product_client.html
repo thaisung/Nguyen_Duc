@@ -159,7 +159,7 @@
           {% endif %}
         </div>
 
-        <a href="https://cosbeauty.com.vn" target="_blank" rel="noopener noreferrer" class="btn-buy-now">
+        <a href="{% if obj_Product.Cosbeauty_link %}{{ obj_Product.Cosbeauty_link }}{% else %}https://cosbeauty.com.vn{% endif %}" target="_blank" rel="noopener noreferrer" class="btn-buy-now">
           <i class="fas fa-bag-shopping"></i>
           <span>Mua hàng</span>
           <i class="fas fa-arrow-right btn-buy-now__arrow"></i>

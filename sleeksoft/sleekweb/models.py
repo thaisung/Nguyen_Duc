@@ -48,6 +48,7 @@ class Product(models.Model):
     Slug = models.SlugField(unique=True,max_length=350, blank=True, null=True)  # Thêm slug
     Title = models.CharField('Chi tiết SP', max_length=500,blank=True, null=True)
     Category = models.CharField('Danh mục', max_length=250,blank=True, null=True)
+    Cosbeauty_link = models.URLField('Link Cosbeauty', max_length=500, blank=True, null=True)
     Price = models.CharField('Giá', max_length=255,blank=True, null=True)
     Introduce = models.TextField('Giới thiệu',blank=True, null=True)
     Describe = RichTextUploadingField(blank=True, null=True)

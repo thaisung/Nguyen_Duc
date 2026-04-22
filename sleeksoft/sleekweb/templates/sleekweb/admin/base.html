@@ -335,6 +335,37 @@
         }
         .admin-backdrop.show { opacity: 1; pointer-events: auto; }
 
+        /* ── Scroll to top ── */
+        .admin-scroll-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 46px; height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #11284A 0%, #0e203c 100%);
+            color: var(--admin-gold);
+            border: 1px solid rgba(201, 168, 106, .35);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(14, 32, 60, .28);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity .25s, transform .25s, visibility .25s, box-shadow .2s, filter .2s;
+            z-index: 9990;
+            font-size: 16px;
+        }
+        .admin-scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .admin-scroll-top:hover {
+            filter: brightness(1.12);
+            box-shadow: 0 12px 28px rgba(14, 32, 60, .38);
+        }
+        .admin-scroll-top:active { transform: translateY(1px); }
+
         /* ── Form polish ── */
         input[type="text"], input[type="number"], input[type="email"],
         input[type="password"], input[type="search"], input[type="tel"],
@@ -687,6 +718,78 @@
         }
         .blog-form p, form.blog-form p { margin: 0 0 14px; }
         .blog-form p:last-child, form.blog-form p:last-child { margin-bottom: 0; }
+
+        /* Field Đường link Cosbeauty — khối SHOP xanh teal (trên cùng) */
+        .blog-form p:has(input[name="Cosbeauty_link"]),
+        form.blog-form p:has(input[name="Cosbeauty_link"]) {
+            background: #ecfdf5;
+            border-left: 3px solid #0ea5a3;
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 14px;
+        }
+        .blog-form p:has(input[name="Cosbeauty_link"]) label,
+        form.blog-form p:has(input[name="Cosbeauty_link"]) label {
+            color: var(--admin-navy);
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            font-size: 12px;
+        }
+        .blog-form p:has(input[name="Cosbeauty_link"]) label::before,
+        form.blog-form p:has(input[name="Cosbeauty_link"]) label::before {
+            content: "SHOP · ";
+            color: #0ea5a3;
+            font-weight: 700;
+        }
+
+        /* Nhóm 3 field SEO (Đường dẫn / Tiêu đề SEO / Mô tả SEO) — khối vàng */
+        .blog-form p:has(input[name="Slug"]),
+        .blog-form p:has(input[name="Seo_Title"]),
+        .blog-form p:has(input[name="Seo_Description"]),
+        form.blog-form p:has(input[name="Slug"]),
+        form.blog-form p:has(input[name="Seo_Title"]),
+        form.blog-form p:has(input[name="Seo_Description"]) {
+            background: #fff8ef;
+            border-left: 3px solid var(--admin-gold);
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 8px;
+        }
+        .blog-form p:has(input[name="Slug"]) label,
+        .blog-form p:has(input[name="Seo_Title"]) label,
+        .blog-form p:has(input[name="Seo_Description"]) label,
+        form.blog-form p:has(input[name="Slug"]) label,
+        form.blog-form p:has(input[name="Seo_Title"]) label,
+        form.blog-form p:has(input[name="Seo_Description"]) label {
+            color: var(--admin-navy);
+            text-transform: uppercase;
+            letter-spacing: .8px;
+            font-size: 12px;
+        }
+        .blog-form p:has(input[name="Slug"]) label::before,
+        .blog-form p:has(input[name="Seo_Title"]) label::before,
+        .blog-form p:has(input[name="Seo_Description"]) label::before,
+        form.blog-form p:has(input[name="Slug"]) label::before,
+        form.blog-form p:has(input[name="Seo_Title"]) label::before,
+        form.blog-form p:has(input[name="Seo_Description"]) label::before {
+            content: "SEO · ";
+            color: var(--admin-gold);
+            font-weight: 700;
+        }
+        /* Gạch ngăn dưới field SEO cuối */
+        .blog-form p:has(input[name="Seo_Description"]),
+        form.blog-form p:has(input[name="Seo_Description"]) {
+            margin-bottom: 22px;
+            position: relative;
+        }
+        .blog-form p:has(input[name="Seo_Description"])::after,
+        form.blog-form p:has(input[name="Seo_Description"])::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: -10px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--admin-border), transparent);
+        }
         .blog-form label, form.blog-form label {
             display: block;
             font-weight: 600;
@@ -901,6 +1004,26 @@
         <main class="admin-main">
             {% block content %}{% endblock %}
         </main>
+
+        <button type="button" class="admin-scroll-top" id="adminScrollTop" aria-label="Về đầu trang" title="Về đầu trang">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+
+        <script>
+            (function() {
+                var btn = document.getElementById('adminScrollTop');
+                if (!btn) return;
+                function onScroll() {
+                    if (window.scrollY > 240) btn.classList.add('show');
+                    else btn.classList.remove('show');
+                }
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
+                btn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            })();
+        </script>
     </div>
 </body>
 

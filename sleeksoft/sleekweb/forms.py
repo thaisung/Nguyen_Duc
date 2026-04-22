@@ -6,6 +6,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = [
+                'Cosbeauty_link',
                 'Slug',
                 'Seo_Title',
                 'Seo_Description',
@@ -22,6 +23,7 @@ class ProductForm(forms.ModelForm):
             'Slug': 'Đường dẫn',
             'Seo_Title': 'Tiêu đề SEO',
             'Seo_Description': 'Mô tả SEO',
+            'Cosbeauty_link': 'Đường link Cosbeauty',
             'Name': 'Tên sản phẩm',
             'Title': 'Chi tiết',
             'Category': 'Danh mục sản phẩm',
