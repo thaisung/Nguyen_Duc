@@ -807,7 +807,7 @@
         <aside id="menu" class="admin-sidebar menu">
             <div class="admin-brand">
                 <div class="admin-brand-logo">
-                    <img src="{% if obj.Logo %}{{obj.Logo.url}}{% else %}/upload/website/logo.png{% endif %}" alt="Hydrinity">
+                    <img src="{% if site_obj.Logo %}{{site_obj.Logo.url}}{% elif obj.Logo %}{{obj.Logo.url}}{% else %}/upload/website/logo.png{% endif %}" alt="Hydrinity">
                 </div>
                 <div class="admin-brand-text">
                     <div class="admin-brand-name">HYDRINITY</div>
