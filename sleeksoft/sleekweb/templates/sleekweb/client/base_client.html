@@ -299,7 +299,7 @@
   <div class="container">
     <div class="header-inner">
       <a href="{{domain}}" class="logo">
-        <div class="logo-icon"><img src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% endif %}" alt="HYDRINITY"></div>
+        <div class="logo-icon"><img src="{% if site_obj.Logo %}{{domain}}{{site_obj.Logo.url}}{% elif obj.Logo %}{{domain}}{{obj.Logo.url}}{% else %}{{domain}}/upload/website/logo.png{% endif %}" alt="HYDRINITY"></div>
         <div class="logo-wordmark">
           <div class="logo-name">HYDRINITY</div>
           <div class="logo-sub">ACCELERATED SKIN SCIENCE</div>
@@ -346,7 +346,7 @@
   <div class="mobile-nav-panel">
     <div class="mobile-nav-top">
       <a href="{{domain}}" class="logo">
-        <div class="logo-icon"><img src="photo/logo.png" alt="HYDRINITY" style="width:22px"></div>
+        <div class="logo-icon"><img src="{% if site_obj.Logo %}{{domain}}{{site_obj.Logo.url}}{% elif obj.Logo %}{{domain}}{{obj.Logo.url}}{% else %}{{domain}}/upload/website/logo.png{% endif %}" alt="HYDRINITY" style="width:22px"></div>
         <div class="logo-wordmark">
           <div class="logo-name" style="color:var(--navy);font-size:18px">HYDRINITY</div>
           <div class="logo-sub" style="color:var(--gold)">ACCELERATED SKIN SCIENCE</div>
@@ -484,7 +484,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="{{domain}}" class="logo">
-          <div class="logo-icon"><img src="{% if obj.Logo %}{{domain}}{{obj.Logo.url}}{% endif %}" alt="HYDRINITY" style="width:26px"></div>
+          <div class="logo-icon"><img src="{% if site_obj.Logo %}{{domain}}{{site_obj.Logo.url}}{% elif obj.Logo %}{{domain}}{{obj.Logo.url}}{% else %}{{domain}}/upload/website/logo.png{% endif %}" alt="HYDRINITY" style="width:26px"></div>
           <div class="logo-wordmark">
             <div class="logo-name" style="color:#fff;font-size:19px">HYDRINITY</div>
             <div class="logo-sub" style="color:var(--gold-pale)">ACCELERATED SKIN SCIENCE</div>

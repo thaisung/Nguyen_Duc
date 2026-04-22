@@ -135,10 +135,11 @@
         @media (max-width: 1023.98px) {
             .admin-sidebar {
                 position: fixed;
-                inset: 0 auto 0 0;
+                inset: 0 0 0 auto;
                 z-index: 9999;
-                transform: translateX(-100%);
+                transform: translateX(100%);
                 transition: transform .28s ease;
+                box-shadow: -2px 0 24px rgba(14, 32, 60, .2);
             }
             .admin-sidebar.open { transform: translateX(0); }
         }
@@ -147,6 +148,30 @@
             position: relative;
             padding: 22px 20px 20px;
             display: flex; align-items: center; gap: 14px;
+        }
+
+        /* Close button (X) — chỉ hiện mobile khi sidebar mở */
+        .admin-sidebar-close {
+            position: absolute;
+            top: 14px; right: 14px;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: #fff;
+            display: none;
+            align-items: center; justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background .15s, transform .15s;
+            z-index: 5;
+        }
+        .admin-sidebar-close:hover {
+            background: rgba(220, 38, 38, .35);
+            border-color: rgba(220, 38, 38, .5);
+        }
+        @media (max-width: 1023.98px) {
+            .admin-sidebar-close { display: flex; }
         }
         .admin-brand::after {
             content: "";
@@ -299,7 +324,7 @@
             padding: 20px 24px 40px;
         }
         @media (max-width: 1023.98px) {
-            .admin-main { padding: 68px 14px 32px; }
+            .admin-main { padding: 72px 14px 32px; }
         }
 
         .admin-card {
@@ -309,21 +334,89 @@
             box-shadow: 0 1px 3px rgba(14, 32, 60, .05), 0 1px 2px rgba(14, 32, 60, .03);
         }
 
-        /* ── Mobile trigger ── */
+        /* ── Mobile topbar ── */
+        .admin-mobile-topbar {
+            display: none;
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 9997;
+            height: 58px;
+            padding: 0 14px;
+            background: linear-gradient(135deg, #11284A 0%, #0e203c 100%);
+            border-bottom: 1px solid rgba(201, 168, 106, .25);
+            box-shadow: 0 4px 14px rgba(14, 32, 60, .22);
+            align-items: center; justify-content: space-between;
+            gap: 12px;
+        }
+        .admin-mobile-topbar::after {
+            content: "";
+            position: absolute;
+            left: 14px; right: 14px; bottom: -1px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,168,106,.5), transparent);
+        }
+        @media (max-width: 1023.98px) { .admin-mobile-topbar { display: flex; } }
+
+        .admin-mobile-brand {
+            display: flex; align-items: center; gap: 10px;
+            min-width: 0;
+        }
+        .admin-mobile-brand-logo {
+            width: 36px; height: 36px;
+            border-radius: 9px;
+            background: var(--admin-navy);
+            border: 1px solid var(--admin-gold);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            padding: 4px;
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,.04),
+                0 2px 8px rgba(0,0,0,.3);
+        }
+        .admin-mobile-brand-logo img { width: 100%; height: 100%; object-fit: contain; }
+        .admin-mobile-brand-text { min-width: 0; line-height: 1; }
+        .admin-mobile-brand-name {
+            font-family: 'UTM Bebas', sans-serif;
+            font-size: 20px;
+            letter-spacing: 2.5px;
+            background: linear-gradient(180deg, #ffffff 0%, #e8d9b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #fff;
+        }
+        .admin-mobile-brand-sub {
+            font-size: 9px;
+            color: var(--admin-gold);
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 3px;
+            opacity: .85;
+        }
+
+        /* Mobile menu button — nằm trong topbar */
         .admin-menu-trigger {
-            position: fixed; top: 12px; left: 12px;
+            position: relative;
             z-index: 10000;
-            background: #fff;
-            border: 1px solid var(--admin-border);
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(201, 168, 106, .45);
             border-radius: 10px;
-            padding: 9px 12px;
-            display: none; align-items: center;
-            box-shadow: 0 4px 12px rgba(14, 32, 60, .08);
+            width: 42px; height: 42px;
+            padding: 0;
+            display: none; align-items: center; justify-content: center;
             cursor: pointer;
-            color: var(--admin-navy);
+            color: var(--admin-gold);
+            font-size: 16px;
+            transition: background .18s, transform .15s, border-color .15s;
+            flex-shrink: 0;
         }
         @media (max-width: 1023.98px) { .admin-menu-trigger { display: flex; } }
-        .admin-menu-trigger:hover { background: #f4f5f7; }
+        .admin-menu-trigger:hover {
+            background: rgba(201, 168, 106, .18);
+            border-color: rgba(201, 168, 106, .75);
+        }
+        .admin-menu-trigger:active { transform: scale(.96); }
+        .admin-menu-trigger.hidden { display: none !important; }
 
         .admin-backdrop {
             position: fixed; inset: 0;
@@ -437,13 +530,14 @@
         }
 
         /* Search field in head */
-        .ap-search { position: relative; display: flex; align-items: center; }
+        .ap-search { position: relative; display: flex; align-items: center; flex: 1; min-width: 0; }
         .ap-search input {
             padding: 8px 38px 8px 14px !important;
             border-radius: 999px !important;
             border: 1px solid var(--admin-border) !important;
             font-size: 13px;
-            min-width: 220px;
+            width: 100%;
+            min-width: 0;
             background: #f7f8fa !important;
         }
         .ap-search input:focus { background: #fff !important; }
@@ -456,8 +550,23 @@
             display: flex; align-items: center; justify-content: center;
             border: none; cursor: pointer;
             transition: background .15s;
+            flex-shrink: 0;
         }
         .ap-search button:hover { background: var(--admin-navy-2); }
+        @media (min-width: 640px) {
+            .ap-search { flex: 0 0 auto; }
+            .ap-search input { min-width: 220px; }
+        }
+
+        /* Mobile: head-actions rơi xuống hàng dưới, chiếm full width */
+        @media (max-width: 639.98px) {
+            .ap-head { padding: 14px 16px; }
+            .ap-head-main { flex: 1 1 100%; }
+            .ap-head-actions { flex: 1 1 100%; width: 100%; }
+            .ap-head-actions > .ap-search { flex: 1; }
+            .ap-head-actions > .ap-btn { flex: 0 0 auto; }
+            .ap-title { font-size: 18px; letter-spacing: 1.5px; }
+        }
 
         /* Card / section panel */
         .ap-card {
@@ -902,9 +1011,20 @@
 
 <body>
     <div class="admin-shell">
-        <button type="button" class="admin-menu-trigger click_menu" aria-label="Mở menu">
-            <i class="fas fa-bars"></i>
-        </button>
+        <header class="admin-mobile-topbar">
+            <div class="admin-mobile-brand">
+                <div class="admin-mobile-brand-logo">
+                    <img src="{% if site_obj.Logo %}{{site_obj.Logo.url}}{% elif obj.Logo %}{{obj.Logo.url}}{% else %}/upload/website/logo.png{% endif %}" alt="Hydrinity">
+                </div>
+                <div class="admin-mobile-brand-text">
+                    <div class="admin-mobile-brand-name">HYDRINITY</div>
+                    <div class="admin-mobile-brand-sub">Quản trị</div>
+                </div>
+            </div>
+            <button type="button" class="admin-menu-trigger click_menu" aria-label="Mở menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </header>
         <div class="admin-backdrop" id="adminBackdrop"></div>
 
         <aside id="menu" class="admin-sidebar menu">
@@ -916,6 +1036,9 @@
                     <div class="admin-brand-name">HYDRINITY</div>
                     <div class="admin-brand-sub">Quản trị website</div>
                 </div>
+                <button type="button" class="admin-sidebar-close" id="adminSidebarClose" aria-label="Đóng menu" title="Đóng menu">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
             <div class="admin-user-chip">
@@ -974,29 +1097,29 @@
 
         <script>
             let isOpen = false;
-            $(".click_menu").click(function (e) {
-                e.stopPropagation();
-                const $menu = $("#menu");
-                const $bd = $("#adminBackdrop");
-                if (!isOpen) {
-                    $menu.addClass("open");
-                    $bd.addClass("show");
-                } else {
-                    $menu.removeClass("open");
-                    $bd.removeClass("show");
-                }
-                isOpen = !isOpen;
-            });
-            $(document).on("click", "#adminBackdrop", function () {
+            function openMenu() {
+                $("#menu").addClass("open");
+                $("#adminBackdrop").addClass("show");
+                $(".click_menu").addClass("hidden");
+                isOpen = true;
+            }
+            function closeMenu() {
                 $("#menu").removeClass("open");
                 $("#adminBackdrop").removeClass("show");
+                $(".click_menu").removeClass("hidden");
                 isOpen = false;
+            }
+            $(".click_menu").click(function (e) {
+                e.stopPropagation();
+                if (!isOpen) openMenu(); else closeMenu();
+            });
+            $(document).on("click", "#adminBackdrop, #adminSidebarClose", function (e) {
+                e.stopPropagation();
+                closeMenu();
             });
             $(document).click(function (e) {
                 if (isOpen && !$(e.target).closest("#menu, .click_menu").length) {
-                    $("#menu").removeClass("open");
-                    $("#adminBackdrop").removeClass("show");
-                    isOpen = false;
+                    closeMenu();
                 }
             });
         </script>
