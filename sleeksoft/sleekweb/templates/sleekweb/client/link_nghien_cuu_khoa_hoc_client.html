@@ -129,6 +129,7 @@
           <h3 class="product-name"><a href="{% url 'slug_router' slug=i.Slug %}">{{i.Name}}</a></h3>
           {% if i.Title %}<p class="product-desc">{{i.Title|striptags|truncatechars:90}}</p>{% endif %}
           <div class="product-bottom-row">
+            {% if i.list_size.all.last.Price %}
             <div class="product-price">
               <span class="format_number price-display">{{i.list_size.all.last.Price}}</span>đ
             </div>
@@ -142,6 +143,11 @@
                 <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
               </span>
             </div>
+            {% else %}
+            <a href="{% url 'about_lien_he_client' %}" class="btn-product-detail">
+              <i class="fas fa-phone-alt"></i> Liên hệ
+            </a>
+            {% endif %}
           </div>
           <a href="{% url 'slug_router' slug=i.Slug %}" class="btn-product-detail">Xem Chi Tiết <i class="fas fa-arrow-right"></i></a>
         </div>
